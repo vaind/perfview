@@ -1,4 +1,6 @@
-﻿using System;
+#nullable disable
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -14,7 +16,7 @@ namespace Microsoft.Diagnostics.Tracing.AutomatedAnalysis
     /// <summary>
     /// A view into a set of aggregated stacks.
     /// </summary>
-    public class StackView
+    internal class StackView
     {
         private static readonly char[] SymbolSeparator = new char[] { '!' };
 
@@ -363,3 +365,13 @@ namespace Microsoft.Diagnostics.Tracing.AutomatedAnalysis
         }
     }
 }
+
+
+
+
+
+
+
+
+
+

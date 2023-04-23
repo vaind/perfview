@@ -1,3 +1,5 @@
+#nullable disable
+
 // Copyright (c) Microsoft Corporation.  All rights reserved
 using Microsoft.Diagnostics.Tracing.Stacks;
 using System;
@@ -13,7 +15,7 @@ namespace Diagnostics.Tracing.StackSources
     /// <summary>
     /// This is just a class that holds data.  It does nothing except support an 'update' events 
     /// </summary>
-    public class FilterParams
+    internal class FilterParams
     {
         /// <summary>
         /// Constructs a Filter parameter class with all empty properties. 
@@ -235,7 +237,7 @@ namespace Diagnostics.Tracing.StackSources
     /// A FilterStackSource morphs one stack filters or groups the stacks of one stack source to form a new
     /// stack source.   It is very powerful mechanism.  
     /// </summary>
-    public class FilterStackSource : StackSource
+    internal class FilterStackSource : StackSource
     {
         /// <summary>
         /// Create a new FilterStackSource.   
@@ -1251,3 +1253,13 @@ namespace Diagnostics.Tracing.StackSources
         #endregion
     }
 }
+
+
+
+
+
+
+
+
+
+

@@ -1,4 +1,6 @@
-﻿using Microsoft.Diagnostics.Tracing;
+#nullable disable
+
+using Microsoft.Diagnostics.Tracing;
 using Microsoft.Diagnostics.Tracing.Parsers;
 using Microsoft.Diagnostics.Tracing.Parsers.Clr;
 using Microsoft.Diagnostics.Tracing.Parsers.LinuxKernel;
@@ -8,7 +10,7 @@ using Xunit;
 
 namespace Tests
 {
-    public class CtfTraceTests
+    internal class CtfTraceTests
     {
         private static string TestDataDirectory = @"..\..\..\inputs";
 
@@ -187,3 +189,13 @@ namespace Tests
         }
     }
 }
+
+
+
+
+
+
+
+
+
+

@@ -1,4 +1,6 @@
-﻿using Microsoft.Diagnostics.Tracing;
+#nullable disable
+
+using Microsoft.Diagnostics.Tracing;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -8,7 +10,7 @@ using Xunit.Abstractions;
 
 namespace TraceEventTests
 {
-    public class TestParser : TraceEventParser
+    internal class TestParser : TraceEventParser
     {
         public TestParser(TraceEventSource source) : base(source) { }
 
@@ -591,7 +593,7 @@ namespace TraceEventTests
     /// Test code to ensure that the TraceEventDispatcher works properly in the face of lots of
     /// adds and deletes.   
     /// </summary>
-    public class DispatcherTester : IDisposable
+    internal class DispatcherTester : IDisposable
     {
         public DispatcherTester(ITestOutputHelper output)
         {
@@ -866,3 +868,13 @@ namespace TraceEventTests
         private List<EmptyTraceData> m_repeatTemplates = new List<EmptyTraceData>();
     }
 }
+
+
+
+
+
+
+
+
+
+

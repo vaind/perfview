@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+#nullable disable
+
+using System.Collections.Generic;
 using System.Xml;
 
 namespace Microsoft.Diagnostics.Tracing.AutomatedAnalysis
@@ -75,3 +77,13 @@ namespace Microsoft.Diagnostics.Tracing.AutomatedAnalysis
         }
     }
 }
+
+
+
+
+
+
+
+
+
+

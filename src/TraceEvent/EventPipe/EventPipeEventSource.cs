@@ -1,3 +1,5 @@
+#nullable disable
+
 using FastSerialization;
 using Microsoft.Diagnostics.Tracing.EventPipe;
 using Microsoft.Diagnostics.Tracing.Parsers;
@@ -26,7 +28,7 @@ namespace Microsoft.Diagnostics.Tracing
     /// events have a name some basic information (process, thread, timestamp, activity
     /// ID) and user defined field names and values of various types.
     /// </summary>
-    public unsafe class EventPipeEventSource : TraceEventDispatcher, IFastSerializable, IFastSerializableVersion
+    internal unsafe class EventPipeEventSource : TraceEventDispatcher, IFastSerializable, IFastSerializableVersion
     {
         public EventPipeEventSource(string fileName) : this(new PinnedStreamReader(fileName, 0x20000, new SerializationConfiguration() { StreamLabelWidth = StreamLabelWidth.FourBytes }), fileName, false)
         {
@@ -1594,3 +1596,13 @@ namespace Microsoft.Diagnostics.Tracing
     }
     #endregion
 }
+
+
+
+
+
+
+
+
+
+

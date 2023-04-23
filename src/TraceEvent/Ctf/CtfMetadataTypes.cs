@@ -1,4 +1,6 @@
-﻿using System;
+#nullable disable
+
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -498,7 +500,7 @@ namespace Microsoft.Diagnostics.Tracing.Ctf
 
         public CtfField[] Fields { get; private set; }
 
-        public CtfStruct(CtfPropertyBag props, CtfField[] fields)
+        internal CtfStruct(CtfPropertyBag props, CtfField[] fields)
             : base(CtfTypes.Struct)
         {
             int alignment = 1;
@@ -706,3 +708,13 @@ namespace Microsoft.Diagnostics.Tracing.Ctf
         }
     }
 }
+
+
+
+
+
+
+
+
+
+

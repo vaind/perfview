@@ -1,4 +1,6 @@
-﻿using Microsoft.Diagnostics.Tracing.Stacks;
+#nullable disable
+
+using Microsoft.Diagnostics.Tracing.Stacks;
 using Microsoft.Diagnostics.Tracing.Stacks.Linux;
 using Microsoft.Diagnostics.Tracing.Utilities;
 using System;
@@ -14,7 +16,7 @@ using System.Threading.Tasks;
 
 namespace Microsoft.Diagnostics.Tracing.StackSources
 {
-    public class ParallelLinuxPerfScriptStackSource : LinuxPerfScriptStackSource
+    internal class ParallelLinuxPerfScriptStackSource : LinuxPerfScriptStackSource
     {
         public ParallelLinuxPerfScriptStackSource(string path, bool doThreadTime = false) : base(path, doThreadTime)
         {
@@ -268,7 +270,7 @@ namespace Microsoft.Diagnostics.Tracing.StackSources
         #endregion
     }
 
-    public class LinuxPerfScriptStackSource : InternStackSource
+    internal class LinuxPerfScriptStackSource : InternStackSource
     {
         public LinuxPerfScriptStackSource(string path, bool doThreadTime)
         {
@@ -507,7 +509,7 @@ namespace Microsoft.Diagnostics.Tracing.StackSources
     /// <summary>
     /// Analyzes blocked time 
     /// </summary>
-    public class BlockedTimeAnalyzer
+    internal class BlockedTimeAnalyzer
     {
         public double TimeStamp { get; private set; }
         internal LinuxPerfScriptThreadStateComputer ThreadStateComputer { get; }
@@ -680,7 +682,7 @@ namespace Microsoft.Diagnostics.Tracing.StackSources
         }
     }
 
-    public class ThreadPeriod
+    internal class ThreadPeriod
     {
         public int ThreadID { get; }
         public double StartTime { get; }
@@ -695,7 +697,7 @@ namespace Microsoft.Diagnostics.Tracing.StackSources
         }
     }
 
-    public static class CustomExtensions
+    internal static class CustomExtensions
     {
         public static IEnumerable<T> ConcatListsOfLists<T>(IEnumerable<T>[] objects)
         {
@@ -718,3 +720,13 @@ namespace Microsoft.Diagnostics.Tracing.StackSources
         }
     }
 }
+
+
+
+
+
+
+
+
+
+

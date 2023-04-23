@@ -1,10 +1,12 @@
-﻿using Microsoft.Diagnostics.Tracing.AutomatedAnalysis;
+#nullable disable
+
+using Microsoft.Diagnostics.Tracing.AutomatedAnalysis;
 using System.Reflection;
 using Xunit;
 
 namespace TraceEventTests
 {
-    public class TestAnalyzerResolver : AnalyzerResolver
+    internal class TestAnalyzerResolver : AnalyzerResolver
     {
         protected internal override void Resolve()
         {
@@ -18,3 +20,13 @@ namespace TraceEventTests
         }
     }
 }
+
+
+
+
+
+
+
+
+
+

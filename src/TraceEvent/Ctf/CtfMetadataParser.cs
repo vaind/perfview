@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+#nullable disable
+
+using System.Collections.Generic;
 using System.Diagnostics;
 
 namespace Microsoft.Diagnostics.Tracing.Ctf
@@ -161,7 +163,7 @@ namespace Microsoft.Diagnostics.Tracing.Ctf
             return value;
         }
 
-        public CtfStruct GetStruct(string name)
+        internal CtfStruct GetStruct(string name)
         {
             CtfMetadataType value;
             _typeProperties.TryGetValue(name, out value);
@@ -197,3 +199,13 @@ namespace Microsoft.Diagnostics.Tracing.Ctf
         }
     }
 }
+
+
+
+
+
+
+
+
+
+

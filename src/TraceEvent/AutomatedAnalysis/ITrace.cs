@@ -1,4 +1,6 @@
-﻿using System;
+#nullable disable
+
+using System;
 using System.Collections.Generic;
 
 namespace Microsoft.Diagnostics.Tracing.AutomatedAnalysis
@@ -6,7 +8,7 @@ namespace Microsoft.Diagnostics.Tracing.AutomatedAnalysis
     /// <summary>
     /// A common set of supported stacks.
     /// </summary>
-    public static class StackTypes
+    internal static class StackTypes
     {
         /// <summary>
         /// Stacks representing execution on one or more CPUs.
@@ -38,3 +40,13 @@ namespace Microsoft.Diagnostics.Tracing.AutomatedAnalysis
         StackView GetStacks(Process process, string stackType);
     }
 }
+
+
+
+
+
+
+
+
+
+

@@ -1,4 +1,6 @@
-﻿using Microsoft.Diagnostics.Tracing.AutomatedAnalysis;
+#nullable disable
+
+using Microsoft.Diagnostics.Tracing.AutomatedAnalysis;
 using Microsoft.Diagnostics.Symbols;
 using System;
 using System.Collections.Generic;
@@ -14,7 +16,7 @@ using System.Linq;
 namespace TraceEventTests
 {
     [UseCulture("en-US")]
-    public class AnalyzerExecutionTests : AutomatedAnalysisTestBase
+    internal class AnalyzerExecutionTests : AutomatedAnalysisTestBase
     {
         public AnalyzerExecutionTests(ITestOutputHelper output)
             : base(output)
@@ -58,7 +60,7 @@ namespace TraceEventTests
         }
     }
 
-    public sealed class AnalyzerExecutionTestResolver : TestAnalyzerResolver
+    internal sealed class AnalyzerExecutionTestResolver : TestAnalyzerResolver
     {
         protected override void OnAnalyzerLoaded(AnalyzerLoadContext loadContext)
         {
@@ -69,7 +71,7 @@ namespace TraceEventTests
         }
     }
 
-    public sealed class SingleIssueAnalyzer : ProcessAnalyzer
+    internal sealed class SingleIssueAnalyzer : ProcessAnalyzer
     {
         internal static readonly Guid TestIssueId = Guid.Parse("06e26d5a-14e5-455e-9266-7303857c11c7");
         internal static AnalyzerIssue Issue;
@@ -89,3 +91,13 @@ namespace TraceEventTests
         }
     }
 }
+
+
+
+
+
+
+
+
+
+

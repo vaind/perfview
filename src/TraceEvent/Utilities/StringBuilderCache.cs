@@ -1,4 +1,6 @@
-﻿// ==++==
+#nullable disable
+
+// ==++==
 // 
 //   Copyright (c) Microsoft Corporation.  All rights reserved.
 // 
@@ -84,3 +86,13 @@ namespace Microsoft.Diagnostics.Tracing.Utilities
         }
     }
 }
+
+
+
+
+
+
+
+
+
+

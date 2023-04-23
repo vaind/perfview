@@ -1,4 +1,6 @@
-﻿using System;
+#nullable disable
+
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -8,7 +10,7 @@ namespace Microsoft.Diagnostics.Tracing.AutomatedAnalysis
     /// <summary>
     /// A report generator whose output format is HTML.
     /// </summary>
-    public sealed class HtmlReportGenerator : IDisposable
+    internal sealed class HtmlReportGenerator : IDisposable
     {
         private TextWriter _writer;
 
@@ -85,3 +87,13 @@ namespace Microsoft.Diagnostics.Tracing.AutomatedAnalysis
         }
     }
 }
+
+
+
+
+
+
+
+
+
+

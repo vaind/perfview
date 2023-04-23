@@ -1,4 +1,6 @@
-﻿using Microsoft.Diagnostics.Symbols;
+#nullable disable
+
+using Microsoft.Diagnostics.Symbols;
 using Microsoft.Diagnostics.Tracing;
 using Microsoft.Diagnostics.Tracing.Etlx;
 using Microsoft.Diagnostics.Tracing.Stacks;
@@ -14,7 +16,7 @@ using static Microsoft.Diagnostics.Tracing.Stacks.StackSourceWriterHelper;
 
 namespace TraceEventTests
 {
-    public class SpeedScopeStackSourceWriterTests
+    internal class SpeedScopeStackSourceWriterTests
     {
         [Theory]
         [InlineData("Process (321)", 321)]
@@ -480,3 +482,13 @@ namespace TraceEventTests
         #endregion private
     }
 }
+
+
+
+
+
+
+
+
+
+

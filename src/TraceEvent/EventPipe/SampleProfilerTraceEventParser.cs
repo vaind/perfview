@@ -1,3 +1,5 @@
+#nullable disable
+
 using System;
 using System.Diagnostics;
 using System.Text;
@@ -5,7 +7,7 @@ using Address = System.UInt64;
 
 namespace Microsoft.Diagnostics.Tracing.EventPipe
 {
-    public sealed class SampleProfilerTraceEventParser : TraceEventParser
+    internal sealed class SampleProfilerTraceEventParser : TraceEventParser
     {
         // NOTE: It's not a real EventSource provider
         public static string ProviderName = "Microsoft-DotNETCore-SampleProfiler";
@@ -78,7 +80,7 @@ namespace Microsoft.Diagnostics.Tracing.EventPipe
         Managed = 2
     }
 
-    public sealed class ClrThreadSampleTraceData : TraceEvent
+    internal sealed class ClrThreadSampleTraceData : TraceEvent
     {
         public ClrThreadSampleType Type
         {
@@ -145,7 +147,7 @@ namespace Microsoft.Diagnostics.Tracing.EventPipe
         #endregion
     }
 
-    public sealed class ClrThreadStackWalkTraceData : TraceEvent
+    internal sealed class ClrThreadStackWalkTraceData : TraceEvent
     {
         public int FrameCount
         {
@@ -163,7 +165,7 @@ namespace Microsoft.Diagnostics.Tracing.EventPipe
         /// <param name="index">The index of the frame to fetch.  0 is the CPU EIP, 1 is the Caller of that
         /// routine ...</param>
         /// <returns>The instruction pointer of the specified frame.</returns>
-        public Address InstructionPointer(int index)
+        internal Address InstructionPointer(int index)
         {
             return GetAddressAt(index * PointerSize);
         }
@@ -242,3 +244,13 @@ namespace Microsoft.Diagnostics.Tracing.EventPipe
         #endregion
     }
 }
+
+
+
+
+
+
+
+
+
+

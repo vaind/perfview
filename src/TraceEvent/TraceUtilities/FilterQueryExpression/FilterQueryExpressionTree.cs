@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+#nullable disable
+
+using System.Collections.Generic;
 
 namespace Microsoft.Diagnostics.Tracing.TraceUtilities.FilterQueryExpression
 {
@@ -6,7 +8,7 @@ namespace Microsoft.Diagnostics.Tracing.TraceUtilities.FilterQueryExpression
     /// Class responsible for encapsulating the collection of FilterQueryExpressions and the logic to combine them to deduce if we match on a particular trace event.
     /// NOTE: This class is no way thread-safe.
     /// </summary>
-    public sealed class FilterQueryExpressionTree
+    internal sealed class FilterQueryExpressionTree
     {
         private readonly Dictionary<char, FilterQueryExpression> _expressionMap;
         private readonly string _postFixExpression;
@@ -69,3 +71,13 @@ namespace Microsoft.Diagnostics.Tracing.TraceUtilities.FilterQueryExpression
         }
     }
 }
+
+
+
+
+
+
+
+
+
+

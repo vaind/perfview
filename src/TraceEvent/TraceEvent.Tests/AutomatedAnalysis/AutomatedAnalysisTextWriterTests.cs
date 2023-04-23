@@ -1,4 +1,6 @@
-﻿using System;
+#nullable disable
+
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.Tracing;
 using System.Linq;
@@ -9,7 +11,7 @@ using Xunit.Abstractions;
 
 namespace TraceEventTests
 {
-    public class AutomatedAnalysisTextWriterTests : TestBase
+    internal class AutomatedAnalysisTextWriterTests : TestBase
     {
         public AutomatedAnalysisTextWriterTests(ITestOutputHelper output)
             : base(output)
@@ -132,7 +134,7 @@ namespace TraceEventTests
         }
     }
 
-    public sealed class TestEventListener : EventListener
+    internal sealed class TestEventListener : EventListener
     {
         public List<string> Messages { get; } = new List<string>();
 
@@ -153,3 +155,12 @@ namespace TraceEventTests
         }
     }
 }
+
+
+
+
+
+
+
+
+

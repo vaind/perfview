@@ -1,3 +1,5 @@
+#nullable disable
+
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
@@ -15,3 +17,12 @@ namespace Microsoft.Diagnostics.Tracing.Compatibility
         public static IDictionary<string, string> GetEnvironment(this ProcessStartInfo startInfo) => startInfo.Environment;
     }
 }
+
+
+
+
+
+
+
+
+

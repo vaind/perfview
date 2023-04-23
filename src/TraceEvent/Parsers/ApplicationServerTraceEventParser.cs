@@ -1,3 +1,5 @@
+#nullable disable
+
 using Microsoft.Diagnostics.Tracing.Parsers.ApplicationServer;
 using System;
 using System.Diagnostics;
@@ -8,7 +10,7 @@ using System.Text;
 namespace Microsoft.Diagnostics.Tracing.Parsers
 {
     [System.CodeDom.Compiler.GeneratedCode("traceparsergen", "1.0")]
-    public sealed class ApplicationServerTraceEventParser : TraceEventParser
+    internal sealed class ApplicationServerTraceEventParser : TraceEventParser
     {
         public static readonly string ProviderName = "Microsoft-Windows-Application Server-Applications";
         public static readonly Guid ProviderGuid = new Guid(unchecked((int)0xc651f5f6), unchecked((short)0x1c0d), unchecked((short)0x492e), 0x8a, 0xe1, 0xb4, 0xef, 0xd7, 0xc9, 0xd5, 0x03);
@@ -7142,7 +7144,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers
 
 namespace Microsoft.Diagnostics.Tracing.Parsers.ApplicationServer
 {
-    public sealed class Multidata9TemplateHATraceData : TraceEvent
+    internal sealed class Multidata9TemplateHATraceData : TraceEvent
     {
         public Guid InstanceId { get { return GetGuidAt(0); } }
         public long RecordNumber { get { return GetInt64At(16); } }
@@ -7231,7 +7233,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ApplicationServer
         private event Action<Multidata9TemplateHATraceData> Action;
         #endregion
     }
-    public sealed class Multidata10TemplateHATraceData : TraceEvent
+    internal sealed class Multidata10TemplateHATraceData : TraceEvent
     {
         public Guid InstanceId { get { return GetGuidAt(0); } }
         public long RecordNumber { get { return GetInt64At(16); } }
@@ -7336,7 +7338,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ApplicationServer
         private event Action<Multidata10TemplateHATraceData> Action;
         #endregion
     }
-    public sealed class Multidata8TemplateHATraceData : TraceEvent
+    internal sealed class Multidata8TemplateHATraceData : TraceEvent
     {
         public Guid InstanceId { get { return GetGuidAt(0); } }
         public long RecordNumber { get { return GetInt64At(16); } }
@@ -7425,7 +7427,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ApplicationServer
         private event Action<Multidata8TemplateHATraceData> Action;
         #endregion
     }
-    public sealed class Multidata4TemplateHATraceData : TraceEvent
+    internal sealed class Multidata4TemplateHATraceData : TraceEvent
     {
         public Guid InstanceId { get { return GetGuidAt(0); } }
         public long RecordNumber { get { return GetInt64At(16); } }
@@ -7534,7 +7536,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ApplicationServer
         private event Action<Multidata4TemplateHATraceData> Action;
         #endregion
     }
-    public sealed class Multidata3TemplateHATraceData : TraceEvent
+    internal sealed class Multidata3TemplateHATraceData : TraceEvent
     {
         public Guid InstanceId { get { return GetGuidAt(0); } }
         public long RecordNumber { get { return GetInt64At(16); } }
@@ -7647,7 +7649,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ApplicationServer
         private event Action<Multidata3TemplateHATraceData> Action;
         #endregion
     }
-    public sealed class Multidata6TemplateHATraceData : TraceEvent
+    internal sealed class Multidata6TemplateHATraceData : TraceEvent
     {
         public Guid InstanceId { get { return GetGuidAt(0); } }
         public long RecordNumber { get { return GetInt64At(16); } }
@@ -7768,7 +7770,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ApplicationServer
         private event Action<Multidata6TemplateHATraceData> Action;
         #endregion
     }
-    public sealed class Multidata5TemplateHATraceData : TraceEvent
+    internal sealed class Multidata5TemplateHATraceData : TraceEvent
     {
         public Guid InstanceId { get { return GetGuidAt(0); } }
         public long RecordNumber { get { return GetInt64At(16); } }
@@ -7873,7 +7875,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ApplicationServer
         private event Action<Multidata5TemplateHATraceData> Action;
         #endregion
     }
-    public sealed class Multidata7TemplateHATraceData : TraceEvent
+    internal sealed class Multidata7TemplateHATraceData : TraceEvent
     {
         public Guid InstanceId { get { return GetGuidAt(0); } }
         public long RecordNumber { get { return GetInt64At(16); } }
@@ -7978,7 +7980,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ApplicationServer
         private event Action<Multidata7TemplateHATraceData> Action;
         #endregion
     }
-    public sealed class Multidata11TemplateHATraceData : TraceEvent
+    internal sealed class Multidata11TemplateHATraceData : TraceEvent
     {
         public Guid InstanceId { get { return GetGuidAt(0); } }
         public long RecordNumber { get { return GetInt64At(16); } }
@@ -8071,7 +8073,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ApplicationServer
         private event Action<Multidata11TemplateHATraceData> Action;
         #endregion
     }
-    public sealed class Multidata12TemplateHATraceData : TraceEvent
+    internal sealed class Multidata12TemplateHATraceData : TraceEvent
     {
         public Guid InstanceId { get { return GetGuidAt(0); } }
         public long RecordNumber { get { return GetInt64At(16); } }
@@ -8164,7 +8166,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ApplicationServer
         private event Action<Multidata12TemplateHATraceData> Action;
         #endregion
     }
-    public sealed class Multidata13TemplateHATraceData : TraceEvent
+    internal sealed class Multidata13TemplateHATraceData : TraceEvent
     {
         public Guid InstanceId { get { return GetGuidAt(0); } }
         public long RecordNumber { get { return GetInt64At(16); } }
@@ -8273,7 +8275,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ApplicationServer
         private event Action<Multidata13TemplateHATraceData> Action;
         #endregion
     }
-    public sealed class Multidata14TemplateHATraceData : TraceEvent
+    internal sealed class Multidata14TemplateHATraceData : TraceEvent
     {
         public Guid InstanceId { get { return GetGuidAt(0); } }
         public long RecordNumber { get { return GetInt64At(16); } }
@@ -8370,7 +8372,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ApplicationServer
         private event Action<Multidata14TemplateHATraceData> Action;
         #endregion
     }
-    public sealed class Multidata1TemplateATraceData : TraceEvent
+    internal sealed class Multidata1TemplateATraceData : TraceEvent
     {
         public int Size { get { return GetInt32At(0); } }
         public string AppDomain { get { return GetUnicodeStringAt(4); } }
@@ -8434,7 +8436,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ApplicationServer
         private event Action<Multidata1TemplateATraceData> Action;
         #endregion
     }
-    public sealed class Multidata2TemplateATraceData : TraceEvent
+    internal sealed class Multidata2TemplateATraceData : TraceEvent
     {
         public int PoolSize { get { return GetInt32At(0); } }
         public int Delta { get { return GetInt32At(4); } }
@@ -8502,7 +8504,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ApplicationServer
         private event Action<Multidata2TemplateATraceData> Action;
         #endregion
     }
-    public sealed class OneStringsTemplateATraceData : TraceEvent
+    internal sealed class OneStringsTemplateATraceData : TraceEvent
     {
         public string AppDomain { get { return GetUnicodeStringAt(0); } }
 
@@ -8562,7 +8564,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ApplicationServer
         private event Action<OneStringsTemplateATraceData> Action;
         #endregion
     }
-    public sealed class Multidata23TemplateHATraceData : TraceEvent
+    internal sealed class Multidata23TemplateHATraceData : TraceEvent
     {
         public string TypeName { get { return GetUnicodeStringAt(0); } }
         public string HostReference { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -8630,7 +8632,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ApplicationServer
         private event Action<Multidata23TemplateHATraceData> Action;
         #endregion
     }
-    public sealed class Multidata24TemplateHATraceData : TraceEvent
+    internal sealed class Multidata24TemplateHATraceData : TraceEvent
     {
         public string MethodName { get { return GetUnicodeStringAt(0); } }
         public string CallerInfo { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -8702,7 +8704,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ApplicationServer
         private event Action<Multidata24TemplateHATraceData> Action;
         #endregion
     }
-    public sealed class Multidata25TemplateHATraceData : TraceEvent
+    internal sealed class Multidata25TemplateHATraceData : TraceEvent
     {
         public string TypeName { get { return GetUnicodeStringAt(0); } }
         public int Handled { get { return GetByteAt(SkipUnicodeString(0)); } }
@@ -8778,7 +8780,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ApplicationServer
         private event Action<Multidata25TemplateHATraceData> Action;
         #endregion
     }
-    public sealed class Multidata26TemplateHATraceData : TraceEvent
+    internal sealed class Multidata26TemplateHATraceData : TraceEvent
     {
         public string TypeName { get { return GetUnicodeStringAt(0); } }
         public string ExceptionTypeName { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -8850,7 +8852,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ApplicationServer
         private event Action<Multidata26TemplateHATraceData> Action;
         #endregion
     }
-    public sealed class Multidata27TemplateHATraceData : TraceEvent
+    internal sealed class Multidata27TemplateHATraceData : TraceEvent
     {
         public string ThrottleName { get { return GetUnicodeStringAt(0); } }
         public long Limit { get { return GetInt64At(SkipUnicodeString(0)); } }
@@ -8922,7 +8924,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ApplicationServer
         private event Action<Multidata27TemplateHATraceData> Action;
         #endregion
     }
-    public sealed class Multidata72TemplateHATraceData : TraceEvent
+    internal sealed class Multidata72TemplateHATraceData : TraceEvent
     {
         public string ServiceTypeName { get { return GetUnicodeStringAt(0); } }
         public string HostReference { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -8990,7 +8992,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ApplicationServer
         private event Action<Multidata72TemplateHATraceData> Action;
         #endregion
     }
-    public sealed class Multidata28TemplateHATraceData : TraceEvent
+    internal sealed class Multidata28TemplateHATraceData : TraceEvent
     {
         public string MethodName { get { return GetUnicodeStringAt(0); } }
         public long Duration { get { return GetInt64At(SkipUnicodeString(0)); } }
@@ -9062,7 +9064,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ApplicationServer
         private event Action<Multidata28TemplateHATraceData> Action;
         #endregion
     }
-    public sealed class Multidata29TemplateHATraceData : TraceEvent
+    internal sealed class Multidata29TemplateHATraceData : TraceEvent
     {
         public string ListenAddress { get { return GetUnicodeStringAt(0); } }
         public string HostReference { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -9130,7 +9132,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ApplicationServer
         private event Action<Multidata29TemplateHATraceData> Action;
         #endregion
     }
-    public sealed class Multidata30TemplateHATraceData : TraceEvent
+    internal sealed class Multidata30TemplateHATraceData : TraceEvent
     {
         public string DestinationAddress { get { return GetUnicodeStringAt(0); } }
         public string HostReference { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -9198,7 +9200,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ApplicationServer
         private event Action<Multidata30TemplateHATraceData> Action;
         #endregion
     }
-    public sealed class Multidata22TemplateHATraceData : TraceEvent
+    internal sealed class Multidata22TemplateHATraceData : TraceEvent
     {
         public string ServiceAction { get { return GetUnicodeStringAt(0); } }
         public string ContractName { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -9274,7 +9276,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ApplicationServer
         private event Action<Multidata22TemplateHATraceData> Action;
         #endregion
     }
-    public sealed class Multidata31TemplateHATraceData : TraceEvent
+    internal sealed class Multidata31TemplateHATraceData : TraceEvent
     {
         public string ExceptionToString { get { return GetUnicodeStringAt(0); } }
         public string ExceptionTypeName { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -9346,7 +9348,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ApplicationServer
         private event Action<Multidata31TemplateHATraceData> Action;
         #endregion
     }
-    public sealed class Multidata32TemplateHATraceData : TraceEvent
+    internal sealed class Multidata32TemplateHATraceData : TraceEvent
     {
         public Guid CorrelationId { get { return GetGuidAt(0); } }
         public string HostReference { get { return GetUnicodeStringAt(16); } }
@@ -9414,7 +9416,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ApplicationServer
         private event Action<Multidata32TemplateHATraceData> Action;
         #endregion
     }
-    public sealed class Multidata86TemplateHATraceData : TraceEvent
+    internal sealed class Multidata86TemplateHATraceData : TraceEvent
     {
         public Guid InstanceKey { get { return GetGuidAt(0); } }
         public string Values { get { return GetUnicodeStringAt(16); } }
@@ -9490,7 +9492,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ApplicationServer
         private event Action<Multidata86TemplateHATraceData> Action;
         #endregion
     }
-    public sealed class Multidata73TemplateATraceData : TraceEvent
+    internal sealed class Multidata73TemplateATraceData : TraceEvent
     {
         public int ClosedCount { get { return GetInt32At(0); } }
         public int TotalCount { get { return GetInt32At(4); } }
@@ -9558,7 +9560,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ApplicationServer
         private event Action<Multidata73TemplateATraceData> Action;
         #endregion
     }
-    public sealed class UserEventsTemplateTraceData : TraceEvent
+    internal sealed class UserEventsTemplateTraceData : TraceEvent
     {
         public string Name { get { return GetUnicodeStringAt(0); } }
         public string HostReference { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -9626,7 +9628,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ApplicationServer
         private event Action<UserEventsTemplateTraceData> Action;
         #endregion
     }
-    public sealed class TwoStringsTemplateTATraceData : TraceEvent
+    internal sealed class TwoStringsTemplateTATraceData : TraceEvent
     {
         public string ExtendedData { get { return GetUnicodeStringAt(0); } }
         public string AppDomain { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -9690,7 +9692,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ApplicationServer
         private event Action<TwoStringsTemplateTATraceData> Action;
         #endregion
     }
-    public sealed class TwoStringsTemplateATraceData : TraceEvent
+    internal sealed class TwoStringsTemplateATraceData : TraceEvent
     {
         public string data1 { get { return GetUnicodeStringAt(0); } }
         public string AppDomain { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -9754,7 +9756,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ApplicationServer
         private event Action<TwoStringsTemplateATraceData> Action;
         #endregion
     }
-    public sealed class TransferEmittedTemplateTraceData : TraceEvent
+    internal sealed class TransferEmittedTemplateTraceData : TraceEvent
     {
         public string HostReference { get { return GetUnicodeStringAt(0); } }
         public string AppDomain { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -9818,7 +9820,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ApplicationServer
         private event Action<TransferEmittedTemplateTraceData> Action;
         #endregion
     }
-    public sealed class Multidata69TemplateATraceData : TraceEvent
+    internal sealed class Multidata69TemplateATraceData : TraceEvent
     {
         public string AppDomainFriendlyName { get { return GetUnicodeStringAt(0); } }
         public string VirtualPath { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -9886,7 +9888,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ApplicationServer
         private event Action<Multidata69TemplateATraceData> Action;
         #endregion
     }
-    public sealed class Multidata74TemplateATraceData : TraceEvent
+    internal sealed class Multidata74TemplateATraceData : TraceEvent
     {
         public string RelativeAddress { get { return GetUnicodeStringAt(0); } }
         public string NormalizedAddress { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -9954,7 +9956,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ApplicationServer
         private event Action<Multidata74TemplateATraceData> Action;
         #endregion
     }
-    public sealed class Multidata70TemplateATraceData : TraceEvent
+    internal sealed class Multidata70TemplateATraceData : TraceEvent
     {
         public string IncomingAddress { get { return GetUnicodeStringAt(0); } }
         public string AppDomain { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -10018,7 +10020,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ApplicationServer
         private event Action<Multidata70TemplateATraceData> Action;
         #endregion
     }
-    public sealed class Multidata71TemplateATraceData : TraceEvent
+    internal sealed class Multidata71TemplateATraceData : TraceEvent
     {
         public string AspNetRoutePrefix { get { return GetUnicodeStringAt(0); } }
         public string ServiceType { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -10090,7 +10092,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ApplicationServer
         private event Action<Multidata71TemplateATraceData> Action;
         #endregion
     }
-    public sealed class Multidata75TemplateATraceData : TraceEvent
+    internal sealed class Multidata75TemplateATraceData : TraceEvent
     {
         public string Data { get { return GetUnicodeStringAt(0); } }
         public string AppDomain { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -10154,7 +10156,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ApplicationServer
         private event Action<Multidata75TemplateATraceData> Action;
         #endregion
     }
-    public sealed class TwoStringsTemplateVATraceData : TraceEvent
+    internal sealed class TwoStringsTemplateVATraceData : TraceEvent
     {
         public string HostReference { get { return GetUnicodeStringAt(0); } }
         public string AppDomain { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -10218,7 +10220,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ApplicationServer
         private event Action<TwoStringsTemplateVATraceData> Action;
         #endregion
     }
-    public sealed class ThreeStringsTemplateEATraceData : TraceEvent
+    internal sealed class ThreeStringsTemplateEATraceData : TraceEvent
     {
         public string data1 { get { return GetUnicodeStringAt(0); } }
         public string SerializedException { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -10286,7 +10288,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ApplicationServer
         private event Action<ThreeStringsTemplateEATraceData> Action;
         #endregion
     }
-    public sealed class SixStringsTemplateEATraceData : TraceEvent
+    internal sealed class SixStringsTemplateEATraceData : TraceEvent
     {
         public string data1 { get { return GetUnicodeStringAt(0); } }
         public string data2 { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -10366,7 +10368,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ApplicationServer
         private event Action<SixStringsTemplateEATraceData> Action;
         #endregion
     }
-    public sealed class SevenStringsTemplateATraceData : TraceEvent
+    internal sealed class SevenStringsTemplateATraceData : TraceEvent
     {
         public string data1 { get { return GetUnicodeStringAt(0); } }
         public string data2 { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -10450,7 +10452,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ApplicationServer
         private event Action<SevenStringsTemplateATraceData> Action;
         #endregion
     }
-    public sealed class FiveStringsTemplateATraceData : TraceEvent
+    internal sealed class FiveStringsTemplateATraceData : TraceEvent
     {
         public string data1 { get { return GetUnicodeStringAt(0); } }
         public string data2 { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -10526,7 +10528,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ApplicationServer
         private event Action<FiveStringsTemplateATraceData> Action;
         #endregion
     }
-    public sealed class FourStringsTemplateATraceData : TraceEvent
+    internal sealed class FourStringsTemplateATraceData : TraceEvent
     {
         public string data1 { get { return GetUnicodeStringAt(0); } }
         public string data2 { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -10598,7 +10600,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ApplicationServer
         private event Action<FourStringsTemplateATraceData> Action;
         #endregion
     }
-    public sealed class SixStringsTemplateATraceData : TraceEvent
+    internal sealed class SixStringsTemplateATraceData : TraceEvent
     {
         public string data1 { get { return GetUnicodeStringAt(0); } }
         public string data2 { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -10678,7 +10680,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ApplicationServer
         private event Action<SixStringsTemplateATraceData> Action;
         #endregion
     }
-    public sealed class ThreeStringsTemplateATraceData : TraceEvent
+    internal sealed class ThreeStringsTemplateATraceData : TraceEvent
     {
         public string data1 { get { return GetUnicodeStringAt(0); } }
         public string data2 { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -10746,7 +10748,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ApplicationServer
         private event Action<ThreeStringsTemplateATraceData> Action;
         #endregion
     }
-    public sealed class EightStringsTemplateEATraceData : TraceEvent
+    internal sealed class EightStringsTemplateEATraceData : TraceEvent
     {
         public string data1 { get { return GetUnicodeStringAt(0); } }
         public string data2 { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -10834,7 +10836,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ApplicationServer
         private event Action<EightStringsTemplateEATraceData> Action;
         #endregion
     }
-    public sealed class Multidata17TemplateATraceData : TraceEvent
+    internal sealed class Multidata17TemplateATraceData : TraceEvent
     {
         public Guid Id { get { return GetGuidAt(0); } }
         public string AppDomain { get { return GetUnicodeStringAt(16); } }
@@ -10898,7 +10900,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ApplicationServer
         private event Action<Multidata17TemplateATraceData> Action;
         #endregion
     }
-    public sealed class Multidata56TemplateATraceData : TraceEvent
+    internal sealed class Multidata56TemplateATraceData : TraceEvent
     {
         public string msg { get { return GetUnicodeStringAt(0); } }
         public string key { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -10966,7 +10968,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ApplicationServer
         private event Action<Multidata56TemplateATraceData> Action;
         #endregion
     }
-    public sealed class Multidata57TemplateATraceData : TraceEvent
+    internal sealed class Multidata57TemplateATraceData : TraceEvent
     {
         public string msg { get { return GetUnicodeStringAt(0); } }
         public string AppDomain { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -11030,7 +11032,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ApplicationServer
         private event Action<Multidata57TemplateATraceData> Action;
         #endregion
     }
-    public sealed class Multidata58TemplateATraceData : TraceEvent
+    internal sealed class Multidata58TemplateATraceData : TraceEvent
     {
         public int cur { get { return GetInt32At(0); } }
         public int max { get { return GetInt32At(4); } }
@@ -11098,7 +11100,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ApplicationServer
         private event Action<Multidata58TemplateATraceData> Action;
         #endregion
     }
-    public sealed class Multidata59TemplateATraceData : TraceEvent
+    internal sealed class Multidata59TemplateATraceData : TraceEvent
     {
         public string itemTypeName { get { return GetUnicodeStringAt(0); } }
         public string AppDomain { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -11162,7 +11164,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ApplicationServer
         private event Action<Multidata59TemplateATraceData> Action;
         #endregion
     }
-    public sealed class Multidata19TemplateATraceData : TraceEvent
+    internal sealed class Multidata19TemplateATraceData : TraceEvent
     {
         public string id { get { return GetUnicodeStringAt(0); } }
         public string AppDomain { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -11226,7 +11228,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ApplicationServer
         private event Action<Multidata19TemplateATraceData> Action;
         #endregion
     }
-    public sealed class Multidata20TemplateATraceData : TraceEvent
+    internal sealed class Multidata20TemplateATraceData : TraceEvent
     {
         public string expr { get { return GetUnicodeStringAt(0); } }
         public string AppDomain { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -11290,7 +11292,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ApplicationServer
         private event Action<Multidata20TemplateATraceData> Action;
         #endregion
     }
-    public sealed class Multidata21TemplateATraceData : TraceEvent
+    internal sealed class Multidata21TemplateATraceData : TraceEvent
     {
         public string activityName { get { return GetUnicodeStringAt(0); } }
         public string AppDomain { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -11354,7 +11356,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ApplicationServer
         private event Action<Multidata21TemplateATraceData> Action;
         #endregion
     }
-    public sealed class Multidata33TemplateATraceData : TraceEvent
+    internal sealed class Multidata33TemplateATraceData : TraceEvent
     {
         public string TypeName { get { return GetUnicodeStringAt(0); } }
         public string AppDomain { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -11418,7 +11420,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ApplicationServer
         private event Action<Multidata33TemplateATraceData> Action;
         #endregion
     }
-    public sealed class TwoStringsTemplateSATraceData : TraceEvent
+    internal sealed class TwoStringsTemplateSATraceData : TraceEvent
     {
         public string EventSource { get { return GetUnicodeStringAt(0); } }
         public string AppDomain { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -11482,7 +11484,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ApplicationServer
         private event Action<TwoStringsTemplateSATraceData> Action;
         #endregion
     }
-    public sealed class Multidata34TemplateATraceData : TraceEvent
+    internal sealed class Multidata34TemplateATraceData : TraceEvent
     {
         public string TypeName { get { return GetUnicodeStringAt(0); } }
         public string ExceptionToString { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -11550,7 +11552,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ApplicationServer
         private event Action<Multidata34TemplateATraceData> Action;
         #endregion
     }
-    public sealed class Multidata35TemplateSATraceData : TraceEvent
+    internal sealed class Multidata35TemplateSATraceData : TraceEvent
     {
         public int Count { get { return GetInt32At(0); } }
         public int MaxNum { get { return GetInt32At(4); } }
@@ -11622,7 +11624,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ApplicationServer
         private event Action<Multidata35TemplateSATraceData> Action;
         #endregion
     }
-    public sealed class Multidata36TemplateSATraceData : TraceEvent
+    internal sealed class Multidata36TemplateSATraceData : TraceEvent
     {
         public int Count { get { return GetInt32At(0); } }
         public string EventSource { get { return GetUnicodeStringAt(4); } }
@@ -11690,7 +11692,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ApplicationServer
         private event Action<Multidata36TemplateSATraceData> Action;
         #endregion
     }
-    public sealed class Multidata37TemplateSATraceData : TraceEvent
+    internal sealed class Multidata37TemplateSATraceData : TraceEvent
     {
         public string TypeName { get { return GetUnicodeStringAt(0); } }
         public string Uri { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -11762,7 +11764,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ApplicationServer
         private event Action<Multidata37TemplateSATraceData> Action;
         #endregion
     }
-    public sealed class Multidata38TemplateHATraceData : TraceEvent
+    internal sealed class Multidata38TemplateHATraceData : TraceEvent
     {
         public string OperationName { get { return GetUnicodeStringAt(0); } }
         public string HostReference { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -11830,7 +11832,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ApplicationServer
         private event Action<Multidata38TemplateHATraceData> Action;
         #endregion
     }
-    public sealed class Multidata39TemplateSATraceData : TraceEvent
+    internal sealed class Multidata39TemplateSATraceData : TraceEvent
     {
         public int Size { get { return GetInt32At(0); } }
         public string EventSource { get { return GetUnicodeStringAt(4); } }
@@ -11898,7 +11900,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ApplicationServer
         private event Action<Multidata39TemplateSATraceData> Action;
         #endregion
     }
-    public sealed class Multidata40TemplateATraceData : TraceEvent
+    internal sealed class Multidata40TemplateATraceData : TraceEvent
     {
         public string RemoteAddress { get { return GetUnicodeStringAt(0); } }
         public string AppDomain { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -11962,7 +11964,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ApplicationServer
         private event Action<Multidata40TemplateATraceData> Action;
         #endregion
     }
-    public sealed class Multidata41TemplateATraceData : TraceEvent
+    internal sealed class Multidata41TemplateATraceData : TraceEvent
     {
         public int ListenerHashCode { get { return GetInt32At(0); } }
         public int SocketHashCode { get { return GetInt32At(4); } }
@@ -12030,7 +12032,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ApplicationServer
         private event Action<Multidata41TemplateATraceData> Action;
         #endregion
     }
-    public sealed class Multidata42TemplateATraceData : TraceEvent
+    internal sealed class Multidata42TemplateATraceData : TraceEvent
     {
         public string PoolKey { get { return GetUnicodeStringAt(0); } }
         public int busy { get { return GetInt32At(SkipUnicodeString(0)); } }
@@ -12098,7 +12100,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ApplicationServer
         private event Action<Multidata42TemplateATraceData> Action;
         #endregion
     }
-    public sealed class Multidata43TemplateATraceData : TraceEvent
+    internal sealed class Multidata43TemplateATraceData : TraceEvent
     {
         public int ChannelId { get { return GetInt32At(0); } }
         public string AppDomain { get { return GetUnicodeStringAt(4); } }
@@ -12162,7 +12164,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ApplicationServer
         private event Action<Multidata43TemplateATraceData> Action;
         #endregion
     }
-    public sealed class Multidata44TemplateATraceData : TraceEvent
+    internal sealed class Multidata44TemplateATraceData : TraceEvent
     {
         public string uri { get { return GetUnicodeStringAt(0); } }
         public string AppDomain { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -12226,7 +12228,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ApplicationServer
         private event Action<Multidata44TemplateATraceData> Action;
         #endregion
     }
-    public sealed class Multidata45TemplateATraceData : TraceEvent
+    internal sealed class Multidata45TemplateATraceData : TraceEvent
     {
         public string Key { get { return GetUnicodeStringAt(0); } }
         public string AppDomain { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -12290,7 +12292,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ApplicationServer
         private event Action<Multidata45TemplateATraceData> Action;
         #endregion
     }
-    public sealed class Multidata46TemplateATraceData : TraceEvent
+    internal sealed class Multidata46TemplateATraceData : TraceEvent
     {
         public string Via { get { return GetUnicodeStringAt(0); } }
         public string AppDomain { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -12354,7 +12356,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ApplicationServer
         private event Action<Multidata46TemplateATraceData> Action;
         #endregion
     }
-    public sealed class Multidata47TemplateATraceData : TraceEvent
+    internal sealed class Multidata47TemplateATraceData : TraceEvent
     {
         public string FaultString { get { return GetUnicodeStringAt(0); } }
         public string AppDomain { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -12418,7 +12420,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ApplicationServer
         private event Action<Multidata47TemplateATraceData> Action;
         #endregion
     }
-    public sealed class Multidata48TemplateATraceData : TraceEvent
+    internal sealed class Multidata48TemplateATraceData : TraceEvent
     {
         public string Uri { get { return GetUnicodeStringAt(0); } }
         public string AppDomain { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -12482,7 +12484,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ApplicationServer
         private event Action<Multidata48TemplateATraceData> Action;
         #endregion
     }
-    public sealed class Multidata49TemplateATraceData : TraceEvent
+    internal sealed class Multidata49TemplateATraceData : TraceEvent
     {
         public int SocketId { get { return GetInt32At(0); } }
         public string Uri { get { return GetUnicodeStringAt(4); } }
@@ -12550,7 +12552,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ApplicationServer
         private event Action<Multidata49TemplateATraceData> Action;
         #endregion
     }
-    public sealed class Multidata50TemplateATraceData : TraceEvent
+    internal sealed class Multidata50TemplateATraceData : TraceEvent
     {
         public string Status { get { return GetUnicodeStringAt(0); } }
         public string AppDomain { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -12614,7 +12616,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ApplicationServer
         private event Action<Multidata50TemplateATraceData> Action;
         #endregion
     }
-    public sealed class Multidata51TemplateATraceData : TraceEvent
+    internal sealed class Multidata51TemplateATraceData : TraceEvent
     {
         public int SocketId { get { return GetInt32At(0); } }
         public int Size { get { return GetInt32At(4); } }
@@ -12686,7 +12688,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ApplicationServer
         private event Action<Multidata51TemplateATraceData> Action;
         #endregion
     }
-    public sealed class Multidata52TemplateATraceData : TraceEvent
+    internal sealed class Multidata52TemplateATraceData : TraceEvent
     {
         public string SessionId { get { return GetUnicodeStringAt(0); } }
         public string AppDomain { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -12750,7 +12752,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ApplicationServer
         private event Action<Multidata52TemplateATraceData> Action;
         #endregion
     }
-    public sealed class Multidata53TemplateATraceData : TraceEvent
+    internal sealed class Multidata53TemplateATraceData : TraceEvent
     {
         public int SocketId { get { return GetInt32At(0); } }
         public string AppDomain { get { return GetUnicodeStringAt(4); } }
@@ -12814,7 +12816,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ApplicationServer
         private event Action<Multidata53TemplateATraceData> Action;
         #endregion
     }
-    public sealed class Multidata54TemplateATraceData : TraceEvent
+    internal sealed class Multidata54TemplateATraceData : TraceEvent
     {
         public string LocalId { get { return GetUnicodeStringAt(0); } }
         public Guid Distributed { get { return GetGuidAt(SkipUnicodeString(0)); } }
@@ -12882,7 +12884,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ApplicationServer
         private event Action<Multidata54TemplateATraceData> Action;
         #endregion
     }
-    public sealed class Multidata55TemplateATraceData : TraceEvent
+    internal sealed class Multidata55TemplateATraceData : TraceEvent
     {
         public int BufferId { get { return GetInt32At(0); } }
         public int Size { get { return GetInt32At(4); } }
@@ -12950,7 +12952,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ApplicationServer
         private event Action<Multidata55TemplateATraceData> Action;
         #endregion
     }
-    public sealed class Multidata60TemplateATraceData : TraceEvent
+    internal sealed class Multidata60TemplateATraceData : TraceEvent
     {
         public string sharedMemoryName { get { return GetUnicodeStringAt(0); } }
         public string AppDomain { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -13014,7 +13016,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ApplicationServer
         private event Action<Multidata60TemplateATraceData> Action;
         #endregion
     }
-    public sealed class Multidata61TemplateATraceData : TraceEvent
+    internal sealed class Multidata61TemplateATraceData : TraceEvent
     {
         public string pipeName { get { return GetUnicodeStringAt(0); } }
         public string AppDomain { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -13078,7 +13080,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ApplicationServer
         private event Action<Multidata61TemplateATraceData> Action;
         #endregion
     }
-    public sealed class Multidata62TemplateATraceData : TraceEvent
+    internal sealed class Multidata62TemplateATraceData : TraceEvent
     {
         public string remoteAddress { get { return GetUnicodeStringAt(0); } }
         public string AppDomain { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -13142,7 +13144,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ApplicationServer
         private event Action<Multidata62TemplateATraceData> Action;
         #endregion
     }
-    public sealed class Multidata63TemplateATraceData : TraceEvent
+    internal sealed class Multidata63TemplateATraceData : TraceEvent
     {
         public int websocketId { get { return GetInt32At(0); } }
         public string AppDomain { get { return GetUnicodeStringAt(4); } }
@@ -13206,7 +13208,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ApplicationServer
         private event Action<Multidata63TemplateATraceData> Action;
         #endregion
     }
-    public sealed class Multidata64TemplateATraceData : TraceEvent
+    internal sealed class Multidata64TemplateATraceData : TraceEvent
     {
         public string errorMessage { get { return GetUnicodeStringAt(0); } }
         public string AppDomain { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -13270,7 +13272,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ApplicationServer
         private event Action<Multidata64TemplateATraceData> Action;
         #endregion
     }
-    public sealed class Multidata65TemplateATraceData : TraceEvent
+    internal sealed class Multidata65TemplateATraceData : TraceEvent
     {
         public int websocketId { get { return GetInt32At(0); } }
         public int byteCount { get { return GetInt32At(4); } }
@@ -13342,7 +13344,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ApplicationServer
         private event Action<Multidata65TemplateATraceData> Action;
         #endregion
     }
-    public sealed class Multidata66TemplateATraceData : TraceEvent
+    internal sealed class Multidata66TemplateATraceData : TraceEvent
     {
         public int websocketId { get { return GetInt32At(0); } }
         public string remoteAddress { get { return GetUnicodeStringAt(4); } }
@@ -13414,7 +13416,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ApplicationServer
         private event Action<Multidata66TemplateATraceData> Action;
         #endregion
     }
-    public sealed class Multidata67TemplateATraceData : TraceEvent
+    internal sealed class Multidata67TemplateATraceData : TraceEvent
     {
         public int websocketId { get { return GetInt32At(0); } }
         public string closeStatus { get { return GetUnicodeStringAt(4); } }
@@ -13482,7 +13484,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ApplicationServer
         private event Action<Multidata67TemplateATraceData> Action;
         #endregion
     }
-    public sealed class Multidata68TemplateATraceData : TraceEvent
+    internal sealed class Multidata68TemplateATraceData : TraceEvent
     {
         public string clientWebSocketFactoryType { get { return GetUnicodeStringAt(0); } }
         public string AppDomain { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -13546,7 +13548,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ApplicationServer
         private event Action<Multidata68TemplateATraceData> Action;
         #endregion
     }
-    public sealed class Multidata85TemplateATraceData : TraceEvent
+    internal sealed class Multidata85TemplateATraceData : TraceEvent
     {
         public string TrackingProfile { get { return GetUnicodeStringAt(0); } }
         public string ActivityDefinitionId { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -13614,7 +13616,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ApplicationServer
         private event Action<Multidata85TemplateATraceData> Action;
         #endregion
     }
-    public sealed class Multidata84TemplateATraceData : TraceEvent
+    internal sealed class Multidata84TemplateATraceData : TraceEvent
     {
         public int limit { get { return GetInt32At(0); } }
         public string AppDomain { get { return GetUnicodeStringAt(4); } }
@@ -13678,7 +13680,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ApplicationServer
         private event Action<Multidata84TemplateATraceData> Action;
         #endregion
     }
-    public sealed class Multidata76TemplateATraceData : TraceEvent
+    internal sealed class Multidata76TemplateATraceData : TraceEvent
     {
         public long availableMemoryBytes { get { return GetInt64At(0); } }
         public string AppDomain { get { return GetUnicodeStringAt(8); } }
@@ -13742,7 +13744,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ApplicationServer
         private event Action<Multidata76TemplateATraceData> Action;
         #endregion
     }
-    public sealed class TwoStringsTemplateEATraceData : TraceEvent
+    internal sealed class TwoStringsTemplateEATraceData : TraceEvent
     {
         public string SerializedException { get { return GetUnicodeStringAt(0); } }
         public string AppDomain { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -13806,7 +13808,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ApplicationServer
         private event Action<TwoStringsTemplateEATraceData> Action;
         #endregion
     }
-    public sealed class Multidata77TemplateATraceData : TraceEvent
+    internal sealed class Multidata77TemplateATraceData : TraceEvent
     {
         public string via { get { return GetUnicodeStringAt(0); } }
         public string AppDomain { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -13870,7 +13872,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ApplicationServer
         private event Action<Multidata77TemplateATraceData> Action;
         #endregion
     }
-    public sealed class Multidata78TemplateATraceData : TraceEvent
+    internal sealed class Multidata78TemplateATraceData : TraceEvent
     {
         public string Endpoint { get { return GetUnicodeStringAt(0); } }
         public string AppDomain { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -13934,7 +13936,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ApplicationServer
         private event Action<Multidata78TemplateATraceData> Action;
         #endregion
     }
-    public sealed class Multidata79TemplateATraceData : TraceEvent
+    internal sealed class Multidata79TemplateATraceData : TraceEvent
     {
         public string Uri { get { return GetUnicodeStringAt(0); } }
         public int count { get { return GetInt32At(SkipUnicodeString(0)); } }
@@ -14002,7 +14004,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ApplicationServer
         private event Action<Multidata79TemplateATraceData> Action;
         #endregion
     }
-    public sealed class Multidata81TemplateATraceData : TraceEvent
+    internal sealed class Multidata81TemplateATraceData : TraceEvent
     {
         public string Status { get { return GetUnicodeStringAt(0); } }
         public string Uri { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -14070,7 +14072,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ApplicationServer
         private event Action<Multidata81TemplateATraceData> Action;
         #endregion
     }
-    public sealed class Multidata80TemplateATraceData : TraceEvent
+    internal sealed class Multidata80TemplateATraceData : TraceEvent
     {
         public string Uri { get { return GetUnicodeStringAt(0); } }
         public string Status { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -14138,7 +14140,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ApplicationServer
         private event Action<Multidata80TemplateATraceData> Action;
         #endregion
     }
-    public sealed class Multidata82TemplateATraceData : TraceEvent
+    internal sealed class Multidata82TemplateATraceData : TraceEvent
     {
         public string hresult { get { return GetUnicodeStringAt(0); } }
         public string AppDomain { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -14202,7 +14204,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ApplicationServer
         private event Action<Multidata82TemplateATraceData> Action;
         #endregion
     }
-    public sealed class Multidata83TemplateATraceData : TraceEvent
+    internal sealed class Multidata83TemplateATraceData : TraceEvent
     {
         public int curr { get { return GetInt32At(0); } }
         public int max { get { return GetInt32At(4); } }
@@ -14270,7 +14272,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ApplicationServer
         private event Action<Multidata83TemplateATraceData> Action;
         #endregion
     }
-    public sealed class Multidata87TemplateATraceData : TraceEvent
+    internal sealed class Multidata87TemplateATraceData : TraceEvent
     {
         public string discoveryMessageName { get { return GetUnicodeStringAt(0); } }
         public string messageId { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -14342,7 +14344,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ApplicationServer
         private event Action<Multidata87TemplateATraceData> Action;
         #endregion
     }
-    public sealed class Multidata88TemplateATraceData : TraceEvent
+    internal sealed class Multidata88TemplateATraceData : TraceEvent
     {
         public string messageType { get { return GetUnicodeStringAt(0); } }
         public string messageId { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -14410,7 +14412,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ApplicationServer
         private event Action<Multidata88TemplateATraceData> Action;
         #endregion
     }
-    public sealed class Multidata89TemplateATraceData : TraceEvent
+    internal sealed class Multidata89TemplateATraceData : TraceEvent
     {
         public string discoveryMessageName { get { return GetUnicodeStringAt(0); } }
         public string messageId { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -14486,7 +14488,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ApplicationServer
         private event Action<Multidata89TemplateATraceData> Action;
         #endregion
     }
-    public sealed class Multidata90TemplateATraceData : TraceEvent
+    internal sealed class Multidata90TemplateATraceData : TraceEvent
     {
         public string messageId { get { return GetUnicodeStringAt(0); } }
         public string AppDomain { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -14550,7 +14552,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ApplicationServer
         private event Action<Multidata90TemplateATraceData> Action;
         #endregion
     }
-    public sealed class Multidata91TemplateATraceData : TraceEvent
+    internal sealed class Multidata91TemplateATraceData : TraceEvent
     {
         public string messageType { get { return GetUnicodeStringAt(0); } }
         public string AppDomain { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -14614,7 +14616,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ApplicationServer
         private event Action<Multidata91TemplateATraceData> Action;
         #endregion
     }
-    public sealed class Multidata92TemplateATraceData : TraceEvent
+    internal sealed class Multidata92TemplateATraceData : TraceEvent
     {
         public string discoveryMessageName { get { return GetUnicodeStringAt(0); } }
         public string messageId { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -14682,7 +14684,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ApplicationServer
         private event Action<Multidata92TemplateATraceData> Action;
         #endregion
     }
-    public sealed class Multidata93TemplateATraceData : TraceEvent
+    internal sealed class Multidata93TemplateATraceData : TraceEvent
     {
         public string endpointAddress { get { return GetUnicodeStringAt(0); } }
         public string listenUri { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -14750,7 +14752,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ApplicationServer
         private event Action<Multidata93TemplateATraceData> Action;
         #endregion
     }
-    public sealed class Multidata94TemplateEATraceData : TraceEvent
+    internal sealed class Multidata94TemplateEATraceData : TraceEvent
     {
         public string endpointAddress { get { return GetUnicodeStringAt(0); } }
         public string via { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -14822,7 +14824,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ApplicationServer
         private event Action<Multidata94TemplateEATraceData> Action;
         #endregion
     }
-    public sealed class Multidata95TemplateATraceData : TraceEvent
+    internal sealed class Multidata95TemplateATraceData : TraceEvent
     {
         public string endpointAddress { get { return GetUnicodeStringAt(0); } }
         public string via { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -14890,7 +14892,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ApplicationServer
         private event Action<Multidata95TemplateATraceData> Action;
         #endregion
     }
-    public sealed class Multidata96TemplateATraceData : TraceEvent
+    internal sealed class Multidata96TemplateATraceData : TraceEvent
     {
         public string synchronizationContextType { get { return GetUnicodeStringAt(0); } }
         public string AppDomain { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -14954,7 +14956,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ApplicationServer
         private event Action<Multidata96TemplateATraceData> Action;
         #endregion
     }
-    public sealed class Multidata97TemplateATraceData : TraceEvent
+    internal sealed class Multidata97TemplateATraceData : TraceEvent
     {
         public string SurrogateType { get { return GetUnicodeStringAt(0); } }
         public string AppDomain { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -15018,7 +15020,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ApplicationServer
         private event Action<Multidata97TemplateATraceData> Action;
         #endregion
     }
-    public sealed class Multidata98TemplateATraceData : TraceEvent
+    internal sealed class Multidata98TemplateATraceData : TraceEvent
     {
         public string Kind { get { return GetUnicodeStringAt(0); } }
         public string TypeName { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -15086,7 +15088,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ApplicationServer
         private event Action<Multidata98TemplateATraceData> Action;
         #endregion
     }
-    public sealed class Multidata99TemplateATraceData : TraceEvent
+    internal sealed class Multidata99TemplateATraceData : TraceEvent
     {
         public string DCType { get { return GetUnicodeStringAt(0); } }
         public string AppDomain { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -15150,7 +15152,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ApplicationServer
         private event Action<Multidata99TemplateATraceData> Action;
         #endregion
     }
-    public sealed class Multidata103TemplateHATraceData : TraceEvent
+    internal sealed class Multidata103TemplateHATraceData : TraceEvent
     {
         public string tokenType { get { return GetUnicodeStringAt(0); } }
         public string tokenID { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -15222,7 +15224,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ApplicationServer
         private event Action<Multidata103TemplateHATraceData> Action;
         #endregion
     }
-    public sealed class Multidata102TemplateHATraceData : TraceEvent
+    internal sealed class Multidata102TemplateHATraceData : TraceEvent
     {
         public string tokenType { get { return GetUnicodeStringAt(0); } }
         public string tokenID { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -15298,7 +15300,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ApplicationServer
         private event Action<Multidata102TemplateHATraceData> Action;
         #endregion
     }
-    public sealed class Multidata101TemplateHATraceData : TraceEvent
+    internal sealed class Multidata101TemplateHATraceData : TraceEvent
     {
         public string issuerName { get { return GetUnicodeStringAt(0); } }
         public string tokenID { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -15370,7 +15372,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ApplicationServer
         private event Action<Multidata101TemplateHATraceData> Action;
         #endregion
     }
-    public sealed class Multidata100TemplateHATraceData : TraceEvent
+    internal sealed class Multidata100TemplateHATraceData : TraceEvent
     {
         public string tokenID { get { return GetUnicodeStringAt(0); } }
         public string HostReference { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -15438,7 +15440,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ApplicationServer
         private event Action<Multidata100TemplateHATraceData> Action;
         #endregion
     }
-    public sealed class Multidata15TemplateATraceData : TraceEvent
+    internal sealed class Multidata15TemplateATraceData : TraceEvent
     {
         public long RecordNumber { get { return GetInt64At(0); } }
         public Guid ProviderId { get { return GetGuidAt(8); } }
@@ -15506,7 +15508,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ApplicationServer
         private event Action<Multidata15TemplateATraceData> Action;
         #endregion
     }
-    public sealed class Multidata16TemplateATraceData : TraceEvent
+    internal sealed class Multidata16TemplateATraceData : TraceEvent
     {
         public string Data { get { return GetUnicodeStringAt(0); } }
         public string Activity { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -15574,7 +15576,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ApplicationServer
         private event Action<Multidata16TemplateATraceData> Action;
         #endregion
     }
-    public sealed class Multidata18TemplateATraceData : TraceEvent
+    internal sealed class Multidata18TemplateATraceData : TraceEvent
     {
         public string name { get { return GetUnicodeStringAt(0); } }
         public string AppDomain { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -15638,7 +15640,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ApplicationServer
         private event Action<Multidata18TemplateATraceData> Action;
         #endregion
     }
-    public sealed class Multidata0TemplateATraceData : TraceEvent
+    internal sealed class Multidata0TemplateATraceData : TraceEvent
     {
         public string appdomainName { get { return GetUnicodeStringAt(0); } }
         public string processName { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -15710,7 +15712,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ApplicationServer
         private event Action<Multidata0TemplateATraceData> Action;
         #endregion
     }
-    public sealed class FourStringsTemplateEATraceData : TraceEvent
+    internal sealed class FourStringsTemplateEATraceData : TraceEvent
     {
         public string data1 { get { return GetUnicodeStringAt(0); } }
         public string data2 { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -15784,3 +15786,13 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ApplicationServer
     }
 
 }
+
+
+
+
+
+
+
+
+
+

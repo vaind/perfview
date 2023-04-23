@@ -1,10 +1,12 @@
-﻿using System;
+#nullable disable
+
+using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
 namespace Microsoft.Diagnostics.Tracing.TraceUtilities.FilterQueryExpression
 {
-    public static class FilterQueryUtilities
+    internal static class FilterQueryUtilities
     {
         public static readonly Regex FilterQueryExpressionRegex = new Regex(@"\[[^\]]*\]");
         public static readonly char[] SpaceSeparator = new[] { ' ' }; 
@@ -52,3 +54,12 @@ namespace Microsoft.Diagnostics.Tracing.TraceUtilities.FilterQueryExpression
         }
     }
 }
+
+
+
+
+
+
+
+
+

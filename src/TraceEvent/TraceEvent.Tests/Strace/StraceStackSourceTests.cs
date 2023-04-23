@@ -1,3 +1,5 @@
+#nullable disable
+
 using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
@@ -8,7 +10,7 @@ using Xunit;
 
 namespace TraceEventTests
 {
-    public class StraceStackSourceTests
+    internal class StraceStackSourceTests
     {
         [Theory]
         [InlineData("dotnet-info.strace.zip")]
@@ -73,3 +75,12 @@ namespace TraceEventTests
         }
     }
 }
+
+
+
+
+
+
+
+
+

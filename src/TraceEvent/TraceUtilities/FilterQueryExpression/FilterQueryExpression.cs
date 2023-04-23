@@ -1,4 +1,6 @@
-﻿using System;
+#nullable disable
+
+using System;
 using System.Collections.Generic;
 
 namespace Microsoft.Diagnostics.Tracing.TraceUtilities.FilterQueryExpression
@@ -248,3 +250,13 @@ namespace Microsoft.Diagnostics.Tracing.TraceUtilities.FilterQueryExpression
             => $"{LeftOperand} {Op} {RightOperand}";
     }
 }
+
+
+
+
+
+
+
+
+
+

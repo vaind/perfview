@@ -1,4 +1,6 @@
-﻿// Tests copied from dotnet/runtime repo. Original source code can be found here:
+#nullable disable
+
+// Tests copied from dotnet/runtime repo. Original source code can be found here:
 // https://github.com/dotnet/runtime/blob/main/src/libraries/Common/tests/System/Collections/TestBase.NonGeneric.cs
 
 using System;
@@ -9,7 +11,7 @@ namespace PerfView.Collections.Tests
     /// <summary>
     /// Provides a base set of nongeneric operations that are used by all other testing interfaces.
     /// </summary>
-    public abstract class TestBase
+    internal abstract class TestBase
     {
         #region Helper Methods
 
@@ -43,3 +45,12 @@ namespace PerfView.Collections.Tests
         #endregion
     }
 }
+
+
+
+
+
+
+
+
+

@@ -1,4 +1,6 @@
-﻿using System;
+#nullable disable
+
+using System;
 using System.Diagnostics.Tracing;
 using System.IO;
 using System.Threading;
@@ -99,3 +101,13 @@ namespace TraceEventSamples
         }
     }
 }
+
+
+
+
+
+
+
+
+
+

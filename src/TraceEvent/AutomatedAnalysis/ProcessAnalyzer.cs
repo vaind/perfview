@@ -1,11 +1,13 @@
-﻿using System;
+#nullable disable
+
+using System;
 
 namespace Microsoft.Diagnostics.Tracing.AutomatedAnalysis
 {
     /// <summary>
     /// An Analyzer that is invoked individually for each process in a trace.
     /// </summary>
-    public abstract class ProcessAnalyzer : Analyzer
+    internal abstract class ProcessAnalyzer : Analyzer
     {
         /// <summary>
         /// Called by the platform to analyze a single process.
@@ -26,3 +28,13 @@ namespace Microsoft.Diagnostics.Tracing.AutomatedAnalysis
         }
     }
 }
+
+
+
+
+
+
+
+
+
+

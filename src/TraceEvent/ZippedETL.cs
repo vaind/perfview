@@ -1,4 +1,6 @@
-﻿using Microsoft.Diagnostics.Symbols;
+#nullable disable
+
+using Microsoft.Diagnostics.Symbols;
 using Microsoft.Diagnostics.Tracing.Compatibility;
 using Microsoft.Diagnostics.Utilities;
 using System;
@@ -21,7 +23,7 @@ namespace Microsoft.Diagnostics.Tracing
     /// metadata (e.g. collection log files), into a single archive ready for 
     /// transfer to another machine.   
     /// </summary>
-    public class ZippedETLWriter
+    internal class ZippedETLWriter
     {
         /// <summary>
         /// Declares the intent to write a new ZIP archive that will
@@ -415,7 +417,7 @@ namespace Microsoft.Diagnostics.Tracing
     /// symbolic information in these files on the SymbolReader's path so that
     /// symbolic lookup 'just works'.  
     /// </summary>
-    public class ZippedETLReader
+    internal class ZippedETLReader
     {
         /// <summary>
         /// Declares the intent to unzip an .ETL.ZIP file that contain an compressed ETL file 
@@ -615,3 +617,12 @@ namespace Microsoft.Diagnostics.Tracing
         #endregion // private
     }
 }
+
+
+
+
+
+
+
+
+

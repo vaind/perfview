@@ -1,4 +1,6 @@
-﻿//     Copyright (c) Microsoft Corporation.  All rights reserved.
+#nullable disable
+
+//     Copyright (c) Microsoft Corporation.  All rights reserved.
 // This file is best viewed using outline mode (Ctrl-M Ctrl-O)
 // 
 // This program uses code hyperlinks available as part of the HyperAddin Visual Studio plug-in.
@@ -17,7 +19,7 @@ namespace Microsoft.Diagnostics.Symbols
     /// <summary>
     /// SymPath is a class that knows how to parse _NT_SYMBOL_PATH syntax.  
     /// </summary>
-    public class SymbolPath
+    internal class SymbolPath
     {
         /// <summary>
         /// This allows you to set the _NT_SYMBOL_PATH as a from the windows environment.    
@@ -326,7 +328,7 @@ namespace Microsoft.Diagnostics.Symbols
     /// 
     /// SymPathElement follows functional conventions.  After construction everything is read-only. 
     /// </summary>
-    public class SymbolPathElement
+    internal class SymbolPathElement
     {
         /// <summary>
         /// Returns true if this element of the symbol server path a symbol server specification
@@ -517,3 +519,13 @@ namespace Microsoft.Diagnostics.Symbols
     }
 
 }
+
+
+
+
+
+
+
+
+
+

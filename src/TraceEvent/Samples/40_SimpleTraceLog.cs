@@ -1,4 +1,6 @@
-﻿using Microsoft.Diagnostics.Symbols;
+#nullable disable
+
+using Microsoft.Diagnostics.Symbols;
 using Microsoft.Diagnostics.Tracing;
 using Microsoft.Diagnostics.Tracing.Etlx;
 using Microsoft.Diagnostics.Tracing.Parsers;
@@ -320,3 +322,13 @@ namespace TraceEventSamples
         }
     }
 }
+
+
+
+
+
+
+
+
+
+

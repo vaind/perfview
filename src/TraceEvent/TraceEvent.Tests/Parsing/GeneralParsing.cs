@@ -1,4 +1,6 @@
-﻿using Microsoft.Diagnostics.Tracing;
+#nullable disable
+
+using Microsoft.Diagnostics.Tracing;
 using Microsoft.Diagnostics.Tracing.Etlx;
 using System;
 using System.Collections.Generic;
@@ -9,7 +11,7 @@ using Xunit.Abstractions;
 
 namespace TraceEventTests
 {
-    public class GeneralParsing : EtlTestBase
+    internal class GeneralParsing : EtlTestBase
     {
         public GeneralParsing(ITestOutputHelper output)
             : base(output)
@@ -292,3 +294,13 @@ namespace TraceEventTests
         }
     }
 }
+
+
+
+
+
+
+
+
+
+

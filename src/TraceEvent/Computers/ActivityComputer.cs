@@ -1,4 +1,6 @@
-﻿// Copyright (c) Microsoft Corporation.  All rights reserved
+#nullable disable
+
+// Copyright (c) Microsoft Corporation.  All rights reserved
 // This file is best viewed using outline mode (Ctrl-M Ctrl-O)
 //
 // This program uses code hyperlinks available as part of the HyperAddin Visual Studio plug-in.
@@ -24,7 +26,7 @@ namespace Microsoft.Diagnostics.Tracing
     /// An ActivityComputer is a state machine that track information about Activities.  In particular, it can
     /// compute a activity aware call stack. (GetCallStack).  
     /// </summary>
-    public class ActivityComputer
+    internal class ActivityComputer
     {
         /// <summary>
         /// Construct a new ActivityComputer that will process events from 'eventLog' and output activity - aware stacks to 'outputStackSource'. 
@@ -1434,5 +1436,15 @@ namespace Microsoft.Diagnostics.Tracing
     }
 #endif
 }
+
+
+
+
+
+
+
+
+
+
 
 

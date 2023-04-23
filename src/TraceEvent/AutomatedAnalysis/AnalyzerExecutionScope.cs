@@ -1,4 +1,6 @@
-﻿using System;
+#nullable disable
+
+using System;
 
 namespace Microsoft.Diagnostics.Tracing.AutomatedAnalysis
 {
@@ -31,3 +33,13 @@ namespace Microsoft.Diagnostics.Tracing.AutomatedAnalysis
         internal Analyzer ExecutingAnalyzer { get; private set; }
     }
 }
+
+
+
+
+
+
+
+
+
+

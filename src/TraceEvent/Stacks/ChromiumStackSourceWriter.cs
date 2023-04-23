@@ -1,4 +1,6 @@
-﻿using System;
+#nullable disable
+
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
@@ -9,7 +11,7 @@ using static Microsoft.Diagnostics.Tracing.Stacks.StackSourceWriterHelper;
 
 namespace Microsoft.Diagnostics.Tracing.Stacks.Formats
 {
-    public class ChromiumStackSourceWriter
+    internal class ChromiumStackSourceWriter
     {
         /// <summary>
         /// exports provided StackSource to a Chromium Trace File format 
@@ -106,3 +108,12 @@ namespace Microsoft.Diagnostics.Tracing.Stacks.Formats
         #endregion private
     }
 }
+
+
+
+
+
+
+
+
+

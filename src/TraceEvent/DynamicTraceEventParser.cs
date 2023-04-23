@@ -1,3 +1,5 @@
+#nullable disable
+
 //     Copyright (c) Microsoft Corporation.  All rights reserved.
 using FastSerialization;
 using Microsoft.Diagnostics.Tracing.Compatibility;
@@ -22,7 +24,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers
     /// See also TDHDynamicTraceEventParser which knows how to read the manifest that are registered globally with
     /// the machine.   
     /// </summary>
-    public class DynamicTraceEventParser : TraceEventParser
+    internal class DynamicTraceEventParser : TraceEventParser
     {
         /// <summary>
         /// The event ID for the EventSource manifest emission event.
@@ -418,7 +420,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers
     }
 
 #if false 
-    public sealed class EventCounterTraceData : TraceEvent
+    internal sealed class EventCounterTraceData : TraceEvent
     {
         public int DataCount { get { return GetInt32At(0); } }
         public double Data(int index) { return GetDoubleAt(4 + index * 8); }
@@ -1484,7 +1486,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers
                 ret.info = new PayloadFetchArrayInfo() { Element = element, FixedCount = fixedCount };
                 return ret;
             }
-            public static PayloadFetch StructPayloadFetch(ushort offset, PayloadFetchClassInfo fields)
+            internal static PayloadFetch StructPayloadFetch(ushort offset, PayloadFetchClassInfo fields)
             {
                 var ret = new PayloadFetch();
                 ret.Offset = offset;
@@ -1930,7 +1932,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers
     /// <summary>
     /// A ProviderManifest represents the XML manifest associated with the provider.    
     /// </summary>
-    public sealed class ProviderManifest : IFastSerializable
+    internal sealed class ProviderManifest : IFastSerializable
     {
         // create a manifest from a stream or a file
         /// <summary>
@@ -2650,3 +2652,13 @@ namespace Microsoft.Diagnostics.Tracing.Parsers
         #endregion
     }
 }
+
+
+
+
+
+
+
+
+
+

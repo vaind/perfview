@@ -1,3 +1,5 @@
+#nullable disable
+
 using System;
 using System.Diagnostics;
 using System.Text;
@@ -7,7 +9,7 @@ using System.Text;
 namespace Microsoft.Diagnostics.Tracing.Parsers.AspNet
 {
     [System.CodeDom.Compiler.GeneratedCode("traceparsergen", "1.0")]
-    public sealed class AspNetTraceEventParser : TraceEventParser
+    internal sealed class AspNetTraceEventParser : TraceEventParser
     {
         public static readonly string ProviderName = "AspNetTrace";
         public static readonly Guid ProviderGuid = new Guid(unchecked((int)0xaff081fe), unchecked((short)0x0247), unchecked((short)0x4275), 0x9c, 0x4e, 0x02, 0x1f, 0x3d, 0xc1, 0xda, 0x35);
@@ -958,7 +960,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.AspNet
 
 namespace Microsoft.Diagnostics.Tracing.Parsers.AspNet
 {
-    public sealed class AspNetStartTraceData : TraceEvent
+    internal sealed class AspNetStartTraceData : TraceEvent
     {
         // Note that V1.1 CLR version (ancient) only have a payload length of 8, and will print junk.   
         // I don't even bother protecting myself from these right now.  
@@ -1037,7 +1039,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.AspNet
         private event Action<AspNetStartTraceData> Action;
         #endregion
     }
-    public sealed class AspNetStopTraceData : TraceEvent
+    internal sealed class AspNetStopTraceData : TraceEvent
     {
         public long ConnID { get { return GetInt64At(0); } }
         public Guid ContextId { get { return GetGuidAt(8); } }
@@ -1102,7 +1104,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.AspNet
         private event Action<AspNetStopTraceData> Action;
         #endregion
     }
-    public sealed class AspNetRequestQueuedTraceData : TraceEvent
+    internal sealed class AspNetRequestQueuedTraceData : TraceEvent
     {
         public long ConnID { get { return GetInt64At(0); } }
         public Guid ContextId { get { return GetGuidAt(8); } }
@@ -1166,7 +1168,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.AspNet
         private event Action<AspNetRequestQueuedTraceData> Action;
         #endregion
     }
-    public sealed class AspNetRequestDequeuedTraceData : TraceEvent
+    internal sealed class AspNetRequestDequeuedTraceData : TraceEvent
     {
         public long ConnID { get { return GetInt64At(0); } }
         public Guid ContextId { get { return GetGuidAt(8); } }
@@ -1230,7 +1232,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.AspNet
         private event Action<AspNetRequestDequeuedTraceData> Action;
         #endregion
     }
-    public sealed class AspNetGetAppDomainEnterTraceData : TraceEvent
+    internal sealed class AspNetGetAppDomainEnterTraceData : TraceEvent
     {
         public long ConnID { get { return GetInt64At(0); } }
         public Guid ContextId { get { return GetGuidAt(8); } }
@@ -1294,7 +1296,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.AspNet
         private event Action<AspNetGetAppDomainEnterTraceData> Action;
         #endregion
     }
-    public sealed class AspNetGetAppDomainLeaveTraceData : TraceEvent
+    internal sealed class AspNetGetAppDomainLeaveTraceData : TraceEvent
     {
         public long ConnID { get { return GetInt64At(0); } }
         public Guid ContextId { get { return GetGuidAt(8); } }
@@ -1358,7 +1360,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.AspNet
         private event Action<AspNetGetAppDomainLeaveTraceData> Action;
         #endregion
     }
-    public sealed class AspNetAppDomainEnterTraceData : TraceEvent
+    internal sealed class AspNetAppDomainEnterTraceData : TraceEvent
     {
         public long ConnID { get { return GetInt64At(0); } }
         public Guid ContextId { get { return GetGuidAt(8); } }
@@ -1426,7 +1428,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.AspNet
         private event Action<AspNetAppDomainEnterTraceData> Action;
         #endregion
     }
-    public sealed class AspNetStartHandlerTraceData : TraceEvent
+    internal sealed class AspNetStartHandlerTraceData : TraceEvent
     {
         public long ConnID { get { return GetInt64At(0); } }
         public Guid ContextId { get { return GetGuidAt(8); } }
@@ -1498,7 +1500,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.AspNet
         private event Action<AspNetStartHandlerTraceData> Action;
         #endregion
     }
-    public sealed class AspNetEndHandlerTraceData : TraceEvent
+    internal sealed class AspNetEndHandlerTraceData : TraceEvent
     {
         public long ConnID { get { return GetInt64At(0); } }
         public Guid ContextId { get { return GetGuidAt(8); } }
@@ -1562,7 +1564,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.AspNet
         private event Action<AspNetEndHandlerTraceData> Action;
         #endregion
     }
-    public sealed class AspNetPipelineModuleEnterTraceData : TraceEvent
+    internal sealed class AspNetPipelineModuleEnterTraceData : TraceEvent
     {
         public long ConnID { get { return GetInt64At(0); } }
         public Guid ContextId { get { return GetGuidAt(8); } }
@@ -1630,7 +1632,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.AspNet
         private event Action<AspNetPipelineModuleEnterTraceData> Action;
         #endregion
     }
-    public sealed class AspNetPipelineModuleLeaveTraceData : TraceEvent
+    internal sealed class AspNetPipelineModuleLeaveTraceData : TraceEvent
     {
         public long ConnID { get { return GetInt64At(0); } }
         public Guid ContextId { get { return GetGuidAt(8); } }
@@ -1698,7 +1700,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.AspNet
         private event Action<AspNetPipelineModuleLeaveTraceData> Action;
         #endregion
     }
-    public sealed class AspNetMapHandlerEnterTraceData : TraceEvent
+    internal sealed class AspNetMapHandlerEnterTraceData : TraceEvent
     {
         public long ConnID { get { return GetInt64At(0); } }
         public Guid ContextId { get { return GetGuidAt(8); } }
@@ -1762,7 +1764,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.AspNet
         private event Action<AspNetMapHandlerEnterTraceData> Action;
         #endregion
     }
-    public sealed class AspNetMapHandlerLeaveTraceData : TraceEvent
+    internal sealed class AspNetMapHandlerLeaveTraceData : TraceEvent
     {
         public long ConnID { get { return GetInt64At(0); } }
         public Guid ContextId { get { return GetGuidAt(8); } }
@@ -1826,7 +1828,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.AspNet
         private event Action<AspNetMapHandlerLeaveTraceData> Action;
         #endregion
     }
-    public sealed class AspNetParseEnterTraceData : TraceEvent
+    internal sealed class AspNetParseEnterTraceData : TraceEvent
     {
         public long ConnID { get { return GetInt64At(0); } }
         public Guid ContextId { get { return GetGuidAt(8); } }
@@ -1890,7 +1892,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.AspNet
         private event Action<AspNetParseEnterTraceData> Action;
         #endregion
     }
-    public sealed class AspNetParseLeaveTraceData : TraceEvent
+    internal sealed class AspNetParseLeaveTraceData : TraceEvent
     {
         public long ConnID { get { return GetInt64At(0); } }
         public Guid ContextId { get { return GetGuidAt(8); } }
@@ -1954,7 +1956,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.AspNet
         private event Action<AspNetParseLeaveTraceData> Action;
         #endregion
     }
-    public sealed class AspNetCompileEnterTraceData : TraceEvent
+    internal sealed class AspNetCompileEnterTraceData : TraceEvent
     {
         public long ConnID { get { return GetInt64At(0); } }
         public Guid ContextId { get { return GetGuidAt(8); } }
@@ -2018,7 +2020,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.AspNet
         private event Action<AspNetCompileEnterTraceData> Action;
         #endregion
     }
-    public sealed class AspNetCompileLeaveTraceData : TraceEvent
+    internal sealed class AspNetCompileLeaveTraceData : TraceEvent
     {
         public long ConnID { get { return GetInt64At(0); } }
         public Guid ContextId { get { return GetGuidAt(8); } }
@@ -2090,7 +2092,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.AspNet
         private event Action<AspNetCompileLeaveTraceData> Action;
         #endregion
     }
-    public sealed class AspNetHttpHandlerEnterTraceData : TraceEvent
+    internal sealed class AspNetHttpHandlerEnterTraceData : TraceEvent
     {
         public long ConnID { get { return GetInt64At(0); } }
         public Guid ContextId { get { return GetGuidAt(8); } }
@@ -2154,7 +2156,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.AspNet
         private event Action<AspNetHttpHandlerEnterTraceData> Action;
         #endregion
     }
-    public sealed class AspNetHttpHandlerLeaveTraceData : TraceEvent
+    internal sealed class AspNetHttpHandlerLeaveTraceData : TraceEvent
     {
         public long ConnID { get { return GetInt64At(0); } }
         public Guid ContextId { get { return GetGuidAt(8); } }
@@ -2218,7 +2220,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.AspNet
         private event Action<AspNetHttpHandlerLeaveTraceData> Action;
         #endregion
     }
-    public sealed class AspNetSessionStatePartitionStartTraceData : TraceEvent
+    internal sealed class AspNetSessionStatePartitionStartTraceData : TraceEvent
     {
         public long ConnID { get { return GetInt64At(0); } }
         public Guid ContextId { get { return GetGuidAt(8); } }
@@ -2290,7 +2292,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.AspNet
         private event Action<AspNetSessionStatePartitionStartTraceData> Action;
         #endregion
     }
-    public sealed class AspNetSessionStatePartitionEndTraceData : TraceEvent
+    internal sealed class AspNetSessionStatePartitionEndTraceData : TraceEvent
     {
         public long ConnID { get { return GetInt64At(0); } }
         public Guid ContextId { get { return GetGuidAt(8); } }
@@ -2358,7 +2360,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.AspNet
         private event Action<AspNetSessionStatePartitionEndTraceData> Action;
         #endregion
     }
-    public sealed class AspNetPagePreInitEnterTraceData : TraceEvent
+    internal sealed class AspNetPagePreInitEnterTraceData : TraceEvent
     {
         public long ConnID { get { return GetInt64At(0); } }
         public Guid ContextId { get { return GetGuidAt(8); } }
@@ -2422,7 +2424,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.AspNet
         private event Action<AspNetPagePreInitEnterTraceData> Action;
         #endregion
     }
-    public sealed class AspNetPagePreInitLeaveTraceData : TraceEvent
+    internal sealed class AspNetPagePreInitLeaveTraceData : TraceEvent
     {
         public long ConnID { get { return GetInt64At(0); } }
         public Guid ContextId { get { return GetGuidAt(8); } }
@@ -2486,7 +2488,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.AspNet
         private event Action<AspNetPagePreInitLeaveTraceData> Action;
         #endregion
     }
-    public sealed class AspNetPageInitEnterTraceData : TraceEvent
+    internal sealed class AspNetPageInitEnterTraceData : TraceEvent
     {
         public long ConnID { get { return GetInt64At(0); } }
         public Guid ContextId { get { return GetGuidAt(8); } }
@@ -2550,7 +2552,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.AspNet
         private event Action<AspNetPageInitEnterTraceData> Action;
         #endregion
     }
-    public sealed class AspNetPageInitLeaveTraceData : TraceEvent
+    internal sealed class AspNetPageInitLeaveTraceData : TraceEvent
     {
         public long ConnID { get { return GetInt64At(0); } }
         public Guid ContextId { get { return GetGuidAt(8); } }
@@ -2614,7 +2616,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.AspNet
         private event Action<AspNetPageInitLeaveTraceData> Action;
         #endregion
     }
-    public sealed class AspNetPageLoadViewstateEnterTraceData : TraceEvent
+    internal sealed class AspNetPageLoadViewstateEnterTraceData : TraceEvent
     {
         public long ConnID { get { return GetInt64At(0); } }
         public Guid ContextId { get { return GetGuidAt(8); } }
@@ -2678,7 +2680,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.AspNet
         private event Action<AspNetPageLoadViewstateEnterTraceData> Action;
         #endregion
     }
-    public sealed class AspNetPageLoadViewstateLeaveTraceData : TraceEvent
+    internal sealed class AspNetPageLoadViewstateLeaveTraceData : TraceEvent
     {
         public long ConnID { get { return GetInt64At(0); } }
         public Guid ContextId { get { return GetGuidAt(8); } }
@@ -2742,7 +2744,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.AspNet
         private event Action<AspNetPageLoadViewstateLeaveTraceData> Action;
         #endregion
     }
-    public sealed class AspNetPageLoadPostDataEnterTraceData : TraceEvent
+    internal sealed class AspNetPageLoadPostDataEnterTraceData : TraceEvent
     {
         public long ConnID { get { return GetInt64At(0); } }
         public Guid ContextId { get { return GetGuidAt(8); } }
@@ -2806,7 +2808,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.AspNet
         private event Action<AspNetPageLoadPostDataEnterTraceData> Action;
         #endregion
     }
-    public sealed class AspNetPageLoadPostDataLeaveTraceData : TraceEvent
+    internal sealed class AspNetPageLoadPostDataLeaveTraceData : TraceEvent
     {
         public long ConnID { get { return GetInt64At(0); } }
         public Guid ContextId { get { return GetGuidAt(8); } }
@@ -2870,7 +2872,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.AspNet
         private event Action<AspNetPageLoadPostDataLeaveTraceData> Action;
         #endregion
     }
-    public sealed class AspNetPageLoadEnterTraceData : TraceEvent
+    internal sealed class AspNetPageLoadEnterTraceData : TraceEvent
     {
         public long ConnID { get { return GetInt64At(0); } }
         public Guid ContextId { get { return GetGuidAt(8); } }
@@ -2934,7 +2936,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.AspNet
         private event Action<AspNetPageLoadEnterTraceData> Action;
         #endregion
     }
-    public sealed class AspNetPageLoadLeaveTraceData : TraceEvent
+    internal sealed class AspNetPageLoadLeaveTraceData : TraceEvent
     {
         public long ConnID { get { return GetInt64At(0); } }
         public Guid ContextId { get { return GetGuidAt(8); } }
@@ -2998,7 +3000,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.AspNet
         private event Action<AspNetPageLoadLeaveTraceData> Action;
         #endregion
     }
-    public sealed class AspNetPagePostDataChangedEnterTraceData : TraceEvent
+    internal sealed class AspNetPagePostDataChangedEnterTraceData : TraceEvent
     {
         public long ConnID { get { return GetInt64At(0); } }
         public Guid ContextId { get { return GetGuidAt(8); } }
@@ -3062,7 +3064,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.AspNet
         private event Action<AspNetPagePostDataChangedEnterTraceData> Action;
         #endregion
     }
-    public sealed class AspNetPagePostDataChangedLeaveTraceData : TraceEvent
+    internal sealed class AspNetPagePostDataChangedLeaveTraceData : TraceEvent
     {
         public long ConnID { get { return GetInt64At(0); } }
         public Guid ContextId { get { return GetGuidAt(8); } }
@@ -3126,7 +3128,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.AspNet
         private event Action<AspNetPagePostDataChangedLeaveTraceData> Action;
         #endregion
     }
-    public sealed class AspNetPageRaisePostbackEnterTraceData : TraceEvent
+    internal sealed class AspNetPageRaisePostbackEnterTraceData : TraceEvent
     {
         public long ConnID { get { return GetInt64At(0); } }
         public Guid ContextId { get { return GetGuidAt(8); } }
@@ -3190,7 +3192,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.AspNet
         private event Action<AspNetPageRaisePostbackEnterTraceData> Action;
         #endregion
     }
-    public sealed class AspNetPageRaisePostbackLeaveTraceData : TraceEvent
+    internal sealed class AspNetPageRaisePostbackLeaveTraceData : TraceEvent
     {
         public long ConnID { get { return GetInt64At(0); } }
         public Guid ContextId { get { return GetGuidAt(8); } }
@@ -3254,7 +3256,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.AspNet
         private event Action<AspNetPageRaisePostbackLeaveTraceData> Action;
         #endregion
     }
-    public sealed class AspNetPagePreRenderEnterTraceData : TraceEvent
+    internal sealed class AspNetPagePreRenderEnterTraceData : TraceEvent
     {
         public long ConnID { get { return GetInt64At(0); } }
         public Guid ContextId { get { return GetGuidAt(8); } }
@@ -3318,7 +3320,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.AspNet
         private event Action<AspNetPagePreRenderEnterTraceData> Action;
         #endregion
     }
-    public sealed class AspNetPagePreRenderLeaveTraceData : TraceEvent
+    internal sealed class AspNetPagePreRenderLeaveTraceData : TraceEvent
     {
         public long ConnID { get { return GetInt64At(0); } }
         public Guid ContextId { get { return GetGuidAt(8); } }
@@ -3382,7 +3384,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.AspNet
         private event Action<AspNetPagePreRenderLeaveTraceData> Action;
         #endregion
     }
-    public sealed class AspNetPageSaveViewstateEnterTraceData : TraceEvent
+    internal sealed class AspNetPageSaveViewstateEnterTraceData : TraceEvent
     {
         public long ConnID { get { return GetInt64At(0); } }
         public Guid ContextId { get { return GetGuidAt(8); } }
@@ -3446,7 +3448,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.AspNet
         private event Action<AspNetPageSaveViewstateEnterTraceData> Action;
         #endregion
     }
-    public sealed class AspNetPageSaveViewstateLeaveTraceData : TraceEvent
+    internal sealed class AspNetPageSaveViewstateLeaveTraceData : TraceEvent
     {
         public long ConnID { get { return GetInt64At(0); } }
         public Guid ContextId { get { return GetGuidAt(8); } }
@@ -3510,7 +3512,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.AspNet
         private event Action<AspNetPageSaveViewstateLeaveTraceData> Action;
         #endregion
     }
-    public sealed class AspNetPageRenderEnterTraceData : TraceEvent
+    internal sealed class AspNetPageRenderEnterTraceData : TraceEvent
     {
         public long ConnID { get { return GetInt64At(0); } }
         public Guid ContextId { get { return GetGuidAt(8); } }
@@ -3574,7 +3576,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.AspNet
         private event Action<AspNetPageRenderEnterTraceData> Action;
         #endregion
     }
-    public sealed class AspNetPageRenderLeaveTraceData : TraceEvent
+    internal sealed class AspNetPageRenderLeaveTraceData : TraceEvent
     {
         public long ConnID { get { return GetInt64At(0); } }
         public Guid ContextId { get { return GetGuidAt(8); } }
@@ -3638,7 +3640,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.AspNet
         private event Action<AspNetPageRenderLeaveTraceData> Action;
         #endregion
     }
-    public sealed class AspNetAcquireSessionBeginTraceData : TraceEvent
+    internal sealed class AspNetAcquireSessionBeginTraceData : TraceEvent
     {
         public long ConnID { get { return GetInt64At(0); } }
         public Guid ContextId { get { return GetGuidAt(8); } }
@@ -3702,7 +3704,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.AspNet
         private event Action<AspNetAcquireSessionBeginTraceData> Action;
         #endregion
     }
-    public sealed class AspNetAcquireSessionEndTraceData : TraceEvent
+    internal sealed class AspNetAcquireSessionEndTraceData : TraceEvent
     {
         public long ConnID { get { return GetInt64At(0); } }
         public Guid ContextId { get { return GetGuidAt(8); } }
@@ -3766,7 +3768,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.AspNet
         private event Action<AspNetAcquireSessionEndTraceData> Action;
         #endregion
     }
-    public sealed class AspNetProfileBeginTraceData : TraceEvent
+    internal sealed class AspNetProfileBeginTraceData : TraceEvent
     {
         public long ConnID { get { return GetInt64At(0); } }
         public Guid ContextId { get { return GetGuidAt(8); } }
@@ -3830,7 +3832,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.AspNet
         private event Action<AspNetProfileBeginTraceData> Action;
         #endregion
     }
-    public sealed class AspNetProfileEndTraceData : TraceEvent
+    internal sealed class AspNetProfileEndTraceData : TraceEvent
     {
         public long ConnID { get { return GetInt64At(0); } }
         public Guid ContextId { get { return GetGuidAt(8); } }
@@ -3898,7 +3900,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.AspNet
         private event Action<AspNetProfileEndTraceData> Action;
         #endregion
     }
-    public sealed class AspNetRoleManagerIsUserInRoleTraceData : TraceEvent
+    internal sealed class AspNetRoleManagerIsUserInRoleTraceData : TraceEvent
     {
         public long ConnID { get { return GetInt64At(0); } }
         public Guid ContextId { get { return GetGuidAt(8); } }
@@ -3978,7 +3980,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.AspNet
         private event Action<AspNetRoleManagerIsUserInRoleTraceData> Action;
         #endregion
     }
-    public sealed class AspNetRoleManagerGetUserRolesTraceData : TraceEvent
+    internal sealed class AspNetRoleManagerGetUserRolesTraceData : TraceEvent
     {
         public long ConnID { get { return GetInt64At(0); } }
         public Guid ContextId { get { return GetGuidAt(8); } }
@@ -4054,7 +4056,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.AspNet
         private event Action<AspNetRoleManagerGetUserRolesTraceData> Action;
         #endregion
     }
-    public sealed class AspNetRoleManagerBeginTraceData : TraceEvent
+    internal sealed class AspNetRoleManagerBeginTraceData : TraceEvent
     {
         public long ConnID { get { return GetInt64At(0); } }
         public Guid ContextId { get { return GetGuidAt(8); } }
@@ -4118,7 +4120,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.AspNet
         private event Action<AspNetRoleManagerBeginTraceData> Action;
         #endregion
     }
-    public sealed class AspNetRoleManagerEndTraceData : TraceEvent
+    internal sealed class AspNetRoleManagerEndTraceData : TraceEvent
     {
         public long ConnID { get { return GetInt64At(0); } }
         public Guid ContextId { get { return GetGuidAt(8); } }
@@ -4190,11 +4192,11 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.AspNet
         private event Action<AspNetRoleManagerEndTraceData> Action;
         #endregion
     }
-    public sealed class AspNetWebEventRaiseStartTraceData : TraceEvent
+    internal sealed class AspNetWebEventRaiseStartTraceData : TraceEvent
     {
         public long ConnID { get { return GetInt64At(0); } }
         public Guid ContextId { get { return GetGuidAt(8); } }
-        public string EventClassName { get { return GetUnicodeStringAt(24); } }
+        internal string EventClassName { get { return GetUnicodeStringAt(24); } }
         public string EventCode { get { return GetUnicodeStringAt(SkipUnicodeString(24)); } }
         public string EventDetailCode { get { return GetUnicodeStringAt(SkipUnicodeString(SkipUnicodeString(24))); } }
 
@@ -4266,7 +4268,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.AspNet
         private event Action<AspNetWebEventRaiseStartTraceData> Action;
         #endregion
     }
-    public sealed class AspNetWebEventRaiseEndTraceData : TraceEvent
+    internal sealed class AspNetWebEventRaiseEndTraceData : TraceEvent
     {
         public long ConnID { get { return GetInt64At(0); } }
         public Guid ContextId { get { return GetGuidAt(8); } }
@@ -4330,7 +4332,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.AspNet
         private event Action<AspNetWebEventRaiseEndTraceData> Action;
         #endregion
     }
-    public sealed class AspNetWebEventDeliverStartTraceData : TraceEvent
+    internal sealed class AspNetWebEventDeliverStartTraceData : TraceEvent
     {
         public long ConnID { get { return GetInt64At(0); } }
         public Guid ContextId { get { return GetGuidAt(8); } }
@@ -4406,7 +4408,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.AspNet
         private event Action<AspNetWebEventDeliverStartTraceData> Action;
         #endregion
     }
-    public sealed class AspNetWebEventDeliverEndTraceData : TraceEvent
+    internal sealed class AspNetWebEventDeliverEndTraceData : TraceEvent
     {
         public long ConnID { get { return GetInt64At(0); } }
         public Guid ContextId { get { return GetGuidAt(8); } }
@@ -4470,7 +4472,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.AspNet
         private event Action<AspNetWebEventDeliverEndTraceData> Action;
         #endregion
     }
-    public sealed class AspNetPageTraceWarnEventTraceData : TraceEvent
+    internal sealed class AspNetPageTraceWarnEventTraceData : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
         public string Uri { get { return GetUnicodeStringAt(16); } }
@@ -4538,7 +4540,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.AspNet
         private event Action<AspNetPageTraceWarnEventTraceData> Action;
         #endregion
     }
-    public sealed class AspNetPageTraceWriteEventTraceData : TraceEvent
+    internal sealed class AspNetPageTraceWriteEventTraceData : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
         public string Uri { get { return GetUnicodeStringAt(16); } }
@@ -4606,7 +4608,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.AspNet
         private event Action<AspNetPageTraceWriteEventTraceData> Action;
         #endregion
     }
-    public sealed class AspNetModuleDiagCriticalEventTraceData : TraceEvent
+    internal sealed class AspNetModuleDiagCriticalEventTraceData : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
         public string Uri { get { return GetUnicodeStringAt(16); } }
@@ -4674,7 +4676,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.AspNet
         private event Action<AspNetModuleDiagCriticalEventTraceData> Action;
         #endregion
     }
-    public sealed class AspNetModuleDiagErrorEventTraceData : TraceEvent
+    internal sealed class AspNetModuleDiagErrorEventTraceData : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
         public string Uri { get { return GetUnicodeStringAt(16); } }
@@ -4742,7 +4744,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.AspNet
         private event Action<AspNetModuleDiagErrorEventTraceData> Action;
         #endregion
     }
-    public sealed class AspNetModuleDiagWarningEventTraceData : TraceEvent
+    internal sealed class AspNetModuleDiagWarningEventTraceData : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
         public string Uri { get { return GetUnicodeStringAt(16); } }
@@ -4810,7 +4812,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.AspNet
         private event Action<AspNetModuleDiagWarningEventTraceData> Action;
         #endregion
     }
-    public sealed class AspNetModuleDiagInfoEventTraceData : TraceEvent
+    internal sealed class AspNetModuleDiagInfoEventTraceData : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
         public string Uri { get { return GetUnicodeStringAt(16); } }
@@ -4878,7 +4880,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.AspNet
         private event Action<AspNetModuleDiagInfoEventTraceData> Action;
         #endregion
     }
-    public sealed class AspNetModuleDiagVerboseEventTraceData : TraceEvent
+    internal sealed class AspNetModuleDiagVerboseEventTraceData : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
         public string Uri { get { return GetUnicodeStringAt(16); } }
@@ -4946,7 +4948,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.AspNet
         private event Action<AspNetModuleDiagVerboseEventTraceData> Action;
         #endregion
     }
-    public sealed class AspNetModuleDiagStartEventTraceData : TraceEvent
+    internal sealed class AspNetModuleDiagStartEventTraceData : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
         public string Uri { get { return GetUnicodeStringAt(16); } }
@@ -5014,7 +5016,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.AspNet
         private event Action<AspNetModuleDiagStartEventTraceData> Action;
         #endregion
     }
-    public sealed class AspNetModuleDiagStopEventTraceData : TraceEvent
+    internal sealed class AspNetModuleDiagStopEventTraceData : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
         public string Uri { get { return GetUnicodeStringAt(16); } }
@@ -5082,7 +5084,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.AspNet
         private event Action<AspNetModuleDiagStopEventTraceData> Action;
         #endregion
     }
-    public sealed class AspNetModuleDiagSuspendEventTraceData : TraceEvent
+    internal sealed class AspNetModuleDiagSuspendEventTraceData : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
         public string Uri { get { return GetUnicodeStringAt(16); } }
@@ -5150,7 +5152,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.AspNet
         private event Action<AspNetModuleDiagSuspendEventTraceData> Action;
         #endregion
     }
-    public sealed class AspNetModuleDiagResumeEventTraceData : TraceEvent
+    internal sealed class AspNetModuleDiagResumeEventTraceData : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
         public string Uri { get { return GetUnicodeStringAt(16); } }
@@ -5218,7 +5220,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.AspNet
         private event Action<AspNetModuleDiagResumeEventTraceData> Action;
         #endregion
     }
-    public sealed class AspNetModuleDiagTransferEventTraceData : TraceEvent
+    internal sealed class AspNetModuleDiagTransferEventTraceData : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
         public string Uri { get { return GetUnicodeStringAt(16); } }
@@ -5288,3 +5290,13 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.AspNet
     }
 
 }
+
+
+
+
+
+
+
+
+
+

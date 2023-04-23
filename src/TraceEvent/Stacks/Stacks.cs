@@ -1,3 +1,5 @@
+#nullable disable
+
 // Copyright (c) Microsoft Corporation.  All rights reserved
 // This file is best viewed using outline mode (Ctrl-M Ctrl-O)
 
@@ -17,7 +19,7 @@ namespace Microsoft.Diagnostics.Tracing.Stacks
     /// The stacks are represented as indexes that the  StackSourceStacks base class can resolve into frame names and stack chains.  
     /// The result is very efficient (no string processing) way of processing the conceptual list of stack samples.  
     /// </summary>    
-    public abstract class StackSource : StackSourceStacks
+    internal abstract class StackSource : StackSourceStacks
     {
         /// <summary>
         /// Call 'callback' on every sample in the StackSource.   Will be done linearly and only
@@ -256,7 +258,7 @@ namespace Microsoft.Diagnostics.Tracing.Stacks
     /// So effectively a StackSourceStacks is simply a set of 'Get' methods that allow you to look up information given a Stack or
     /// frame index.  
     /// </summary>
-    public abstract class StackSourceStacks
+    internal abstract class StackSourceStacks
     {
         /// <summary>
         /// Given a call stack, return the call stack of the caller.   This function can return StackSourceCallStackIndex.Discard
@@ -376,7 +378,7 @@ namespace Microsoft.Diagnostics.Tracing.Stacks
     /// In general StackSourceSample are NOT immutable but expected to be overwritten frequently.  Thus you need to copy 
     /// the sample if you want to keep a reference to it.      
     /// </summary>
-    public class StackSourceSample
+    internal class StackSourceSample
     {
         /// <summary>
         /// The Stack associated with the sample 
@@ -527,7 +529,7 @@ namespace Microsoft.Diagnostics.Tracing.Stacks
     /// This stack source takes another and copies out all its events.   This allows you to 'replay' the source 
     /// efficiently when the original source only does this inefficiently.  
     /// </summary>
-    public class CopyStackSource : StackSource
+    internal class CopyStackSource : StackSource
     {
         /// <summary>
         /// Create a CopyStackSource that has no samples in it.  It can never have samples so it is only useful as a placeholder.  
@@ -663,7 +665,7 @@ namespace Microsoft.Diagnostics.Tracing.Stacks
     /// an efficient representation of the data.   This is useful when the original source is expensive 
     /// to iterate over.   
     /// </summary>
-    public class InternStackSource : CopyStackSource
+    internal class InternStackSource : CopyStackSource
     {
         /// <summary>
         /// Compute the difference between two sources of stacks.
@@ -894,7 +896,7 @@ namespace Microsoft.Diagnostics.Tracing.Stacks
     /// <summary>
     /// StackSourceInterner is a helper class that knows how to intern module, frame and call stacks. 
     /// </summary>
-    public class StackSourceInterner
+    internal class StackSourceInterner
     {
         /// <summary>
         /// Create a new StackSourceInterner.  Optionally supply estimates on how many items you need and where the frame, callstack and module indexes start.    
@@ -1356,3 +1358,13 @@ namespace Microsoft.Diagnostics.Tracing.Stacks
         #endregion
     }
 }
+
+
+
+
+
+
+
+
+
+

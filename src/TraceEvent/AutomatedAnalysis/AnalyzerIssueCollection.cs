@@ -1,4 +1,6 @@
-﻿using System.Collections;
+#nullable disable
+
+using System.Collections;
 using System.Collections.Generic;
 
 namespace Microsoft.Diagnostics.Tracing.AutomatedAnalysis
@@ -6,7 +8,7 @@ namespace Microsoft.Diagnostics.Tracing.AutomatedAnalysis
     /// <summary>
     /// A collection of AnalyzerIssue instances organized by process.
     /// </summary>
-    public sealed class AnalyzerIssueCollection : IEnumerable<KeyValuePair<Process, List<AnalyzerIssue>>>
+    internal sealed class AnalyzerIssueCollection : IEnumerable<KeyValuePair<Process, List<AnalyzerIssue>>>
     {
         private Dictionary<Process, List<AnalyzerIssue>> _issues = new Dictionary<Process, List<AnalyzerIssue>>();
 
@@ -41,3 +43,13 @@ namespace Microsoft.Diagnostics.Tracing.AutomatedAnalysis
         }
     }
 }
+
+
+
+
+
+
+
+
+
+

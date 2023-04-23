@@ -1,4 +1,6 @@
-﻿using System;
+#nullable disable
+
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -10,7 +12,7 @@ using Xunit.Abstractions;
 
 namespace TraceEventTests
 {
-    public class MultiFileMergeAll : EtlTestBase
+    internal class MultiFileMergeAll : EtlTestBase
     {
         public MultiFileMergeAll(ITestOutputHelper output)
             : base(output)
@@ -96,3 +98,13 @@ namespace TraceEventTests
         }
     }
 }
+
+
+
+
+
+
+
+
+
+

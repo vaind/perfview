@@ -1,4 +1,6 @@
-﻿using Microsoft.Diagnostics.Tracing.Compatibility;
+#nullable disable
+
+using Microsoft.Diagnostics.Tracing.Compatibility;
 using System;
 using System.Diagnostics;
 using System.IO;
@@ -102,3 +104,13 @@ internal class NativeDlls
 
 
 }
+
+
+
+
+
+
+
+
+
+

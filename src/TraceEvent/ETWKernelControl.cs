@@ -1,3 +1,5 @@
+#nullable disable
+
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -12,7 +14,7 @@ using KernelKeywords = Microsoft.Diagnostics.Tracing.Parsers.KernelTraceEventPar
 
 namespace Microsoft.Diagnostics.Tracing
 {
-    public unsafe static class ETWKernelControl
+    internal unsafe static class ETWKernelControl
     {
         /// <summary>
         /// Start an ETW kernel session.
@@ -576,7 +578,7 @@ namespace Microsoft.Diagnostics.Tracing
     /// Used in StartKernelTrace to indicate the kernel events that should have stack traces collected for them.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct STACK_TRACING_EVENT_ID
+    internal struct STACK_TRACING_EVENT_ID
     {
         public Guid EventGuid;
         public byte Type;
@@ -607,3 +609,12 @@ namespace Microsoft.Diagnostics.Tracing
         COMPRESS_TRACE = 0x10000000,
     }
 }
+
+
+
+
+
+
+
+
+

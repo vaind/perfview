@@ -1,3 +1,5 @@
+#nullable disable
+
 // This file is best viewed using outline mode (Ctrl-M Ctrl-O)
 //
 //	Copyright (C) 2007 Microsoft Corporation.  All Rights Reserved.
@@ -724,7 +726,7 @@ namespace Utilities
                 }
             }
 
-            public class DataBlock : IDisposable
+            internal class DataBlock : IDisposable
             {
                 internal DataBlock(int blockSize, StreamCache cache, DataBlock next)
                 {
@@ -887,7 +889,7 @@ namespace Utilities
     }
 
 #if UNIT_TESTS
-    public static class CompressedStreamTests
+    internal static class CompressedStreamTests
     {
         public static void SizeTest(string inputFilePath)
         {
@@ -1028,3 +1030,13 @@ namespace Utilities
 #endif // !NETSTANDARD1_3
 
 #endif // false
+
+
+
+
+
+
+
+
+
+

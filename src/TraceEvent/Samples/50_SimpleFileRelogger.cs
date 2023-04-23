@@ -1,4 +1,5 @@
-﻿
+#nullable disable
+
 using Microsoft.Diagnostics.Tracing;
 using Microsoft.Diagnostics.Tracing.Parsers;
 using Microsoft.Diagnostics.Tracing.Parsers.Kernel;
@@ -216,3 +217,13 @@ namespace TraceEventSamples
         }
     }
 }
+
+
+
+
+
+
+
+
+
+

@@ -1,4 +1,6 @@
-﻿using Microsoft.Diagnostics.Tracing.Stacks;
+#nullable disable
+
+using Microsoft.Diagnostics.Tracing.Stacks;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -121,3 +123,13 @@ namespace Microsoft.Diagnostics.Tracing.StackSources
         }
     }
 }
+
+
+
+
+
+
+
+
+
+

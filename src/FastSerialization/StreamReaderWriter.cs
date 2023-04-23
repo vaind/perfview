@@ -1,4 +1,6 @@
-﻿//     Copyright (c) Microsoft Corporation.  All rights reserved.
+#nullable disable
+
+//     Copyright (c) Microsoft Corporation.  All rights reserved.
 // This file is best viewed using outline mode (Ctrl-M Ctrl-O)
 //
 // This program uses code hyperlinks available as part of the HyperAddin Visual Studio plug-in.
@@ -993,7 +995,7 @@ namespace FastSerialization
     }
 
 #if PINNEDSTREAMREADER_TESTS
-    public static class PinnedStreamTests
+    internal static class PinnedStreamTests
     {
         public static void Tests()
         {
@@ -1196,3 +1198,13 @@ namespace FastSerialization
         #endregion
     }
 }
+
+
+
+
+
+
+
+
+
+

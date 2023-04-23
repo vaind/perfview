@@ -1,4 +1,6 @@
-﻿using Microsoft.Diagnostics.Tracing.TraceUtilities.FilterQueryExpression;
+#nullable disable
+
+using Microsoft.Diagnostics.Tracing.TraceUtilities.FilterQueryExpression;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -7,7 +9,7 @@ using Xunit;
 
 namespace TraceEventTests
 {
-    public class FilterQueryExpressionTreeTests
+    internal class FilterQueryExpressionTreeTests
     {
         private sealed class FilterQueryExpressionTreeTestData_SimpleExpressions_TrueCases : IEnumerable<object[]>
         {
@@ -603,3 +605,13 @@ namespace TraceEventTests
         }
     }
 }
+
+
+
+
+
+
+
+
+
+

@@ -1,4 +1,6 @@
-﻿using System;
+#nullable disable
+
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -586,3 +588,13 @@ namespace Microsoft.Diagnostics.Tracing.Ctf
         }
     }
 }
+
+
+
+
+
+
+
+
+
+

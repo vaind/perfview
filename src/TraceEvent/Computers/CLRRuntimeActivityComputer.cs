@@ -1,4 +1,6 @@
-﻿// Copyright (c) Microsoft Corporation.  All rights reserved
+#nullable disable
+
+// Copyright (c) Microsoft Corporation.  All rights reserved
 // This file is best viewed using outline mode (Ctrl-M Ctrl-O)
 //
 // This program uses code hyperlinks available as part of the HyperAddin Visual Studio plug-in.
@@ -11,7 +13,7 @@ using System.Collections.Generic;
 
 namespace Microsoft.Diagnostics.Tracing
 {
-    public class RuntimeLoaderProcessData
+    internal class RuntimeLoaderProcessData
     {
         public Dictionary<int, CLRRuntimeActivityComputer.PerThreadStartStopData> ThreadData { get; } = new Dictionary<int, CLRRuntimeActivityComputer.PerThreadStartStopData>();
         public double FirstEventTimestamp { get; }
@@ -65,7 +67,7 @@ namespace Microsoft.Diagnostics.Tracing
         }
     }
 
-    public class RuntimeLoaderStatsData
+    internal class RuntimeLoaderStatsData
     {
         List<RuntimeLoaderProcessData> _processData = new List<RuntimeLoaderProcessData>();
 
@@ -100,9 +102,9 @@ namespace Microsoft.Diagnostics.Tracing
         }
     }
 
-    public class CLRRuntimeActivityComputer
+    internal class CLRRuntimeActivityComputer
     {
-        public struct EventUID : IComparable<EventUID>, IEquatable<EventUID>
+        internal struct EventUID : IComparable<EventUID>, IEquatable<EventUID>
         {
             public EventUID(TraceEvent evt) : this(evt.EventIndex, evt.TimeStampRelativeMSec) { }
 
@@ -142,7 +144,7 @@ namespace Microsoft.Diagnostics.Tracing
             }
         }
 
-        public struct StartStopThreadEventData : IComparable<StartStopThreadEventData>
+        internal struct StartStopThreadEventData : IComparable<StartStopThreadEventData>
         {
             public StartStopThreadEventData(EventUID start, EventUID end, string name)
             {
@@ -195,7 +197,7 @@ namespace Microsoft.Diagnostics.Tracing
             public string Name;
         }
 
-        public class PerThreadStartStopData
+        internal class PerThreadStartStopData
         {
             public int Offset;
 
@@ -419,3 +421,13 @@ namespace Microsoft.Diagnostics.Tracing
         }
     }
 }
+
+
+
+
+
+
+
+
+
+

@@ -1,4 +1,6 @@
-﻿using FastSerialization;
+#nullable disable
+
+using FastSerialization;
 using Microsoft.Diagnostics.Tracing;
 using Microsoft.Diagnostics.Tracing.Etlx;
 using Microsoft.Diagnostics.Tracing.EventPipe;
@@ -15,7 +17,7 @@ using Xunit.Abstractions;
 
 namespace TraceEventTests
 {
-    public class EventPipeParsing : EventPipeTestBase
+    internal class EventPipeParsing : EventPipeTestBase
     {
         private class EventRecord
         {
@@ -1009,3 +1011,13 @@ namespace TraceEventTests
         }
     }
 }
+
+
+
+
+
+
+
+
+
+

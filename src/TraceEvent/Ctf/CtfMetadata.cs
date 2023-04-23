@@ -1,4 +1,6 @@
-﻿using System;
+#nullable disable
+
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -105,7 +107,7 @@ namespace Microsoft.Diagnostics.Tracing.Ctf
         public short Minor { get; private set; }
         public Guid UUID { get; private set; }
         public string ByteOrder { get; private set; }
-        public CtfStruct Header { get; private set; }
+        internal CtfStruct Header { get; private set; }
 
         public CtfTrace(CtfPropertyBag bag)
         {
@@ -146,9 +148,9 @@ namespace Microsoft.Diagnostics.Tracing.Ctf
         private CtfMetadataType _eventContext;
 
         public int ID { get; private set; }
-        public CtfStruct EventHeader { get { return (CtfStruct)_header; } }
-        public CtfStruct PacketContext { get { return (CtfStruct)_context; } }
-        public CtfStruct EventContext { get { return (CtfStruct)_eventContext; } }
+        internal CtfStruct EventHeader { get { return (CtfStruct)_header; } }
+        internal CtfStruct PacketContext { get { return (CtfStruct)_context; } }
+        internal CtfStruct EventContext { get { return (CtfStruct)_eventContext; } }
         public List<CtfEvent> Events { get { return _events; } }
 
         public CtfStream(CtfPropertyBag properties)
@@ -258,7 +260,7 @@ namespace Microsoft.Diagnostics.Tracing.Ctf
         public string Name { get; private set; }
         public int Stream { get; private set; }
         public uint LogLevel { get; private set; }
-        public CtfStruct Definition { get; private set; }
+        internal CtfStruct Definition { get; private set; }
         public bool IsPacked
         {
             get
@@ -299,3 +301,13 @@ namespace Microsoft.Diagnostics.Tracing.Ctf
         }
     }
 }
+
+
+
+
+
+
+
+
+
+

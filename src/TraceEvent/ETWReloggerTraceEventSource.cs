@@ -1,4 +1,6 @@
-﻿#define V4_5_Runtime
+#nullable disable
+
+#define V4_5_Runtime
 using Microsoft.Diagnostics.Tracing.Parsers;
 using Microsoft.Diagnostics.Tracing.Parsers.Kernel;
 using System;
@@ -20,7 +22,7 @@ namespace Microsoft.Diagnostics.Tracing
     /// The right way to think about this class is that it is just like ETWTraceEventSource, but it also has a output file associated with it, and WriteEvent APIs that
     /// can be used to either copy events from the event stream (the common case), or inject new events (high level stats).  
     /// </summary>
-    public unsafe class ETWReloggerTraceEventSource : TraceEventDispatcher
+    internal unsafe class ETWReloggerTraceEventSource : TraceEventDispatcher
     {
         /// <summary>
         /// Create an ETWReloggerTraceEventSource that can takes its input from the family of etl files inputFileName
@@ -565,3 +567,13 @@ namespace Microsoft.Diagnostics.Tracing
         #endregion
     }
 }
+
+
+
+
+
+
+
+
+
+

@@ -1,11 +1,13 @@
-﻿using System.Collections.Generic;
+#nullable disable
+
+using System.Collections.Generic;
 
 namespace Microsoft.Diagnostics.Tracing.AutomatedAnalysis
 {
     /// <summary>
     /// The result of a trace processing operation.
     /// </summary>
-    public sealed class TraceProcessorResult
+    internal sealed class TraceProcessorResult
     {
         private IEnumerable<Analyzer> _executedAnalyzers;
         private AnalyzerExecutionContext _executionContext;
@@ -35,3 +37,13 @@ namespace Microsoft.Diagnostics.Tracing.AutomatedAnalysis
         }
     }
 }
+
+
+
+
+
+
+
+
+
+

@@ -1,3 +1,5 @@
+#nullable disable
+
 using Microsoft.Diagnostics.Tracing.Parsers.JScript;
 using System;
 using System.Diagnostics;
@@ -9,7 +11,7 @@ using Address = System.UInt64;
 namespace Microsoft.Diagnostics.Tracing.Parsers
 {
     [System.CodeDom.Compiler.GeneratedCode("traceparsergen", "1.0")]
-    public sealed class JScriptTraceEventParser : TraceEventParser
+    internal sealed class JScriptTraceEventParser : TraceEventParser
     {
         public static readonly string ProviderName = "Microsoft-JScript";
         public static readonly Guid ProviderGuid = new Guid(unchecked((int)0x57277741), unchecked((short)0x3638), unchecked((short)0x4a4b), 0xbd, 0xba, 0x0a, 0xc6, 0xe4, 0x5d, 0xa5, 0x6c);
@@ -2037,7 +2039,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers
 
 namespace Microsoft.Diagnostics.Tracing.Parsers.JScript
 {
-    public sealed class MethodLoadUnloadJSTraceData : TraceEvent
+    internal sealed class MethodLoadUnloadJSTraceData : TraceEvent
     {
         public Address ScriptContextID { get { return GetAddressAt(0); } }
         public Address MethodStartAddress { get { return GetAddressAt(HostOffset(4, 1)); } }
@@ -2133,7 +2135,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.JScript
         private event Action<MethodLoadUnloadJSTraceData> Action;
         #endregion
     }
-    public sealed class ScriptContextLoadUnloadTraceData : TraceEvent
+    internal sealed class ScriptContextLoadUnloadTraceData : TraceEvent
     {
         public Address ScriptContextID { get { return GetAddressAt(0); } }
 
@@ -2193,7 +2195,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.JScript
         private event Action<ScriptContextLoadUnloadTraceData> Action;
         #endregion
     }
-    public sealed class ProjectionTypeNameTraceData : TraceEvent
+    internal sealed class ProjectionTypeNameTraceData : TraceEvent
     {
         public string TypeName { get { return GetUnicodeStringAt(0); } }
 
@@ -2253,7 +2255,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.JScript
         private event Action<ProjectionTypeNameTraceData> Action;
         #endregion
     }
-    public sealed class ProjectionTypeNameAndMethodNameTraceData : TraceEvent
+    internal sealed class ProjectionTypeNameAndMethodNameTraceData : TraceEvent
     {
         public string TypeName { get { return GetUnicodeStringAt(0); } }
         public string MethodName { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -2317,7 +2319,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.JScript
         private event Action<ProjectionTypeNameAndMethodNameTraceData> Action;
         #endregion
     }
-    public sealed class ProjectionTypeNameAndEventNameTraceData : TraceEvent
+    internal sealed class ProjectionTypeNameAndEventNameTraceData : TraceEvent
     {
         public string TypeName { get { return GetUnicodeStringAt(0); } }
         public new string EventName { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -2381,7 +2383,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.JScript
         private event Action<ProjectionTypeNameAndEventNameTraceData> Action;
         #endregion
     }
-    public sealed class SourceLoadUnloadTraceData : TraceEvent
+    internal sealed class SourceLoadUnloadTraceData : TraceEvent
     {
         public long SourceID { get { return GetInt64At(0); } }
         public Address ScriptContextID { get { return GetAddressAt(8); } }
@@ -2453,7 +2455,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.JScript
         private event Action<SourceLoadUnloadTraceData> Action;
         #endregion
     }
-    public sealed class ProjectionIsBoxedInterfaceTraceData : TraceEvent
+    internal sealed class ProjectionIsBoxedInterfaceTraceData : TraceEvent
     {
         public bool IsBoxed { get { return GetInt32At(0) != 0; } }
 
@@ -2513,7 +2515,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.JScript
         private event Action<ProjectionIsBoxedInterfaceTraceData> Action;
         #endregion
     }
-    public sealed class ParseStartStopTraceData : TraceEvent
+    internal sealed class ParseStartStopTraceData : TraceEvent
     {
         public long SourceID { get { return GetInt64At(0); } }
         public Address ScriptContextID { get { return GetAddressAt(8); } }
@@ -2593,7 +2595,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.JScript
         private event Action<ParseStartStopTraceData> Action;
         #endregion
     }
-    public sealed class BytecodeGenInfoTraceData : TraceEvent
+    internal sealed class BytecodeGenInfoTraceData : TraceEvent
     {
         public long SourceID { get { return GetInt64At(0); } }
         public Address ScriptContextID { get { return GetAddressAt(8); } }
@@ -2673,7 +2675,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.JScript
         private event Action<BytecodeGenInfoTraceData> Action;
         #endregion
     }
-    public sealed class GCPhaseTraceData : TraceEvent
+    internal sealed class GCPhaseTraceData : TraceEvent
     {
         public Address RecyclerID { get { return GetAddressAt(0); } }
 
@@ -2733,7 +2735,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.JScript
         private event Action<GCPhaseTraceData> Action;
         #endregion
     }
-    public sealed class GCPhaseCollectTraceData : TraceEvent
+    internal sealed class GCPhaseCollectTraceData : TraceEvent
     {
         public Address RecyclerID { get { return GetAddressAt(0); } }
         public int SweptBytes { get { return GetInt32At(HostOffset(4, 1)); } }
@@ -2797,7 +2799,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.JScript
         private event Action<GCPhaseCollectTraceData> Action;
         #endregion
     }
-    public sealed class ProfileSaveTraceData : TraceEvent
+    internal sealed class ProfileSaveTraceData : TraceEvent
     {
         public long SourceID { get { return GetInt64At(0); } }
         public Address ScriptContextID { get { return GetAddressAt(8); } }
@@ -2869,7 +2871,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.JScript
         private event Action<ProfileSaveTraceData> Action;
         #endregion
     }
-    public sealed class StartupCompleteTraceData : TraceEvent
+    internal sealed class StartupCompleteTraceData : TraceEvent
     {
         public Address ScriptContextID { get { return GetAddressAt(0); } }
 
@@ -2929,7 +2931,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.JScript
         private event Action<StartupCompleteTraceData> Action;
         #endregion
     }
-    public sealed class ProfileLoadTraceData : TraceEvent
+    internal sealed class ProfileLoadTraceData : TraceEvent
     {
         public long SourceID { get { return GetInt64At(0); } }
         public Address ScriptContextID { get { return GetAddressAt(8); } }
@@ -2993,7 +2995,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.JScript
         private event Action<ProfileLoadTraceData> Action;
         #endregion
     }
-    public sealed class InlineInfoTraceData : TraceEvent
+    internal sealed class InlineInfoTraceData : TraceEvent
     {
         public int CallerMethodID { get { return GetInt32At(0); } }
         public int InlineeMethodID { get { return GetInt32At(4); } }
@@ -3065,7 +3067,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.JScript
         private event Action<InlineInfoTraceData> Action;
         #endregion
     }
-    public sealed class JitMethodStartTraceData : TraceEvent
+    internal sealed class JitMethodStartTraceData : TraceEvent
     {
         public int MethodID { get { return GetInt32At(0); } }
         public string MethodName { get { return GetUnicodeStringAt(4); } }
@@ -3149,7 +3151,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.JScript
         private event Action<JitMethodStartTraceData> Action;
         #endregion
     }
-    public sealed class JitMethodStopTraceData : TraceEvent
+    internal sealed class JitMethodStopTraceData : TraceEvent
     {
         public int MethodID { get { return GetInt32At(0); } }
         public string MethodName { get { return GetUnicodeStringAt(4); } }
@@ -3229,7 +3231,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.JScript
         private event Action<JitMethodStopTraceData> Action;
         #endregion
     }
-    public sealed class JitMethodQueueDequeueTraceData : TraceEvent
+    internal sealed class JitMethodQueueDequeueTraceData : TraceEvent
     {
         public int MethodID { get { return GetInt32At(0); } }
         public string MethodName { get { return GetUnicodeStringAt(4); } }
@@ -3301,7 +3303,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.JScript
         private event Action<JitMethodQueueDequeueTraceData> Action;
         #endregion
     }
-    public sealed class JscriptSizeInBytesTraceData : TraceEvent
+    internal sealed class JscriptSizeInBytesTraceData : TraceEvent
     {
         public long SizeInBytes { get { return GetInt64At(0); } }
 
@@ -3361,7 +3363,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.JScript
         private event Action<JscriptSizeInBytesTraceData> Action;
         #endregion
     }
-    public sealed class JscriptRecyclerFreeTraceData : TraceEvent
+    internal sealed class JscriptRecyclerFreeTraceData : TraceEvent
     {
         public int Count { get { return GetInt32At(0); } }
         public Address MemoryAddress { get { return GetAddressAt(4); } }
@@ -3429,7 +3431,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.JScript
         private event Action<JscriptRecyclerFreeTraceData> Action;
         #endregion
     }
-    public sealed class JscriptRecyclerFreeBlockTraceData : TraceEvent
+    internal sealed class JscriptRecyclerFreeBlockTraceData : TraceEvent
     {
         public Address MemoryAddress { get { return GetAddressAt(0); } }
         public int BlockSize { get { return GetInt32At(HostOffset(4, 1)); } }
@@ -3497,7 +3499,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.JScript
         private event Action<JscriptRecyclerFreeBlockTraceData> Action;
         #endregion
     }
-    public sealed class JscriptAllocationTraceData : TraceEvent
+    internal sealed class JscriptAllocationTraceData : TraceEvent
     {
         public Address MemoryAddress { get { return GetAddressAt(0); } }
 
@@ -3557,7 +3559,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.JScript
         private event Action<JscriptAllocationTraceData> Action;
         #endregion
     }
-    public sealed class JscriptAllocateFunctionTraceData : TraceEvent
+    internal sealed class JscriptAllocateFunctionTraceData : TraceEvent
     {
         public Address MemoryAddress { get { return GetAddressAt(0); } }
         public int MethodID { get { return GetInt32At(HostOffset(4, 1)); } }
@@ -3621,7 +3623,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.JScript
         private event Action<JscriptAllocateFunctionTraceData> Action;
         #endregion
     }
-    public sealed class JscriptDOMAllocationTraceData : TraceEvent
+    internal sealed class JscriptDOMAllocationTraceData : TraceEvent
     {
         public Address MemoryAddress { get { return GetAddressAt(0); } }
         public int TypeId { get { return GetInt32At(HostOffset(4, 1)); } }
@@ -3685,7 +3687,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.JScript
         private event Action<JscriptDOMAllocationTraceData> Action;
         #endregion
     }
-    public sealed class JScriptWinRTObjectAllocationTraceData : TraceEvent
+    internal sealed class JScriptWinRTObjectAllocationTraceData : TraceEvent
     {
         public Address MemoryAddress { get { return GetAddressAt(0); } }
         public string TypeName { get { return GetUnicodeStringAt(HostOffset(4, 1)); } }
@@ -3749,7 +3751,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.JScript
         private event Action<JScriptWinRTObjectAllocationTraceData> Action;
         #endregion
     }
-    public sealed class JscriptWinRTWrapperAllocationTraceData : TraceEvent
+    internal sealed class JscriptWinRTWrapperAllocationTraceData : TraceEvent
     {
         public Address MemoryAddress { get { return GetAddressAt(0); } }
         public string TypeName { get { return GetUnicodeStringAt(HostOffset(4, 1)); } }
@@ -3817,7 +3819,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.JScript
         private event Action<JscriptWinRTWrapperAllocationTraceData> Action;
         #endregion
     }
-    public sealed class JscriptWinRTEventHandlerAllocationTraceData : TraceEvent
+    internal sealed class JscriptWinRTEventHandlerAllocationTraceData : TraceEvent
     {
         public Address MemoryAddress { get { return GetAddressAt(0); } }
         public string TypeName { get { return GetUnicodeStringAt(HostOffset(4, 1)); } }
@@ -3889,7 +3891,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.JScript
         private event Action<JscriptWinRTEventHandlerAllocationTraceData> Action;
         #endregion
     }
-    public sealed class JscriptWinRTPropertyValueAllocationTraceData : TraceEvent
+    internal sealed class JscriptWinRTPropertyValueAllocationTraceData : TraceEvent
     {
         public Address MemoryAddress { get { return GetAddressAt(0); } }
         public string TypeName { get { return GetUnicodeStringAt(HostOffset(4, 1)); } }
@@ -3957,7 +3959,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.JScript
         private event Action<JscriptWinRTPropertyValueAllocationTraceData> Action;
         #endregion
     }
-    public sealed class JscriptWinRTWrapperFreeTraceData : TraceEvent
+    internal sealed class JscriptWinRTWrapperFreeTraceData : TraceEvent
     {
         public Address MemoryAddress { get { return GetAddressAt(0); } }
 
@@ -4034,3 +4036,13 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.JScript
     }
 
 }
+
+
+
+
+
+
+
+
+
+

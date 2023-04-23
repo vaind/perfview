@@ -1,3 +1,5 @@
+#nullable disable
+
 using Microsoft.Diagnostics.Tracing.Parsers.JSDumpHeap;
 using System;
 using System.Diagnostics;
@@ -10,7 +12,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers
 {
 
     [System.CodeDom.Compiler.GeneratedCode("traceparsergen", "1.0")]
-    public sealed class JSDumpHeapTraceEventParser : TraceEventParser
+    internal sealed class JSDumpHeapTraceEventParser : TraceEventParser
     {
         public static readonly string ProviderName = "Microsoft-IE-JSDumpHeap";
         public static readonly Guid ProviderGuid = new Guid(unchecked((int)0x7f8e35ca), unchecked((short)0x68e8), unchecked((short)0x41b9), 0x86, 0xfe, 0xd6, 0xad, 0xc5, 0xb3, 0x27, 0xe7);
@@ -158,7 +160,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers
 
 namespace Microsoft.Diagnostics.Tracing.Parsers.JSDumpHeap
 {
-    public sealed class SettingsTraceData : TraceEvent
+    internal sealed class SettingsTraceData : TraceEvent
     {
         public new int Version { get { return GetInt32At(0); } }
         public int MaxStringLength { get { return GetInt32At(4); } }
@@ -242,7 +244,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.JSDumpHeap
         private event Action<SettingsTraceData> Action;
         #endregion
     }
-    public sealed class SummaryTraceData : TraceEvent
+    internal sealed class SummaryTraceData : TraceEvent
     {
         public int HrResult { get { return GetInt32At(0); } }
         public int NodeCount { get { return GetInt32At(4); } }
@@ -323,7 +325,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.JSDumpHeap
         #endregion
     }
 
-    public sealed class BulkNodeTraceData : TraceEvent
+    internal sealed class BulkNodeTraceData : TraceEvent
     {
         public int Index { get { return GetInt32At(0); } }
         public int Count { get { return GetInt32At(4); } }
@@ -399,7 +401,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.JSDumpHeap
     /// This structure just POINTS at the data in the BulkNodeTraceData.  It can only be used as long as
     /// the BulkNodeTraceData is alive which (unless you cloned it) is only for the lifetime of the callback.  
     /// </summary>
-    public unsafe struct BulkNodeValues
+    internal unsafe struct BulkNodeValues
     {
         public Address Id { get { return m_data.GetAddressAt(m_baseOffset); } }
         public int Size { get { return m_data.GetInt32At(m_data.HostOffset(m_baseOffset + 4, 1)); } }
@@ -444,7 +446,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.JSDumpHeap
         WINRT = (WINRT_INSTANCE | WINRT_RUNTIMECLASS | WINRT_DELEGATE | WINRT_NAMESPACE)
     };
 
-    public sealed class BulkAttributeTraceData : TraceEvent
+    internal sealed class BulkAttributeTraceData : TraceEvent
     {
         public int Index { get { return GetInt32At(0); } }
         public int Count { get { return GetInt32At(4); } }
@@ -520,7 +522,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.JSDumpHeap
     /// This structure just POINTS at the data in the BulkAttributeTraceData.  It can only be used as long as
     /// the BulkAttributeTraceData is alive which (unless you cloned it) is only for the lifetime of the callback.  
     /// </summary>
-    public unsafe struct BulkAttributeValues
+    internal unsafe struct BulkAttributeValues
     {
         public AttributeType Type { get { return (AttributeType)m_data.GetInt16At(m_baseOffset); } }
         public Address Value { get { return m_data.GetAddressAt(m_baseOffset + 2); } }
@@ -551,7 +553,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.JSDumpHeap
         Max
     };
 
-    public sealed class BulkEdgeTraceData : TraceEvent
+    internal sealed class BulkEdgeTraceData : TraceEvent
     {
         public int Index { get { return GetInt32At(0); } }
         public int Count { get { return GetInt32At(4); } }
@@ -627,7 +629,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.JSDumpHeap
     /// This structure just POINTS at the data in the BulkNodeTraceData.  It can only be used as long as
     /// the BulkNodeTraceData is alive which (unless you cloned it) is only for the lifetime of the callback.  
     /// </summary>
-    public unsafe struct BulkEdgeValues
+    internal unsafe struct BulkEdgeValues
     {
         public EdgeRelationshipType RelationshipType { get { return (EdgeRelationshipType)m_data.GetByteAt(m_baseOffset); } }
         public EdgeTargetType TargetType { get { return (EdgeTargetType)m_data.GetByteAt(m_baseOffset + 1); } }
@@ -669,7 +671,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.JSDumpHeap
         Max
     }
 
-    public sealed class StringTableTraceData : TraceEvent
+    internal sealed class StringTableTraceData : TraceEvent
     {
         public int Index { get { return GetInt32At(0); } }
         public int Count { get { return GetInt32At(4); } }
@@ -761,7 +763,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.JSDumpHeap
         private int m_lastStrOffset;
         #endregion
     }
-    public sealed unsafe class DoubleTableTraceData : TraceEvent
+    internal sealed unsafe class DoubleTableTraceData : TraceEvent
     {
         public int Index { get { return GetInt32At(0); } }
         public int Count { get { return GetInt32At(4); } }
@@ -833,3 +835,13 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.JSDumpHeap
     }
 
 }
+
+
+
+
+
+
+
+
+
+

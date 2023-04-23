@@ -1,3 +1,5 @@
+#nullable disable
+
 //     Copyright (c) Microsoft Corporation.  All rights reserved.
 // This file is best viewed using outline mode (Ctrl-M Ctrl-O)
 
@@ -49,7 +51,7 @@ namespace Microsoft.Diagnostics.Tracing.Etlx
     /// by the TraceLog.CreateFromEventTraceLogFile.
     /// </para>
     /// </summary>
-    public sealed class TraceLog : TraceEventSource, IDisposable, IFastSerializable, IFastSerializableVersion
+    internal sealed class TraceLog : TraceEventSource, IDisposable, IFastSerializable, IFastSerializableVersion
     {
         /// <summary>
         /// Given the path to an ETW trace log file (ETL) file, create an ETLX file for the data.
@@ -4258,7 +4260,7 @@ namespace Microsoft.Diagnostics.Tracing.Etlx
     /// Represents a source for a TraceLog file (or real time stream).  It is basically a TraceEventDispatcher
     /// (TraceEventSource) but you can also get at the TraceLog for it as well.
     /// </summary>
-    public class TraceLogEventSource : TraceEventDispatcher
+    internal class TraceLogEventSource : TraceEventDispatcher
     {
         /// <summary>
         /// Returns the TraceLog associated with this TraceLogEventSource.
@@ -4456,7 +4458,7 @@ namespace Microsoft.Diagnostics.Tracing.Etlx
     /// <summary>
     /// TraceEventStats represents the summary statistics (counts) of all the events in the log.
     /// </summary>
-    public sealed class TraceEventStats : IEnumerable<TraceEventCounts>, IFastSerializable
+    internal sealed class TraceEventStats : IEnumerable<TraceEventCounts>, IFastSerializable
     {
         /// <summary>
         /// The total number of distinct event types (there will be a TraceEventCounts for each distinct event Type)
@@ -4619,7 +4621,7 @@ namespace Microsoft.Diagnostics.Tracing.Etlx
     /// were associated with the TraceLog instance.
     /// </para>
     /// </summary>
-    public sealed class TraceEventCounts : IFastSerializable
+    internal sealed class TraceEventCounts : IFastSerializable
     {
         /// <summary>
         /// Returns a provider name for events in this TraceEventCounts.   It may return a string with a GUID or even
@@ -4704,7 +4706,7 @@ namespace Microsoft.Diagnostics.Tracing.Etlx
         /// <summary>
         /// Returns true the provider associated with this TraceEventCouts is a classic (not manifest based) ETW provider.
         /// </summary>
-        public bool IsClassic { get { return m_key.m_classicProvider; } }
+        internal bool IsClassic { get { return m_key.m_classicProvider; } }
 
         /// <summary>
         /// Returns the provider GUID of the events in this TraceEventCounts.  Returns Guid.Empty if IsClassic
@@ -4886,7 +4888,7 @@ namespace Microsoft.Diagnostics.Tracing.Etlx
     /// (it is reused for the next event).  If you need more lifetime than that you must call Clone() (see 'Lifetime
     /// Constraints' in the programmers guide for more).
     /// </summary>
-    public sealed class TraceEvents : IEnumerable<TraceEvent>
+    internal sealed class TraceEvents : IEnumerable<TraceEvent>
     {
         /// <summary>
         /// Returns a list of events in the TraceEvents that return a payload of type T.   Thus
@@ -5215,7 +5217,7 @@ namespace Microsoft.Diagnostics.Tracing.Etlx
     ///
     /// TraceProcesses are IEnumerable, and will return the processes in order of creation time.
     /// </summary>
-    public sealed class TraceProcesses : IEnumerable<TraceProcess>, IFastSerializable
+    internal sealed class TraceProcesses : IEnumerable<TraceProcess>, IFastSerializable
     {
         /// <summary>
         /// The log associated with this collection of processes.
@@ -5483,7 +5485,7 @@ namespace Microsoft.Diagnostics.Tracing.Etlx
     /// <summary>
     /// A TraceProcess represents a process in the trace.
     /// </summary>
-    public sealed class TraceProcess : IFastSerializable
+    internal sealed class TraceProcess : IFastSerializable
     {
         /// <summary>
         /// The OS process ID associated with the process. It is NOT unique across the whole log.  Use
@@ -6122,7 +6124,7 @@ namespace Microsoft.Diagnostics.Tracing.Etlx
     /// <summary>
     /// A TraceThreads represents the list of threads in a process.
     /// </summary>
-    public sealed class TraceThreads : IEnumerable<TraceThread>, IFastSerializable
+    internal sealed class TraceThreads : IEnumerable<TraceThread>, IFastSerializable
     {
         /// <summary>
         /// Enumerate all the threads that occurred in the trace log. It does so in order of their thread
@@ -6308,7 +6310,7 @@ namespace Microsoft.Diagnostics.Tracing.Etlx
     /// <summary>
     /// A TraceThread represents a thread of execution in a process.
     /// </summary>
-    public sealed class TraceThread : IFastSerializable
+    internal sealed class TraceThread : IFastSerializable
     {
         /// <summary>
         /// The OS process ID associated with the process.
@@ -6543,7 +6545,7 @@ namespace Microsoft.Diagnostics.Tracing.Etlx
     /// TraceLoadedModules represents the collection of modules (loaded DLLs or EXEs) in a
     /// particular process.
     /// </summary>
-    public sealed class TraceLoadedModules : IEnumerable<TraceLoadedModule>, IFastSerializable
+    internal sealed class TraceLoadedModules : IEnumerable<TraceLoadedModule>, IFastSerializable
     {
         /// <summary>
         /// The process in which this Module is loaded.
@@ -7036,7 +7038,7 @@ namespace Microsoft.Diagnostics.Tracing.Etlx
     /// A TraceLoadedModule represents a module (DLL or EXE) that was loaded into a process.  It represents
     /// the time that this module was mapped into the processes address space.
     /// </summary>
-    public class TraceLoadedModule : IFastSerializable
+    internal class TraceLoadedModule : IFastSerializable
     {
         /// <summary>
         /// The address where the DLL or EXE was loaded.   Will return 0 for managed modules without NGEN images.
@@ -7215,7 +7217,7 @@ namespace Microsoft.Diagnostics.Tracing.Etlx
     /// A TraceManagedModule represents the loading of a .NET module into .NET AppDomain.
     /// It represents the time that that module an be used in the AppDomain.
     /// </summary>
-    public sealed class TraceManagedModule : TraceLoadedModule, IFastSerializable
+    internal sealed class TraceManagedModule : TraceLoadedModule, IFastSerializable
     {
         /// <summary>
         /// The module ID that the .NET Runtime uses to identify the file (module) associated with this managed module
@@ -7311,7 +7313,7 @@ namespace Microsoft.Diagnostics.Tracing.Etlx
     /// its code address).
     /// </para>
     /// </summary>
-    public sealed class TraceCallStacks : IFastSerializable, IEnumerable<TraceCallStack>
+    internal sealed class TraceCallStacks : IFastSerializable, IEnumerable<TraceCallStack>
     {
         /// <summary>
         /// Returns the count of call stack indexes (all Call Stack indexes are strictly less than this).
@@ -7607,7 +7609,7 @@ namespace Microsoft.Diagnostics.Tracing.Etlx
     /// contains two properties, the CodeAddress for the current frame, and the TraceCallStack of the
     /// caller of this frame.   The Caller property will return null at the thread start frame.
     /// </summary>
-    public sealed class TraceCallStack
+    internal sealed class TraceCallStack
     {
         /// <summary>
         ///  Return the CallStackIndex that uniquely identifies this call stack in the TraceLog.
@@ -7683,7 +7685,7 @@ namespace Microsoft.Diagnostics.Tracing.Etlx
     /// methods that take a CodeAddressIndex and return properties of the code address (like its method, address, and module file)
     /// </para>
     /// </summary>
-    public sealed class TraceCodeAddresses : IFastSerializable, IEnumerable<TraceCodeAddress>
+    internal sealed class TraceCodeAddresses : IFastSerializable, IEnumerable<TraceCodeAddress>
     {
         /// <summary>
         /// Chunk size for <see cref="codeAddressObjects"/>
@@ -9247,7 +9249,7 @@ namespace Microsoft.Diagnostics.Tracing.Etlx
     ///a TraceCodeAddress object.
     ///</para>
     /// </summary>
-    public sealed class TraceCodeAddress
+    internal sealed class TraceCodeAddress
     {
         /// <summary>
         /// The CodeAddressIndex that uniquely identifies the same code address as this TraceCodeAddress
@@ -9429,7 +9431,7 @@ namespace Microsoft.Diagnostics.Tracing.Etlx
     /// methods that take a MethodIndex and return properties of the method (like its name, and module file)
     /// </para>
     /// </summary>
-    public sealed class TraceMethods : IFastSerializable, IEnumerable<TraceMethod>
+    internal sealed class TraceMethods : IFastSerializable, IEnumerable<TraceMethod>
     {
         /// <summary>
         /// Returns the count of method indexes.  All MethodIndexes are strictly less than this.
@@ -9637,7 +9639,7 @@ namespace Microsoft.Diagnostics.Tracing.Etlx
     /// A TraceMethod represents the symbolic information for a particular method.   To maximizes haring a TraceMethod
     /// has very little state, just the module and full method name.
     /// </summary>
-    public sealed class TraceMethod
+    internal sealed class TraceMethod
     {
         /// <summary>
         /// Each Method in the TraceLog is given an index that uniquely identifies it.  This return this index for this TraceMethod
@@ -9743,7 +9745,7 @@ namespace Microsoft.Diagnostics.Tracing.Etlx
     /// <summary>
     /// TraceModuleFiles is the list of all the ModuleFiles in the trace.   It is an IEnumerable.
     /// </summary>
-    public sealed class TraceModuleFiles : IFastSerializable, IEnumerable<TraceModuleFile>
+    internal sealed class TraceModuleFiles : IFastSerializable, IEnumerable<TraceModuleFile>
     {
         /// <summary>
         /// Each file is given an index for quick lookup.   Count is the
@@ -9928,7 +9930,7 @@ namespace Microsoft.Diagnostics.Tracing.Etlx
     /// its ModuleID if it is a managed module), but not the load or unload time or the process in which
     /// it was loaded (this allows them to be shared within the trace).
     /// </summary>
-    public sealed class TraceModuleFile : IFastSerializable
+    internal sealed class TraceModuleFile : IFastSerializable
     {
         /// <summary>
         /// The ModuleFileIndex ID that uniquely identifies this module file.
@@ -10199,7 +10201,7 @@ namespace Microsoft.Diagnostics.Tracing.Etlx
     ///
     /// Given an event you can get the Activity for the event using the Activity() extension method.
     /// </summary>
-    public sealed class TraceActivity : IFastSerializable
+    internal sealed class TraceActivity : IFastSerializable
     {
         /// <summary>
         /// Describes the kinds of known Activities (used for descriptive purposes alone)
@@ -10508,7 +10510,7 @@ namespace Microsoft.Diagnostics.Tracing.Etlx
     /// <summary>
     /// TraceLogOptions control the generation of a TraceLog (ETLX file) from an ETL file.
     /// </summary>
-    public sealed class TraceLogOptions
+    internal sealed class TraceLogOptions
     {
         /// <summary>
         /// Creates a new object containing options for constructing a TraceLog file.
@@ -10618,7 +10620,7 @@ namespace Microsoft.Diagnostics.Tracing.Etlx
     /// <summary>
     /// The TraceEvent instances returned during the processing of a TraceLog have additional capabilities that these extension methods can access.
     /// </summary>
-    public static class TraceLogExtensions
+    internal static class TraceLogExtensions
     {
         /// <summary>
         /// Finds the TraceProcess associated with a TraceEvent.
@@ -10896,3 +10898,13 @@ namespace Microsoft.Diagnostics.Tracing.Etlx
 
     #endregion
 }
+
+
+
+
+
+
+
+
+
+

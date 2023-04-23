@@ -1,3 +1,5 @@
+#nullable disable
+
 //     Copyright (c) Microsoft Corporation.  All rights reserved.
 /* This file is best viewed using outline mode (Ctrl-M Ctrl-O) */
 // This program uses code hyperlinks available as part of the HyperAddin Visual Studio plug-in.
@@ -48,7 +50,7 @@ namespace FastSerialization
     // An object becomes serializable by doing two things
     //     * implementing the IFastSerializable interface and implementing the
     //         IFastSerializable.ToStream and IFastSerializable.FromStream methods.
-    //     * implementing a public constructor with no arguments (default constructor). This is needed because
+    //     * implementing a internal constructor with no arguments (default constructor). This is needed because
     //         an object needs to be created before IFastSerializable.FromStream can be called.
     // 
     // The IFastSerializable.ToStream method that the object implements is passed a Serializer, and
@@ -2559,9 +2561,9 @@ namespace FastSerialization
     #endregion
 
 #if false
-    public class SerializationTests
+    internal class SerializationTests
     {
-        public class MyClass1 : IFastSerializable, IFastSerializableVersion
+        internal class MyClass1 : IFastSerializable, IFastSerializableVersion
         {
             DeferedRegion lazy;
             private int value;
@@ -2572,16 +2574,16 @@ namespace FastSerialization
 
             public int Value { get { lazy.FinishRead(); return value; } }
             public string Str { get { lazy.FinishRead(); return str; } }
-            public MyClass1 Left { get { lazy.FinishRead(); return left; } }
-            public MyClass1 Right { get { lazy.FinishRead(); return right; } }
+            internal MyClass1 Left { get { lazy.FinishRead(); return left; } }
+            internal MyClass1 Right { get { lazy.FinishRead(); return right; } }
             internal MyClass1 Other
             {
                 get { lazy.FinishRead(); return other; }
                 set { lazy.FinishRead(); other = Other; }
             }
 
-            public MyClass1() { }       // Needed for the IFastSerializable contract.  
-            public MyClass1(int value, string str, MyClass1 left, MyClass1 right, MyClass1 other)
+            internal MyClass1() { }       // Needed for the IFastSerializable contract.  
+            internal MyClass1(int value, string str, MyClass1 left, MyClass1 right, MyClass1 other)
             {
                 this.value = value;
                 this.str = str;
@@ -2665,3 +2667,13 @@ namespace FastSerialization
     }
 #endif
 }
+
+
+
+
+
+
+
+
+
+

@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+#nullable disable
+
+using System.Collections.Generic;
 using Diagnostics.Tracing.StackSources;
 using Microsoft.Diagnostics.Symbols;
 using Microsoft.Diagnostics.Tracing.Etlx;
@@ -9,7 +11,7 @@ namespace Microsoft.Diagnostics.Tracing.AutomatedAnalysis
     /// <summary>
     /// Encapsulates a TraceEvent TraceLog within the AutomatedAnalysis system.
     /// </summary>
-    public sealed class AutomatedAnalysisTraceLog : ITrace
+    internal sealed class AutomatedAnalysisTraceLog : ITrace
     {
         private MutableTraceEventStackSource _blockedTimeStacks;
 
@@ -97,3 +99,13 @@ namespace Microsoft.Diagnostics.Tracing.AutomatedAnalysis
         }
     }
 }
+
+
+
+
+
+
+
+
+
+

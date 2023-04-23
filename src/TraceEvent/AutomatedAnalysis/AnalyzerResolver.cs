@@ -1,4 +1,6 @@
-﻿using System;
+#nullable disable
+
+using System;
 using System.Collections.Generic;
 using System.Reflection;
 
@@ -7,7 +9,7 @@ namespace Microsoft.Diagnostics.Tracing.AutomatedAnalysis
     /// <summary>
     /// The context object used when loading an Analyzer.
     /// </summary>
-    public sealed class AnalyzerLoadContext
+    internal sealed class AnalyzerLoadContext
     {
         /// <summary>
         /// The Analyzer being loaded.
@@ -29,7 +31,7 @@ namespace Microsoft.Diagnostics.Tracing.AutomatedAnalysis
     /// <summary>
     /// The base class for all resolver implementations.
     /// </summary>
-    public abstract class AnalyzerResolver
+    internal abstract class AnalyzerResolver
     {
         private List<Analyzer> _analyzers = new List<Analyzer>();
         private Configuration _configuration;
@@ -110,3 +112,13 @@ namespace Microsoft.Diagnostics.Tracing.AutomatedAnalysis
         protected internal abstract void Resolve();
     }
 }
+
+
+
+
+
+
+
+
+
+

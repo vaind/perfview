@@ -1,4 +1,6 @@
-﻿//     Copyright (c) Microsoft Corporation.  All rights reserved.
+#nullable disable
+
+//     Copyright (c) Microsoft Corporation.  All rights reserved.
 // This file is best viewed using outline mode (Ctrl-M Ctrl-O)
 //
 // This program uses code hyperlinks available as part of the HyperAddin Visual Studio plug-in.
@@ -43,7 +45,7 @@ namespace Microsoft.Diagnostics.Tracing
     /// 
     /// The compression mechanism is using the LZ4 17-Bits Window, 3 Bit Run Length, 4 Bits Match Length.
     /// </summary>
-    public sealed class BPerfEventSource : TraceEventDispatcher
+    internal sealed class BPerfEventSource : TraceEventDispatcher
     {
         private const int OffsetToExtendedData = 88; // offsetof(TraceEventNativeMethods.EVENT_RECORD*, ExtendedData);
 
@@ -776,3 +778,12 @@ namespace Microsoft.Diagnostics.Tracing
         }
     }
 }
+
+
+
+
+
+
+
+
+

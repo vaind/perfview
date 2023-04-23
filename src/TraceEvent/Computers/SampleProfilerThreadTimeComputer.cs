@@ -1,4 +1,6 @@
-﻿using Microsoft.Diagnostics.Symbols;
+#nullable disable
+
+using Microsoft.Diagnostics.Symbols;
 using Microsoft.Diagnostics.Tracing.Etlx;
 using Microsoft.Diagnostics.Tracing.EventPipe;
 using Microsoft.Diagnostics.Tracing.Parsers;
@@ -15,7 +17,7 @@ namespace Microsoft.Diagnostics.Tracing
     /// A EventPipeThreadTimeComputer does a simple simulation of what each thread is doing to create stack events that represent 
     /// CPU, blocked time
     /// </summary>
-    public class SampleProfilerThreadTimeComputer
+    internal class SampleProfilerThreadTimeComputer
     {
         /// <summary>
         /// Create a new ThreadTimeComputer
@@ -603,3 +605,13 @@ namespace Microsoft.Diagnostics.Tracing
         #endregion
     }
 }
+
+
+
+
+
+
+
+
+
+

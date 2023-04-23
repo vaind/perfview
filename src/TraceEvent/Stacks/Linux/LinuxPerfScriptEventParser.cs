@@ -1,4 +1,6 @@
-﻿using Microsoft.Diagnostics.Tracing.Parsers;
+#nullable disable
+
+using Microsoft.Diagnostics.Tracing.Parsers;
 using Microsoft.Diagnostics.Tracing.Utilities;
 using System;
 using System.Collections.Generic;
@@ -15,7 +17,7 @@ using OptimizationTier = Microsoft.Diagnostics.Tracing.Parsers.Clr.OptimizationT
 
 namespace Microsoft.Diagnostics.Tracing.StackSources
 {
-    public class LinuxPerfScriptEventParser
+    internal class LinuxPerfScriptEventParser
     {
         public LinuxPerfScriptEventParser()
         {
@@ -964,7 +966,7 @@ namespace Microsoft.Diagnostics.Tracing.StackSources
     }
 
     #region Mapper
-    public class LinuxPerfScriptMapper
+    internal class LinuxPerfScriptMapper
     {
         public static readonly Regex MapFilePatterns = new Regex(@"^perf\-[0-9]+\.map|.+\.ni\.\{.+\}\.map$");
         public static readonly Regex PerfInfoPattern = new Regex(@"^perfinfo\-[0-9]+\.map$");
@@ -1079,7 +1081,7 @@ namespace Microsoft.Diagnostics.Tracing.StackSources
         #endregion
     }
 
-    public class Mapper
+    internal class Mapper
     {
         public Mapper()
         {
@@ -1209,7 +1211,7 @@ namespace Microsoft.Diagnostics.Tracing.StackSources
     /// <summary>
     /// A sample that has extra properties to hold scheduled events.
     /// </summary>
-    public class SchedulerEvent : LinuxEvent
+    internal class SchedulerEvent : LinuxEvent
     {
         public static readonly string Name = "sched_switch";
 
@@ -1231,7 +1233,7 @@ namespace Microsoft.Diagnostics.Tracing.StackSources
     /// <summary>
     /// Stores all relevant information retrieved by a context switch stack frame
     /// </summary>
-    public class ScheduleSwitch
+    internal class ScheduleSwitch
     {
         public string PreviousCommand { get; }
         public int PreviousPriority { get; }
@@ -1253,7 +1255,7 @@ namespace Microsoft.Diagnostics.Tracing.StackSources
         }
     }
 
-    public class ThreadExitEvent : LinuxEvent
+    internal class ThreadExitEvent : LinuxEvent
     {
         public static readonly string Name = "sched_process_exit";
 
@@ -1275,7 +1277,7 @@ namespace Microsoft.Diagnostics.Tracing.StackSources
     /// <summary>
     /// Stores all relevant information retrieved by a thread exit.
     /// </summary>
-    public class ThreadExit
+    internal class ThreadExit
     {
         public string Command { get; }
         public int ThreadID { get; }
@@ -1289,7 +1291,7 @@ namespace Microsoft.Diagnostics.Tracing.StackSources
         }
     }
 
-    public class CpuEvent : LinuxEvent
+    internal class CpuEvent : LinuxEvent
     {
         public CpuEvent(
             string comm, int tid, int pid,
@@ -1302,7 +1304,7 @@ namespace Microsoft.Diagnostics.Tracing.StackSources
     /// <summary>
     /// A generic Linux event, all Linux events contain these properties.
     /// </summary>
-    public abstract class LinuxEvent
+    internal abstract class LinuxEvent
     {
         public EventKind Kind { get; }
         public string Command { get; }
@@ -1370,7 +1372,7 @@ namespace Microsoft.Diagnostics.Tracing.StackSources
     /// <summary>
     /// Defines a single stack frame on a linux sample.
     /// </summary>
-    public struct StackFrame : Frame
+    internal struct StackFrame : Frame
     {
         public FrameKind Kind { get { return FrameKind.StackFrame; } }
         public string DisplayName
@@ -1430,7 +1432,7 @@ namespace Microsoft.Diagnostics.Tracing.StackSources
     /// <summary>
     /// Represents the name of the process.
     /// </summary>
-    public struct ProcessFrame : Frame
+    internal struct ProcessFrame : Frame
     {
         public FrameKind Kind { get { return FrameKind.ProcessFrame; } }
         public string DisplayName { get { return string.Format("Process {0} ({1})", Name, ID); } }
@@ -1447,7 +1449,7 @@ namespace Microsoft.Diagnostics.Tracing.StackSources
     /// <summary>
     /// Represents the name of the thread and its ID.
     /// </summary>
-    public struct ThreadFrame : Frame
+    internal struct ThreadFrame : Frame
     {
         public FrameKind Kind { get { return FrameKind.ThreadFrame; } }
         public string DisplayName { get { return string.Format("{0} ({1})", Name, ID); } }
@@ -1464,7 +1466,7 @@ namespace Microsoft.Diagnostics.Tracing.StackSources
     /// <summary>
     /// A visual frame that represents whether or not a call stack was blocked or not.
     /// </summary>
-    public struct BlockedCPUFrame : Frame
+    internal struct BlockedCPUFrame : Frame
     {
         /// <summary>
         /// Represents whether the stack frame is BLOCKED_TIME or CPU_TIME
@@ -1482,3 +1484,13 @@ namespace Microsoft.Diagnostics.Tracing.StackSources
         }
     }
 }
+
+
+
+
+
+
+
+
+
+

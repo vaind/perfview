@@ -1,8 +1,10 @@
-﻿using System;
+#nullable disable
+
+using System;
 
 namespace Microsoft.Diagnostics.Tracing.Stacks
 {
-    public static class RecursionGuardConfiguration
+    internal static class RecursionGuardConfiguration
     {
         private static ushort _maxResets = 80;
 
@@ -74,3 +76,13 @@ namespace Microsoft.Diagnostics.Tracing.Stacks
         public bool RequiresNewThread => _currentThreadRecursionDepth >= SingleThreadRecursionLimit;
     }
 }
+
+
+
+
+
+
+
+
+
+

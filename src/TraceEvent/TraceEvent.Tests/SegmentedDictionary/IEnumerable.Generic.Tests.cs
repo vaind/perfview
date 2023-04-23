@@ -1,4 +1,6 @@
-﻿// Tests copied from dotnet/runtime repo. Original source code can be found here:
+#nullable disable
+
+// Tests copied from dotnet/runtime repo. Original source code can be found here:
 // https://github.com/dotnet/runtime/blob/main/src/libraries/Common/tests/System/Collections/IEnumerable.Generic.Tests.cs
 
 using System;
@@ -13,7 +15,7 @@ namespace PerfView.Collections.Tests
     /// Contains tests that ensure the correctness of any class that implements the generic
     /// IEnumerable interface.
     /// </summary>
-    public abstract partial class IEnumerable_Generic_Tests<T> : TestBase<T>
+    internal abstract partial class IEnumerable_Generic_Tests<T> : TestBase<T>
     {
         #region IEnumerable<T> Helper Methods
 
@@ -892,3 +894,12 @@ namespace PerfView.Collections.Tests
         #endregion
     }
 }
+
+
+
+
+
+
+
+
+

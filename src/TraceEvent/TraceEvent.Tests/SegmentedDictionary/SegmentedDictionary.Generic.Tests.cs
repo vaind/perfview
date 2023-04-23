@@ -1,4 +1,6 @@
-﻿// Tests copied from dotnet/runtime repo. Original source code can be found here:
+#nullable disable
+
+// Tests copied from dotnet/runtime repo. Original source code can be found here:
 // https://github.com/dotnet/runtime/blob/main/src/libraries/System.Collections/tests/Generic/Dictionary/Dictionary.Generic.cs
 
 using System;
@@ -10,7 +12,7 @@ namespace PerfView.Collections.Tests
     /// <summary>
     /// Contains tests that ensure the correctness of the Dictionary class.
     /// </summary>
-    public abstract class SegmentedDictionary_Generic_Tests<TKey, TValue> : IDictionary_Generic_Tests<TKey, TValue>
+    internal abstract class SegmentedDictionary_Generic_Tests<TKey, TValue> : IDictionary_Generic_Tests<TKey, TValue>
     {
         protected override ModifyOperation ModifyEnumeratorThrows => ModifyOperation.Add | ModifyOperation.Insert;
 
@@ -366,3 +368,12 @@ namespace PerfView.Collections.Tests
         #endregion
     }
 }
+
+
+
+
+
+
+
+
+

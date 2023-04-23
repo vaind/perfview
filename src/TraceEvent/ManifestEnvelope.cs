@@ -1,3 +1,5 @@
+#nullable disable
+
 //     Copyright (c) Microsoft Corporation.  All rights reserved.
 
 namespace System.Diagnostics.Tracing
@@ -24,3 +26,12 @@ namespace System.Diagnostics.Tracing
     };
 
 }
+
+
+
+
+
+
+
+
+

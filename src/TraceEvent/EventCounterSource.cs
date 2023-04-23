@@ -1,4 +1,5 @@
-﻿
+#nullable disable
+
 #if false 
 namespace Microsoft.Diagnostics.Tracing
 {
@@ -44,3 +45,13 @@ namespace Microsoft.Diagnostics.Tracing
     }
 }
 #endif
+
+
+
+
+
+
+
+
+
+

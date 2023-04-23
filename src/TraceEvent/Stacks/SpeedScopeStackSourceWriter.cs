@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+#nullable disable
+
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
 using System.IO;
@@ -8,7 +10,7 @@ using static Microsoft.Diagnostics.Tracing.Stacks.StackSourceWriterHelper;
 
 namespace Microsoft.Diagnostics.Tracing.Stacks.Formats
 {
-    public static class SpeedScopeStackSourceWriter
+    internal static class SpeedScopeStackSourceWriter
     {
         /// <summary>
         /// exports provided StackSource to a https://www.speedscope.app/ format 
@@ -110,3 +112,13 @@ namespace Microsoft.Diagnostics.Tracing.Stacks.Formats
         #endregion private
     }
 }
+
+
+
+
+
+
+
+
+
+

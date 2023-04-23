@@ -1,3 +1,5 @@
+#nullable disable
+
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -18,7 +20,7 @@ namespace Microsoft.Diagnostics.Symbols
     /// A symbol reader represents something that can FIND pdbs (either on a symbol server or via a symbol path)
     /// Its job is to find a full path a PDB.  Then you can use OpenSymbolFile to get a SymbolReaderModule and do more. 
     /// </summary>
-    public sealed unsafe class SymbolReader : IDisposable
+    internal sealed unsafe class SymbolReader : IDisposable
     {
         /// <summary>
         /// Opens a new SymbolReader.   All diagnostics messages about symbol lookup go to 'log'.  
@@ -1628,7 +1630,7 @@ namespace Microsoft.Diagnostics.Symbols
     /// support managed code, this shared interface is by necessity the interface
     /// for managed code only (currently only Windows PDBs support native code).  
     /// </summary>
-    public abstract class ManagedSymbolModule
+    internal abstract class ManagedSymbolModule
     {
         /// <summary>
         /// This is the EXE associated with the Pdb.  It may be null or an invalid path.  It is used
@@ -1775,7 +1777,7 @@ namespace Microsoft.Diagnostics.Symbols
     /// <summary>
     /// A SourceLocation represents a point in the source code.  That is the file and the line number.  
     /// </summary>
-    public class SourceLocation
+    internal class SourceLocation
     {
         /// <summary>
         /// The source file for the code
@@ -1842,7 +1844,7 @@ namespace Microsoft.Diagnostics.Symbols
         NoNGenSymbolCreation = 2,
     }
 
-    public abstract class SourceFile
+    internal abstract class SourceFile
     {
         /// <summary>
         /// The path of the file at the time the source file was built.   We also look here when looking for the source.  
@@ -2314,4 +2316,14 @@ namespace Microsoft.Diagnostics.Symbols
         #endregion
     }
 }
+
+
+
+
+
+
+
+
+
+
 

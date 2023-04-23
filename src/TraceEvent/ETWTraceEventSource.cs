@@ -1,3 +1,5 @@
+#nullable disable
+
 //     Copyright (c) Microsoft Corporation.  All rights reserved.
 // This file is best viewed using outline mode (Ctrl-M Ctrl-O)
 //
@@ -32,7 +34,7 @@ namespace Microsoft.Diagnostics.Tracing
     /// * See also #ETWTraceEventSourceInternals
     /// * See also #ETWTraceEventSourceFields
     /// </summary>    
-    public sealed unsafe class ETWTraceEventSource : TraceEventDispatcher, IDisposable
+    internal sealed unsafe class ETWTraceEventSource : TraceEventDispatcher, IDisposable
     {
         /// <summary>
         /// Open a ETW event trace moduleFile (ETL moduleFile) for processing.  
@@ -974,3 +976,13 @@ namespace Microsoft.Diagnostics.Tracing
         Session,
     };
 }
+
+
+
+
+
+
+
+
+
+

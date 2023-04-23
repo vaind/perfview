@@ -1,3 +1,5 @@
+#nullable disable
+
 //     Copyright (c) Microsoft Corporation.  All rights reserved.
 using Microsoft.Diagnostics.Tracing.Parsers.Symbol;
 using System;
@@ -22,7 +24,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers
     /// SymbolTraceEventParser is a parser for extra events.   
     /// </summary>
     [System.CodeDom.Compiler.GeneratedCode("traceparsergen", "1.0")]
-    public sealed class SymbolTraceEventParser : TraceEventParser
+    internal sealed class SymbolTraceEventParser : TraceEventParser
     {
         public static readonly string ProviderName = "KernelTraceControl";
         public static readonly Guid ProviderGuid = new Guid(0x28ad2447, 0x105b, 0x4fe2, 0x95, 0x99, 0xe5, 0x9b, 0x2a, 0xa9, 0xa6, 0x34);
@@ -257,7 +259,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers
 
 namespace Microsoft.Diagnostics.Tracing.Parsers.Symbol
 {
-    public sealed class FileVersionTraceData : TraceEvent
+    internal sealed class FileVersionTraceData : TraceEvent
     {
         public int ImageSize { get { return GetInt32At(0); } }
         public int TimeDateStamp { get { return GetInt32At(4); } }
@@ -364,7 +366,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Symbol
         private Action<FileVersionTraceData> Action;
         #endregion
     }
-    public sealed class DbgIDRSDSTraceData : TraceEvent
+    internal sealed class DbgIDRSDSTraceData : TraceEvent
     {
         public Address ImageBase { get { return GetAddressAt(0); } }
         // public int ProcessID { get { return GetInt32At(HostOffset(4, 1)); } }    // This seems to be redundant with the ProcessID in the event header
@@ -436,7 +438,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Symbol
         private Action<DbgIDRSDSTraceData> Action;
         #endregion
     }
-    public sealed class ImageIDTraceData : TraceEvent
+    internal sealed class ImageIDTraceData : TraceEvent
     {
         public Address ImageBase { get { return GetAddressAt(0); } }
         public long ImageSize { get { return GetIntPtrAt(HostOffset(4, 1)); } }
@@ -517,7 +519,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Symbol
         #endregion
     }
 
-    public sealed class DbgIDILRSDSTraceData : TraceEvent
+    internal sealed class DbgIDILRSDSTraceData : TraceEvent
     {
         public Address ImageBase { get { return GetAddressAt(0); } }
 
@@ -595,7 +597,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Symbol
         #endregion
     }
 
-    public sealed class DbgPPDBTraceData : TraceEvent
+    internal sealed class DbgPPDBTraceData : TraceEvent
     {
         public Address ImageBase { get { return GetAddressAt(0); } }
 
@@ -675,7 +677,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Symbol
         #endregion
     }
 
-    public sealed class DbgDetermTraceData : TraceEvent
+    internal sealed class DbgDetermTraceData : TraceEvent
     {
         public Address ImageBase { get { return GetAddressAt(0); } }
 
@@ -740,7 +742,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Symbol
         #endregion
     }
 
-    public sealed class WinSatXmlTraceData : TraceEvent
+    internal sealed class WinSatXmlTraceData : TraceEvent
     {
         /// <summary>
         /// The value of the one string payload property.  
@@ -903,3 +905,13 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Symbol
         #endregion
     }
 }
+
+
+
+
+
+
+
+
+
+

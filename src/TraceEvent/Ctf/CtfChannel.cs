@@ -1,4 +1,6 @@
-﻿using System;
+#nullable disable
+
+using System;
 using System.Diagnostics;
 using System.IO;
 using System.Runtime.InteropServices;
@@ -315,3 +317,13 @@ namespace Microsoft.Diagnostics.Tracing.Ctf
         #endregion
     }
 }
+
+
+
+
+
+
+
+
+
+

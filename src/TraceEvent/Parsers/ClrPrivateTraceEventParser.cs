@@ -1,3 +1,5 @@
+#nullable disable
+
 using Microsoft.Diagnostics.Tracing.Parsers.ClrPrivate;
 using System;
 using System.Diagnostics;
@@ -27,7 +29,7 @@ using ThreadPoolWorkTraceData = Microsoft.Diagnostics.Tracing.Parsers.Clr.Thread
 namespace Microsoft.Diagnostics.Tracing.Parsers
 {
     [System.CodeDom.Compiler.GeneratedCode("traceparsergen", "1.0")]
-    public sealed class ClrPrivateTraceEventParser : TraceEventParser
+    internal sealed class ClrPrivateTraceEventParser : TraceEventParser
     {
         public static readonly string ProviderName = "Microsoft-Windows-DotNETRuntimePrivate";
         public static readonly Guid ProviderGuid = new Guid(unchecked((int)0x763fd754), unchecked((short)0x7086), unchecked((short)0x4dfe), 0x95, 0xeb, 0xc0, 0x1a, 0x46, 0xfa, 0xf4, 0xca);
@@ -2077,7 +2079,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers
 
 namespace Microsoft.Diagnostics.Tracing.Parsers.ClrPrivate
 {
-    public sealed class GCDecisionTraceData : TraceEvent
+    internal sealed class GCDecisionTraceData : TraceEvent
     {
         public bool DoCompact { get { return GetInt32At(0) != 0; } }
         public int ClrInstanceID { get { if (Version >= 1) { return GetInt16At(4); } return 0; } }
@@ -2142,7 +2144,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ClrPrivate
         private event Action<GCDecisionTraceData> Action;
         #endregion
     }
-    public sealed class GCSettingsTraceData : TraceEvent
+    internal sealed class GCSettingsTraceData : TraceEvent
     {
         public long SegmentSize { get { return GetInt64At(0); } }
         public long LargeObjectSegmentSize { get { return GetInt64At(8); } }
@@ -2215,7 +2217,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ClrPrivate
         private event Action<GCSettingsTraceData> Action;
         #endregion
     }
-    public sealed class GCOptimizedTraceData : TraceEvent
+    internal sealed class GCOptimizedTraceData : TraceEvent
     {
         public long DesiredAllocation { get { return GetInt64At(0); } }
         public long NewAllocation { get { return GetInt64At(8); } }
@@ -2289,7 +2291,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ClrPrivate
         #endregion
     }
 
-    public sealed class BGCDrainMarkTraceData : TraceEvent
+    internal sealed class BGCDrainMarkTraceData : TraceEvent
     {
         public long Objects { get { return GetInt64At(0); } }
         public int ClrInstanceID { get { return GetInt16At(8); } }
@@ -2353,7 +2355,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ClrPrivate
         private event Action<BGCDrainMarkTraceData> Action;
         #endregion
     }
-    public sealed class BGCRevisitTraceData : TraceEvent
+    internal sealed class BGCRevisitTraceData : TraceEvent
     {
         public long Pages { get { return GetInt64At(0); } }
         public long Objects { get { return GetInt64At(8); } }
@@ -2425,7 +2427,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ClrPrivate
         private event Action<BGCRevisitTraceData> Action;
         #endregion
     }
-    public sealed class BGCOverflowTraceData : TraceEvent
+    internal sealed class BGCOverflowTraceData : TraceEvent
     {
         public long Min { get { return GetInt64At(0); } }
         public long Max { get { return GetInt64At(8); } }
@@ -2501,7 +2503,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ClrPrivate
         private event Action<BGCOverflowTraceData> Action;
         #endregion
     }
-    public sealed class BGCAllocWaitTraceData : TraceEvent
+    internal sealed class BGCAllocWaitTraceData : TraceEvent
     {
         public int Reason { get { return GetInt32At(0); } }
         public int ClrInstanceID { get { return GetInt16At(4); } }
@@ -2565,7 +2567,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ClrPrivate
         private event Action<BGCAllocWaitTraceData> Action;
         #endregion
     }
-    public sealed class GCFullNotifyTraceData : TraceEvent
+    internal sealed class GCFullNotifyTraceData : TraceEvent
     {
         public int GenNumber { get { return GetInt32At(0); } }
         public int IsAlloc { get { return GetInt32At(4); } }
@@ -2634,7 +2636,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ClrPrivate
         private event Action<GCFullNotifyTraceData> Action;
         #endregion
     }
-    public sealed class StartupTraceData : TraceEvent
+    internal sealed class StartupTraceData : TraceEvent
     {
         public int ClrInstanceID { get { if (Version >= 1) { return GetInt16At(0); } return 0; } }
 
@@ -2694,7 +2696,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ClrPrivate
         private event Action<StartupTraceData> Action;
         #endregion
     }
-    public sealed class ModuleRangePrivateTraceData : TraceEvent
+    internal sealed class ModuleRangePrivateTraceData : TraceEvent
     {
         public int ClrInstanceID { get { return GetInt16At(0); } }
         public long ModuleID { get { return GetInt64At(2); } }
@@ -2778,7 +2780,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ClrPrivate
         private event Action<ModuleRangePrivateTraceData> Action;
         #endregion
     }
-    public sealed class BindingTraceData : TraceEvent
+    internal sealed class BindingTraceData : TraceEvent
     {
         public int AppDomainID { get { return GetInt32At(0); } }
         public int LoadContextID { get { return GetInt32At(4); } }
@@ -2862,7 +2864,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ClrPrivate
         private event Action<BindingTraceData> Action;
         #endregion
     }
-    public sealed class EvidenceGeneratedTraceData : TraceEvent
+    internal sealed class EvidenceGeneratedTraceData : TraceEvent
     {
         public int Type { get { return GetInt32At(0); } }
         public int AppDomain { get { return GetInt32At(4); } }
@@ -2934,7 +2936,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ClrPrivate
         private event Action<EvidenceGeneratedTraceData> Action;
         #endregion
     }
-    public sealed class ModuleTransparencyCalculationTraceData : TraceEvent
+    internal sealed class ModuleTransparencyCalculationTraceData : TraceEvent
     {
         public string Module { get { return GetUnicodeStringAt(0); } }
         public int AppDomainID { get { return GetInt32At(SkipUnicodeString(0)); } }
@@ -3002,7 +3004,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ClrPrivate
         private event Action<ModuleTransparencyCalculationTraceData> Action;
         #endregion
     }
-    public sealed class ModuleTransparencyCalculationResultTraceData : TraceEvent
+    internal sealed class ModuleTransparencyCalculationResultTraceData : TraceEvent
     {
         public string Module { get { return GetUnicodeStringAt(0); } }
         public int AppDomainID { get { return GetInt32At(SkipUnicodeString(0)); } }
@@ -3090,7 +3092,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ClrPrivate
         private event Action<ModuleTransparencyCalculationResultTraceData> Action;
         #endregion
     }
-    public sealed class TypeTransparencyCalculationTraceData : TraceEvent
+    internal sealed class TypeTransparencyCalculationTraceData : TraceEvent
     {
         public string Type { get { return GetUnicodeStringAt(0); } }
         public string Module { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -3162,7 +3164,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ClrPrivate
         private event Action<TypeTransparencyCalculationTraceData> Action;
         #endregion
     }
-    public sealed class TypeTransparencyCalculationResultTraceData : TraceEvent
+    internal sealed class TypeTransparencyCalculationResultTraceData : TraceEvent
     {
         public string Type { get { return GetUnicodeStringAt(0); } }
         public string Module { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -3250,7 +3252,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ClrPrivate
         private event Action<TypeTransparencyCalculationResultTraceData> Action;
         #endregion
     }
-    public sealed class MethodTransparencyCalculationTraceData : TraceEvent
+    internal sealed class MethodTransparencyCalculationTraceData : TraceEvent
     {
         public string Method { get { return GetUnicodeStringAt(0); } }
         public string Module { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -3322,7 +3324,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ClrPrivate
         private event Action<MethodTransparencyCalculationTraceData> Action;
         #endregion
     }
-    public sealed class MethodTransparencyCalculationResultTraceData : TraceEvent
+    internal sealed class MethodTransparencyCalculationResultTraceData : TraceEvent
     {
         public string Method { get { return GetUnicodeStringAt(0); } }
         public string Module { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -3402,7 +3404,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ClrPrivate
         private event Action<MethodTransparencyCalculationResultTraceData> Action;
         #endregion
     }
-    public sealed class FieldTransparencyCalculationTraceData : TraceEvent
+    internal sealed class FieldTransparencyCalculationTraceData : TraceEvent
     {
         public string Field { get { return GetUnicodeStringAt(0); } }
         public string Module { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -3474,7 +3476,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ClrPrivate
         private event Action<FieldTransparencyCalculationTraceData> Action;
         #endregion
     }
-    public sealed class FieldTransparencyCalculationResultTraceData : TraceEvent
+    internal sealed class FieldTransparencyCalculationResultTraceData : TraceEvent
     {
         public string Field { get { return GetUnicodeStringAt(0); } }
         public string Module { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -3554,7 +3556,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ClrPrivate
         private event Action<FieldTransparencyCalculationResultTraceData> Action;
         #endregion
     }
-    public sealed class TokenTransparencyCalculationTraceData : TraceEvent
+    internal sealed class TokenTransparencyCalculationTraceData : TraceEvent
     {
         public int Token { get { return GetInt32At(0); } }
         public string Module { get { return GetUnicodeStringAt(4); } }
@@ -3626,7 +3628,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ClrPrivate
         private event Action<TokenTransparencyCalculationTraceData> Action;
         #endregion
     }
-    public sealed class TokenTransparencyCalculationResultTraceData : TraceEvent
+    internal sealed class TokenTransparencyCalculationResultTraceData : TraceEvent
     {
         public int Token { get { return GetInt32At(0); } }
         public string Module { get { return GetUnicodeStringAt(4); } }
@@ -3736,7 +3738,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ClrPrivate
         DEPENDENCY_HAS_DIFFERENT_IDENTITY = 23
     };
 
-    public sealed class NgenBindEventTraceData : TraceEvent
+    internal sealed class NgenBindEventTraceData : TraceEvent
     {
         public int ClrInstanceID { get { return GetInt16At(0); } }
         public long BindingID { get { return GetInt64At(2); } }
@@ -3808,7 +3810,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ClrPrivate
         private event Action<NgenBindEventTraceData> Action;
         #endregion
     }
-    public sealed class FailFastTraceData : TraceEvent
+    internal sealed class FailFastTraceData : TraceEvent
     {
         public string FailFastUserMessage { get { return GetUnicodeStringAt(0); } }
         public Address FailedEIP { get { return GetAddressAt(SkipUnicodeString(0)); } }
@@ -3885,7 +3887,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ClrPrivate
         #endregion
     }
 
-    public sealed class FinalizeObjectTraceData : TraceEvent
+    internal sealed class FinalizeObjectTraceData : TraceEvent
     {
         public Address TypeID { get { return GetAddressAt(0); } }
         public Address ObjectID { get { return GetAddressAt(HostOffset(4, 1)); } }
@@ -3957,14 +3959,14 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ClrPrivate
         private event Action<FinalizeObjectTraceData> Action;
         #endregion
     }
-    public sealed class CCWRefCountChangeAnsiTraceData : TraceEvent
+    internal sealed class CCWRefCountChangeAnsiTraceData : TraceEvent
     {
         public Address HandleID { get { return GetAddressAt(0); } }
         public Address ObjectID { get { return GetAddressAt(HostOffset(4, 1)); } }
         public Address COMInterfacePointer { get { return GetAddressAt(HostOffset(8, 2)); } }
         public int NewRefCount { get { return GetInt32At(HostOffset(12, 3)); } }
         public long AppDomainID { get { return GetInt64At(HostOffset(16, 3)); } }
-        public string ClassName { get { return GetUTF8StringAt(HostOffset(24, 3)); } }
+        internal string ClassName { get { return GetUTF8StringAt(HostOffset(24, 3)); } }
         public string NameSpace { get { return GetUTF8StringAt(SkipUTF8String(HostOffset(24, 3))); } }
         public string Operation { get { return GetUnicodeStringAt(SkipUTF8String(SkipUTF8String(HostOffset(24, 3)))); } }
         public int ClrInstanceID { get { return GetInt16At(SkipUnicodeString(SkipUTF8String(SkipUTF8String(HostOffset(24, 3))))); } }
@@ -4049,14 +4051,14 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ClrPrivate
         private event Action<CCWRefCountChangeAnsiTraceData> Action;
         #endregion
     }
-    public sealed class CCWRefCountChangeTraceData : TraceEvent
+    internal sealed class CCWRefCountChangeTraceData : TraceEvent
     {
         public Address HandleID { get { return GetAddressAt(0); } }
         public Address ObjectID { get { return GetAddressAt(HostOffset(4, 1)); } }
         public Address COMInterfacePointer { get { return GetAddressAt(HostOffset(8, 2)); } }
         public int NewRefCount { get { return GetInt32At(HostOffset(12, 3)); } }
         public long AppDomainID { get { return GetInt64At(HostOffset(16, 3)); } }
-        public string ClassName { get { return GetUnicodeStringAt(HostOffset(24, 3)); } }
+        internal string ClassName { get { return GetUnicodeStringAt(HostOffset(24, 3)); } }
         public string NameSpace { get { return GetUnicodeStringAt(SkipUnicodeString(HostOffset(24, 3))); } }
         public string Operation { get { return GetUnicodeStringAt(SkipUnicodeString(SkipUnicodeString(HostOffset(24, 3)))); } }
         public int ClrInstanceID { get { return GetInt16At(SkipUnicodeString(SkipUnicodeString(SkipUnicodeString(HostOffset(24, 3))))); } }
@@ -4142,7 +4144,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ClrPrivate
         #endregion
     }
 
-    public sealed class FusionMessageTraceData : TraceEvent
+    internal sealed class FusionMessageTraceData : TraceEvent
     {
         public int ClrInstanceID { get { return GetInt16At(0); } }
         public bool Prepend { get { return GetInt32At(2) != 0; } }
@@ -4211,7 +4213,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ClrPrivate
         #endregion
     }
 
-    public sealed class MulticoreJitPrivateTraceData : TraceEvent
+    internal sealed class MulticoreJitPrivateTraceData : TraceEvent
     {
         public int ClrInstanceID { get { return GetInt16At(0); } }
         public string String1 { get { return GetUnicodeStringAt(2); } }
@@ -4291,7 +4293,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ClrPrivate
         private event Action<MulticoreJitPrivateTraceData> Action;
         #endregion
     }
-    public sealed class MulticoreJitMethodCodeReturnedPrivateTraceData : TraceEvent
+    internal sealed class MulticoreJitMethodCodeReturnedPrivateTraceData : TraceEvent
     {
         public int ClrInstanceID { get { return GetInt16At(0); } }
         public long ModuleID { get { return GetInt64At(2); } }
@@ -4359,7 +4361,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ClrPrivate
         private event Action<MulticoreJitMethodCodeReturnedPrivateTraceData> Action;
         #endregion
     }
-    public sealed class LoaderHeapAllocRequestTraceData : TraceEvent
+    internal sealed class LoaderHeapAllocRequestTraceData : TraceEvent
     {
         public Address LoaderHeapPtr { get { return GetAddressAt(0); } }
         public Address MemoryAddress { get { return GetAddressAt(HostOffset(4, 1)); } }
@@ -4433,7 +4435,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ClrPrivate
         private event Action<LoaderHeapAllocRequestTraceData> Action;
         #endregion
     }
-    public sealed class DynamicTypeUsePrivateTraceData : TraceEvent
+    internal sealed class DynamicTypeUsePrivateTraceData : TraceEvent
     {
         public string TypeName { get { return GetUnicodeStringAt(0); } }
         public int ClrInstanceID { get { return GetInt16At(SkipUnicodeString(0)); } }
@@ -4497,7 +4499,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ClrPrivate
         private event Action<DynamicTypeUsePrivateTraceData> Action;
         #endregion
     }
-    public sealed class DynamicTypeUseTwoParametersPrivateTraceData : TraceEvent
+    internal sealed class DynamicTypeUseTwoParametersPrivateTraceData : TraceEvent
     {
         public string TypeName { get { return GetUnicodeStringAt(0); } }
         public string SecondTypeName { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -4565,7 +4567,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ClrPrivate
         private event Action<DynamicTypeUseTwoParametersPrivateTraceData> Action;
         #endregion
     }
-    public sealed class DynamicTypeUsePrivateVarianceTraceData : TraceEvent
+    internal sealed class DynamicTypeUsePrivateVarianceTraceData : TraceEvent
     {
         public string TypeName { get { return GetUnicodeStringAt(0); } }
         public string InterfaceTypeName { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -4637,7 +4639,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ClrPrivate
         private event Action<DynamicTypeUsePrivateVarianceTraceData> Action;
         #endregion
     }
-    public sealed class DynamicTypeUseStringAndIntPrivateTraceData : TraceEvent
+    internal sealed class DynamicTypeUseStringAndIntPrivateTraceData : TraceEvent
     {
         public string TypeName { get { return GetUnicodeStringAt(0); } }
         public int Int1 { get { return GetInt32At(SkipUnicodeString(0)); } }
@@ -4705,7 +4707,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ClrPrivate
         private event Action<DynamicTypeUseStringAndIntPrivateTraceData> Action;
         #endregion
     }
-    public sealed class DynamicTypeUseNoParametersPrivateTraceData : TraceEvent
+    internal sealed class DynamicTypeUseNoParametersPrivateTraceData : TraceEvent
     {
         public int ClrInstanceID { get { return GetInt16At(0); } }
 
@@ -4846,3 +4848,13 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.ClrPrivate
         BaseRelocsSection = 0x2E,
     }
 }
+
+
+
+
+
+
+
+
+
+

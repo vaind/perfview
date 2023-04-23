@@ -1,4 +1,6 @@
-﻿using System;
+#nullable disable
+
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -274,7 +276,7 @@ namespace Microsoft.Diagnostics.Tracing.Ctf
             ReadBits(8 * len);
         }
 
-        public void ReadStruct(CtfStruct strct)
+        internal void ReadStruct(CtfStruct strct)
         {
             var fields = strct.Fields;
 
@@ -529,3 +531,13 @@ namespace Microsoft.Diagnostics.Tracing.Ctf
         }
     }
 }
+
+
+
+
+
+
+
+
+
+

@@ -1,4 +1,6 @@
-﻿using Microsoft.Diagnostics.Tracing;
+#nullable disable
+
+using Microsoft.Diagnostics.Tracing;
 using Microsoft.Diagnostics.Tracing.Etlx;
 using PerfView.TestUtilities;
 using System;
@@ -13,7 +15,7 @@ using Xunit.Abstractions;
 namespace TraceEventTests
 {
     [UseCulture("en-US")]
-    public sealed class BPerfTest : TestBase
+    internal sealed class BPerfTest : TestBase
     {
         public BPerfTest(ITestOutputHelper output)
             : base(output)
@@ -147,3 +149,13 @@ namespace TraceEventTests
         }
     }
 }
+
+
+
+
+
+
+
+
+
+

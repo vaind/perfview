@@ -1,4 +1,6 @@
-﻿using System;
+#nullable disable
+
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -280,3 +282,13 @@ namespace Microsoft.Diagnostics.Tracing.EventPipe
         public GCHandle PinningHandle { get; private set; }
     }
 }
+
+
+
+
+
+
+
+
+
+

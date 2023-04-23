@@ -1,4 +1,6 @@
-﻿using Microsoft.Diagnostics.Tracing;
+#nullable disable
+
+using Microsoft.Diagnostics.Tracing;
 using Microsoft.Diagnostics.Tracing.Session;
 using System;
 using System.Collections.Generic;
@@ -186,4 +188,14 @@ namespace TraceEventSamples
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
 

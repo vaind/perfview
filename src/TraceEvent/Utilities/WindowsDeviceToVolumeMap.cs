@@ -1,3 +1,5 @@
+#nullable disable
+
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -7,7 +9,7 @@ using System.Text;
 
 namespace Microsoft.Diagnostics.Utilities
 {
-    public sealed class WindowsDeviceToVolumeMap
+    internal sealed class WindowsDeviceToVolumeMap
     {
         private static bool s_LegacyPathHandlingDisabled = false;
 
@@ -203,3 +205,13 @@ namespace Microsoft.Diagnostics.Utilities
             int ucchMax);
     }
 }
+
+
+
+
+
+
+
+
+
+

@@ -1,4 +1,6 @@
-﻿using System;
+#nullable disable
+
+using System;
 using System.IO;
 using Microsoft.Diagnostics.Tracing;
 using Microsoft.Diagnostics.Tracing.Etlx;
@@ -7,7 +9,7 @@ using Xunit.Abstractions;
 
 namespace TraceEventTests
 {
-    public class Issue1634 : TestBase
+    internal class Issue1634 : TestBase
     {
         public Issue1634(ITestOutputHelper output)
             : base(output)
@@ -62,3 +64,13 @@ namespace TraceEventTests
         }
     }
 }
+
+
+
+
+
+
+
+
+
+

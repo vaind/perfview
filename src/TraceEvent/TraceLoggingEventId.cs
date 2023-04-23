@@ -1,4 +1,6 @@
-﻿using System;
+#nullable disable
+
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
@@ -189,3 +191,13 @@ namespace Microsoft.Diagnostics.Tracing
         #endregion 
     }
 }
+
+
+
+
+
+
+
+
+
+

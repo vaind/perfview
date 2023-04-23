@@ -1,4 +1,6 @@
-﻿using Microsoft.Diagnostics.Tracing;
+#nullable disable
+
+using Microsoft.Diagnostics.Tracing;
 using PerfView.TestUtilities;
 using System;
 using System.Collections.Generic;
@@ -13,7 +15,7 @@ using Xunit.Abstractions;
 namespace TraceEventTests
 {
     [UseCulture("en-US")]
-    public abstract class EtlTestBase : TestBase
+    internal abstract class EtlTestBase : TestBase
     {
         protected EtlTestBase(ITestOutputHelper output)
             : base(output)
@@ -114,3 +116,13 @@ namespace TraceEventTests
         }
     }
 }
+
+
+
+
+
+
+
+
+
+

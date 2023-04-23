@@ -1,4 +1,6 @@
-﻿using Microsoft.Diagnostics.Symbols;
+#nullable disable
+
+using Microsoft.Diagnostics.Symbols;
 using PerfView.TestUtilities;
 using System;
 using System.Collections.Generic;
@@ -16,7 +18,7 @@ using Xunit.Abstractions;
 namespace TraceEventTests
 {
     [UseCulture("en-US")]
-    public class SymbolReaderTests : TestBase
+    internal class SymbolReaderTests : TestBase
     {
         private const string SymbolReaderTestInput = "SymbolReaderTestInput";
         private const string FileName_CsPortablePdb1 = "CsPortablePdb1.pdb";
@@ -446,3 +448,13 @@ namespace TraceEventTests
         }
     }
 }
+
+
+
+
+
+
+
+
+
+

@@ -1,4 +1,6 @@
-﻿//     Copyright (c) Microsoft Corporation.  All rights reserved.
+#nullable disable
+
+//     Copyright (c) Microsoft Corporation.  All rights reserved.
 // This file is best viewed using outline mode (Ctrl-M Ctrl-O)
 //
 // This program uses code hyperlinks available as part of the HyperAddin Visual Studio plug-in.
@@ -15,7 +17,7 @@ using System.Diagnostics;
 
 namespace FastSerialization
 {
-    public class MemoryMappedFileStreamReader : IStreamReader
+    internal class MemoryMappedFileStreamReader : IStreamReader
     {
         const int BlockCopyCapacity = 10 * 1024 * 1024;
 
@@ -361,3 +363,13 @@ namespace FastSerialization
         }
     }
 }
+
+
+
+
+
+
+
+
+
+

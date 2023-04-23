@@ -1,3 +1,4 @@
+#nullable disable
 
 // Welcome to the TraceEvent code base. This _README.cs file is your table of contents.
 // 
@@ -58,4 +59,14 @@
 //     links between threads, threads, modules, and eventToStack traces are really needed. This is what
 //     TraceLog provides. This is likely to be the interface that most people use (when it is complete).
 // 
+
+
+
+
+
+
+
+
+
+
 

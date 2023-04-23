@@ -1,4 +1,6 @@
-﻿using System;
+#nullable disable
+
+using System;
 using System.Diagnostics;
 using System.Text;
 
@@ -26,7 +28,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers
     }
 
     [System.CodeDom.Compiler.GeneratedCode("traceparsergen", "2.0")]
-    public sealed class IisTraceEventParser : TraceEventParser
+    internal sealed class IisTraceEventParser : TraceEventParser
     {
         public static string ProviderName = "IIS_Trace";
         public static Guid ProviderGuid = new Guid(unchecked((int)0x3a2a4e84), unchecked((short)0x4c21), unchecked((short)0x4981), 0xae, 0x10, 0x3f, 0xda, 0x0d, 0x9b, 0x0f, 0x83);
@@ -2855,7 +2857,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers
 
 namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
 {
-    public sealed class W3AuthAnonPasswdChangeNeeded : TraceEvent
+    internal sealed class W3AuthAnonPasswdChangeNeeded : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
 
@@ -2915,7 +2917,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3AuthAnonPasswdChangeNeeded> m_target;
         #endregion
     }
-    public sealed class W3AuthBadBasicHeader : TraceEvent
+    internal sealed class W3AuthBadBasicHeader : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
 
@@ -2975,7 +2977,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3AuthBadBasicHeader> m_target;
         #endregion
     }
-    public sealed class W3AuthBasicLogonFailed : TraceEvent
+    internal sealed class W3AuthBasicLogonFailed : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
         public int ErrorCode { get { return GetInt32At(16); } }
@@ -3039,7 +3041,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3AuthBasicLogonFailed> m_target;
         #endregion
     }
-    public sealed class W3AuthEnd : TraceEvent
+    internal sealed class W3AuthEnd : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
 
@@ -3099,7 +3101,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3AuthEnd> m_target;
         #endregion
     }
-    public sealed class W3AuthIISDigestLogonFailed : TraceEvent
+    internal sealed class W3AuthIISDigestLogonFailed : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
         public int ErrorCode { get { return GetInt32At(16); } }
@@ -3163,7 +3165,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3AuthIISDigestLogonFailed> m_target;
         #endregion
     }
-    public sealed class W3AuthInvalidAnonAccount : TraceEvent
+    internal sealed class W3AuthInvalidAnonAccount : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
         public int ErrorCode { get { return GetInt32At(16); } }
@@ -3227,7 +3229,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3AuthInvalidAnonAccount> m_target;
         #endregion
     }
-    public sealed class W3AuthKerberosFailed : TraceEvent
+    internal sealed class W3AuthKerberosFailed : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
         public bool KMUsed { get { return GetInt32At(16) != 0; } }
@@ -3307,7 +3309,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3AuthKerberosFailed> m_target;
         #endregion
     }
-    public sealed class W3AuthNTLMNullSession : TraceEvent
+    internal sealed class W3AuthNTLMNullSession : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
 
@@ -3367,7 +3369,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3AuthNTLMNullSession> m_target;
         #endregion
     }
-    public sealed class W3AuthPassportLogonFailed : TraceEvent
+    internal sealed class W3AuthPassportLogonFailed : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
         public int ErrorCode { get { return GetInt32At(16); } }
@@ -3431,7 +3433,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3AuthPassportLogonFailed> m_target;
         #endregion
     }
-    public sealed class W3AuthPasswdChangeDisabled : TraceEvent
+    internal sealed class W3AuthPasswdChangeDisabled : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
 
@@ -3491,7 +3493,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3AuthPasswdChangeDisabled> m_target;
         #endregion
     }
-    public sealed class W3AuthPasswdChangeNeeded : TraceEvent
+    internal sealed class W3AuthPasswdChangeNeeded : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
 
@@ -3551,7 +3553,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3AuthPasswdChangeNeeded> m_target;
         #endregion
     }
-    public sealed class W3AuthRequestAuthType : TraceEvent
+    internal sealed class W3AuthRequestAuthType : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
         public int RequestAuthType { get { return GetInt32At(16); } }
@@ -3615,7 +3617,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3AuthRequestAuthType> m_target;
         #endregion
     }
-    public sealed class W3AuthSSPIContinueNeeded : TraceEvent
+    internal sealed class W3AuthSSPIContinueNeeded : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
         public string PackageName { get { return GetUnicodeStringAt(16); } }
@@ -3679,7 +3681,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3AuthSSPIContinueNeeded> m_target;
         #endregion
     }
-    public sealed class W3AuthSSPILogonFailed : TraceEvent
+    internal sealed class W3AuthSSPILogonFailed : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
         public int ErrorCode { get { return GetInt32At(16); } }
@@ -3743,7 +3745,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3AuthSSPILogonFailed> m_target;
         #endregion
     }
-    public sealed class W3AuthStart : TraceEvent
+    internal sealed class W3AuthStart : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
         public int AuthTypeSupported { get { return GetInt32At(16); } }
@@ -3807,7 +3809,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3AuthStart> m_target;
         #endregion
     }
-    public sealed class W3AuthSucceeded : TraceEvent
+    internal sealed class W3AuthSucceeded : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
         public int AuthType { get { return GetInt32At(16); } }
@@ -3887,7 +3889,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3AuthSucceeded> m_target;
         #endregion
     }
-    public sealed class W3AuthTypeNotSupported : TraceEvent
+    internal sealed class W3AuthTypeNotSupported : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
 
@@ -3947,7 +3949,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3AuthTypeNotSupported> m_target;
         #endregion
     }
-    public sealed class W3AuthWDigestLogonFailed : TraceEvent
+    internal sealed class W3AuthWDigestLogonFailed : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
         public int ErrorCode { get { return GetInt32At(16); } }
@@ -4011,7 +4013,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3AuthWDigestLogonFailed> m_target;
         #endregion
     }
-    public sealed class W3CacheFileCacheAccessEnd : TraceEvent
+    internal sealed class W3CacheFileCacheAccessEnd : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
         public bool Successful { get { return GetInt32At(16) != 0; } }
@@ -4099,7 +4101,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3CacheFileCacheAccessEnd> m_target;
         #endregion
     }
-    public sealed class W3CacheFileCacheAccessStart : TraceEvent
+    internal sealed class W3CacheFileCacheAccessStart : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
         public string FileName { get { return GetUnicodeStringAt(16); } }
@@ -4171,7 +4173,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3CacheFileCacheAccessStart> m_target;
         #endregion
     }
-    public sealed class W3CacheHttpsysCacheable : TraceEvent
+    internal sealed class W3CacheHttpsysCacheable : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
         public bool HttpsysCacheable { get { return GetInt32At(16) != 0; } }
@@ -4247,7 +4249,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3CacheHttpsysCacheable> m_target;
         #endregion
     }
-    public sealed class W3OutputCacheDisabled : TraceEvent
+    internal sealed class W3OutputCacheDisabled : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
 
@@ -4307,7 +4309,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3OutputCacheDisabled> m_target;
         #endregion
     }
-    public sealed class W3OutputCacheLookupEnd : TraceEvent
+    internal sealed class W3OutputCacheLookupEnd : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
         public int Result { get { return GetInt32At(16); } }
@@ -4371,7 +4373,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3OutputCacheLookupEnd> m_target;
         #endregion
     }
-    public sealed class W3OutputCacheLookupStart : TraceEvent
+    internal sealed class W3OutputCacheLookupStart : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
 
@@ -4431,7 +4433,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3OutputCacheLookupStart> m_target;
         #endregion
     }
-    public sealed class W3OutputCacheUpdateEnd : TraceEvent
+    internal sealed class W3OutputCacheUpdateEnd : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
         public int Result { get { return GetInt32At(16); } }
@@ -4495,7 +4497,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3OutputCacheUpdateEnd> m_target;
         #endregion
     }
-    public sealed class W3OutputCacheUpdateStart : TraceEvent
+    internal sealed class W3OutputCacheUpdateStart : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
         public int CachePolicy { get { return GetInt32At(16); } }
@@ -4563,7 +4565,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3OutputCacheUpdateStart> m_target;
         #endregion
     }
-    public sealed class W3CacheURLCacheAccessEnd : TraceEvent
+    internal sealed class W3CacheURLCacheAccessEnd : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
         public string PhysicalPath { get { return GetUnicodeStringAt(16); } }
@@ -4639,7 +4641,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3CacheURLCacheAccessEnd> m_target;
         #endregion
     }
-    public sealed class W3CacheURLCacheAccessStart : TraceEvent
+    internal sealed class W3CacheURLCacheAccessStart : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
         public string RequestURL { get { return GetUnicodeStringAt(16); } }
@@ -4703,7 +4705,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3CacheURLCacheAccessStart> m_target;
         #endregion
     }
-    public sealed class W3CGIEnd : TraceEvent
+    internal sealed class W3CGIEnd : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
 
@@ -4763,7 +4765,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3CGIEnd> m_target;
         #endregion
     }
-    public sealed class W3CGIHeadersReceived : TraceEvent
+    internal sealed class W3CGIHeadersReceived : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
 
@@ -4823,7 +4825,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3CGIHeadersReceived> m_target;
         #endregion
     }
-    public sealed class W3CGILaunch : TraceEvent
+    internal sealed class W3CGILaunch : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
         public string CommandLine { get { return GetUnicodeStringAt(16); } }
@@ -4895,7 +4897,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3CGILaunch> m_target;
         #endregion
     }
-    public sealed class W3CGIPrematureTermination : TraceEvent
+    internal sealed class W3CGIPrematureTermination : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
         public string Headers { get { return GetUTF8StringAt(16); } }
@@ -4959,7 +4961,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3CGIPrematureTermination> m_target;
         #endregion
     }
-    public sealed class W3CGIRequestEntitySent : TraceEvent
+    internal sealed class W3CGIRequestEntitySent : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
 
@@ -5019,7 +5021,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3CGIRequestEntitySent> m_target;
         #endregion
     }
-    public sealed class W3CGIStart : TraceEvent
+    internal sealed class W3CGIStart : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
 
@@ -5079,7 +5081,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3CGIStart> m_target;
         #endregion
     }
-    public sealed class W3CGITimeout : TraceEvent
+    internal sealed class W3CGITimeout : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
         public string Headers { get { return GetUTF8StringAt(16); } }
@@ -5143,7 +5145,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3CGITimeout> m_target;
         #endregion
     }
-    public sealed class W3DynamicCompressionDo : TraceEvent
+    internal sealed class W3DynamicCompressionDo : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
         public int OriginalSize { get { return GetInt32At(16); } }
@@ -5211,7 +5213,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3DynamicCompressionDo> m_target;
         #endregion
     }
-    public sealed class W3DynamicCompressionEnd : TraceEvent
+    internal sealed class W3DynamicCompressionEnd : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
 
@@ -5271,7 +5273,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3DynamicCompressionEnd> m_target;
         #endregion
     }
-    public sealed class W3DynamicCompressionNotSuccess : TraceEvent
+    internal sealed class W3DynamicCompressionNotSuccess : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
         public int Reason { get { return GetInt32At(16); } }
@@ -5335,7 +5337,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3DynamicCompressionNotSuccess> m_target;
         #endregion
     }
-    public sealed class W3DynamicCompressionStart : TraceEvent
+    internal sealed class W3DynamicCompressionStart : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
 
@@ -5395,7 +5397,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3DynamicCompressionStart> m_target;
         #endregion
     }
-    public sealed class W3DynamicCompressionSuccess : TraceEvent
+    internal sealed class W3DynamicCompressionSuccess : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
 
@@ -5455,7 +5457,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3DynamicCompressionSuccess> m_target;
         #endregion
     }
-    public sealed class W3StaticCompressionCreateEnd : TraceEvent
+    internal sealed class W3StaticCompressionCreateEnd : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
         public int ErrorCode { get { return GetInt32At(16); } }
@@ -5535,7 +5537,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3StaticCompressionCreateEnd> m_target;
         #endregion
     }
-    public sealed class W3StaticCompressionCreateStart : TraceEvent
+    internal sealed class W3StaticCompressionCreateStart : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
         public string OriginalFileName { get { return GetUnicodeStringAt(16); } }
@@ -5599,7 +5601,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3StaticCompressionCreateStart> m_target;
         #endregion
     }
-    public sealed class W3StaticCompressionEnd : TraceEvent
+    internal sealed class W3StaticCompressionEnd : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
 
@@ -5659,7 +5661,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3StaticCompressionEnd> m_target;
         #endregion
     }
-    public sealed class W3StaticCompressionNotSuccess : TraceEvent
+    internal sealed class W3StaticCompressionNotSuccess : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
         public int Reason { get { return GetInt32At(16); } }
@@ -5723,7 +5725,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3StaticCompressionNotSuccess> m_target;
         #endregion
     }
-    public sealed class W3StaticCompressionStart : TraceEvent
+    internal sealed class W3StaticCompressionStart : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
 
@@ -5783,7 +5785,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3StaticCompressionStart> m_target;
         #endregion
     }
-    public sealed class W3StaticCompressionSuccess : TraceEvent
+    internal sealed class W3StaticCompressionSuccess : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
 
@@ -5843,7 +5845,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3StaticCompressionSuccess> m_target;
         #endregion
     }
-    public sealed class W3CGIFActivityTimeout : TraceEvent
+    internal sealed class W3CGIFActivityTimeout : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
 
@@ -5903,7 +5905,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3CGIFActivityTimeout> m_target;
         #endregion
     }
-    public sealed class W3CGIFAddJobObjectFail : TraceEvent
+    internal sealed class W3CGIFAddJobObjectFail : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
 
@@ -5963,7 +5965,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3CGIFAddJobObjectFail> m_target;
         #endregion
     }
-    public sealed class W3CGIFAppMgrShutdown : TraceEvent
+    internal sealed class W3CGIFAppMgrShutdown : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
 
@@ -6023,7 +6025,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3CGIFAppMgrShutdown> m_target;
         #endregion
     }
-    public sealed class W3CGIFAssignProcess : TraceEvent
+    internal sealed class W3CGIFAssignProcess : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
         public string CommandLine { get { return GetUnicodeStringAt(16); } }
@@ -6099,7 +6101,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3CGIFAssignProcess> m_target;
         #endregion
     }
-    public sealed class W3CGIFEnd : TraceEvent
+    internal sealed class W3CGIFEnd : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
 
@@ -6159,7 +6161,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3CGIFEnd> m_target;
         #endregion
     }
-    public sealed class W3CGIFPathNotFound : TraceEvent
+    internal sealed class W3CGIFPathNotFound : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
 
@@ -6219,7 +6221,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3CGIFPathNotFound> m_target;
         #endregion
     }
-    public sealed class W3CGIFQueueFull : TraceEvent
+    internal sealed class W3CGIFQueueFull : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
 
@@ -6279,7 +6281,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3CGIFQueueFull> m_target;
         #endregion
     }
-    public sealed class W3CGIFQueueRequest : TraceEvent
+    internal sealed class W3CGIFQueueRequest : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
         public int PositionInQueue { get { return GetInt32At(16); } }
@@ -6347,7 +6349,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3CGIFQueueRequest> m_target;
         #endregion
     }
-    public sealed class W3CGIFRapidFailureProtection : TraceEvent
+    internal sealed class W3CGIFRapidFailureProtection : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
 
@@ -6407,7 +6409,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3CGIFRapidFailureProtection> m_target;
         #endregion
     }
-    public sealed class W3CGIFRequestTimeout : TraceEvent
+    internal sealed class W3CGIFRequestTimeout : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
 
@@ -6467,7 +6469,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3CGIFRequestTimeout> m_target;
         #endregion
     }
-    public sealed class W3CGIFResponseWritten : TraceEvent
+    internal sealed class W3CGIFResponseWritten : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
 
@@ -6527,7 +6529,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3CGIFResponseWritten> m_target;
         #endregion
     }
-    public sealed class W3CGIFScriptProcessorMissing : TraceEvent
+    internal sealed class W3CGIFScriptProcessorMissing : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
 
@@ -6587,7 +6589,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3CGIFScriptProcessorMissing> m_target;
         #endregion
     }
-    public sealed class W3CGIFStart : TraceEvent
+    internal sealed class W3CGIFStart : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
 
@@ -6647,7 +6649,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3CGIFStart> m_target;
         #endregion
     }
-    public sealed class W3CGIFTraceError : TraceEvent
+    internal sealed class W3CGIFTraceError : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
         public string Message { get { return GetUnicodeStringAt(16); } }
@@ -6711,7 +6713,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3CGIFTraceError> m_target;
         #endregion
     }
-    public sealed class W3CGIFTraceInfo : TraceEvent
+    internal sealed class W3CGIFTraceInfo : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
         public string Message { get { return GetUnicodeStringAt(16); } }
@@ -6775,7 +6777,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3CGIFTraceInfo> m_target;
         #endregion
     }
-    public sealed class W3CGIFTraceWarning : TraceEvent
+    internal sealed class W3CGIFTraceWarning : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
         public string Message { get { return GetUnicodeStringAt(16); } }
@@ -6839,7 +6841,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3CGIFTraceWarning> m_target;
         #endregion
     }
-    public sealed class W3CGIFUnexpectedExit : TraceEvent
+    internal sealed class W3CGIFUnexpectedExit : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
 
@@ -6899,7 +6901,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3CGIFUnexpectedExit> m_target;
         #endregion
     }
-    public sealed class W3CGIFUnknownError : TraceEvent
+    internal sealed class W3CGIFUnknownError : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
         public int ErrorCode { get { return GetInt32At(16); } }
@@ -6963,7 +6965,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3CGIFUnknownError> m_target;
         #endregion
     }
-    public sealed class W3CGIFWaitingForResponse : TraceEvent
+    internal sealed class W3CGIFWaitingForResponse : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
 
@@ -7023,7 +7025,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3CGIFWaitingForResponse> m_target;
         #endregion
     }
-    public sealed class W3FilterAccessDeniedEnd : TraceEvent
+    internal sealed class W3FilterAccessDeniedEnd : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
 
@@ -7083,7 +7085,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3FilterAccessDeniedEnd> m_target;
         #endregion
     }
-    public sealed class W3FilterAccessDeniedStart : TraceEvent
+    internal sealed class W3FilterAccessDeniedStart : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
         public string RequestedURL { get { return GetUTF8StringAt(16); } }
@@ -7155,7 +7157,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3FilterAccessDeniedStart> m_target;
         #endregion
     }
-    public sealed class W3FilterAddReqHeader : TraceEvent
+    internal sealed class W3FilterAddReqHeader : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
         public string HeaderName { get { return GetUTF8StringAt(16); } }
@@ -7223,7 +7225,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3FilterAddReqHeader> m_target;
         #endregion
     }
-    public sealed class W3FilterAddRespHeader : TraceEvent
+    internal sealed class W3FilterAddRespHeader : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
         public string HeaderName { get { return GetUTF8StringAt(16); } }
@@ -7291,7 +7293,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3FilterAddRespHeader> m_target;
         #endregion
     }
-    public sealed class W3FilterAuthCompleteEnd : TraceEvent
+    internal sealed class W3FilterAuthCompleteEnd : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
 
@@ -7351,7 +7353,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3FilterAuthCompleteEnd> m_target;
         #endregion
     }
-    public sealed class W3FilterAuthCompleteStart : TraceEvent
+    internal sealed class W3FilterAuthCompleteStart : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
 
@@ -7411,7 +7413,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3FilterAuthCompleteStart> m_target;
         #endregion
     }
-    public sealed class W3FilterAuthenticationEnd : TraceEvent
+    internal sealed class W3FilterAuthenticationEnd : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
         public string FinalUserName { get { return GetUTF8StringAt(16); } }
@@ -7479,7 +7481,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3FilterAuthenticationEnd> m_target;
         #endregion
     }
-    public sealed class W3FilterAuthenticationStart : TraceEvent
+    internal sealed class W3FilterAuthenticationStart : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
         public string OrigUserName { get { return GetUTF8StringAt(16); } }
@@ -7543,7 +7545,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3FilterAuthenticationStart> m_target;
         #endregion
     }
-    public sealed class W3FilterEnd : TraceEvent
+    internal sealed class W3FilterEnd : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
         public int NotificationStatus { get { return GetInt32At(16); } }
@@ -7607,7 +7609,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3FilterEnd> m_target;
         #endregion
     }
-    public sealed class W3FilterEndOfRequestEnd : TraceEvent
+    internal sealed class W3FilterEndOfRequestEnd : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
 
@@ -7667,7 +7669,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3FilterEndOfRequestEnd> m_target;
         #endregion
     }
-    public sealed class W3FilterEndOfRequestStart : TraceEvent
+    internal sealed class W3FilterEndOfRequestStart : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
 
@@ -7727,7 +7729,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3FilterEndOfRequestStart> m_target;
         #endregion
     }
-    public sealed class W3FilterError : TraceEvent
+    internal sealed class W3FilterError : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
         public int ErrorCode { get { return GetInt32At(16); } }
@@ -7791,7 +7793,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3FilterError> m_target;
         #endregion
     }
-    public sealed class W3FilterLogEnd : TraceEvent
+    internal sealed class W3FilterLogEnd : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
         public string FinalClientHostName { get { return GetUTF8StringAt(16); } }
@@ -7883,7 +7885,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3FilterLogEnd> m_target;
         #endregion
     }
-    public sealed class W3FilterLogStart : TraceEvent
+    internal sealed class W3FilterLogStart : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
         public string OrigClientHostName { get { return GetUTF8StringAt(16); } }
@@ -7975,7 +7977,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3FilterLogStart> m_target;
         #endregion
     }
-    public sealed class W3FilterPreprocEnd : TraceEvent
+    internal sealed class W3FilterPreprocEnd : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
 
@@ -8035,7 +8037,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3FilterPreprocEnd> m_target;
         #endregion
     }
-    public sealed class W3FilterPreprocStart : TraceEvent
+    internal sealed class W3FilterPreprocStart : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
 
@@ -8095,7 +8097,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3FilterPreprocStart> m_target;
         #endregion
     }
-    public sealed class W3FilterSendRawDataEnd : TraceEvent
+    internal sealed class W3FilterSendRawDataEnd : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
 
@@ -8155,7 +8157,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3FilterSendRawDataEnd> m_target;
         #endregion
     }
-    public sealed class W3FilterSendRawDataStart : TraceEvent
+    internal sealed class W3FilterSendRawDataStart : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
 
@@ -8215,7 +8217,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3FilterSendRawDataStart> m_target;
         #endregion
     }
-    public sealed class W3FilterSendResponseEnd : TraceEvent
+    internal sealed class W3FilterSendResponseEnd : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
 
@@ -8275,7 +8277,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3FilterSendResponseEnd> m_target;
         #endregion
     }
-    public sealed class W3FilterSendResponseStart : TraceEvent
+    internal sealed class W3FilterSendResponseStart : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
         public int HttpStatus { get { return GetInt32At(16); } }
@@ -8339,7 +8341,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3FilterSendResponseStart> m_target;
         #endregion
     }
-    public sealed class W3FilterSetReqHeader : TraceEvent
+    internal sealed class W3FilterSetReqHeader : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
         public string HeaderName { get { return GetUTF8StringAt(16); } }
@@ -8407,7 +8409,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3FilterSetReqHeader> m_target;
         #endregion
     }
-    public sealed class W3FilterSetRespHeader : TraceEvent
+    internal sealed class W3FilterSetRespHeader : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
         public string HeaderName { get { return GetUTF8StringAt(16); } }
@@ -8475,7 +8477,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3FilterSetRespHeader> m_target;
         #endregion
     }
-    public sealed class W3FilterStart : TraceEvent
+    internal sealed class W3FilterStart : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
         public string FilterName { get { return GetUnicodeStringAt(16); } }
@@ -8539,7 +8541,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3FilterStart> m_target;
         #endregion
     }
-    public sealed class W3FilterURLMapEnd : TraceEvent
+    internal sealed class W3FilterURLMapEnd : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
         public string FinalURL { get { return GetUTF8StringAt(16); } }
@@ -8623,7 +8625,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3FilterURLMapEnd> m_target;
         #endregion
     }
-    public sealed class W3FilterURLMapStart : TraceEvent
+    internal sealed class W3FilterURLMapStart : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
         public string OrigURL { get { return GetUTF8StringAt(16); } }
@@ -8707,7 +8709,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3FilterURLMapStart> m_target;
         #endregion
     }
-    public sealed class IISGeneralConfigChangeNotification : TraceEvent
+    internal sealed class IISGeneralConfigChangeNotification : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
         public string ConfigPath { get { return GetUnicodeStringAt(16); } }
@@ -8771,7 +8773,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<IISGeneralConfigChangeNotification> m_target;
         #endregion
     }
-    public sealed class IISGeneralFileChangeNotification : TraceEvent
+    internal sealed class IISGeneralFileChangeNotification : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
         public string FilePath { get { return GetUnicodeStringAt(16); } }
@@ -8835,7 +8837,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<IISGeneralFileChangeNotification> m_target;
         #endregion
     }
-    public sealed class W3GeneralCGIHandler : TraceEvent
+    internal sealed class W3GeneralCGIHandler : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
 
@@ -8895,7 +8897,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3GeneralCGIHandler> m_target;
         #endregion
     }
-    public sealed class W3GeneralChildRequestEnd : TraceEvent
+    internal sealed class W3GeneralChildRequestEnd : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
         public int BytesSent { get { return GetInt32At(16); } }
@@ -8967,7 +8969,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3GeneralChildRequestEnd> m_target;
         #endregion
     }
-    public sealed class W3GeneralChildRequestStart : TraceEvent
+    internal sealed class W3GeneralChildRequestStart : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
         public int SiteId { get { return GetInt32At(16); } }
@@ -9043,7 +9045,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3GeneralChildRequestStart> m_target;
         #endregion
     }
-    public sealed class W3GeneralDavHandler : TraceEvent
+    internal sealed class W3GeneralDavHandler : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
         public string FileName { get { return GetUnicodeStringAt(16); } }
@@ -9107,7 +9109,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3GeneralDavHandler> m_target;
         #endregion
     }
-    public sealed class W3GeneralEndpointInformation : TraceEvent
+    internal sealed class W3GeneralEndpointInformation : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
         public string RemoteAddress { get { return GetUTF8StringAt(16); } }
@@ -9183,7 +9185,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3GeneralEndpointInformation> m_target;
         #endregion
     }
-    public sealed class W3GeneralFlushResponseEnd : TraceEvent
+    internal sealed class W3GeneralFlushResponseEnd : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
         public int BytesSent { get { return GetInt32At(16); } }
@@ -9251,7 +9253,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3GeneralFlushResponseEnd> m_target;
         #endregion
     }
-    public sealed class W3GeneralFlushResponseStart : TraceEvent
+    internal sealed class W3GeneralFlushResponseStart : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
 
@@ -9311,7 +9313,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3GeneralFlushResponseStart> m_target;
         #endregion
     }
-    public sealed class W3GeneralGetURLMetadata : TraceEvent
+    internal sealed class W3GeneralGetURLMetadata : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
         public string PhysicalPath { get { return GetUnicodeStringAt(16); } }
@@ -9379,7 +9381,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3GeneralGetURLMetadata> m_target;
         #endregion
     }
-    public sealed class W3GeneralISAPIHandler : TraceEvent
+    internal sealed class W3GeneralISAPIHandler : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
 
@@ -9439,7 +9441,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3GeneralISAPIHandler> m_target;
         #endregion
     }
-    public sealed class W3GeneralMapHandler : TraceEvent
+    internal sealed class W3GeneralMapHandler : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
 
@@ -9499,7 +9501,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3GeneralMapHandler> m_target;
         #endregion
     }
-    public sealed class W3GeneralModuleFactoryFailed : TraceEvent
+    internal sealed class W3GeneralModuleFactoryFailed : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
         public string ModuleName { get { return GetUnicodeStringAt(16); } }
@@ -9567,7 +9569,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3GeneralModuleFactoryFailed> m_target;
         #endregion
     }
-    public sealed class W3GeneralNotSendCustomError : TraceEvent
+    internal sealed class W3GeneralNotSendCustomError : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
         public int Reason { get { return GetInt32At(16); } }
@@ -9631,7 +9633,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3GeneralNotSendCustomError> m_target;
         #endregion
     }
-    public sealed class W3GeneralOopISAPIHandler : TraceEvent
+    internal sealed class W3GeneralOopISAPIHandler : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
         public int ProcessId { get { return GetInt32At(16); } }
@@ -9703,7 +9705,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3GeneralOopISAPIHandler> m_target;
         #endregion
     }
-    public sealed class W3GeneralOptionsHandler : TraceEvent
+    internal sealed class W3GeneralOptionsHandler : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
 
@@ -9763,7 +9765,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3GeneralOptionsHandler> m_target;
         #endregion
     }
-    public sealed class W3GeneralReadEntityEnd : TraceEvent
+    internal sealed class W3GeneralReadEntityEnd : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
         public int BytesReceived { get { return GetInt32At(16); } }
@@ -9831,7 +9833,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3GeneralReadEntityEnd> m_target;
         #endregion
     }
-    public sealed class W3GeneralReadEntityStart : TraceEvent
+    internal sealed class W3GeneralReadEntityStart : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
 
@@ -9891,7 +9893,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3GeneralReadEntityStart> m_target;
         #endregion
     }
-    public sealed class W3GeneralRedirectionHandler : TraceEvent
+    internal sealed class W3GeneralRedirectionHandler : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
         public string RedirectedURL { get { return GetUnicodeStringAt(16); } }
@@ -9955,7 +9957,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3GeneralRedirectionHandler> m_target;
         #endregion
     }
-    public sealed class W3GeneralEndNewRequest : TraceEvent
+    internal sealed class W3GeneralEndNewRequest : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
         public int BytesSent { get { return GetInt32At(16); } }
@@ -10031,7 +10033,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3GeneralEndNewRequest> m_target;
         #endregion
     }
-    public sealed class W3GeneralRequestEntity : TraceEvent
+    internal sealed class W3GeneralRequestEntity : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
         public string Buffer { get { return GetUTF8StringAt(16); } }
@@ -10095,7 +10097,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3GeneralRequestEntity> m_target;
         #endregion
     }
-    public sealed class W3GeneralRequestHeaders : TraceEvent
+    internal sealed class W3GeneralRequestHeaders : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
         public string Headers { get { return GetUTF8StringAt(16); } }
@@ -10159,7 +10161,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3GeneralRequestHeaders> m_target;
         #endregion
     }
-    public sealed class W3GeneralStartNewRequest : TraceEvent
+    internal sealed class W3GeneralStartNewRequest : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
         public int SiteId { get { return GetInt32At(16); } }
@@ -10243,7 +10245,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3GeneralStartNewRequest> m_target;
         #endregion
     }
-    public sealed class W3GeneralResponseEntityBuffer : TraceEvent
+    internal sealed class W3GeneralResponseEntityBuffer : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
         public string Buffer { get { return GetUTF8StringAt(16); } }
@@ -10307,7 +10309,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3GeneralResponseEntityBuffer> m_target;
         #endregion
     }
-    public sealed class W3GeneralResponseEntityFile : TraceEvent
+    internal sealed class W3GeneralResponseEntityFile : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
         public string FileName { get { return GetUnicodeStringAt(16); } }
@@ -10379,7 +10381,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3GeneralResponseEntityFile> m_target;
         #endregion
     }
-    public sealed class W3GeneralResponseHeaders : TraceEvent
+    internal sealed class W3GeneralResponseHeaders : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
         public string Headers { get { return GetUTF8StringAt(16); } }
@@ -10443,7 +10445,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3GeneralResponseHeaders> m_target;
         #endregion
     }
-    public sealed class W3GeneralSendCustomError : TraceEvent
+    internal sealed class W3GeneralSendCustomError : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
         public int HttpStatus { get { return GetInt32At(16); } }
@@ -10515,7 +10517,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3GeneralSendCustomError> m_target;
         #endregion
     }
-    public sealed class W3GeneralSetRequestHeader : TraceEvent
+    internal sealed class W3GeneralSetRequestHeader : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
         public string HeaderName { get { return GetUTF8StringAt(16); } }
@@ -10587,7 +10589,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3GeneralSetRequestHeader> m_target;
         #endregion
     }
-    public sealed class W3GeneralStaticFileHandler : TraceEvent
+    internal sealed class W3GeneralStaticFileHandler : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
         public string FileName { get { return GetUnicodeStringAt(16); } }
@@ -10651,7 +10653,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3GeneralStaticFileHandler> m_target;
         #endregion
     }
-    public sealed class W3GeneralTraceHandler : TraceEvent
+    internal sealed class W3GeneralTraceHandler : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
 
@@ -10711,7 +10713,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3GeneralTraceHandler> m_target;
         #endregion
     }
-    public sealed class IISGeneralHandlerChanged : TraceEvent
+    internal sealed class IISGeneralHandlerChanged : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
         public string OldHandlerName { get { return GetUnicodeStringAt(16); } }
@@ -10791,7 +10793,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<IISGeneralHandlerChanged> m_target;
         #endregion
     }
-    public sealed class IISGeneralHandlerPreconditionNotMatch : TraceEvent
+    internal sealed class IISGeneralHandlerPreconditionNotMatch : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
         public string Name { get { return GetUnicodeStringAt(16); } }
@@ -10859,7 +10861,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<IISGeneralHandlerPreconditionNotMatch> m_target;
         #endregion
     }
-    public sealed class IISGeneralModulePreconditionNotMatch : TraceEvent
+    internal sealed class IISGeneralModulePreconditionNotMatch : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
         public string Name { get { return GetUnicodeStringAt(16); } }
@@ -10927,7 +10929,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<IISGeneralModulePreconditionNotMatch> m_target;
         #endregion
     }
-    public sealed class IISGeneralUrlChanged : TraceEvent
+    internal sealed class IISGeneralUrlChanged : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
         public string OldUrl { get { return GetUnicodeStringAt(16); } }
@@ -10995,7 +10997,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<IISGeneralUrlChanged> m_target;
         #endregion
     }
-    public sealed class IISGeneralUserSet : TraceEvent
+    internal sealed class IISGeneralUserSet : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
         public string AuthType { get { return GetUnicodeStringAt(16); } }
@@ -11067,7 +11069,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<IISGeneralUserSet> m_target;
         #endregion
     }
-    public sealed class IISGeneralVirtualModuleUnresolved : TraceEvent
+    internal sealed class IISGeneralVirtualModuleUnresolved : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
         public string Name { get { return GetUnicodeStringAt(16); } }
@@ -11135,7 +11137,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<IISGeneralVirtualModuleUnresolved> m_target;
         #endregion
     }
-    public sealed class W3ISAPIEnd : TraceEvent
+    internal sealed class W3ISAPIEnd : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
 
@@ -11195,7 +11197,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3ISAPIEnd> m_target;
         #endregion
     }
-    public sealed class W3ISAPIStart : TraceEvent
+    internal sealed class W3ISAPIStart : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
 
@@ -11255,7 +11257,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3ISAPIStart> m_target;
         #endregion
     }
-    public sealed class IISModuleEventsModuleCriticalError : TraceEvent
+    internal sealed class IISModuleEventsModuleCriticalError : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
         public string ModuleName { get { return GetUnicodeStringAt(16); } }
@@ -11331,7 +11333,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<IISModuleEventsModuleCriticalError> m_target;
         #endregion
     }
-    public sealed class IISModuleEventsModuleEnd : TraceEvent
+    internal sealed class IISModuleEventsModuleEnd : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
         public string ModuleName { get { return GetUnicodeStringAt(16); } }
@@ -11407,7 +11409,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<IISModuleEventsModuleEnd> m_target;
         #endregion
     }
-    public sealed class IISModuleEventsModuleError : TraceEvent
+    internal sealed class IISModuleEventsModuleError : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
         public string ModuleName { get { return GetUnicodeStringAt(16); } }
@@ -11483,7 +11485,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<IISModuleEventsModuleError> m_target;
         #endregion
     }
-    public sealed class IISModuleEventsModuleInformation : TraceEvent
+    internal sealed class IISModuleEventsModuleInformation : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
         public string ModuleName { get { return GetUnicodeStringAt(16); } }
@@ -11559,7 +11561,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<IISModuleEventsModuleInformation> m_target;
         #endregion
     }
-    public sealed class IISModuleEventsModuleStart : TraceEvent
+    internal sealed class IISModuleEventsModuleStart : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
         public string ModuleName { get { return GetUnicodeStringAt(16); } }
@@ -11635,7 +11637,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<IISModuleEventsModuleStart> m_target;
         #endregion
     }
-    public sealed class IISModuleEventsModuleVerbose : TraceEvent
+    internal sealed class IISModuleEventsModuleVerbose : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
         public string ModuleName { get { return GetUnicodeStringAt(16); } }
@@ -11711,7 +11713,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<IISModuleEventsModuleVerbose> m_target;
         #endregion
     }
-    public sealed class IISModuleEventsModuleWarning : TraceEvent
+    internal sealed class IISModuleEventsModuleWarning : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
         public string ModuleName { get { return GetUnicodeStringAt(16); } }
@@ -11787,7 +11789,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<IISModuleEventsModuleWarning> m_target;
         #endregion
     }
-    public sealed class IISRequestNotificationEventsResponseErrorStatus : TraceEvent
+    internal sealed class IISRequestNotificationEventsResponseErrorStatus : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
         public string ModuleName { get { return GetUnicodeStringAt(16); } }
@@ -11875,7 +11877,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<IISRequestNotificationEventsResponseErrorStatus> m_target;
         #endregion
     }
-    public sealed class IISRequestNotificationEventsResponseSuccessStatus : TraceEvent
+    internal sealed class IISRequestNotificationEventsResponseSuccessStatus : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
         public string ModuleName { get { return GetUnicodeStringAt(16); } }
@@ -11951,7 +11953,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<IISRequestNotificationEventsResponseSuccessStatus> m_target;
         #endregion
     }
-    public sealed class IISRequestNotificationEventsCompletion : TraceEvent
+    internal sealed class IISRequestNotificationEventsCompletion : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
         public string ModuleName { get { return GetUnicodeStringAt(16); } }
@@ -12031,7 +12033,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<IISRequestNotificationEventsCompletion> m_target;
         #endregion
     }
-    public sealed class IISRequestNotificationEventsEnd : TraceEvent
+    internal sealed class IISRequestNotificationEventsEnd : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
         public string ModuleName { get { return GetUnicodeStringAt(16); } }
@@ -12107,7 +12109,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<IISRequestNotificationEventsEnd> m_target;
         #endregion
     }
-    public sealed class IISRequestNotificationEventsStart : TraceEvent
+    internal sealed class IISRequestNotificationEventsStart : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
         public string ModuleName { get { return GetUnicodeStringAt(16); } }
@@ -12179,7 +12181,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<IISRequestNotificationEventsStart> m_target;
         #endregion
     }
-    public sealed class IISRequestNotificationPreBeginEnd : TraceEvent
+    internal sealed class IISRequestNotificationPreBeginEnd : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
         public string ModuleName { get { return GetUnicodeStringAt(16); } }
@@ -12247,7 +12249,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<IISRequestNotificationPreBeginEnd> m_target;
         #endregion
     }
-    public sealed class IISRequestNotificationPreBeginStart : TraceEvent
+    internal sealed class IISRequestNotificationPreBeginStart : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
         public string ModuleName { get { return GetUnicodeStringAt(16); } }
@@ -12311,7 +12313,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<IISRequestNotificationPreBeginStart> m_target;
         #endregion
     }
-    public sealed class IISRequestNotificationEventsError : TraceEvent
+    internal sealed class IISRequestNotificationEventsError : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
         public string ModuleName { get { return GetUnicodeStringAt(16); } }
@@ -12383,7 +12385,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<IISRequestNotificationEventsError> m_target;
         #endregion
     }
-    public sealed class IISRequestNotificationEventsResponseErrorDescription : TraceEvent
+    internal sealed class IISRequestNotificationEventsResponseErrorDescription : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
         public string ErrorDescription { get { return GetUnicodeStringAt(16); } }
@@ -12447,7 +12449,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<IISRequestNotificationEventsResponseErrorDescription> m_target;
         #endregion
     }
-    public sealed class W3SecDeniedByAccessFlags : TraceEvent
+    internal sealed class W3SecDeniedByAccessFlags : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
         public int CurrentFlags { get { return GetInt32At(16); } }
@@ -12515,7 +12517,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3SecDeniedByAccessFlags> m_target;
         #endregion
     }
-    public sealed class W3SecDeniedByCGIRestriction : TraceEvent
+    internal sealed class W3SecDeniedByCGIRestriction : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
         public string ImageName { get { return GetUnicodeStringAt(16); } }
@@ -12579,7 +12581,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3SecDeniedByCGIRestriction> m_target;
         #endregion
     }
-    public sealed class W3SecDeniedByISAPIRestriction : TraceEvent
+    internal sealed class W3SecDeniedByISAPIRestriction : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
         public string ImageName { get { return GetUnicodeStringAt(16); } }
@@ -12643,7 +12645,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3SecDeniedByISAPIRestriction> m_target;
         #endregion
     }
-    public sealed class W3SecDeniedByMimemap : TraceEvent
+    internal sealed class W3SecDeniedByMimemap : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
         public string FileName { get { return GetUnicodeStringAt(16); } }
@@ -12707,7 +12709,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3SecDeniedByMimemap> m_target;
         #endregion
     }
-    public sealed class W3SecFileAccessDenied : TraceEvent
+    internal sealed class W3SecFileAccessDenied : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
         public string FileName { get { return GetUnicodeStringAt(16); } }
@@ -12779,7 +12781,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3SecFileAccessDenied> m_target;
         #endregion
     }
-    public sealed class W3SecIllegalShortFilename : TraceEvent
+    internal sealed class W3SecIllegalShortFilename : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
         public string FileName { get { return GetUnicodeStringAt(16); } }
@@ -12843,7 +12845,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3SecIllegalShortFilename> m_target;
         #endregion
     }
-    public sealed class W3SecRejectedHostname : TraceEvent
+    internal sealed class W3SecRejectedHostname : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
         public string HostName { get { return GetUnicodeStringAt(16); } }
@@ -12907,7 +12909,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3SecRejectedHostname> m_target;
         #endregion
     }
-    public sealed class W3SecRejectedIP : TraceEvent
+    internal sealed class W3SecRejectedIP : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
         public string IPAddress { get { return GetUTF8StringAt(16); } }
@@ -12971,7 +12973,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3SecRejectedIP> m_target;
         #endregion
     }
-    public sealed class W3SecRequireSSL128 : TraceEvent
+    internal sealed class W3SecRequireSSL128 : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
 
@@ -13031,7 +13033,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3SecRequireSSL128> m_target;
         #endregion
     }
-    public sealed class W3WebSocketApplicationCloseConnection : TraceEvent
+    internal sealed class W3WebSocketApplicationCloseConnection : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
 
@@ -13091,7 +13093,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3WebSocketApplicationCloseConnection> m_target;
         #endregion
     }
-    public sealed class W3WebSocketEndFailure : TraceEvent
+    internal sealed class W3WebSocketEndFailure : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
         public int ErrorCode { get { return GetInt32At(16); } }
@@ -13155,7 +13157,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3WebSocketEndFailure> m_target;
         #endregion
     }
-    public sealed class W3WebSocketStart : TraceEvent
+    internal sealed class W3WebSocketStart : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
 
@@ -13215,7 +13217,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3WebSocketStart> m_target;
         #endregion
     }
-    public sealed class W3WebSocketEndSuccess : TraceEvent
+    internal sealed class W3WebSocketEndSuccess : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
 
@@ -13275,7 +13277,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3WebSocketEndSuccess> m_target;
         #endregion
     }
-    public sealed class W3WebSocketInitializeNotSuccess : TraceEvent
+    internal sealed class W3WebSocketInitializeNotSuccess : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
         public int ErrorCode { get { return GetInt32At(16); } }
@@ -13339,7 +13341,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3WebSocketInitializeNotSuccess> m_target;
         #endregion
     }
-    public sealed class W3WebSocketModuleCloseConnection : TraceEvent
+    internal sealed class W3WebSocketModuleCloseConnection : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
         public int Reason { get { return GetInt32At(16); } }
@@ -13403,7 +13405,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3WebSocketModuleCloseConnection> m_target;
         #endregion
     }
-    public sealed class W3WebSocketReadFragmentEndFailure : TraceEvent
+    internal sealed class W3WebSocketReadFragmentEndFailure : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
         public int ErrorCode { get { return GetInt32At(16); } }
@@ -13467,7 +13469,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3WebSocketReadFragmentEndFailure> m_target;
         #endregion
     }
-    public sealed class W3WebSocketReadFragmentEndPending : TraceEvent
+    internal sealed class W3WebSocketReadFragmentEndPending : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
 
@@ -13527,7 +13529,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3WebSocketReadFragmentEndPending> m_target;
         #endregion
     }
-    public sealed class W3WebSocketReadFragmentEndSuccess : TraceEvent
+    internal sealed class W3WebSocketReadFragmentEndSuccess : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
         public int BytesReceived { get { return GetInt32At(16); } }
@@ -13591,7 +13593,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3WebSocketReadFragmentEndSuccess> m_target;
         #endregion
     }
-    public sealed class W3WebSocketReadFragmentStart : TraceEvent
+    internal sealed class W3WebSocketReadFragmentStart : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
         public int BufferSize { get { return GetInt32At(16); } }
@@ -13655,7 +13657,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3WebSocketReadFragmentStart> m_target;
         #endregion
     }
-    public sealed class W3WebSocketReadIoFailed : TraceEvent
+    internal sealed class W3WebSocketReadIoFailed : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
         public int ErrorCode { get { return GetInt32At(16); } }
@@ -13719,7 +13721,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3WebSocketReadIoFailed> m_target;
         #endregion
     }
-    public sealed class W3WebSocketCloseReceived : TraceEvent
+    internal sealed class W3WebSocketCloseReceived : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
         public int Status { get { return GetInt32At(16); } }
@@ -13787,7 +13789,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3WebSocketCloseReceived> m_target;
         #endregion
     }
-    public sealed class W3WebSocketCloseSendFailure : TraceEvent
+    internal sealed class W3WebSocketCloseSendFailure : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
         public int ErrorCode { get { return GetInt32At(16); } }
@@ -13851,7 +13853,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3WebSocketCloseSendFailure> m_target;
         #endregion
     }
-    public sealed class W3WebSocketCloseSendSuccess : TraceEvent
+    internal sealed class W3WebSocketCloseSendSuccess : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
 
@@ -13911,7 +13913,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3WebSocketCloseSendSuccess> m_target;
         #endregion
     }
-    public sealed class W3WebSocketCloseSendStart : TraceEvent
+    internal sealed class W3WebSocketCloseSendStart : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
         public int Status { get { return GetInt32At(16); } }
@@ -13979,7 +13981,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3WebSocketCloseSendStart> m_target;
         #endregion
     }
-    public sealed class W3WebSocketWriteFragmentEndFailure : TraceEvent
+    internal sealed class W3WebSocketWriteFragmentEndFailure : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
         public int ErrorCode { get { return GetInt32At(16); } }
@@ -14043,7 +14045,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3WebSocketWriteFragmentEndFailure> m_target;
         #endregion
     }
-    public sealed class W3WebSocketWriteFragmentEndPending : TraceEvent
+    internal sealed class W3WebSocketWriteFragmentEndPending : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
 
@@ -14103,7 +14105,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3WebSocketWriteFragmentEndPending> m_target;
         #endregion
     }
-    public sealed class W3WebSocketWriteFragmentEndSuccess : TraceEvent
+    internal sealed class W3WebSocketWriteFragmentEndSuccess : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
         public int BytesSent { get { return GetInt32At(16); } }
@@ -14167,7 +14169,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3WebSocketWriteFragmentEndSuccess> m_target;
         #endregion
     }
-    public sealed class W3WebSocketWriteFragmentStart : TraceEvent
+    internal sealed class W3WebSocketWriteFragmentStart : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
         public int DataType { get { return GetInt32At(16); } }
@@ -14235,7 +14237,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         private event Action<W3WebSocketWriteFragmentStart> m_target;
         #endregion
     }
-    public sealed class W3WebSocketWriteIoFailed : TraceEvent
+    internal sealed class W3WebSocketWriteIoFailed : TraceEvent
     {
         public Guid ContextId { get { return GetGuidAt(0); } }
         public int ErrorCode { get { return GetInt32At(16); } }
@@ -14300,3 +14302,13 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.IIS_Trace
         #endregion
     }
 }
+
+
+
+
+
+
+
+
+
+

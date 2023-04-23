@@ -1,4 +1,6 @@
-﻿// Tests copied from dotnet/roslyn repo. Original source code can be found here:
+#nullable disable
+
+// Tests copied from dotnet/roslyn repo. Original source code can be found here:
 // https://github.com/dotnet/roslyn/blob/main/src/Dependencies/Collections/Internal/HashHelpers.cs
 
 using System;
@@ -113,3 +115,13 @@ namespace Microsoft.Diagnostics.FastSerialization
         }
     }
 }
+
+
+
+
+
+
+
+
+
+

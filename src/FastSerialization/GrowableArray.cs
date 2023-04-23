@@ -1,4 +1,6 @@
-﻿using System.Diagnostics;
+#nullable disable
+
+using System.Diagnostics;
 //     Copyright (c) Microsoft Corporation.  All rights reserved.
 // This file is best viewed using outline mode (Ctrl-M Ctrl-O)
 //
@@ -495,7 +497,7 @@ namespace System.Collections.Generic
         /// <summary>
         /// Enumerator for foreach interface
         /// </summary>
-        public struct GrowableArrayEnumerator
+        internal struct GrowableArrayEnumerator
         {
             /// <summary>
             /// implementation of IEnumerable interface
@@ -528,3 +530,13 @@ namespace System.Collections.Generic
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
