@@ -26,3 +26,4 @@ function UpdateSourceFiles([string]$Path)
 
 UpdateSourceFiles -Path 'src/TraceEvent'
 UpdateSourceFiles -Path 'src/FastSerialization'
+UpdateSourceFiles -Path 'src/Utilities'
