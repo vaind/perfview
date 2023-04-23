@@ -1,11 +1,13 @@
-﻿using System;
+#nullable disable
+
+using System;
 
 namespace Microsoft.Diagnostics.Tracing.AutomatedAnalysis
 {
     /// <summary>
     /// An issue identified by an Analyzer.
     /// </summary>
-    public class AnalyzerIssue
+    internal class AnalyzerIssue
     {
         /// <summary>
         /// Create a new instance of AnalyzerIssue.

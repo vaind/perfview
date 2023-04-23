@@ -1,4 +1,6 @@
-﻿//     Copyright (c) Microsoft Corporation.  All rights reserved.
+#nullable disable
+
+//     Copyright (c) Microsoft Corporation.  All rights reserved.
 using Microsoft.Diagnostics.Utilities;
 using System;
 using System.Collections.Generic;
@@ -15,7 +17,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers
     /// <br/>
     /// You will generally use this for the 'FormattedMessage' property of the event.  
     /// </summary>
-    public sealed class WppTraceEventParser : ExternalTraceEventParser
+    internal sealed class WppTraceEventParser : ExternalTraceEventParser
     {
         /// <summary>
         /// Construct a new WPPTraceEventParser that is attached to 'source'.   Once you do this the source

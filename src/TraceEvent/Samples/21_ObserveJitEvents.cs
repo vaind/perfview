@@ -1,4 +1,6 @@
-﻿using Microsoft.Diagnostics.Tracing;
+#nullable disable
+
+using Microsoft.Diagnostics.Tracing;
 using Microsoft.Diagnostics.Tracing.Parsers;
 using Microsoft.Diagnostics.Tracing.Parsers.Clr;
 using Microsoft.Diagnostics.Tracing.Session;
@@ -260,7 +262,7 @@ namespace TraceEventSamples
     /// <summary>
     /// Class containing a set of statistical values
     /// </summary>
-    public class MyStatistics
+    internal class MyStatistics
     {
         public int Count;
         public double Average;

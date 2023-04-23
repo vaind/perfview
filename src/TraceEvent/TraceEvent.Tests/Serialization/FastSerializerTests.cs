@@ -1,4 +1,6 @@
-﻿using FastSerialization;
+#nullable disable
+
+using FastSerialization;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -9,7 +11,7 @@ using Xunit;
 
 namespace TraceEventTests
 {
-    public class FastSerializerTests
+    internal class FastSerializerTests
     {
         [Fact]
         public void ParseEightByteStreamLabel()
@@ -86,7 +88,7 @@ namespace TraceEventTests
         }
     }
 
-    public sealed class SampleSerializableType : IFastSerializable
+    internal sealed class SampleSerializableType : IFastSerializable
     {
         public const int ConstantValue = 42;
 

@@ -1,4 +1,6 @@
-﻿//     Copyright (c) Microsoft Corporation.  All rights reserved.
+#nullable disable
+
+//     Copyright (c) Microsoft Corporation.  All rights reserved.
 // This file is best viewed using outline mode (Ctrl-M Ctrl-O)
 //
 // This program uses code hyperlinks available as part of the HyperAddin Visual Studio plug-in.
@@ -17,7 +19,7 @@ namespace FastSerialization
 #if STREAMREADER_PUBLIC
     public
 #endif
-    class MemoryStreamReader : IStreamReader
+    internal class MemoryStreamReader : IStreamReader
     {
         /// <summary>
         /// Create a IStreamReader (reads binary data) from a given byte buffer
@@ -236,7 +238,7 @@ namespace FastSerialization
 #if STREAMREADER_PUBLIC
     public
 #endif
-    class MemoryStreamWriter : IStreamWriter
+    internal class MemoryStreamWriter : IStreamWriter
     {
         /// <summary>
         /// Create IStreamWriter that writes its data to an internal byte[] buffer.  It will grow as needed. 
@@ -641,7 +643,7 @@ namespace FastSerialization
 #if STREAMREADER_PUBLIC
     public
 #endif
-    class IOStreamStreamReader : MemoryStreamReader, IDisposable
+    internal class IOStreamStreamReader : MemoryStreamReader, IDisposable
     {
         /// <summary>
         /// Create a new IOStreamStreamReader from the given file.  
@@ -993,7 +995,7 @@ namespace FastSerialization
     }
 
 #if PINNEDSTREAMREADER_TESTS
-    public static class PinnedStreamTests
+    internal static class PinnedStreamTests
     {
         public static void Tests()
         {
@@ -1078,7 +1080,7 @@ namespace FastSerialization
 #if STREAMREADER_PUBLIC
     public
 #endif
-    class IOStreamStreamWriter : MemoryStreamWriter, IDisposable
+    internal class IOStreamStreamWriter : MemoryStreamWriter, IDisposable
     {
         /// <summary>
         /// Create a IOStreamStreamWriter that writes its data to a given file that it creates

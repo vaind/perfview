@@ -1,8 +1,10 @@
-﻿
+#nullable disable
+
+
 #if false 
 namespace Microsoft.Diagnostics.Tracing
 {
-    class EventCounterSource : IDisposable
+    internal class EventCounterSource : IDisposable
     {
         public EventCounterSource(string eventSourceName) { }
         public EventCounterSource(Guid eventSourceGuid) { }
@@ -34,7 +36,7 @@ namespace Microsoft.Diagnostics.Tracing
         TraceEventSession m_session;
     }
 
-    class EventCounter
+    internal class EventCounter
     {
         public string Name { get; private set; }
         public int ProcessID { get; private set; }

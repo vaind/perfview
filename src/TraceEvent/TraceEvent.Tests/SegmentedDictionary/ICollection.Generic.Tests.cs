@@ -1,4 +1,6 @@
-﻿// Tests copied from dotnet/runtime repo. Original source code can be found here:
+#nullable disable
+
+// Tests copied from dotnet/runtime repo. Original source code can be found here:
 // https://github.com/dotnet/runtime/blob/main/src/libraries/Common/tests/System/Collections/ICollection.Generic.Tests.cs
 
 using System;
@@ -12,7 +14,7 @@ namespace PerfView.Collections.Tests
     /// Contains tests that ensure the correctness of any class that implements the generic
     /// ICollection interface
     /// </summary>
-    public abstract class ICollection_Generic_Tests<T> : IEnumerable_Generic_Tests<T>
+    internal abstract class ICollection_Generic_Tests<T> : IEnumerable_Generic_Tests<T>
     {
         #region ICollection<T> Helper Methods
 

@@ -1,4 +1,6 @@
-﻿using Microsoft.Diagnostics.Tracing;
+#nullable disable
+
+using Microsoft.Diagnostics.Tracing;
 using Microsoft.Diagnostics.Tracing.Parsers;
 using Microsoft.Diagnostics.Tracing.Parsers.Clr;
 using System;
@@ -8,7 +10,7 @@ using Xunit.Abstractions;
 
 namespace TraceEventTests
 {
-    public class ObservableTests : EtlTestBase
+    internal class ObservableTests : EtlTestBase
     {
         public ObservableTests(ITestOutputHelper output)
             : base(output)

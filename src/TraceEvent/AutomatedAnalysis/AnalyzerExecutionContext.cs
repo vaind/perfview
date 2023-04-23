@@ -1,9 +1,11 @@
-﻿namespace Microsoft.Diagnostics.Tracing.AutomatedAnalysis
+#nullable disable
+
+namespace Microsoft.Diagnostics.Tracing.AutomatedAnalysis
 {
     /// <summary>
     /// The top-level object used to store contextual information during Analyzer execution.
     /// </summary>
-    public sealed class AnalyzerExecutionContext
+    internal sealed class AnalyzerExecutionContext
     {
         private Configuration _configuration;
 

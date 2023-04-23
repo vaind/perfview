@@ -1,3 +1,5 @@
+#nullable disable
+
 //     Copyright (c) Microsoft Corporation.  All rights reserved.
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -169,7 +171,7 @@ namespace Microsoft.Diagnostics.Tracing.Utilities
             }
         }
 
-        public class HistoryValue
+        internal class HistoryValue
         {
             public TKey Key { get { return key; } }
             public long StartTime { get { return startTime; } }

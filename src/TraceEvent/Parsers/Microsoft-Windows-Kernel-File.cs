@@ -1,3 +1,5 @@
+#nullable disable
+
 using Microsoft.Diagnostics.Tracing.Parsers.Kernel;
 using System;
 
@@ -6,11 +8,11 @@ using System;
 namespace Microsoft.Diagnostics.Tracing.Parsers
 {
     [System.CodeDom.Compiler.GeneratedCode("traceparsergen", "2.0")]
-    public sealed class MicrosoftWindowsKernelFileTraceEventParser : TraceEventParser
+    internal sealed class MicrosoftWindowsKernelFileTraceEventParser : TraceEventParser
     {
         public static readonly string ProviderName = "Microsoft-Windows-Kernel-File";
         public static readonly Guid ProviderGuid = new Guid(unchecked((int)0xedd08927), unchecked((short)0x9cc4), unchecked((short)0x4e65), 0xb9, 0x70, 0xc2, 0x56, 0x0f, 0xb5, 0xc2, 0x89);
-        public enum Keywords : long
+        internal enum Keywords : long
         {
             Filename = 0x10,
             Fileio = 0x20,

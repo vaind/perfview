@@ -1,4 +1,6 @@
-﻿using Microsoft.Diagnostics.Tracing;
+#nullable disable
+
+using Microsoft.Diagnostics.Tracing;
 using Microsoft.Diagnostics.Tracing.Parsers;
 using Microsoft.Diagnostics.Tracing.Session;
 using System;
@@ -33,7 +35,7 @@ using System.Threading.Tasks;
 // 
 namespace TraceEventSamples
 {
-    public class KernelAndClrMonitorWin7
+    internal class KernelAndClrMonitorWin7
     {
         /// <summary>
         /// Where all the output goes.  

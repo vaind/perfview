@@ -1,3 +1,5 @@
+#nullable disable
+
 using Microsoft.Diagnostics.Utilities;
 using System;
 using System.Diagnostics;
@@ -10,11 +12,11 @@ namespace Microsoft.Diagnostics.Tracing.Parsers
     using Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsNDISPacketCapture;
 
     [System.CodeDom.Compiler.GeneratedCode("traceparsergen", "2.0")]
-    public sealed class MicrosoftWindowsNDISPacketCaptureTraceEventParser : TraceEventParser
+    internal sealed class MicrosoftWindowsNDISPacketCaptureTraceEventParser : TraceEventParser
     {
         public static string ProviderName = "Microsoft-Windows-NDIS-PacketCapture";
         public static Guid ProviderGuid = new Guid(unchecked((int)0x2ed6006e), unchecked((short)0x4729), unchecked((short)0x4609), 0xb4, 0x23, 0x3e, 0xe7, 0xbc, 0xd6, 0x78, 0xef);
-        public enum Keywords : long
+        internal enum Keywords : long
         {
             Ethernet8023 = 0x1,
             Wirelesswan = 0x200,
@@ -135,7 +137,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers
 
 namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsNDISPacketCapture
 {
-    public sealed class PacketFragmentArgs : TraceEvent
+    internal sealed class PacketFragmentArgs : TraceEvent
     {
         public int MiniportIfIndex { get { return GetInt32At(0); } }
         public int LowerIfIndex { get { return GetInt32At(4); } }
@@ -698,7 +700,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsNDISPacketCaptur
         #endregion
     }
 
-    public sealed class PacketMetaDataArgs : TraceEvent
+    internal sealed class PacketMetaDataArgs : TraceEvent
     {
         public int MiniportIfIndex { get { return GetInt32At(0); } }
         public int LowerIfIndex { get { return GetInt32At(4); } }

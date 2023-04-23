@@ -1,3 +1,5 @@
+#nullable disable
+
 //  Copyright (c) Microsoft Corporation.  All rights reserved.
 using System;
 using System.Collections.Generic;
@@ -1004,7 +1006,7 @@ namespace PEFile
 #if PEFILE_PUBLIC
     public
 #endif
-    enum MachineType : ushort
+    internal enum MachineType : ushort
     {
         /// <summary>
         /// Unknown machine type
@@ -1034,7 +1036,7 @@ namespace PEFile
 #if PEFILE_PUBLIC
     public
 #endif
-    struct IMAGE_DATA_DIRECTORY
+    internal struct IMAGE_DATA_DIRECTORY
     {
         /// <summary>
         /// The start of the data blob when the file is mapped into memory

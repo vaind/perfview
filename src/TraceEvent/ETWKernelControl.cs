@@ -1,3 +1,5 @@
+#nullable disable
+
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -12,7 +14,7 @@ using KernelKeywords = Microsoft.Diagnostics.Tracing.Parsers.KernelTraceEventPar
 
 namespace Microsoft.Diagnostics.Tracing
 {
-    public unsafe static class ETWKernelControl
+    internal unsafe static class ETWKernelControl
     {
         /// <summary>
         /// Start an ETW kernel session.
@@ -576,7 +578,7 @@ namespace Microsoft.Diagnostics.Tracing
     /// Used in StartKernelTrace to indicate the kernel events that should have stack traces collected for them.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct STACK_TRACING_EVENT_ID
+    internal struct STACK_TRACING_EVENT_ID
     {
         public Guid EventGuid;
         public byte Type;
@@ -593,7 +595,7 @@ namespace Microsoft.Diagnostics.Tracing
     /// Flags to influence what happens when ETL files are Merged.  
     /// </summary>
     [Flags]
-    public enum EVENT_TRACE_MERGE_EXTENDED_DATA
+    internal enum EVENT_TRACE_MERGE_EXTENDED_DATA
     {
         NONE = 0x00,
         IMAGEID = 0x01,

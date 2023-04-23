@@ -1,11 +1,13 @@
-﻿using Microsoft.Diagnostics.Tracing.AutomatedAnalysis;
+#nullable disable
+
+using Microsoft.Diagnostics.Tracing.AutomatedAnalysis;
 using System;
 using Xunit;
 using Xunit.Abstractions;
 
 namespace TraceEventTests
 {
-    public class AnalyzerExecutionScopeTests : TestBase
+    internal class AnalyzerExecutionScopeTests : TestBase
     {
         public AnalyzerExecutionScopeTests(ITestOutputHelper output)
             : base(output)
@@ -73,7 +75,7 @@ namespace TraceEventTests
         }
     }
 
-    public class AnalyzerExecutionScopeTests_AnalyzerOne : Analyzer
+    internal class AnalyzerExecutionScopeTests_AnalyzerOne : Analyzer
     {
         protected override AnalyzerExecutionResult Execute(AnalyzerExecutionContext executionContext)
         {
@@ -81,7 +83,7 @@ namespace TraceEventTests
         }
     }
 
-    public class AnalyzerExecutionScopeTests_AnalyzerTwo : Analyzer
+    internal class AnalyzerExecutionScopeTests_AnalyzerTwo : Analyzer
     {
         protected override AnalyzerExecutionResult Execute(AnalyzerExecutionContext executionContext)
         {

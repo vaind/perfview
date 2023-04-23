@@ -1,4 +1,6 @@
-﻿//  Copyright (c) Microsoft Corporation.  All rights reserved.
+#nullable disable
+
+//  Copyright (c) Microsoft Corporation.  All rights reserved.
 // Welcome to the Utilities code base. This _README.cs file is your table of contents.
 // 
 // You will notice that the code is littered with code: qualifiers. If you install the 'hyperAddin' for

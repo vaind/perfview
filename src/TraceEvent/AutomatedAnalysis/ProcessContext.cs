@@ -1,9 +1,11 @@
-﻿namespace Microsoft.Diagnostics.Tracing.AutomatedAnalysis
+#nullable disable
+
+namespace Microsoft.Diagnostics.Tracing.AutomatedAnalysis
 {
     /// <summary>
     /// The process-specific context associated with execution of ProcessAnalyzers.
     /// </summary>
-    public sealed class ProcessContext
+    internal sealed class ProcessContext
     {
         private StackView _cpuStacks;
         private StackView _blockedTimeStacks;

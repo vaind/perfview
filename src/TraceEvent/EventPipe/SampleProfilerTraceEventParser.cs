@@ -1,3 +1,5 @@
+#nullable disable
+
 using System;
 using System.Diagnostics;
 using System.Text;
@@ -5,7 +7,7 @@ using Address = System.UInt64;
 
 namespace Microsoft.Diagnostics.Tracing.EventPipe
 {
-    public sealed class SampleProfilerTraceEventParser : TraceEventParser
+    internal sealed class SampleProfilerTraceEventParser : TraceEventParser
     {
         // NOTE: It's not a real EventSource provider
         public static string ProviderName = "Microsoft-DotNETCore-SampleProfiler";
@@ -71,14 +73,14 @@ namespace Microsoft.Diagnostics.Tracing.EventPipe
         #endregion
     }
 
-    public enum ClrThreadSampleType
+    internal enum ClrThreadSampleType
     {
         Error = 0,
         External = 1,
         Managed = 2
     }
 
-    public sealed class ClrThreadSampleTraceData : TraceEvent
+    internal sealed class ClrThreadSampleTraceData : TraceEvent
     {
         public ClrThreadSampleType Type
         {
@@ -145,7 +147,7 @@ namespace Microsoft.Diagnostics.Tracing.EventPipe
         #endregion
     }
 
-    public sealed class ClrThreadStackWalkTraceData : TraceEvent
+    internal sealed class ClrThreadStackWalkTraceData : TraceEvent
     {
         public int FrameCount
         {

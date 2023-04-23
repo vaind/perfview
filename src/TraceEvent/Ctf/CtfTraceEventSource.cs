@@ -1,4 +1,6 @@
-﻿using Microsoft.Diagnostics.Tracing.Ctf;
+#nullable disable
+
+using Microsoft.Diagnostics.Tracing.Ctf;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -27,7 +29,7 @@ namespace Microsoft.Diagnostics.Tracing
         }
     }
 
-    public sealed unsafe class CtfTraceEventSource : TraceEventDispatcher, IDisposable
+    internal sealed unsafe class CtfTraceEventSource : TraceEventDispatcher, IDisposable
     {
         private string _filename;
         private ZipArchive _zip;

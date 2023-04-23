@@ -1,4 +1,6 @@
-﻿using Microsoft.Diagnostics.Tracing.TraceUtilities.FilterQueryExpression;
+#nullable disable
+
+using Microsoft.Diagnostics.Tracing.TraceUtilities.FilterQueryExpression;
 using System.Collections;
 using System.Collections.Generic;
 using TraceEventTests.FilterQueryExpressions;
@@ -6,7 +8,7 @@ using Xunit;
 
 namespace TraceEventTests
 {
-    public sealed class FilterQueryExpressionTests
+    internal sealed class FilterQueryExpressionTests
     {
         [Theory]
         [InlineData("Property == 1,001", "Property", "1,001")]

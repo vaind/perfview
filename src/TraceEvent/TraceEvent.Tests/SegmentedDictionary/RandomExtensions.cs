@@ -1,4 +1,6 @@
-﻿// Tests copied from dotnet/runtime repo. Original source code can be found here:
+#nullable disable
+
+// Tests copied from dotnet/runtime repo. Original source code can be found here:
 // https://github.com/dotnet/runtime/blob/main/src/libraries/Common/tests/System/RandomExtensions.cs
 
 using System;

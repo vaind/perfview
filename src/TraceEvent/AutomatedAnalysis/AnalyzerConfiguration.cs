@@ -1,11 +1,13 @@
-﻿using System.Collections.Generic;
+#nullable disable
+
+using System.Collections.Generic;
 
 namespace Microsoft.Diagnostics.Tracing.AutomatedAnalysis
 {
     /// <summary>
     /// Optional configuration information for an Analyzer.
     /// </summary>
-    public sealed class AnalyzerConfiguration
+    internal sealed class AnalyzerConfiguration
     {
         private Dictionary<string, string> _properties = new Dictionary<string, string>();
 

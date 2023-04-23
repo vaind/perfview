@@ -1,10 +1,12 @@
-﻿using Microsoft.Diagnostics.Utilities;
+#nullable disable
+
+using Microsoft.Diagnostics.Utilities;
 using System;
 using Xunit;
 
 namespace TraceEventTests
 {
-    public class CacheTests
+    internal class CacheTests
     {
         [Fact]
         public void ClearDisposesDisposableValues()

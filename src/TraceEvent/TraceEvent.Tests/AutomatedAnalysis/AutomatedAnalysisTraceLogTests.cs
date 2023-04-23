@@ -1,4 +1,6 @@
-﻿using Microsoft.Diagnostics.Symbols;
+#nullable disable
+
+using Microsoft.Diagnostics.Symbols;
 using Microsoft.Diagnostics.Tracing;
 using Microsoft.Diagnostics.Tracing.AutomatedAnalysis;
 using Microsoft.Diagnostics.Tracing.Etlx;
@@ -10,7 +12,7 @@ using Xunit.Abstractions;
 
 namespace TraceEventTests
 {
-    public sealed class AutomatedAnalysisTraceLogTests : EtlTestBase
+    internal sealed class AutomatedAnalysisTraceLogTests : EtlTestBase
     {
         public AutomatedAnalysisTraceLogTests(ITestOutputHelper output)
             : base(output)

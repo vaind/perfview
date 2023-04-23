@@ -1,4 +1,6 @@
-﻿// Copyright (c) Microsoft Corporation.  All rights reserved
+#nullable disable
+
+// Copyright (c) Microsoft Corporation.  All rights reserved
 // This file is best viewed using outline mode (Ctrl-M Ctrl-O)
 //
 using System;
@@ -19,7 +21,7 @@ namespace Microsoft.Diagnostics.Tracing.Stacks
     /// Often Histograms are sparse (most array elements are zero), so the representation
     /// is designed to optimized for this case (an array of non-zero index, value pairs). 
     /// </summary>
-    public class Histogram : IEnumerable<float>
+    internal class Histogram : IEnumerable<float>
     {
         /// <summary>
         /// Create a new histogram.  Every histogram needs a controller but these controllers 
@@ -219,7 +221,7 @@ namespace Microsoft.Diagnostics.Tracing.Stacks
     /// - Converting a histogram to its string representation see (<see cref="GetDisplayString"/>)
     /// - Managing the size and scale of histograms and their corresponding display strings
     /// </summary>
-    public abstract class HistogramController
+    internal abstract class HistogramController
     {
         /// <summary>
         /// The scale factor for histograms controlled by this HistogramController.
@@ -405,7 +407,7 @@ namespace Microsoft.Diagnostics.Tracing.Stacks
     /// <summary>
     /// An enum representing a displayed histogram bucket (one character in a histogram string).
     /// </summary>
-    public enum HistogramCharacterIndex
+    internal enum HistogramCharacterIndex
     {
         /// <summary>
         /// A HistogramCharacterIndex can be used to represent error conditions 
@@ -416,7 +418,7 @@ namespace Microsoft.Diagnostics.Tracing.Stacks
     /// <summary>
     /// A <see cref="HistogramController"/> that groups histograms by scenarios.
     /// </summary>
-    public class ScenarioHistogramController : HistogramController
+    internal class ScenarioHistogramController : HistogramController
     {
         /// <summary>
         /// Initialize a new ScenarioHistogramController.
@@ -602,7 +604,7 @@ namespace Microsoft.Diagnostics.Tracing.Stacks
     /// (basically everything except the array of metrics itself.   For time this is the
     /// start and end time  
     /// </summary>
-    public class TimeHistogramController : HistogramController
+    internal class TimeHistogramController : HistogramController
     {
         /// <summary>
         /// Create a new TimeHistogramController.

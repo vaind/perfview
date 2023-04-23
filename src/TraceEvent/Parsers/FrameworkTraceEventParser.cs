@@ -1,3 +1,5 @@
+#nullable disable
+
 using System;
 using System.Diagnostics;
 using System.Text;
@@ -10,11 +12,11 @@ namespace Microsoft.Diagnostics.Tracing.Parsers
     using Microsoft.Diagnostics.Tracing.Parsers.FrameworkEventSource;
 
     [System.CodeDom.Compiler.GeneratedCode("traceparsergen", "2.0")]
-    public sealed class FrameworkEventSourceTraceEventParser : TraceEventParser
+    internal sealed class FrameworkEventSourceTraceEventParser : TraceEventParser
     {
         public static readonly string ProviderName = "FrameworkEventSource";
         public static readonly Guid ProviderGuid = new Guid(unchecked((int)0x8e9f5090), unchecked((short)0x2d75), unchecked((short)0x4d03), 0x8a, 0x81, 0xe5, 0xaf, 0xbf, 0x85, 0xda, 0xf1);
-        public enum Keywords : long
+        internal enum Keywords : long
         {
             Loader = 0x1,
             ThreadPool = 0x2,
@@ -2097,7 +2099,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers
 
 namespace Microsoft.Diagnostics.Tracing.Parsers.FrameworkEventSource
 {
-    public sealed class ActivatorCreateInstanceArgs : TraceEvent
+    internal sealed class ActivatorCreateInstanceArgs : TraceEvent
     {
         public string typeName { get { return GetUnicodeStringAt(0); } }
 
@@ -2157,7 +2159,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.FrameworkEventSource
         private event Action<ActivatorCreateInstanceArgs> m_target;
         #endregion
     }
-    public sealed class ActivatorCreateInstanceTArgs : TraceEvent
+    internal sealed class ActivatorCreateInstanceTArgs : TraceEvent
     {
         public string typeName { get { return GetUnicodeStringAt(0); } }
 
@@ -2217,7 +2219,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.FrameworkEventSource
         private event Action<ActivatorCreateInstanceTArgs> m_target;
         #endregion
     }
-    public sealed class ArrayCreateInstanceArgs : TraceEvent
+    internal sealed class ArrayCreateInstanceArgs : TraceEvent
     {
         public string typeName { get { return GetUnicodeStringAt(0); } }
 
@@ -2277,7 +2279,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.FrameworkEventSource
         private event Action<ArrayCreateInstanceArgs> m_target;
         #endregion
     }
-    public sealed class AssemblyGetTypeArgs : TraceEvent
+    internal sealed class AssemblyGetTypeArgs : TraceEvent
     {
         public string typeName { get { return GetUnicodeStringAt(0); } }
 
@@ -2337,7 +2339,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.FrameworkEventSource
         private event Action<AssemblyGetTypeArgs> m_target;
         #endregion
     }
-    public sealed class BeginCustomPropertyImplGetValueArgs : TraceEvent
+    internal sealed class BeginCustomPropertyImplGetValueArgs : TraceEvent
     {
         public string typeName { get { return GetUnicodeStringAt(0); } }
         public string propertyTypeName { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -2401,7 +2403,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.FrameworkEventSource
         private event Action<BeginCustomPropertyImplGetValueArgs> m_target;
         #endregion
     }
-    public sealed class BeginCustomPropertyImplGetValueIndexValueArgs : TraceEvent
+    internal sealed class BeginCustomPropertyImplGetValueIndexValueArgs : TraceEvent
     {
         public string typeName { get { return GetUnicodeStringAt(0); } }
         public string propertyTypeName { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -2465,7 +2467,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.FrameworkEventSource
         private event Action<BeginCustomPropertyImplGetValueIndexValueArgs> m_target;
         #endregion
     }
-    public sealed class BeginCustomPropertyImplSetValueArgs : TraceEvent
+    internal sealed class BeginCustomPropertyImplSetValueArgs : TraceEvent
     {
         public string typeName { get { return GetUnicodeStringAt(0); } }
         public string valueTypeName { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -2529,7 +2531,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.FrameworkEventSource
         private event Action<BeginCustomPropertyImplSetValueArgs> m_target;
         #endregion
     }
-    public sealed class BeginCustomPropertyImplSetValueIndexValueArgs : TraceEvent
+    internal sealed class BeginCustomPropertyImplSetValueIndexValueArgs : TraceEvent
     {
         public string typeName { get { return GetUnicodeStringAt(0); } }
         public string propertyTypeName { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -2597,7 +2599,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.FrameworkEventSource
         private event Action<BeginCustomPropertyImplSetValueIndexValueArgs> m_target;
         #endregion
     }
-    public sealed class BeginEnumFormatArgs : TraceEvent
+    internal sealed class BeginEnumFormatArgs : TraceEvent
     {
         public string typeName { get { return GetUnicodeStringAt(0); } }
 
@@ -2657,7 +2659,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.FrameworkEventSource
         private event Action<BeginEnumFormatArgs> m_target;
         #endregion
     }
-    public sealed class BeginGetRuntimeConstructorsArgs : TraceEvent
+    internal sealed class BeginGetRuntimeConstructorsArgs : TraceEvent
     {
         public string typeName { get { return GetUnicodeStringAt(0); } }
 
@@ -2717,7 +2719,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.FrameworkEventSource
         private event Action<BeginGetRuntimeConstructorsArgs> m_target;
         #endregion
     }
-    public sealed class BeginGetRuntimeEventArgs : TraceEvent
+    internal sealed class BeginGetRuntimeEventArgs : TraceEvent
     {
         public string typeName { get { return GetUnicodeStringAt(0); } }
         public new string eventName { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -2781,7 +2783,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.FrameworkEventSource
         private event Action<BeginGetRuntimeEventArgs> m_target;
         #endregion
     }
-    public sealed class BeginGetRuntimeEventsArgs : TraceEvent
+    internal sealed class BeginGetRuntimeEventsArgs : TraceEvent
     {
         public string typeName { get { return GetUnicodeStringAt(0); } }
 
@@ -2841,7 +2843,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.FrameworkEventSource
         private event Action<BeginGetRuntimeEventsArgs> m_target;
         #endregion
     }
-    public sealed class BeginGetRuntimeFieldArgs : TraceEvent
+    internal sealed class BeginGetRuntimeFieldArgs : TraceEvent
     {
         public string typeName { get { return GetUnicodeStringAt(0); } }
         public string fieldName { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -2905,7 +2907,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.FrameworkEventSource
         private event Action<BeginGetRuntimeFieldArgs> m_target;
         #endregion
     }
-    public sealed class BeginGetRuntimeFieldsArgs : TraceEvent
+    internal sealed class BeginGetRuntimeFieldsArgs : TraceEvent
     {
         public string typeName { get { return GetUnicodeStringAt(0); } }
 
@@ -2965,7 +2967,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.FrameworkEventSource
         private event Action<BeginGetRuntimeFieldsArgs> m_target;
         #endregion
     }
-    public sealed class BeginGetRuntimeMembersArgs : TraceEvent
+    internal sealed class BeginGetRuntimeMembersArgs : TraceEvent
     {
         public string typeName { get { return GetUnicodeStringAt(0); } }
 
@@ -3025,7 +3027,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.FrameworkEventSource
         private event Action<BeginGetRuntimeMembersArgs> m_target;
         #endregion
     }
-    public sealed class BeginGetRuntimeMethodArgs : TraceEvent
+    internal sealed class BeginGetRuntimeMethodArgs : TraceEvent
     {
         public string typeName { get { return GetUnicodeStringAt(0); } }
         public string methodName { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -3089,7 +3091,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.FrameworkEventSource
         private event Action<BeginGetRuntimeMethodArgs> m_target;
         #endregion
     }
-    public sealed class BeginGetRuntimeMethodsArgs : TraceEvent
+    internal sealed class BeginGetRuntimeMethodsArgs : TraceEvent
     {
         public string typeName { get { return GetUnicodeStringAt(0); } }
 
@@ -3149,7 +3151,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.FrameworkEventSource
         private event Action<BeginGetRuntimeMethodsArgs> m_target;
         #endregion
     }
-    public sealed class BeginGetRuntimePropertiesArgs : TraceEvent
+    internal sealed class BeginGetRuntimePropertiesArgs : TraceEvent
     {
         public string typeName { get { return GetUnicodeStringAt(0); } }
 
@@ -3209,7 +3211,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.FrameworkEventSource
         private event Action<BeginGetRuntimePropertiesArgs> m_target;
         #endregion
     }
-    public sealed class BeginGetRuntimePropertyArgs : TraceEvent
+    internal sealed class BeginGetRuntimePropertyArgs : TraceEvent
     {
         public string typeName { get { return GetUnicodeStringAt(0); } }
         public string propertyName { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -3273,7 +3275,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.FrameworkEventSource
         private event Action<BeginGetRuntimePropertyArgs> m_target;
         #endregion
     }
-    public sealed class BeginICustomPropertyProviderCreateIndexedPropertyArgs : TraceEvent
+    internal sealed class BeginICustomPropertyProviderCreateIndexedPropertyArgs : TraceEvent
     {
         public string typeName { get { return GetUnicodeStringAt(0); } }
         public string propertyName { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -3341,7 +3343,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.FrameworkEventSource
         private event Action<BeginICustomPropertyProviderCreateIndexedPropertyArgs> m_target;
         #endregion
     }
-    public sealed class BeginICustomPropertyProviderCreatePropertyArgs : TraceEvent
+    internal sealed class BeginICustomPropertyProviderCreatePropertyArgs : TraceEvent
     {
         public string typeName { get { return GetUnicodeStringAt(0); } }
         public string propertyName { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -3405,7 +3407,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.FrameworkEventSource
         private event Action<BeginICustomPropertyProviderCreatePropertyArgs> m_target;
         #endregion
     }
-    public sealed class BeginMarshalOffsetOfArgs : TraceEvent
+    internal sealed class BeginMarshalOffsetOfArgs : TraceEvent
     {
         public string typeName { get { return GetUnicodeStringAt(0); } }
         public string fieldName { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -3469,7 +3471,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.FrameworkEventSource
         private event Action<BeginMarshalOffsetOfArgs> m_target;
         #endregion
     }
-    public sealed class BeginMarshalPtrToStructureArgs : TraceEvent
+    internal sealed class BeginMarshalPtrToStructureArgs : TraceEvent
     {
         public string typeName { get { return GetUnicodeStringAt(0); } }
 
@@ -3529,7 +3531,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.FrameworkEventSource
         private event Action<BeginMarshalPtrToStructureArgs> m_target;
         #endregion
     }
-    public sealed class BeginMethodInfoCreateDelegateArgs : TraceEvent
+    internal sealed class BeginMethodInfoCreateDelegateArgs : TraceEvent
     {
         public string typeName { get { return GetUnicodeStringAt(0); } }
         public string methodName { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -3597,7 +3599,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.FrameworkEventSource
         private event Action<BeginMethodInfoCreateDelegateArgs> m_target;
         #endregion
     }
-    public sealed class BeginTypeAssemblyQualifiedNameArgs : TraceEvent
+    internal sealed class BeginTypeAssemblyQualifiedNameArgs : TraceEvent
     {
         public string typeName { get { return GetUnicodeStringAt(0); } }
 
@@ -3657,7 +3659,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.FrameworkEventSource
         private event Action<BeginTypeAssemblyQualifiedNameArgs> m_target;
         #endregion
     }
-    public sealed class ConstructorInfoInvokeArgs : TraceEvent
+    internal sealed class ConstructorInfoInvokeArgs : TraceEvent
     {
         public string typeName { get { return GetUnicodeStringAt(0); } }
         public string methodName { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -3721,7 +3723,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.FrameworkEventSource
         private event Action<ConstructorInfoInvokeArgs> m_target;
         #endregion
     }
-    public sealed class EndCreateIReferenceArgs : TraceEvent
+    internal sealed class EndCreateIReferenceArgs : TraceEvent
     {
         public string typeName { get { return GetUnicodeStringAt(0); } }
 
@@ -3781,7 +3783,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.FrameworkEventSource
         private event Action<EndCreateIReferenceArgs> m_target;
         #endregion
     }
-    public sealed class EndCustomPropertyImplGetValueArgs : TraceEvent
+    internal sealed class EndCustomPropertyImplGetValueArgs : TraceEvent
     {
         public string typeName { get { return GetUnicodeStringAt(0); } }
         public string propertyTypeName { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -3845,7 +3847,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.FrameworkEventSource
         private event Action<EndCustomPropertyImplGetValueArgs> m_target;
         #endregion
     }
-    public sealed class EndCustomPropertyImplGetValueIndexValueArgs : TraceEvent
+    internal sealed class EndCustomPropertyImplGetValueIndexValueArgs : TraceEvent
     {
         public string typeName { get { return GetUnicodeStringAt(0); } }
         public string propertyTypeName { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -3909,7 +3911,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.FrameworkEventSource
         private event Action<EndCustomPropertyImplGetValueIndexValueArgs> m_target;
         #endregion
     }
-    public sealed class EndCustomPropertyImplSetValueArgs : TraceEvent
+    internal sealed class EndCustomPropertyImplSetValueArgs : TraceEvent
     {
         public string typeName { get { return GetUnicodeStringAt(0); } }
         public string valueTypeName { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -3973,7 +3975,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.FrameworkEventSource
         private event Action<EndCustomPropertyImplSetValueArgs> m_target;
         #endregion
     }
-    public sealed class EndCustomPropertyImplSetValueIndexValueArgs : TraceEvent
+    internal sealed class EndCustomPropertyImplSetValueIndexValueArgs : TraceEvent
     {
         public string typeName { get { return GetUnicodeStringAt(0); } }
         public string propertyTypeName { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -4041,7 +4043,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.FrameworkEventSource
         private event Action<EndCustomPropertyImplSetValueIndexValueArgs> m_target;
         #endregion
     }
-    public sealed class EndEnumFormatArgs : TraceEvent
+    internal sealed class EndEnumFormatArgs : TraceEvent
     {
         public string typeName { get { return GetUnicodeStringAt(0); } }
 
@@ -4101,7 +4103,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.FrameworkEventSource
         private event Action<EndEnumFormatArgs> m_target;
         #endregion
     }
-    public sealed class EndGetFieldFromHandleArgs : TraceEvent
+    internal sealed class EndGetFieldFromHandleArgs : TraceEvent
     {
         public string typeName { get { return GetUnicodeStringAt(0); } }
         public string field { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -4165,7 +4167,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.FrameworkEventSource
         private event Action<EndGetFieldFromHandleArgs> m_target;
         #endregion
     }
-    public sealed class EndGetMethodFromHandleArgs : TraceEvent
+    internal sealed class EndGetMethodFromHandleArgs : TraceEvent
     {
         public string typeName { get { return GetUnicodeStringAt(0); } }
         public string method { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -4229,7 +4231,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.FrameworkEventSource
         private event Action<EndGetMethodFromHandleArgs> m_target;
         #endregion
     }
-    public sealed class EndGetRuntimeConstructorsArgs : TraceEvent
+    internal sealed class EndGetRuntimeConstructorsArgs : TraceEvent
     {
         public string typeName { get { return GetUnicodeStringAt(0); } }
 
@@ -4289,7 +4291,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.FrameworkEventSource
         private event Action<EndGetRuntimeConstructorsArgs> m_target;
         #endregion
     }
-    public sealed class EndGetRuntimeEventArgs : TraceEvent
+    internal sealed class EndGetRuntimeEventArgs : TraceEvent
     {
         public string typeName { get { return GetUnicodeStringAt(0); } }
         public new string eventName { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -4353,7 +4355,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.FrameworkEventSource
         private event Action<EndGetRuntimeEventArgs> m_target;
         #endregion
     }
-    public sealed class EndGetRuntimeEventsArgs : TraceEvent
+    internal sealed class EndGetRuntimeEventsArgs : TraceEvent
     {
         public string typeName { get { return GetUnicodeStringAt(0); } }
 
@@ -4413,7 +4415,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.FrameworkEventSource
         private event Action<EndGetRuntimeEventsArgs> m_target;
         #endregion
     }
-    public sealed class EndGetRuntimeFieldArgs : TraceEvent
+    internal sealed class EndGetRuntimeFieldArgs : TraceEvent
     {
         public string typeName { get { return GetUnicodeStringAt(0); } }
         public string fieldName { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -4477,7 +4479,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.FrameworkEventSource
         private event Action<EndGetRuntimeFieldArgs> m_target;
         #endregion
     }
-    public sealed class EndGetRuntimeFieldsArgs : TraceEvent
+    internal sealed class EndGetRuntimeFieldsArgs : TraceEvent
     {
         public string typeName { get { return GetUnicodeStringAt(0); } }
 
@@ -4537,7 +4539,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.FrameworkEventSource
         private event Action<EndGetRuntimeFieldsArgs> m_target;
         #endregion
     }
-    public sealed class EndGetRuntimeMembersArgs : TraceEvent
+    internal sealed class EndGetRuntimeMembersArgs : TraceEvent
     {
         public string typeName { get { return GetUnicodeStringAt(0); } }
 
@@ -4597,7 +4599,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.FrameworkEventSource
         private event Action<EndGetRuntimeMembersArgs> m_target;
         #endregion
     }
-    public sealed class EndGetRuntimeMethodArgs : TraceEvent
+    internal sealed class EndGetRuntimeMethodArgs : TraceEvent
     {
         public string typeName { get { return GetUnicodeStringAt(0); } }
         public string methodName { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -4661,7 +4663,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.FrameworkEventSource
         private event Action<EndGetRuntimeMethodArgs> m_target;
         #endregion
     }
-    public sealed class EndGetRuntimeMethodsArgs : TraceEvent
+    internal sealed class EndGetRuntimeMethodsArgs : TraceEvent
     {
         public string typeName { get { return GetUnicodeStringAt(0); } }
 
@@ -4721,7 +4723,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.FrameworkEventSource
         private event Action<EndGetRuntimeMethodsArgs> m_target;
         #endregion
     }
-    public sealed class EndGetRuntimePropertiesArgs : TraceEvent
+    internal sealed class EndGetRuntimePropertiesArgs : TraceEvent
     {
         public string typeName { get { return GetUnicodeStringAt(0); } }
 
@@ -4781,7 +4783,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.FrameworkEventSource
         private event Action<EndGetRuntimePropertiesArgs> m_target;
         #endregion
     }
-    public sealed class EndGetRuntimePropertyArgs : TraceEvent
+    internal sealed class EndGetRuntimePropertyArgs : TraceEvent
     {
         public string typeName { get { return GetUnicodeStringAt(0); } }
         public string propertyName { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -4845,7 +4847,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.FrameworkEventSource
         private event Action<EndGetRuntimePropertyArgs> m_target;
         #endregion
     }
-    public sealed class EndICustomPropertyProviderCreateIndexedPropertyArgs : TraceEvent
+    internal sealed class EndICustomPropertyProviderCreateIndexedPropertyArgs : TraceEvent
     {
         public string typeName { get { return GetUnicodeStringAt(0); } }
         public string propertyName { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -4913,7 +4915,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.FrameworkEventSource
         private event Action<EndICustomPropertyProviderCreateIndexedPropertyArgs> m_target;
         #endregion
     }
-    public sealed class EndICustomPropertyProviderCreatePropertyArgs : TraceEvent
+    internal sealed class EndICustomPropertyProviderCreatePropertyArgs : TraceEvent
     {
         public string typeName { get { return GetUnicodeStringAt(0); } }
         public string propertyName { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -4977,7 +4979,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.FrameworkEventSource
         private event Action<EndICustomPropertyProviderCreatePropertyArgs> m_target;
         #endregion
     }
-    public sealed class EndMarshalOffsetOfArgs : TraceEvent
+    internal sealed class EndMarshalOffsetOfArgs : TraceEvent
     {
         public string typeName { get { return GetUnicodeStringAt(0); } }
         public string fieldName { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -5041,7 +5043,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.FrameworkEventSource
         private event Action<EndMarshalOffsetOfArgs> m_target;
         #endregion
     }
-    public sealed class EndMarshalPtrToStructureArgs : TraceEvent
+    internal sealed class EndMarshalPtrToStructureArgs : TraceEvent
     {
         public string typeName { get { return GetUnicodeStringAt(0); } }
 
@@ -5101,7 +5103,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.FrameworkEventSource
         private event Action<EndMarshalPtrToStructureArgs> m_target;
         #endregion
     }
-    public sealed class EndMethodInfoCreateDelegateArgs : TraceEvent
+    internal sealed class EndMethodInfoCreateDelegateArgs : TraceEvent
     {
         public string typeName { get { return GetUnicodeStringAt(0); } }
         public string methodName { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -5169,7 +5171,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.FrameworkEventSource
         private event Action<EndMethodInfoCreateDelegateArgs> m_target;
         #endregion
     }
-    public sealed class EndTypeAssemblyQualifiedNameArgs : TraceEvent
+    internal sealed class EndTypeAssemblyQualifiedNameArgs : TraceEvent
     {
         public string typeName { get { return GetUnicodeStringAt(0); } }
 
@@ -5229,7 +5231,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.FrameworkEventSource
         private event Action<EndTypeAssemblyQualifiedNameArgs> m_target;
         #endregion
     }
-    public sealed class EnumGetNameArgs : TraceEvent
+    internal sealed class EnumGetNameArgs : TraceEvent
     {
         public string typeName { get { return GetUnicodeStringAt(0); } }
 
@@ -5289,7 +5291,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.FrameworkEventSource
         private event Action<EnumGetNameArgs> m_target;
         #endregion
     }
-    public sealed class EnumGetNamesArgs : TraceEvent
+    internal sealed class EnumGetNamesArgs : TraceEvent
     {
         public string typeName { get { return GetUnicodeStringAt(0); } }
 
@@ -5349,7 +5351,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.FrameworkEventSource
         private event Action<EnumGetNamesArgs> m_target;
         #endregion
     }
-    public sealed class EnumGetUnderlyingTypeArgs : TraceEvent
+    internal sealed class EnumGetUnderlyingTypeArgs : TraceEvent
     {
         public string typeName { get { return GetUnicodeStringAt(0); } }
 
@@ -5409,7 +5411,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.FrameworkEventSource
         private event Action<EnumGetUnderlyingTypeArgs> m_target;
         #endregion
     }
-    public sealed class EnumGetValuesArgs : TraceEvent
+    internal sealed class EnumGetValuesArgs : TraceEvent
     {
         public string typeName { get { return GetUnicodeStringAt(0); } }
 
@@ -5469,7 +5471,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.FrameworkEventSource
         private event Action<EnumGetValuesArgs> m_target;
         #endregion
     }
-    public sealed class EnumIsDefinedArgs : TraceEvent
+    internal sealed class EnumIsDefinedArgs : TraceEvent
     {
         public string typeName { get { return GetUnicodeStringAt(0); } }
 
@@ -5529,7 +5531,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.FrameworkEventSource
         private event Action<EnumIsDefinedArgs> m_target;
         #endregion
     }
-    public sealed class EnumToObjectArgs : TraceEvent
+    internal sealed class EnumToObjectArgs : TraceEvent
     {
         public string typeName { get { return GetUnicodeStringAt(0); } }
 
@@ -5589,7 +5591,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.FrameworkEventSource
         private event Action<EnumToObjectArgs> m_target;
         #endregion
     }
-    public sealed class EnumTryParseEnumArgs : TraceEvent
+    internal sealed class EnumTryParseEnumArgs : TraceEvent
     {
         public string typeName { get { return GetUnicodeStringAt(0); } }
         public string value { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -5653,7 +5655,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.FrameworkEventSource
         private event Action<EnumTryParseEnumArgs> m_target;
         #endregion
     }
-    public sealed class EventNameArgs : TraceEvent
+    internal sealed class EventNameArgs : TraceEvent
     {
         public string typeName { get { return GetUnicodeStringAt(0); } }
         public new string eventName { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -5717,7 +5719,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.FrameworkEventSource
         private event Action<EventNameArgs> m_target;
         #endregion
     }
-    public sealed class FieldNameArgs : TraceEvent
+    internal sealed class FieldNameArgs : TraceEvent
     {
         public string typeName { get { return GetUnicodeStringAt(0); } }
         public string fieldName { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -5781,7 +5783,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.FrameworkEventSource
         private event Action<FieldNameArgs> m_target;
         #endregion
     }
-    public sealed class BeginGetRequestStreamArgs : TraceEvent
+    internal sealed class BeginGetRequestStreamArgs : TraceEvent
     {
         public long id { get { return GetInt64At(0); } }
         public string uri { get { return GetUnicodeStringAt(8); } }
@@ -5845,7 +5847,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.FrameworkEventSource
         private event Action<BeginGetRequestStreamArgs> m_target;
         #endregion
     }
-    public sealed class EndGetRequestStreamArgs : TraceEvent
+    internal sealed class EndGetRequestStreamArgs : TraceEvent
     {
         public long id { get { return GetInt64At(0); } }
 
@@ -5905,7 +5907,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.FrameworkEventSource
         private event Action<EndGetRequestStreamArgs> m_target;
         #endregion
     }
-    public sealed class BeginGetResponseArgs : TraceEvent
+    internal sealed class BeginGetResponseArgs : TraceEvent
     {
         public long id { get { return GetInt64At(0); } }
         public string uri { get { return GetUnicodeStringAt(8); } }
@@ -5969,7 +5971,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.FrameworkEventSource
         private event Action<BeginGetResponseArgs> m_target;
         #endregion
     }
-    public sealed class EndGetResponseArgs : TraceEvent
+    internal sealed class EndGetResponseArgs : TraceEvent
     {
         public long id { get { return GetInt64At(0); } }
 
@@ -6029,7 +6031,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.FrameworkEventSource
         private event Action<EndGetResponseArgs> m_target;
         #endregion
     }
-    public sealed class IntrospectionExtensionsGetTypeInfoArgs : TraceEvent
+    internal sealed class IntrospectionExtensionsGetTypeInfoArgs : TraceEvent
     {
         public string typeName { get { return GetUnicodeStringAt(0); } }
 
@@ -6089,7 +6091,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.FrameworkEventSource
         private event Action<IntrospectionExtensionsGetTypeInfoArgs> m_target;
         #endregion
     }
-    public sealed class ManagedActivationFactoryConstructorArgs : TraceEvent
+    internal sealed class ManagedActivationFactoryConstructorArgs : TraceEvent
     {
         public string typeName { get { return GetUnicodeStringAt(0); } }
 
@@ -6149,7 +6151,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.FrameworkEventSource
         private event Action<ManagedActivationFactoryConstructorArgs> m_target;
         #endregion
     }
-    public sealed class MarshalAsAnyConvertToManagedArgs : TraceEvent
+    internal sealed class MarshalAsAnyConvertToManagedArgs : TraceEvent
     {
         public string typeName { get { return GetUnicodeStringAt(0); } }
 
@@ -6209,7 +6211,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.FrameworkEventSource
         private event Action<MarshalAsAnyConvertToManagedArgs> m_target;
         #endregion
     }
-    public sealed class MarshalAsAnyConvertToNativeArgs : TraceEvent
+    internal sealed class MarshalAsAnyConvertToNativeArgs : TraceEvent
     {
         public string typeName { get { return GetUnicodeStringAt(0); } }
 
@@ -6269,7 +6271,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.FrameworkEventSource
         private event Action<MarshalAsAnyConvertToNativeArgs> m_target;
         #endregion
     }
-    public sealed class MarshalCreateAggregatedObjectArgs : TraceEvent
+    internal sealed class MarshalCreateAggregatedObjectArgs : TraceEvent
     {
         public string typeName { get { return GetUnicodeStringAt(0); } }
 
@@ -6329,7 +6331,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.FrameworkEventSource
         private event Action<MarshalCreateAggregatedObjectArgs> m_target;
         #endregion
     }
-    public sealed class MarshalCreateWrapperOfTypeArgs : TraceEvent
+    internal sealed class MarshalCreateWrapperOfTypeArgs : TraceEvent
     {
         public string comObjectTypeName { get { return GetUnicodeStringAt(0); } }
         public string wrapperTypeName { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -6393,7 +6395,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.FrameworkEventSource
         private event Action<MarshalCreateWrapperOfTypeArgs> m_target;
         #endregion
     }
-    public sealed class MarshalDestroyStructureArgs : TraceEvent
+    internal sealed class MarshalDestroyStructureArgs : TraceEvent
     {
         public string typeName { get { return GetUnicodeStringAt(0); } }
 
@@ -6453,7 +6455,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.FrameworkEventSource
         private event Action<MarshalDestroyStructureArgs> m_target;
         #endregion
     }
-    public sealed class MarshalGetComInterfaceForObjectArgs : TraceEvent
+    internal sealed class MarshalGetComInterfaceForObjectArgs : TraceEvent
     {
         public string objectTypeName { get { return GetUnicodeStringAt(0); } }
         public string typeName { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -6521,7 +6523,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.FrameworkEventSource
         private event Action<MarshalGetComInterfaceForObjectArgs> m_target;
         #endregion
     }
-    public sealed class MarshalGetDelegateForFunctionPointerArgs : TraceEvent
+    internal sealed class MarshalGetDelegateForFunctionPointerArgs : TraceEvent
     {
         public string typeName { get { return GetUnicodeStringAt(0); } }
 
@@ -6581,7 +6583,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.FrameworkEventSource
         private event Action<MarshalGetDelegateForFunctionPointerArgs> m_target;
         #endregion
     }
-    public sealed class MarshalGetFunctionPointerForDelegateArgs : TraceEvent
+    internal sealed class MarshalGetFunctionPointerForDelegateArgs : TraceEvent
     {
         public string typeName { get { return GetUnicodeStringAt(0); } }
         public string methodName { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -6645,7 +6647,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.FrameworkEventSource
         private event Action<MarshalGetFunctionPointerForDelegateArgs> m_target;
         #endregion
     }
-    public sealed class MarshalGetIUnknownForObjectArgs : TraceEvent
+    internal sealed class MarshalGetIUnknownForObjectArgs : TraceEvent
     {
         public string typeName { get { return GetUnicodeStringAt(0); } }
 
@@ -6705,7 +6707,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.FrameworkEventSource
         private event Action<MarshalGetIUnknownForObjectArgs> m_target;
         #endregion
     }
-    public sealed class MarshalGetNativeVariantForObjectArgs : TraceEvent
+    internal sealed class MarshalGetNativeVariantForObjectArgs : TraceEvent
     {
         public string typeName { get { return GetUnicodeStringAt(0); } }
 
@@ -6765,7 +6767,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.FrameworkEventSource
         private event Action<MarshalGetNativeVariantForObjectArgs> m_target;
         #endregion
     }
-    public sealed class MarshalGetObjectForIUnknownArgs : TraceEvent
+    internal sealed class MarshalGetObjectForIUnknownArgs : TraceEvent
     {
         public string typeName { get { return GetUnicodeStringAt(0); } }
 
@@ -6825,7 +6827,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.FrameworkEventSource
         private event Action<MarshalGetObjectForIUnknownArgs> m_target;
         #endregion
     }
-    public sealed class MarshalGetObjectForNativeVariantArgs : TraceEvent
+    internal sealed class MarshalGetObjectForNativeVariantArgs : TraceEvent
     {
         public string typeName { get { return GetUnicodeStringAt(0); } }
 
@@ -6885,7 +6887,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.FrameworkEventSource
         private event Action<MarshalGetObjectForNativeVariantArgs> m_target;
         #endregion
     }
-    public sealed class MarshalGetObjectsForNativeVariantsArgs : TraceEvent
+    internal sealed class MarshalGetObjectsForNativeVariantsArgs : TraceEvent
     {
         public string typeNames { get { return GetUnicodeStringAt(0); } }
 
@@ -6945,7 +6947,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.FrameworkEventSource
         private event Action<MarshalGetObjectsForNativeVariantsArgs> m_target;
         #endregion
     }
-    public sealed class MarshalGetStartComSlotArgs : TraceEvent
+    internal sealed class MarshalGetStartComSlotArgs : TraceEvent
     {
         public string typeName { get { return GetUnicodeStringAt(0); } }
 
@@ -7005,7 +7007,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.FrameworkEventSource
         private event Action<MarshalGetStartComSlotArgs> m_target;
         #endregion
     }
-    public sealed class MarshalGetTypeFromCLSIDArgs : TraceEvent
+    internal sealed class MarshalGetTypeFromCLSIDArgs : TraceEvent
     {
         public string typeName { get { return GetUnicodeStringAt(0); } }
         public string guid { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -7069,7 +7071,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.FrameworkEventSource
         private event Action<MarshalGetTypeFromCLSIDArgs> m_target;
         #endregion
     }
-    public sealed class MarshalGetTypeInfoNameArgs : TraceEvent
+    internal sealed class MarshalGetTypeInfoNameArgs : TraceEvent
     {
         public string typeName { get { return GetUnicodeStringAt(0); } }
 
@@ -7129,7 +7131,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.FrameworkEventSource
         private event Action<MarshalGetTypeInfoNameArgs> m_target;
         #endregion
     }
-    public sealed class MarshalGetUniqueObjectForIUnknownArgs : TraceEvent
+    internal sealed class MarshalGetUniqueObjectForIUnknownArgs : TraceEvent
     {
         public string typeName { get { return GetUnicodeStringAt(0); } }
 
@@ -7189,7 +7191,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.FrameworkEventSource
         private event Action<MarshalGetUniqueObjectForIUnknownArgs> m_target;
         #endregion
     }
-    public sealed class MarshalSizeOfArgs : TraceEvent
+    internal sealed class MarshalSizeOfArgs : TraceEvent
     {
         public string typeName { get { return GetUnicodeStringAt(0); } }
 
@@ -7249,7 +7251,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.FrameworkEventSource
         private event Action<MarshalSizeOfArgs> m_target;
         #endregion
     }
-    public sealed class MarshalStructureToPtrArgs : TraceEvent
+    internal sealed class MarshalStructureToPtrArgs : TraceEvent
     {
         public string typeName { get { return GetUnicodeStringAt(0); } }
         public string deleteOld { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -7313,7 +7315,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.FrameworkEventSource
         private event Action<MarshalStructureToPtrArgs> m_target;
         #endregion
     }
-    public sealed class MarshalUnsafeAddrOfPinnedArrayElementArgs : TraceEvent
+    internal sealed class MarshalUnsafeAddrOfPinnedArrayElementArgs : TraceEvent
     {
         public string typeName { get { return GetUnicodeStringAt(0); } }
 
@@ -7373,7 +7375,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.FrameworkEventSource
         private event Action<MarshalUnsafeAddrOfPinnedArrayElementArgs> m_target;
         #endregion
     }
-    public sealed class MethodInfoInvokeArgs : TraceEvent
+    internal sealed class MethodInfoInvokeArgs : TraceEvent
     {
         public string typeName { get { return GetUnicodeStringAt(0); } }
         public string methodName { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -7437,7 +7439,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.FrameworkEventSource
         private event Action<MethodInfoInvokeArgs> m_target;
         #endregion
     }
-    public sealed class MethodNameArgs : TraceEvent
+    internal sealed class MethodNameArgs : TraceEvent
     {
         public string typeName { get { return GetUnicodeStringAt(0); } }
         public string methodName { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -7501,7 +7503,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.FrameworkEventSource
         private event Action<MethodNameArgs> m_target;
         #endregion
     }
-    public sealed class QueryAttributeIsDefinedArgs : TraceEvent
+    internal sealed class QueryAttributeIsDefinedArgs : TraceEvent
     {
         public string typeName { get { return GetUnicodeStringAt(0); } }
 
@@ -7561,7 +7563,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.FrameworkEventSource
         private event Action<QueryAttributeIsDefinedArgs> m_target;
         #endregion
     }
-    public sealed class ResourceManagerAddingCultureFromConfigFileArgs : TraceEvent
+    internal sealed class ResourceManagerAddingCultureFromConfigFileArgs : TraceEvent
     {
         public string baseName { get { return GetUnicodeStringAt(0); } }
         public string mainAssemblyName { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -7629,7 +7631,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.FrameworkEventSource
         private event Action<ResourceManagerAddingCultureFromConfigFileArgs> m_target;
         #endregion
     }
-    public sealed class ResourceManagerCaseInsensitiveResourceStreamLookupFailedArgs : TraceEvent
+    internal sealed class ResourceManagerCaseInsensitiveResourceStreamLookupFailedArgs : TraceEvent
     {
         public string baseName { get { return GetUnicodeStringAt(0); } }
         public string mainAssemblyName { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -7701,7 +7703,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.FrameworkEventSource
         private event Action<ResourceManagerCaseInsensitiveResourceStreamLookupFailedArgs> m_target;
         #endregion
     }
-    public sealed class ResourceManagerCaseInsensitiveResourceStreamLookupSucceededArgs : TraceEvent
+    internal sealed class ResourceManagerCaseInsensitiveResourceStreamLookupSucceededArgs : TraceEvent
     {
         public string baseName { get { return GetUnicodeStringAt(0); } }
         public string mainAssemblyName { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -7773,7 +7775,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.FrameworkEventSource
         private event Action<ResourceManagerCaseInsensitiveResourceStreamLookupSucceededArgs> m_target;
         #endregion
     }
-    public sealed class ResourceManagerCreatingResourceSetArgs : TraceEvent
+    internal sealed class ResourceManagerCreatingResourceSetArgs : TraceEvent
     {
         public string baseName { get { return GetUnicodeStringAt(0); } }
         public string mainAssemblyName { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -7845,7 +7847,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.FrameworkEventSource
         private event Action<ResourceManagerCreatingResourceSetArgs> m_target;
         #endregion
     }
-    public sealed class ResourceManagerCultureFoundInConfigFileArgs : TraceEvent
+    internal sealed class ResourceManagerCultureFoundInConfigFileArgs : TraceEvent
     {
         public string baseName { get { return GetUnicodeStringAt(0); } }
         public string mainAssemblyName { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -7913,7 +7915,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.FrameworkEventSource
         private event Action<ResourceManagerCultureFoundInConfigFileArgs> m_target;
         #endregion
     }
-    public sealed class ResourceManagerCultureNotFoundInConfigFileArgs : TraceEvent
+    internal sealed class ResourceManagerCultureNotFoundInConfigFileArgs : TraceEvent
     {
         public string baseName { get { return GetUnicodeStringAt(0); } }
         public string mainAssemblyName { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -7981,7 +7983,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.FrameworkEventSource
         private event Action<ResourceManagerCultureNotFoundInConfigFileArgs> m_target;
         #endregion
     }
-    public sealed class ResourceManagerFoundResourceSetInCacheArgs : TraceEvent
+    internal sealed class ResourceManagerFoundResourceSetInCacheArgs : TraceEvent
     {
         public string baseName { get { return GetUnicodeStringAt(0); } }
         public string mainAssemblyName { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -8049,7 +8051,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.FrameworkEventSource
         private event Action<ResourceManagerFoundResourceSetInCacheArgs> m_target;
         #endregion
     }
-    public sealed class ResourceManagerFoundResourceSetInCacheUnexpectedArgs : TraceEvent
+    internal sealed class ResourceManagerFoundResourceSetInCacheUnexpectedArgs : TraceEvent
     {
         public string baseName { get { return GetUnicodeStringAt(0); } }
         public string mainAssemblyName { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -8117,7 +8119,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.FrameworkEventSource
         private event Action<ResourceManagerFoundResourceSetInCacheUnexpectedArgs> m_target;
         #endregion
     }
-    public sealed class ResourceManagerGetSatelliteAssemblyFailedArgs : TraceEvent
+    internal sealed class ResourceManagerGetSatelliteAssemblyFailedArgs : TraceEvent
     {
         public string baseName { get { return GetUnicodeStringAt(0); } }
         public string mainAssemblyName { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -8189,7 +8191,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.FrameworkEventSource
         private event Action<ResourceManagerGetSatelliteAssemblyFailedArgs> m_target;
         #endregion
     }
-    public sealed class ResourceManagerGetSatelliteAssemblySucceededArgs : TraceEvent
+    internal sealed class ResourceManagerGetSatelliteAssemblySucceededArgs : TraceEvent
     {
         public string baseName { get { return GetUnicodeStringAt(0); } }
         public string mainAssemblyName { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -8261,7 +8263,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.FrameworkEventSource
         private event Action<ResourceManagerGetSatelliteAssemblySucceededArgs> m_target;
         #endregion
     }
-    public sealed class ResourceManagerLookingForResourceSetArgs : TraceEvent
+    internal sealed class ResourceManagerLookingForResourceSetArgs : TraceEvent
     {
         public string baseName { get { return GetUnicodeStringAt(0); } }
         public string mainAssemblyName { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -8329,7 +8331,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.FrameworkEventSource
         private event Action<ResourceManagerLookingForResourceSetArgs> m_target;
         #endregion
     }
-    public sealed class ResourceManagerLookupFailedArgs : TraceEvent
+    internal sealed class ResourceManagerLookupFailedArgs : TraceEvent
     {
         public string baseName { get { return GetUnicodeStringAt(0); } }
         public string mainAssemblyName { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -8397,7 +8399,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.FrameworkEventSource
         private event Action<ResourceManagerLookupFailedArgs> m_target;
         #endregion
     }
-    public sealed class ResourceManagerLookupStartedArgs : TraceEvent
+    internal sealed class ResourceManagerLookupStartedArgs : TraceEvent
     {
         public string baseName { get { return GetUnicodeStringAt(0); } }
         public string mainAssemblyName { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -8465,7 +8467,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.FrameworkEventSource
         private event Action<ResourceManagerLookupStartedArgs> m_target;
         #endregion
     }
-    public sealed class ResourceManagerManifestResourceAccessDeniedArgs : TraceEvent
+    internal sealed class ResourceManagerManifestResourceAccessDeniedArgs : TraceEvent
     {
         public string baseName { get { return GetUnicodeStringAt(0); } }
         public string mainAssemblyName { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -8537,7 +8539,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.FrameworkEventSource
         private event Action<ResourceManagerManifestResourceAccessDeniedArgs> m_target;
         #endregion
     }
-    public sealed class ResourceManagerNeutralResourceAttributeMissingArgs : TraceEvent
+    internal sealed class ResourceManagerNeutralResourceAttributeMissingArgs : TraceEvent
     {
         public string mainAssemblyName { get { return GetUnicodeStringAt(0); } }
 
@@ -8597,7 +8599,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.FrameworkEventSource
         private event Action<ResourceManagerNeutralResourceAttributeMissingArgs> m_target;
         #endregion
     }
-    public sealed class ResourceManagerNeutralResourcesFoundArgs : TraceEvent
+    internal sealed class ResourceManagerNeutralResourcesFoundArgs : TraceEvent
     {
         public string baseName { get { return GetUnicodeStringAt(0); } }
         public string mainAssemblyName { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -8665,7 +8667,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.FrameworkEventSource
         private event Action<ResourceManagerNeutralResourcesFoundArgs> m_target;
         #endregion
     }
-    public sealed class ResourceManagerNeutralResourcesNotFoundArgs : TraceEvent
+    internal sealed class ResourceManagerNeutralResourcesNotFoundArgs : TraceEvent
     {
         public string baseName { get { return GetUnicodeStringAt(0); } }
         public string mainAssemblyName { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -8733,7 +8735,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.FrameworkEventSource
         private event Action<ResourceManagerNeutralResourcesNotFoundArgs> m_target;
         #endregion
     }
-    public sealed class ResourceManagerNeutralResourcesSufficientArgs : TraceEvent
+    internal sealed class ResourceManagerNeutralResourcesSufficientArgs : TraceEvent
     {
         public string baseName { get { return GetUnicodeStringAt(0); } }
         public string mainAssemblyName { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -8801,7 +8803,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.FrameworkEventSource
         private event Action<ResourceManagerNeutralResourcesSufficientArgs> m_target;
         #endregion
     }
-    public sealed class ResourceManagerNotCreatingResourceSetArgs : TraceEvent
+    internal sealed class ResourceManagerNotCreatingResourceSetArgs : TraceEvent
     {
         public string baseName { get { return GetUnicodeStringAt(0); } }
         public string mainAssemblyName { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -8869,7 +8871,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.FrameworkEventSource
         private event Action<ResourceManagerNotCreatingResourceSetArgs> m_target;
         #endregion
     }
-    public sealed class ResourceManagerReleasingResourcesArgs : TraceEvent
+    internal sealed class ResourceManagerReleasingResourcesArgs : TraceEvent
     {
         public string baseName { get { return GetUnicodeStringAt(0); } }
         public string mainAssemblyName { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -8933,7 +8935,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.FrameworkEventSource
         private event Action<ResourceManagerReleasingResourcesArgs> m_target;
         #endregion
     }
-    public sealed class ResourceManagerStreamFoundArgs : TraceEvent
+    internal sealed class ResourceManagerStreamFoundArgs : TraceEvent
     {
         public string baseName { get { return GetUnicodeStringAt(0); } }
         public string mainAssemblyName { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -9009,7 +9011,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.FrameworkEventSource
         private event Action<ResourceManagerStreamFoundArgs> m_target;
         #endregion
     }
-    public sealed class ResourceManagerStreamNotFoundArgs : TraceEvent
+    internal sealed class ResourceManagerStreamNotFoundArgs : TraceEvent
     {
         public string baseName { get { return GetUnicodeStringAt(0); } }
         public string mainAssemblyName { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -9085,7 +9087,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.FrameworkEventSource
         private event Action<ResourceManagerStreamNotFoundArgs> m_target;
         #endregion
     }
-    public sealed class ThreadPoolDequeueWorkArgs : TraceEvent
+    internal sealed class ThreadPoolDequeueWorkArgs : TraceEvent
     {
         public Address WorkID { get { return (Address)GetInt64At(0); } }
 
@@ -9145,7 +9147,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.FrameworkEventSource
         private event Action<ThreadPoolDequeueWorkArgs> m_target;
         #endregion
     }
-    public sealed class ThreadPoolEnqueueWorkArgs : TraceEvent
+    internal sealed class ThreadPoolEnqueueWorkArgs : TraceEvent
     {
         public Address WorkID { get { return (Address)GetInt64At(0); } }
 
@@ -9206,7 +9208,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.FrameworkEventSource
         #endregion
     }
 
-    public enum ThreadTransferKind
+    internal enum ThreadTransferKind
     {
         Unknown = 0,
         ManagedTimers = 1,
@@ -9214,7 +9216,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.FrameworkEventSource
         WinRT = 3,          // Dispatch operations 
     }
 
-    public sealed class ThreadTransferReceiveArgs : TraceEvent
+    internal sealed class ThreadTransferReceiveArgs : TraceEvent
     {
         public Address id { get { return (Address)GetInt64At(0); } }
         public ThreadTransferKind kind { get { return (ThreadTransferKind)GetInt32At(8); } }
@@ -9282,7 +9284,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.FrameworkEventSource
         private event Action<ThreadTransferReceiveArgs> m_target;
         #endregion
     }
-    public sealed class ThreadTransferReceiveHandledArgs : TraceEvent
+    internal sealed class ThreadTransferReceiveHandledArgs : TraceEvent
     {
         public Address id { get { return (Address)GetInt64At(0); } }
         public ThreadTransferKind kind { get { return (ThreadTransferKind)GetInt32At(8); } }
@@ -9350,7 +9352,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.FrameworkEventSource
         private event Action<ThreadTransferReceiveHandledArgs> m_target;
         #endregion
     }
-    public sealed class ThreadTransferSendArgs : TraceEvent
+    internal sealed class ThreadTransferSendArgs : TraceEvent
     {
         public Address id { get { return (Address)GetInt64At(0); } }
         public ThreadTransferKind kind { get { return (ThreadTransferKind)GetInt32At(8); } }
@@ -9422,7 +9424,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.FrameworkEventSource
         private event Action<ThreadTransferSendArgs> m_target;
         #endregion
     }
-    public sealed class TypeFullNameArgs : TraceEvent
+    internal sealed class TypeFullNameArgs : TraceEvent
     {
         public string typeName { get { return GetUnicodeStringAt(0); } }
 
@@ -9482,7 +9484,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.FrameworkEventSource
         private event Action<TypeFullNameArgs> m_target;
         #endregion
     }
-    public sealed class TypeGetTypeArgs : TraceEvent
+    internal sealed class TypeGetTypeArgs : TraceEvent
     {
         public string typeName { get { return GetUnicodeStringAt(0); } }
 
@@ -9542,7 +9544,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.FrameworkEventSource
         private event Action<TypeGetTypeArgs> m_target;
         #endregion
     }
-    public sealed class TypeNameArgs : TraceEvent
+    internal sealed class TypeNameArgs : TraceEvent
     {
         public string typeName { get { return GetUnicodeStringAt(0); } }
 
@@ -9602,7 +9604,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.FrameworkEventSource
         private event Action<TypeNameArgs> m_target;
         #endregion
     }
-    public sealed class TypeNamespaceArgs : TraceEvent
+    internal sealed class TypeNamespaceArgs : TraceEvent
     {
         public string typeName { get { return GetUnicodeStringAt(0); } }
 
@@ -9662,7 +9664,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.FrameworkEventSource
         private event Action<TypeNamespaceArgs> m_target;
         #endregion
     }
-    public sealed class WindowsRuntimeMarshalGetActivationFactoryArgs : TraceEvent
+    internal sealed class WindowsRuntimeMarshalGetActivationFactoryArgs : TraceEvent
     {
         public string typeName { get { return GetUnicodeStringAt(0); } }
 

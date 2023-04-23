@@ -1,4 +1,6 @@
-﻿// Copyright (c) Microsoft Corporation.  All rights reserved
+#nullable disable
+
+// Copyright (c) Microsoft Corporation.  All rights reserved
 // This file is best viewed using outline mode (Ctrl-M Ctrl-O)
 //
 // This program uses code hyperlinks available as part of the HyperAddin Visual Studio plug-in.
@@ -15,7 +17,7 @@ namespace Microsoft.Diagnostics.Tracing
     /// is small it can be used to store information about the GC reference in a
     /// side growable array.  
     /// </summary>
-    public enum GCReferenceID
+    internal enum GCReferenceID
     {
         /// <summary>
         /// Indicates that the address is no longer alive.  
@@ -28,7 +30,7 @@ namespace Microsoft.Diagnostics.Tracing
     /// <summary>
     /// This computer will keep track of GC references as they change over time 
     /// </summary>
-    public class GCReferenceComputer
+    internal class GCReferenceComputer
     {
         /// <summary>
         /// Create a new GCRefernece computer from the stream of events 'source'.   When 'source' is processed

@@ -1,3 +1,5 @@
+#nullable disable
+
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -16,12 +18,12 @@ namespace Microsoft.Diagnostics.Symbols
 {
     /// <summary>
     /// A symbol reader represents something that can FIND pdbs (either on a symbol server or via a symbol path)
-    /// Its job is to find a full path a PDB.  Then you can use OpenSymbolFile to get a SymbolReaderModule and do more. 
+    /// Its job is to find a full path a PDB.  Then you can use OpenSymbolFile to get a SymbolReaderModule and do more.
     /// </summary>
-    public sealed unsafe class SymbolReader : IDisposable
+    internal sealed unsafe class SymbolReader : IDisposable
     {
         /// <summary>
-        /// Opens a new SymbolReader.   All diagnostics messages about symbol lookup go to 'log'.  
+        /// Opens a new SymbolReader.   All diagnostics messages about symbol lookup go to 'log'.
         /// Optional HttpClient delegating handler to be used when downloading symbols or source files.
         /// Note: The delegating handler will be disposed when this SymbolReader is disposed.
         /// </summary>
@@ -42,7 +44,7 @@ namespace Microsoft.Diagnostics.Symbols
 
             m_log.WriteLine("Created SymbolReader with SymbolPath {0}", m_symbolPath);
 
-            // TODO FIX NOW.  the code below does not support probing a file extension directory.  
+            // TODO FIX NOW.  the code below does not support probing a file extension directory.
             // we work around this by adding more things to the symbol path
             var symPath = new SymbolPath(SymbolPath);
             var newSymPath = new SymbolPath();
@@ -84,14 +86,14 @@ namespace Microsoft.Diagnostics.Symbols
         // These routines find a PDB based on something (either an DLL or a PDB 'signature')
         /// <summary>
         /// Finds the symbol file for 'exeFilePath' that exists on the current machine (we open
-        /// it to find the needed info).   Uses the SymbolReader.SymbolPath (including Symbol servers) to 
+        /// it to find the needed info).   Uses the SymbolReader.SymbolPath (including Symbol servers) to
         /// look up the PDB, and will download the PDB to the local cache if necessary.   It will also
-        /// generate NGEN pdbs into the local symbol cache unless SymbolReaderFlags.NoNGenPDB is set.   
-        /// 
+        /// generate NGEN pdbs into the local symbol cache unless SymbolReaderFlags.NoNGenPDB is set.
+        ///
         /// By default for NGEN images it returns the NGEN pdb.  However if 'ilPDB' is true it returns
-        /// the IL PDB.  
-        /// 
-        /// Returns null if the pdb can't be found.  
+        /// the IL PDB.
+        ///
+        /// Returns null if the pdb can't be found.
         /// </summary>
         public string FindSymbolFilePathForModule(string dllFilePath, bool ilPDB = false)
         {
@@ -151,12 +153,12 @@ namespace Microsoft.Diagnostics.Symbols
             return null;
         }
         /// <summary>
-        /// Find the complete PDB path, given just the simple name (filename + pdb extension) as well as its 'signature', 
-        /// which uniquely identifies it (on symbol servers).   Uses the SymbolReader.SymbolPath (including Symbol servers) to 
-        /// look up the PDB, and will download the PDB to the local cache if necessary.  
-        /// 
-        /// A Guid of Empty, means 'unknown' and will match the first PDB that matches simple name.  Thus it is unsafe. 
-        /// 
+        /// Find the complete PDB path, given just the simple name (filename + pdb extension) as well as its 'signature',
+        /// which uniquely identifies it (on symbol servers).   Uses the SymbolReader.SymbolPath (including Symbol servers) to
+        /// look up the PDB, and will download the PDB to the local cache if necessary.
+        ///
+        /// A Guid of Empty, means 'unknown' and will match the first PDB that matches simple name.  Thus it is unsafe.
+        ///
         /// Returns null if the PDB could  not be found
         /// </summary>
         /// <param name="pdbFileName">The name of the PDB file (we only use the file name part)</param>
@@ -165,7 +167,7 @@ namespace Microsoft.Diagnostics.Symbols
         /// that indicates how many transformations were done</param>
         /// <param name="dllFilePath">If you know the path to the DLL for this pdb add it here.  That way we can probe next to the DLL
         /// for the PDB file.</param>
-        /// <param name="fileVersion">This is an optional string that identifies the file version (the 'Version' resource information.  
+        /// <param name="fileVersion">This is an optional string that identifies the file version (the 'Version' resource information.
         /// It is used only to provided better error messages for the log.</param>
         public string FindSymbolFilePath(string pdbFileName, Guid pdbIndexGuid, int pdbIndexAge, string dllFilePath = null, string fileVersion = "", bool portablePdbMatch = false)
         {
@@ -185,7 +187,7 @@ namespace Microsoft.Diagnostics.Symbols
             string pdbSimpleName = PathUtil.GetPlatformIndependentFileName(pdbFileName);        // Make sure the simple name is really a simple name
 
             // If we have a dllPath, look right beside it, or in a directory symbols.pri\retail\dll
-            if (pdbPath == null && dllFilePath != null)        // Check next to the file. 
+            if (pdbPath == null && dllFilePath != null)        // Check next to the file.
             {
                 m_log.WriteLine("FindSymbolFilePath: Checking relative to DLL path {0}", dllFilePath);
                 string pdbPathCandidate = Path.Combine(Path.GetDirectoryName(dllFilePath), PathUtil.GetPlatformIndependentFileName(pdbFileName));
@@ -218,7 +220,7 @@ namespace Microsoft.Diagnostics.Symbols
                 }
             }
 
-            // If the pdbPath is a full path, see if it exists 
+            // If the pdbPath is a full path, see if it exists
             if (pdbPath == null && 0 < pdbFileName.IndexOf('\\'))
             {
                 if (PdbMatches(pdbFileName, pdbIndexGuid, pdbIndexAge))
@@ -227,13 +229,13 @@ namespace Microsoft.Diagnostics.Symbols
                 }
             }
 
-            // Did not find it locally, 
+            // Did not find it locally,
             if (pdbPath == null)
             {
                 SymbolPath path = new SymbolPath(SymbolPath);
                 foreach (SymbolPathElement element in path.Elements)
                 {
-                    // TODO can do all of these concurrently now.   
+                    // TODO can do all of these concurrently now.
                     if (element.IsSymServer)
                     {
                         if (pdbIndexPath == null)
@@ -263,7 +265,7 @@ namespace Microsoft.Diagnostics.Symbols
                         string filePath = Path.Combine(element.Target, pdbSimpleName);
                         if ((Options & SymbolReaderOptions.CacheOnly) == 0 || !element.IsRemote)
                         {
-                            // TODO can stall if the path is a remote path.   
+                            // TODO can stall if the path is a remote path.
                             if (PdbMatches(filePath, pdbIndexGuid, pdbIndexAge, false))
                             {
                                 pdbPath = filePath;
@@ -305,12 +307,12 @@ namespace Microsoft.Diagnostics.Symbols
             return pdbPath;
         }
 
-        // Find an executable file path (not a PDB) based on information about the file image.  
+        // Find an executable file path (not a PDB) based on information about the file image.
         /// <summary>
-        /// This API looks up an executable file, by its build-timestamp and size (on a symbol server),  'fileName' should be 
+        /// This API looks up an executable file, by its build-timestamp and size (on a symbol server),  'fileName' should be
         /// a simple name (no directory), and you need the buildTimeStamp and sizeOfImage that are found in the PE header.
-        /// 
-        /// Returns null if it cannot find anything.  
+        ///
+        /// Returns null if it cannot find anything.
         /// </summary>
         public string FindExecutableFilePath(string fileName, int buildTimestamp, int sizeOfImage, bool sybmolServerOnly = false)
         {
@@ -361,7 +363,7 @@ namespace Microsoft.Diagnostics.Symbols
 
         // Once you have a file path to a PDB file, you can open it with this method
         /// <summary>
-        /// Given the path name to a particular PDB file, load it so that you can resolve symbols in it.  
+        /// Given the path name to a particular PDB file, load it so that you can resolve symbols in it.
         /// </summary>
         /// <param name="pdbFilePath">The name of the PDB file to open.</param>
         /// <returns>The SymbolReaderModule that represents the information in the symbol file (PDB)</returns>
@@ -418,9 +420,9 @@ namespace Microsoft.Diagnostics.Symbols
             return OpenSymbolFile(pdbFileName) as NativeSymbolModule;
         }
 
-        // Various state that controls symbol and source file lookup.  
+        // Various state that controls symbol and source file lookup.
         /// <summary>
-        /// The symbol path used to look up PDB symbol files.   Set when the reader is initialized.  
+        /// The symbol path used to look up PDB symbol files.   Set when the reader is initialized.
         /// </summary>
         public string SymbolPath
         {
@@ -435,7 +437,7 @@ namespace Microsoft.Diagnostics.Symbols
             }
         }
         /// <summary>
-        /// The paths used to look up source files.  defaults to _NT_SOURCE_PATH.  
+        /// The paths used to look up source files.  defaults to _NT_SOURCE_PATH.
         /// </summary>
         public string SourcePath
         {
@@ -459,7 +461,7 @@ namespace Microsoft.Diagnostics.Symbols
         }
         /// <summary>
         /// Where symbols are downloaded if needed.   Derived from symbol path.  It is the first
-        /// directory on the local machine in a SRV*DIR*LOC spec, and %TEMP%\SymbolCache otherwise.  
+        /// directory on the local machine in a SRV*DIR*LOC spec, and %TEMP%\SymbolCache otherwise.
         /// </summary>
         public string SymbolCacheDirectory
         {
@@ -475,7 +477,7 @@ namespace Microsoft.Diagnostics.Symbols
         }
 
         /// <summary>
-        /// The place where source is downloaded from a source server.  
+        /// The place where source is downloaded from a source server.
         /// </summary>
         public string SourceCacheDirectory
         {
@@ -510,18 +512,18 @@ namespace Microsoft.Diagnostics.Symbols
 
         /// <summary>
         /// We call back on this when we find a PDB by probing in 'unsafe' locations (like next to the EXE or in the Built location)
-        /// If this function returns true, we assume that it is OK to use the PDB.  
+        /// If this function returns true, we assume that it is OK to use the PDB.
         /// </summary>
         public Func<string, bool> SecurityCheck { get; set; }
 
         /// <summary>
-        /// If set OnSymbolFileFound will be called when a PDB file is found.  
+        /// If set OnSymbolFileFound will be called when a PDB file is found.
         /// It is passed the complete local file path, the PDB Guid (may be Guid.Empty) and PDB age.
         /// </summary>
         public event Action<string, Guid, int> OnSymbolFileFound;
 
         /// <summary>
-        /// A place to log additional messages 
+        /// A place to log additional messages
         /// </summary>
         public TextWriter Log { get { return m_log; } }
 
@@ -531,16 +533,16 @@ namespace Microsoft.Diagnostics.Symbols
         /// Given a full filename path to an NGEN image, ensure that there is an NGEN image for it
         /// in the symbol cache.  If one already exists, this method simply returns that.   If not
         /// it is generated and placed in the symbol cache.  When generating the PDB this routine
-        /// attempt to resolve line numbers, which DOES require looking up the PDB for the IL image. 
-        /// Thus routine may do network accesses (to download IL PDBs).  
-        /// 
-        /// Note that FindSymbolFilePathForModule calls this, so normally you don't need to call 
-        /// this method directly.  
-        /// 
-        /// By default it places the PDB in the SymbolCacheDirectory using normal symbol server 
+        /// attempt to resolve line numbers, which DOES require looking up the PDB for the IL image.
+        /// Thus routine may do network accesses (to download IL PDBs).
+        ///
+        /// Note that FindSymbolFilePathForModule calls this, so normally you don't need to call
+        /// this method directly.
+        ///
+        /// By default it places the PDB in the SymbolCacheDirectory using normal symbol server
         /// cache conventions (PDBNAME\Guid-AGE\Name).   You can override this by specifying
-        /// the outputDirectory parameter.  
-        /// 
+        /// the outputDirectory parameter.
+        ///
         /// <returns>The full path name of the PDB generated for the NGEN image.</returns>
         /// </summary>
         public string GenerateNGenSymbolsForModule(string ngenImageFullPath, string outputDirectory = null)
@@ -578,7 +580,7 @@ namespace Microsoft.Diagnostics.Symbols
                 return pdbPath;
             }
 
-            // We only handle cases where we generate NGEN pdbs.  
+            // We only handle cases where we generate NGEN pdbs.
             if (!pdbPath.EndsWith(".ni.pdb", StringComparison.OrdinalIgnoreCase))
             {
                 m_log.WriteLine("Pdb does not have .ni.pdb suffix");
@@ -593,7 +595,7 @@ namespace Microsoft.Diagnostics.Symbols
                 return HandleNetCorePdbs(ngenImageFullPath, pdbPath);
             }
 
-            // See if this is a V4.5 CLR, if so we can do line numbers too.l  
+            // See if this is a V4.5 CLR, if so we can do line numbers too.l
             var lineNumberArg = "";
             var ngenexe = Path.Combine(clrDir, "ngen.exe");
             m_log.WriteLine("Checking for V4.5 for NGEN image {0}", ngenexe);
@@ -626,7 +628,7 @@ namespace Microsoft.Diagnostics.Symbols
                         }
                         else if (majorMinor == 40)
                         {
-                            // 4.0.30319.16000 == V4.5 We need a build number >= 16000) to be a V4.5 runtime.  
+                            // 4.0.30319.16000 == V4.5 We need a build number >= 16000) to be a V4.5 runtime.
                             m = Regex.Match(m.Groups[3].Value, @"(\d+)$");
                             if (m.Success && int.Parse(m.Groups[1].Value) >= 16000)
                             {
@@ -644,7 +646,7 @@ namespace Microsoft.Diagnostics.Symbols
 
             options.AddEnvironmentVariable("COMPLUS_NGenEnableCreatePdb", "1");
 
-            // NGenLocalWorker is needed for V4.0 runtimes but interferes on V4.5 runtimes.  
+            // NGenLocalWorker is needed for V4.0 runtimes but interferes on V4.5 runtimes.
             if (!isV4_5Runtime)
             {
                 options.AddEnvironmentVariable("COMPLUS_NGenLocalWorker", "1");
@@ -657,7 +659,7 @@ namespace Microsoft.Diagnostics.Symbols
             var outputPdbPath = pdbPath;
             var ngenOutputDirectory = outputDirectory;
 
-            // Find the tempDir where we can write.  
+            // Find the tempDir where we can write.
             string tempDir = null;
             m = Regex.Match(ngenImageFullPath, @"(.*)\\Microsoft\\CLR_v(\d+)\.\d+(_(\d\d))?\\NativeImages", RegexOptions.IgnoreCase);
             if (m.Success)
@@ -671,8 +673,8 @@ namespace Microsoft.Diagnostics.Symbols
             }
 
             // TODO: Hack.   V4.6.1 has both these characteristics, which leads to the issue
-            //      1) NGEN CreatePDB requires the path to be in the NIC or it fails. 
-            //      2) It uses links to some NGEN images, which means that the OS may give you path that is not in the NIC.  
+            //      1) NGEN CreatePDB requires the path to be in the NIC or it fails.
+            //      2) It uses links to some NGEN images, which means that the OS may give you path that is not in the NIC.
             // Should be fixed by 12/2015
             if (isV4_5Runtime)
             {
@@ -681,7 +683,7 @@ namespace Microsoft.Diagnostics.Symbols
 
             try
             {
-                for (; ; ) // Loop for retrying without /lines 
+                for (; ; ) // Loop for retrying without /lines
                 {
                     if (!string.IsNullOrEmpty(privateRuntimeVerString))
                     {
@@ -690,10 +692,10 @@ namespace Microsoft.Diagnostics.Symbols
                         options.AddEnvironmentVariable("COMPLUS_Version", privateRuntimeVerString);
                     }
                     // TODO FIX NOW: there is a and ugly problem with persistence of suboptimal PDB files
-                    // This is made pretty bad because the not finding the IL PDBs is enough to make it fail.  
+                    // This is made pretty bad because the not finding the IL PDBs is enough to make it fail.
 
                     // TODO we need to figure out a convention show we know that we have fallen back to no-lines
-                    // and we should regenerate it if we ultimately get the PDB information 
+                    // and we should regenerate it if we ultimately get the PDB information
                     var cmdLine = string.Format(@"{0}\ngen.exe createpdb {1} {2} {3}",
                         clrDir, Command.Quote(ngenImageFullPath), Command.Quote(ngenOutputDirectory), lineNumberArg);
                     // TODO FIX NOW REMOVE after V4.5 is out a while
@@ -711,13 +713,13 @@ namespace Microsoft.Diagnostics.Symbols
 
                     if (cmd.ExitCode != 0)
                     {
-                        // ngen might make a bad PDB, so if it returns failure delete it.  
+                        // ngen might make a bad PDB, so if it returns failure delete it.
                         if (File.Exists(outputPdbPath))
                         {
                             File.Delete(outputPdbPath);
                         }
 
-                        // We may have failed because we could not get the PDB.  
+                        // We may have failed because we could not get the PDB.
                         if (lineNumberArg.Length != 0)
                         {
                             m_log.WriteLine("Ngen failed to generate pdb for {0}, trying again without /lines", ngenImageFullPath);
@@ -732,7 +734,7 @@ namespace Microsoft.Diagnostics.Symbols
                         return null;
                     }
 
-                    // Copy the file to where we want the PDB to live (if we could not create there in the first place).    
+                    // Copy the file to where we want the PDB to live (if we could not create there in the first place).
                     if (outputPdbPath != pdbPath)
                     {
                         Directory.CreateDirectory(Path.GetDirectoryName(pdbPath));        // Make sure the destination directory exists.
@@ -743,7 +745,7 @@ namespace Microsoft.Diagnostics.Symbols
             }
             finally
             {
-                // Ensure we have cleaned up any temporary files.  
+                // Ensure we have cleaned up any temporary files.
                 if (tempDir != null)
                 {
                     DirectoryUtilities.Clean(tempDir);
@@ -753,14 +755,14 @@ namespace Microsoft.Diagnostics.Symbols
 
         /// <summary>
         /// Given a NGEN (or ReadyToRun) image 'ngenImageFullPath' and the PDB path
-        /// that we WANT it to generate generate the PDB.  Returns either pdbPath 
-        /// on success or null on failure.  
-        /// 
-        /// TODO can be removed when we properly publish the NGEN pdbs as part of build.  
+        /// that we WANT it to generate generate the PDB.  Returns either pdbPath
+        /// on success or null on failure.
+        ///
+        /// TODO can be removed when we properly publish the NGEN pdbs as part of build.
         /// </summary>
         private string HandleNetCorePdbs(string ngenImageFullPath, string pdbPath)
         {
-            // We only handle NGEN PDB. 
+            // We only handle NGEN PDB.
             if (!pdbPath.EndsWith(".ni.pdb", StringComparison.OrdinalIgnoreCase))
             {
                 m_log.WriteLine("Not a crossGen PDB {0}", pdbPath);
@@ -770,7 +772,7 @@ namespace Microsoft.Diagnostics.Symbols
             var ngenImageDir = Path.GetDirectoryName(ngenImageFullPath);
             var pdbDir = Path.GetDirectoryName(pdbPath);
 
-            // We need Crossgen, and there are several options, see what we can do. 
+            // We need Crossgen, and there are several options, see what we can do.
             string crossGen = GetCrossGenExePath(ngenImageFullPath);
             if (crossGen == null)
             {
@@ -784,7 +786,7 @@ namespace Microsoft.Diagnostics.Symbols
                 return null;
             }
 
-            // Make sure the output dir exists.  
+            // Make sure the output dir exists.
             Directory.CreateDirectory(pdbDir);
 
             // Are these readyToRun images
@@ -792,7 +794,7 @@ namespace Microsoft.Diagnostics.Symbols
             if (!crossGenInputName.EndsWith(".ni.dll", StringComparison.OrdinalIgnoreCase))
             {
                 // Note that the PDB does not pick the correct PDB signature unless the name
-                // of the PDB matches the name of the DLL (with suffixes removed).  
+                // of the PDB matches the name of the DLL (with suffixes removed).
 
                 crossGenInputName = pdbPath.Substring(0, pdbPath.Length - 3) + "dll";
                 File.Copy(ngenImageFullPath, crossGenInputName);
@@ -807,7 +809,7 @@ namespace Microsoft.Diagnostics.Symbols
             options.AddOutputStream(m_log);
             options.AddNoThrow();
 
-            // Needs diasymreader.dll to be on the path.  
+            // Needs diasymreader.dll to be on the path.
             var newPath = winDir + @"\Microsoft.NET\Framework\v4.0.30319" + ";" +
                 winDir + @"\Microsoft.NET\Framework64\v4.0.30319" + ";%PATH%";
             options.AddEnvironmentVariable("PATH", newPath);
@@ -899,7 +901,7 @@ namespace Microsoft.Diagnostics.Symbols
                 }
             }
 
-            // Check if you are running the runtime out of the nuget directory itself 
+            // Check if you are running the runtime out of the nuget directory itself
             var m = Regex.Match(imageDir, @"^(.*)\\runtimes\\win.*\\native$", RegexOptions.IgnoreCase);
             if (m.Success)
             {
@@ -917,7 +919,7 @@ namespace Microsoft.Diagnostics.Symbols
         // TODO remove after 12/2015
         private void InsurePathIsInNIC(TextWriter log, ref string ngenImageFullPath)
         {
-            // We only get called if we are 4.5. or beyond, so we should have AUX files if we are in the nic.  
+            // We only get called if we are 4.5. or beyond, so we should have AUX files if we are in the nic.
             string auxFilePath = ngenImageFullPath + ".aux";
             if (File.Exists(auxFilePath))
             {
@@ -943,7 +945,7 @@ namespace Microsoft.Diagnostics.Symbols
                     long fileLen = (new FileInfo(file)).Length;
                     if (fileLen == ngenFileSize)
                     {
-                        if (candidate != null)      // Ambiguity, give up.  
+                        if (candidate != null)      // Ambiguity, give up.
                         {
                             log.WriteLine("There is more than one file in the NIC with matching name and size! giving up.");
                             return;
@@ -977,8 +979,8 @@ namespace Microsoft.Diagnostics.Symbols
 
         #region private
         /// <summary>
-        /// Returns true if 'filePath' exists and is a PDB that has pdbGuid and pdbAge.  
-        /// if pdbGuid == Guid.Empty, then the pdbGuid and pdbAge checks are skipped. 
+        /// Returns true if 'filePath' exists and is a PDB that has pdbGuid and pdbAge.
+        /// if pdbGuid == Guid.Empty, then the pdbGuid and pdbAge checks are skipped.
         /// </summary>
         private bool PdbMatches(string filePath, Guid pdbGuid, int pdbAge, bool checkSecurity = true)
         {
@@ -1024,9 +1026,9 @@ namespace Microsoft.Diagnostics.Symbols
         /// Fetches a file from the server 'serverPath' with pdb signature path 'pdbSigPath' (concatenate them with a / or \ separator
         /// to form a complete URL or path name).   It will place the file in 'fullDestPath'   It will return true if successful
         /// If 'contentTypeFilter is present, this predicate is called with the URL content type (e.g. application/octet-stream)
-        /// and if it returns false, it fails.   This ensures that things that are the wrong content type (e.g. redirects to 
-        /// some sort of login) fail cleanly.  
-        /// 
+        /// and if it returns false, it fails.   This ensures that things that are the wrong content type (e.g. redirects to
+        /// some sort of login) fail cleanly.
+        ///
         /// You should probably be using GetFileFromServer
         /// </summary>
         /// <param name="serverPath">path to server (e.g. \\symbols\symbols or http://symweb) </param>
@@ -1044,7 +1046,7 @@ namespace Microsoft.Diagnostics.Symbols
 
             if (m_deadServers != null)
             {
-                // Try again after 5 minutes.  
+                // Try again after 5 minutes.
                 if ((DateTime.UtcNow - m_lastDeadTimeUtc).TotalSeconds > 300)
                 {
                     m_deadServers = null;
@@ -1062,7 +1064,7 @@ namespace Microsoft.Diagnostics.Symbols
             bool successful = false;      // The task was successful
             try
             {
-                // This implements a timeout 
+                // This implements a timeout
                 Task task = Task.Factory.StartNew(delegate
                 {
                     if (Uri.IsWellFormedUriString(serverPath, UriKind.Absolute))
@@ -1110,7 +1112,7 @@ namespace Microsoft.Diagnostics.Symbols
                     }
                     else
                     {
-                        // Use CopyStreamToFile instead of File.Copy because it is interruptible and displays status.  
+                        // Use CopyStreamToFile instead of File.Copy because it is interruptible and displays status.
                         var fullSrcPath = Path.Combine(serverPath, pdbIndexPath);
                         if (File.Exists(fullSrcPath))
                         {
@@ -1165,13 +1167,13 @@ namespace Microsoft.Diagnostics.Symbols
                         m_log.WriteLine("\r\nFindSymbolFilePath: Copy in progress on {0}/{1}, waiting for completion.", serverPath, pdbIndexPath);
                     }
 
-                    // Let it complete, however we do sleep so we can be interrupted.  
+                    // Let it complete, however we do sleep so we can be interrupted.
                     while (!task.Wait(100))
                     {
                         Thread.Sleep(0);        // TO allow interruption
                     }
                 }
-                // If we did not complete, set the dead server information.  
+                // If we did not complete, set the dead server information.
                 else if (!task.IsCompleted)
                 {
                     canceled = true;
@@ -1302,9 +1304,9 @@ namespace Microsoft.Diagnostics.Symbols
         }
 
         /// <summary>
-        /// Looks up 'fileIndexPath' on the server 'urlForServer' (concatenate to form complete URL) copying the file to 
-        /// 'targetPath' and returning targetPath name there (thus it is always a local file).  Unlike  GetPhysicalFileFromServer, 
-        /// GetFileFromServer understands how to deal with compressed files and file.ptr (redirection).  
+        /// Looks up 'fileIndexPath' on the server 'urlForServer' (concatenate to form complete URL) copying the file to
+        /// 'targetPath' and returning targetPath name there (thus it is always a local file).  Unlike  GetPhysicalFileFromServer,
+        /// GetFileFromServer understands how to deal with compressed files and file.ptr (redirection).
         /// </summary>
         /// <returns>targetPath or null if the file cannot be found.</returns>
         private string GetFileFromServer(string urlForServer, string fileIndexPath, string targetPath)
@@ -1315,21 +1317,21 @@ namespace Microsoft.Diagnostics.Symbols
                 return targetPath;
             }
 
-            // Fail quickly if instructed to  
+            // Fail quickly if instructed to
             if ((Options & SymbolReaderOptions.CacheOnly) != 0)
             {
                 m_log.WriteLine("FindSymbolFilePath: no file at cache location {0} and cacheOnly set, giving up.", targetPath);
                 return null;
             }
 
-            // We just had a symbol cache with no target.   
+            // We just had a symbol cache with no target.
             if (urlForServer == null)
             {
                 return null;
             }
 
-            // Allows us to reject files that are not binary (sometimes you get redirected to a 
-            // login script and we don't want to blindly accept that).  
+            // Allows us to reject files that are not binary (sometimes you get redirected to a
+            // login script and we don't want to blindly accept that).
             Predicate<string> onlyBinaryContent = delegate (string contentType)
             {
                 bool ret = contentType.EndsWith("octet-stream");
@@ -1348,7 +1350,7 @@ namespace Microsoft.Diagnostics.Symbols
                 return targetPath;
             }
 
-            // The rest of this compressed file/file pointers stuff is only for remote servers.  
+            // The rest of this compressed file/file pointers stuff is only for remote servers.
             if (!urlForServer.StartsWith(@"\\") && !Uri.IsWellFormedUriString(urlForServer, UriKind.Absolute))
             {
                 return null;
@@ -1373,7 +1375,7 @@ namespace Microsoft.Diagnostics.Symbols
                 return targetPath;
             }
 
-            // See if we have a file that tells us to redirect elsewhere. 
+            // See if we have a file that tells us to redirect elsewhere.
             var filePtrSigPath = Path.Combine(Path.GetDirectoryName(fileIndexPath), "file.ptr");
             var filePtrFilePath = Path.Combine(Path.GetDirectoryName(targetPath), "file.ptr");
             FileUtilities.ForceDelete(filePtrFilePath);
@@ -1431,11 +1433,11 @@ namespace Microsoft.Diagnostics.Symbols
                 }
             }
 
-            // See if we already have a prefix XX/ prefix.  
+            // See if we already have a prefix XX/ prefix.
             if (2 < fileIndexPath.Length && fileIndexPath[2] != '/')
             {
                 m_log.WriteLine("Trying the XX/XXYYY.PDB convention");
-                // See if it is following the XX/XXYYYY.PDB convention (used to make directories smaller).  
+                // See if it is following the XX/XXYYYY.PDB convention (used to make directories smaller).
                 var prefixedPath = fileIndexPath.Substring(0, 2) + "/" + fileIndexPath;
                 return GetFileFromServer(urlForServer, prefixedPath, targetPath);
             }
@@ -1445,7 +1447,7 @@ namespace Microsoft.Diagnostics.Symbols
 
         /// <summary>
         /// Deduce the path to where CLR.dll (and in particular NGEN.exe live for the NGEN image 'ngenImagepath')
-        /// Returns null if it can't be found.  If the NGEN image is associated with a private runtime return 
+        /// Returns null if it can't be found.  If the NGEN image is associated with a private runtime return
         /// that value in 'privateVerStr'
         /// </summary>
         private static string GetClrDirectoryForNGenImage(string ngenImagePath, TextWriter log, out string privateRuntimeVerStr)
@@ -1462,7 +1464,7 @@ namespace Microsoft.Diagnostics.Symbols
                 majorVersion = m.Groups[3].Value;
                 bitness = m.Groups[4].Value;
 
-                // See if this NGEN image was in a NIC associated with a private runtime.  
+                // See if this NGEN image was in a NIC associated with a private runtime.
                 if (basePath.EndsWith(version))
                 {
                     if (Directory.Exists(basePath))
@@ -1474,7 +1476,7 @@ namespace Microsoft.Diagnostics.Symbols
             }
             else
             {
-                // Per-user NGEN Image Caches.   
+                // Per-user NGEN Image Caches.
                 m = Regex.Match(ngenImagePath, @"\\Microsoft\\CLR_v(\d+)\.\d+(_(\d\d))?\\NativeImages", RegexOptions.IgnoreCase);
                 if (m.Success)
                 {
@@ -1483,7 +1485,7 @@ namespace Microsoft.Diagnostics.Symbols
                 }
                 else
                 {
-                    // Pre-generated native images.  
+                    // Pre-generated native images.
                     m = Regex.Match(ngenImagePath, @"\\Microsoft.NET\\Framework((\d\d)?)\\v(\d+).*\\NativeImages", RegexOptions.IgnoreCase);
                     if (m.Success)
                     {
@@ -1497,7 +1499,7 @@ namespace Microsoft.Diagnostics.Symbols
                 }
             }
 
-            // Only version 4.0 of the runtime has NGEN PDB support 
+            // Only version 4.0 of the runtime has NGEN PDB support
             if (int.Parse(majorVersion) < 4)
             {
                 log.WriteLine("Pre V4.0 native image, skipping: {0}", ngenImagePath);
@@ -1572,7 +1574,7 @@ namespace Microsoft.Diagnostics.Symbols
 
         /// <summary>
         /// We may be a 32 bit app which has File system redirection turned on
-        /// Morph System32 to SysNative in that case to bypass file system redirection         
+        /// Morph System32 to SysNative in that case to bypass file system redirection
         /// </summary>
         internal static string BypassSystem32FileRedirection(string path)
         {
@@ -1599,7 +1601,7 @@ namespace Microsoft.Diagnostics.Symbols
             return path;
         }
 
-        // Used as the key to the m_pdbPathCache.  
+        // Used as the key to the m_pdbPathCache.
         private struct PdbSignature : IEquatable<PdbSignature>
         {
             public override int GetHashCode() { return Name.GetHashCode() + ID.GetHashCode(); }
@@ -1611,7 +1613,7 @@ namespace Microsoft.Diagnostics.Symbols
 
         internal TextWriter m_log;
         private List<string> m_deadServers;     // What servers can't be reached right now
-        private DateTime m_lastDeadTimeUtc;     // The last time something went dead.  
+        private DateTime m_lastDeadTimeUtc;     // The last time something went dead.
         private string m_SymbolCacheDirectory;
         private string m_SourceCacheDirectory;
         private Cache<string, ManagedSymbolModule> m_symbolModuleCache;
@@ -1622,22 +1624,22 @@ namespace Microsoft.Diagnostics.Symbols
     }
 
     /// <summary>
-    /// A SymbolModule represents a file that contains symbolic information 
-    /// (a Windows PDB or Portable PDB).  This is the interface that is independent 
+    /// A SymbolModule represents a file that contains symbolic information
+    /// (a Windows PDB or Portable PDB).  This is the interface that is independent
     /// of what kind of symbolic file format you use.  Because portable PDBs only
     /// support managed code, this shared interface is by necessity the interface
-    /// for managed code only (currently only Windows PDBs support native code).  
+    /// for managed code only (currently only Windows PDBs support native code).
     /// </summary>
-    public abstract class ManagedSymbolModule
+    internal abstract class ManagedSymbolModule
     {
         /// <summary>
         /// This is the EXE associated with the Pdb.  It may be null or an invalid path.  It is used
-        /// to help look up source code (it is implicitly part of the Source Path search) 
+        /// to help look up source code (it is implicitly part of the Source Path search)
         /// </summary>
         public string ExePath { get; set; }
 
         /// <summary>
-        /// The path name to the PDB itself.  Might be empty if the symbol information is in memory.  
+        /// The path name to the PDB itself.  Might be empty if the symbol information is in memory.
         /// </summary>
         public string SymbolFilePath { get { return _pdbPath; } }
 
@@ -1650,23 +1652,23 @@ namespace Microsoft.Diagnostics.Symbols
 
         /// <summary>
         ///  Fetches the SymbolReader associated with this SymbolModule.  This is where shared
-        ///  attributes (like SourcePath, SymbolPath etc) are found.  
+        ///  attributes (like SourcePath, SymbolPath etc) are found.
         /// </summary>
         public SymbolReader SymbolReader { get { return _reader; } }
 
         /// <summary>
-        /// Given a method and an IL offset, return a source location (line number and file).   
-        /// Returns null if it could not find it.  
+        /// Given a method and an IL offset, return a source location (line number and file).
+        /// Returns null if it could not find it.
         /// </summary>
         public abstract SourceLocation SourceLocationForManagedCode(uint methodMetadataToken, int ilOffset);
 
         /// <summary>
         /// If the symbol file format supports SourceLink JSON this routine should be overridden
-        /// to return it.  
+        /// to return it.
         /// </summary>
         protected virtual IEnumerable<string> GetSourceLinkJson() { return Enumerable.Empty<string>(); }
 
-        #region private 
+        #region private
 
         protected ManagedSymbolModule(SymbolReader reader, string path) { _pdbPath = path; _reader = reader; }
 
@@ -1674,7 +1676,7 @@ namespace Microsoft.Diagnostics.Symbols
 
         /// <summary>
         /// Return a URL for 'buildTimeFilePath' using the source link mapping (that 'GetSourceLinkJson' fetched)
-        /// Returns null if there is URL using the SourceLink 
+        /// Returns null if there is URL using the SourceLink
         /// </summary>
         /// <param name="buildTimeFilePath">The path to the source file at build time</param>
         /// <param name="url">The source link URL</param>
@@ -1714,8 +1716,8 @@ namespace Microsoft.Diagnostics.Symbols
         }
 
         /// <summary>
-        /// Parses SourceLink information and returns a list of filepath -> url Prefix tuples.  
-        /// </summary>  
+        /// Parses SourceLink information and returns a list of filepath -> url Prefix tuples.
+        /// </summary>
         private List<Tuple<string, string>> ParseSourceLinkJson(IEnumerable<string> sourceLinkContents)
         {
             List<Tuple<string, string>> ret = null;
@@ -1768,14 +1770,14 @@ namespace Microsoft.Diagnostics.Symbols
         private string _pdbPath;
         private SymbolReader _reader;
         private List<Tuple<string, string>> _sourceLinkMapping;      // Used by SourceLink to map build paths to URLs (see GetUrlForFilePath)
-        private bool _sourceLinkMappingInited;                       // Lazy init flag. 
+        private bool _sourceLinkMappingInited;                       // Lazy init flag.
         #endregion
     }
 
     /// <summary>
-    /// A SourceLocation represents a point in the source code.  That is the file and the line number.  
+    /// A SourceLocation represents a point in the source code.  That is the file and the line number.
     /// </summary>
-    public class SourceLocation
+    internal class SourceLocation
     {
         /// <summary>
         /// The source file for the code
@@ -1822,37 +1824,37 @@ namespace Microsoft.Diagnostics.Symbols
     }
 
     /// <summary>
-    /// SymbolReaderFlags indicates preferences on how aggressively symbols should be looked up.  
+    /// SymbolReaderFlags indicates preferences on how aggressively symbols should be looked up.
     /// </summary>
     [Flags]
-    public enum SymbolReaderOptions
+    internal enum SymbolReaderOptions
     {
         /// <summary>
-        /// No options this is the common case, where you want to look up everything you can. 
+        /// No options this is the common case, where you want to look up everything you can.
         /// </summary>
         None = 0,
         /// <summary>
-        /// Only fetch the PDB if it lives in the symbolCacheDirectory (is local an is generated).  
-        /// This will generate NGEN pdbs unless the NoNGenPDBs flag is set. 
+        /// Only fetch the PDB if it lives in the symbolCacheDirectory (is local an is generated).
+        /// This will generate NGEN pdbs unless the NoNGenPDBs flag is set.
         /// </summary>
         CacheOnly = 1,
         /// <summary>
-        /// No NGEN PDB generation.  
+        /// No NGEN PDB generation.
         /// </summary>
         NoNGenSymbolCreation = 2,
     }
 
-    public abstract class SourceFile
+    internal abstract class SourceFile
     {
         /// <summary>
-        /// The path of the file at the time the source file was built.   We also look here when looking for the source.  
+        /// The path of the file at the time the source file was built.   We also look here when looking for the source.
         /// </summary>
         public string BuildTimeFilePath { get; protected set; }
 
         /// <summary>
-        /// If the source file is directly available on the web (that is there is a Url that 
-        /// can be used to fetch it with HTTP Get), then return that Url.   If no such publishing 
-        /// point exists this property will return null.   
+        /// If the source file is directly available on the web (that is there is a Url that
+        /// can be used to fetch it with HTTP Get), then return that Url.   If no such publishing
+        /// point exists this property will return null.
         /// </summary>
         public virtual string Url
         {
@@ -1864,10 +1866,10 @@ namespace Microsoft.Diagnostics.Symbols
         }
 
         /// <summary>
-        /// This may fetch things from the source server, and thus can be very slow, which is why it is not a property. 
-        /// returns a path to the file on the local machine (often in some machine local cache). 
+        /// This may fetch things from the source server, and thus can be very slow, which is why it is not a property.
+        /// returns a path to the file on the local machine (often in some machine local cache).
         /// If requireChecksumMatch == false then you can see if you have an exact match by calling ChecksumMatches
-        /// (and if there is a checksum with HasChecksum). 
+        /// (and if there is a checksum with HasChecksum).
         /// </summary>
         public virtual string GetSourceFile(bool requireChecksumMatch = false)
         {
@@ -1886,7 +1888,7 @@ namespace Microsoft.Diagnostics.Symbols
                     return _filePath;
                 }
 
-                // Look on the source server next.   
+                // Look on the source server next.
                 _log.WriteLine("Looking up {0} in the source server (or URL)", BuildTimeFilePath);
                 string srcServerLocation = GetSourceFromSrcServer();
                 if (srcServerLocation != null)
@@ -1906,7 +1908,7 @@ namespace Microsoft.Diagnostics.Symbols
                 _log.WriteLine("Not present on source server, looking on NT_SOURCE_PATH.");
                 _log.WriteLine("_NT_SOURCE_PATH={0}", _symbolModule.SymbolReader.SourcePath);
 
-                // If we know the exe path, add that to the search path.   
+                // If we know the exe path, add that to the search path.
                 if (_symbolModule.ExePath != null)
                 {
                     var exeDir = Path.GetDirectoryName(_symbolModule.ExePath);
@@ -1951,7 +1953,7 @@ namespace Microsoft.Diagnostics.Symbols
         }
 
         /// <summary>
-        /// true if the PDB has a checksum for the data in the source file. 
+        /// true if the PDB has a checksum for the data in the source file.
         /// </summary>
         public bool HasChecksum { get { return _hashAlgorithm != null; } }
 
@@ -1993,17 +1995,17 @@ namespace Microsoft.Diagnostics.Symbols
         public IReadOnlyCollection<byte> ChecksumValue => _hash;
 
         /// <summary>
-        /// If GetSourceFile is called and 'requireChecksumMatch' == false then you can call this property to 
+        /// If GetSourceFile is called and 'requireChecksumMatch' == false then you can call this property to
         /// determine if the checksum actually matched or not.   This will return true if the original
         /// PDB does not have a checksum (HasChecksum == false)
-        /// </summary>; 
+        /// </summary>;
         public bool ChecksumMatches { get { return _checksumMatches; } }
 
         /// <summary>
         /// Obtains information used to download the source file file source link
         /// </summary>
         /// <param name="url">The URL to hit to download the source file</param>
-        /// <param name="relativePath">relative file path for the Source Link entry. For example, if the SourceLink map contains 'C:\foo\*' and this maps to 
+        /// <param name="relativePath">relative file path for the Source Link entry. For example, if the SourceLink map contains 'C:\foo\*' and this maps to
         /// 'C:\foo\bar\baz.cs', the relativeFilePath is 'bar\baz.cs'. For absolute SourceLink mappings, relativeFilePath will simply be the name of the file.</param>
         /// <returns>true if SourceLink info can be found for this file</returns>
         public virtual bool GetSourceLinkInfo(out string url, out string relativePath)
@@ -2012,7 +2014,7 @@ namespace Microsoft.Diagnostics.Symbols
         }
 
 
-        #region private 
+        #region private
         protected SourceFile(ManagedSymbolModule symbolModule) { _symbolModule = symbolModule; }
 
         protected TextWriter _log { get { return _symbolModule._log; } }
@@ -2020,11 +2022,11 @@ namespace Microsoft.Diagnostics.Symbols
         /// <summary>
         /// Look up the source from the source server.  Returns null if it can't find the source
         /// By default this simply uses the Url to look it up on the web.   If 'Url' returns null
-        /// so does this.   
+        /// so does this.
         /// </summary>
         protected virtual string GetSourceFromSrcServer()
         {
-            // Search the SourceLink url location 
+            // Search the SourceLink url location
             string url = Url;
             if (url != null)
             {
@@ -2062,22 +2064,22 @@ namespace Microsoft.Diagnostics.Symbols
         }
 
         /// <summary>
-        /// Given 'fileName' which is a path to a file (which may  not exist), set 
+        /// Given 'fileName' which is a path to a file (which may  not exist), set
         /// _filePath and _checksumMatches appropriately.    Namely _filePath should
         /// always be the 'best' candidate for the source file path (matching checksum
-        /// wins, otherwise first existing file wins).  
-        /// 
-        /// Returns true if we have a perfect match (no additional probing needed).  
+        /// wins, otherwise first existing file wins).
+        ///
+        /// Returns true if we have a perfect match (no additional probing needed).
         /// </summary>
         private bool ProbeForBestMatch(string filePath)
         {
-            // We already have a perfect match, this one can't be better.  
+            // We already have a perfect match, this one can't be better.
             if (_filePath != null && _checksumMatches)
             {
                 return false;
             }
 
-            // If this candidate does not even exist, we can't do anything.  
+            // If this candidate does not even exist, we can't do anything.
             if (filePath == null || !File.Exists(filePath))
             {
                 _log.WriteLine("  Probe failed, file does not exist {0}", filePath);
@@ -2092,7 +2094,7 @@ namespace Microsoft.Diagnostics.Symbols
                 return true;
             }
 
-            // If we don't match but we have nothing better, remember it.   Otherwise do nothing as first hit is better.  
+            // If we don't match but we have nothing better, remember it.   Otherwise do nothing as first hit is better.
             if (_filePath == null)
             {
                 _filePath = filePath;
@@ -2103,13 +2105,13 @@ namespace Microsoft.Diagnostics.Symbols
                 _log.WriteLine("Checksum does NOT match for {0} but we already have a non-ideal match so discarding this probe.", filePath);
             }
 
-            // We did not get a perfect match.  
+            // We did not get a perfect match.
             return false;
         }
 
         /// <summary>
         /// Returns true if 'filePath' matches the checksum OR we don't have a checksum
-        /// (thus if we pass what validity check we have).    
+        /// (thus if we pass what validity check we have).
         /// </summary>
         private bool ComputeChecksumMatch(string filePath)
         {
@@ -2142,7 +2144,7 @@ namespace Microsoft.Diagnostics.Symbols
 
         private byte[] ComputeHashWithSwappedLineEndings(FileStream fs)
         {
-            // Use a stream reader to determine the encoding. 
+            // Use a stream reader to determine the encoding.
             // The underlying stream is not closed. Default to UTF8 is heuristic
             Encoding encoding = Encoding.UTF8;
             using (var streamReader = new StreamReader(fs, Encoding.UTF8, detectEncodingFromByteOrderMarks: true, bufferSize: 8, leaveOpen: true))
@@ -2172,10 +2174,10 @@ namespace Microsoft.Diagnostics.Symbols
                 LineEnding lineEnding = LineEnding.CRLF;
                 try
                 {
-                    // Using a label and a goto in the default case
-                    // so that we can easily break out of the other
-                    // case statements.
-                    loop: switch (reader.ReadChar())
+                // Using a label and a goto in the default case
+                // so that we can easily break out of the other
+                // case statements.
+                loop: switch (reader.ReadChar())
                     {
                         case CRchar:
                             lineEnding = LineEnding.CRLF;
@@ -2271,7 +2273,7 @@ namespace Microsoft.Diagnostics.Symbols
             }
         }
 
-        // Should be in the framework, but I could  not find it quickly.  
+        // Should be in the framework, but I could  not find it quickly.
         private static bool ArrayEquals(byte[] bytes1, byte[] bytes2)
         {
             if (bytes1.Length != bytes2.Length)
@@ -2289,13 +2291,13 @@ namespace Microsoft.Diagnostics.Symbols
             return true;
         }
 
-        // TO be filled in by superclass on construction.  
+        // TO be filled in by superclass on construction.
         protected byte[] _hash;
         protected System.Security.Cryptography.HashAlgorithm _hashAlgorithm;
         protected ManagedSymbolModule _symbolModule;
         protected SHA256 _sha256;
 
-        // Filled in when GetSource() is called.  
+        // Filled in when GetSource() is called.
         protected string _filePath;
         private bool _getSourceCalled;
         private bool _checksumMatches;

@@ -1,3 +1,5 @@
+#nullable disable
+
 //     Copyright (c) Microsoft Corporation.  All rights reserved.
 // This file is best viewed using outline mode (Ctrl-M Ctrl-O)
 //
@@ -32,7 +34,7 @@ namespace Microsoft.Diagnostics.Tracing
     /// * See also #ETWTraceEventSourceInternals
     /// * See also #ETWTraceEventSourceFields
     /// </summary>    
-    public sealed unsafe class ETWTraceEventSource : TraceEventDispatcher, IDisposable
+    internal sealed unsafe class ETWTraceEventSource : TraceEventDispatcher, IDisposable
     {
         /// <summary>
         /// Open a ETW event trace moduleFile (ETL moduleFile) for processing.  
@@ -233,7 +235,7 @@ namespace Microsoft.Diagnostics.Tracing
         /// Options that can be passed to GetModulesNeedingSymbols
         /// </summary>
         [Flags]
-        public enum ModuleSymbolOptions
+        internal enum ModuleSymbolOptions
         {
             /// <summary>
             /// This is the default, where only NGEN images are included (since these are the only images whose PDBS typically
@@ -958,7 +960,7 @@ namespace Microsoft.Diagnostics.Tracing
     /// <summary>
     /// The kinds of data sources that can be opened (see ETWTraceEventSource)
     /// </summary>
-    public enum TraceEventSourceType
+    internal enum TraceEventSourceType
     {
         /// <summary>
         /// Look for any files like *.etl or *.*.etl (the later holds things like *.kernel.etl or *.clrRundown.etl ...)

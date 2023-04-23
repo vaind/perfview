@@ -1,4 +1,6 @@
-﻿using Microsoft.Diagnostics.Tracing.AutomatedAnalysis;
+#nullable disable
+
+using Microsoft.Diagnostics.Tracing.AutomatedAnalysis;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
@@ -11,7 +13,7 @@ using System.Linq;
 namespace TraceEventTests
 {
     [UseCulture("en-US")]
-    public class AnalyzerResolverTests : TestBase
+    internal class AnalyzerResolverTests : TestBase
     {
         public AnalyzerResolverTests(ITestOutputHelper output)
             : base(output)
@@ -63,7 +65,7 @@ namespace TraceEventTests
         }
     }
 
-    public sealed class EmptyAnalyzerResolver : AnalyzerResolver
+    internal sealed class EmptyAnalyzerResolver : AnalyzerResolver
     {
         protected override void OnAnalyzerLoaded(AnalyzerLoadContext loadContext)
         {
@@ -77,14 +79,14 @@ namespace TraceEventTests
     }
 
     [Flags]
-    public enum AnalyzerSelector
+    internal enum AnalyzerSelector
     {
         Empty,
         AnalyzerOne,
         AnalyzerTwo
     }
 
-    public sealed class SelfReportingAnalyzerResolver : TestAnalyzerResolver
+    internal sealed class SelfReportingAnalyzerResolver : TestAnalyzerResolver
     {
         private AnalyzerSelector _selector;
 

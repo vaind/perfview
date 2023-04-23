@@ -1,4 +1,6 @@
-﻿using Dia2Lib;
+#nullable disable
+
+using Dia2Lib;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -25,7 +27,7 @@ namespace Microsoft.Diagnostics.Symbols
     /// http://msdn.microsoft.com/library/x93ctkx8.aspx for more.   I have only exposed what
     /// I need, and the interface is quite large (and not super pretty).  
     /// </summary>
-    public unsafe class NativeSymbolModule : ManagedSymbolModule, IDisposable
+    internal unsafe class NativeSymbolModule : ManagedSymbolModule, IDisposable
     {
         /// <summary>
         /// Returns the name of the type allocated for a given relative virtual address.
@@ -474,7 +476,7 @@ namespace Microsoft.Diagnostics.Symbols
         /// source can then be put on NativeSymbolModule and called from SourceFile generically.  
         /// This makes the different symbol files more similar and is a nice simplification.  
         /// </summary>
-        public class MicrosoftPdbSourceFile : SourceFile
+        internal class MicrosoftPdbSourceFile : SourceFile
         {
             private const string OldSourceServerUrl = "http://vstfdevdiv.redmond.corp.microsoft.com:8080";
             private const string NewSourceServerUrl = "https://vstfdevdiv";
@@ -1558,7 +1560,7 @@ sd.exe -p minkerneldepot.sys-ntgroup.ntdev.microsoft.com:2020 print -o "C:\Users
         private readonly Lazy<IReadOnlyDictionary<uint, string>> m_heapAllocationSites; // rva => typename
 
         [StructLayout(LayoutKind.Sequential)]
-        struct SrcFormatHeader
+        internal struct SrcFormatHeader
         {
             public Guid language;
             public Guid languageVendor;
@@ -1569,7 +1571,7 @@ sd.exe -p minkerneldepot.sys-ntgroup.ntdev.microsoft.com:2020 print -o "C:\Users
         }
 
         [StructLayout(LayoutKind.Sequential)]
-        struct SrcFormat
+        internal struct SrcFormat
         {
             public SrcFormatHeader Header;
             public fixed byte checksumBytes[512/8]; // this size of this may be smaller, it is controlled by the size of the `checksumSize` field
@@ -1585,7 +1587,7 @@ sd.exe -p minkerneldepot.sys-ntgroup.ntdev.microsoft.com:2020 print -o "C:\Users
     /// <summary>
     /// Represents a single symbol in a PDB file.  
     /// </summary>
-    public class Symbol : IComparable<Symbol>
+    internal class Symbol : IComparable<Symbol>
     {
         /// <summary>
         /// The name for the symbol 
@@ -1869,7 +1871,7 @@ namespace Dia2Lib
     [ComVisible(true)]
     [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     [GuidAttribute("52585014-e2b6-49fe-aa72-3a1e178682ee")]
-    interface IDiaSession3
+    internal interface IDiaSession3
     {
         #region Uncalled methods to declare the VTable correctly
         void Reserved01(); // get_loadAddress

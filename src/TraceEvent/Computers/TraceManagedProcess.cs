@@ -1,4 +1,6 @@
-﻿// Copyright (c) Microsoft Corporation.  All rights reserved
+#nullable disable
+
+// Copyright (c) Microsoft Corporation.  All rights reserved
 // This file is best viewed using outline mode (Ctrl-M Ctrl-O)
 //
 // This program uses code hyperlinks available as part of the HyperAddin Visual Studio plug-in.
@@ -26,7 +28,7 @@ namespace Microsoft.Diagnostics.Tracing.Analysis
     /// <summary>
     /// Extension methods to enable TraceManagedProcess
     /// </summary>
-    public static class TraceLoadedDotNetRuntimeExtensions
+    internal static class TraceLoadedDotNetRuntimeExtensions
     {
         public static void NeedLoadedDotNetRuntimes(this TraceEventDispatcher source)
         {
@@ -106,7 +108,7 @@ namespace Microsoft.Diagnostics.Tracing.Analysis
         }
 
         #region private
-        public class DotNetRuntime
+        internal class DotNetRuntime
         {
             public Action<TraceLoadedDotNetRuntime> OnLoaded;
             public TraceLoadedDotNetRuntime Runtime;
@@ -149,7 +151,7 @@ namespace Microsoft.Diagnostics.Tracing.Analysis
     ///
     /// TODO This implementation is poor at idenitfying the ParentPID, 64bitness, and Start/End times
     /// </summary>
-    public class TraceLoadedDotNetRuntime
+    internal class TraceLoadedDotNetRuntime
     {
         /// <summary>
         /// Returns the textual version of the .NET Framework
@@ -1539,7 +1541,7 @@ namespace Microsoft.Diagnostics.Tracing.Analysis
     /// <summary>
     /// Garbage Collector (GC) specific details about this process
     /// </summary>
-    public class TraceGarbageCollector
+    internal class TraceGarbageCollector
     {
         /// <summary>
         /// Process view of GC statistics
@@ -1729,7 +1731,7 @@ namespace Microsoft.Diagnostics.Tracing.Analysis
     /// <summary>
     /// Just-in-time compilation (JIT) specific details about this process
     /// </summary>
-    public class TraceJitCompiler
+    internal class TraceJitCompiler
     {
         /// <summary>
         /// Process view of JIT statistics
@@ -1800,7 +1802,7 @@ namespace Microsoft.Diagnostics.Tracing.Analysis
 
 namespace Microsoft.Diagnostics.Tracing.Analysis.GC
 {
-    public class GCSettings
+    internal class GCSettings
     {
         public long HardLimit { get { return m_HardLimit; } }
         public long LOHThreshold { get { return m_LOHThreshold; } }
@@ -1833,23 +1835,23 @@ namespace Microsoft.Diagnostics.Tracing.Analysis.GC
     /// <summary>
     ///
     /// </summary>
-    public class TraceGC
+    internal class TraceGC
     {
-        public enum BGCRevisitState
+        internal enum BGCRevisitState
         {
             Concurrent = 0,
             NonConcurrent = 1,
             MaxState = 2,
         }
 
-        public enum HeapType
+        internal enum HeapType
         {
             SOH = 0,
             LOH = 1,
             MaxType = 2,
         }
 
-        public struct BGCRevisitInfo
+        internal struct BGCRevisitInfo
         {
             public long PagesRevisited;
             public long ObjectsRevisited;
@@ -3231,7 +3233,7 @@ namespace Microsoft.Diagnostics.Tracing.Analysis.GC
     /// Each group corresponds to one or more reasons.
     /// Groups are organized in the way that they mean something to users.
     /// </summary>
-    public enum CondemnedReasonGroup
+    internal enum CondemnedReasonGroup
     {
         // The first 4 will have values of a number which is the generation.
         // Note that right now these 4 have the exact same value as what's in
@@ -3274,7 +3276,7 @@ namespace Microsoft.Diagnostics.Tracing.Analysis.GC
     /// <summary>
     /// Background GC allocation information
     /// </summary>
-    public class BGCAllocWaitInfo
+    internal class BGCAllocWaitInfo
     {
         public double WaitStartRelativeMSec;
         public double WaitStopRelativeMSec;
@@ -3319,7 +3321,7 @@ namespace Microsoft.Diagnostics.Tracing.Analysis.GC
     /// <summary>
     /// Span of thread work recorded by CSwitch or CPU Sample Profile events
     /// </summary>
-    public class ThreadWorkSpan
+    internal class ThreadWorkSpan
     {
         public int ThreadId;
         public int ProcessId;
@@ -3367,7 +3369,7 @@ namespace Microsoft.Diagnostics.Tracing.Analysis.GC
     /// <summary>
     /// Reason for an induced GC
     /// </summary>
-    public enum InducedType
+    internal enum InducedType
     {
         Blocking = 1,
         NotForced = 2,
@@ -3375,7 +3377,7 @@ namespace Microsoft.Diagnostics.Tracing.Analysis.GC
     /// <summary>
     /// CondemnedReason
     /// </summary>
-    public struct EncodedCondemnedReasons
+    internal struct EncodedCondemnedReasons
     {
         public int Reasons;
         public int ReasonsEx;
@@ -3384,7 +3386,7 @@ namespace Microsoft.Diagnostics.Tracing.Analysis.GC
     /// <summary>
     /// Heap condemned reason
     /// </summary>
-    public class GCCondemnedReasons
+    internal class GCCondemnedReasons
     {
         public EncodedCondemnedReasons EncodedReasons;
         /// <summary>
@@ -3576,7 +3578,7 @@ namespace Microsoft.Diagnostics.Tracing.Analysis.GC
     /// <summary>
     /// Container for mark times
     /// </summary>
-    public class MarkInfo
+    internal class MarkInfo
     {
         // Note that in 4.5 and prior (ie, from GCMark events, not GCMarkWithType), the first stage of the time
         // includes scanning sizedref handles(which can be very significant). We could distinguish that by interpreting
@@ -3605,7 +3607,7 @@ namespace Microsoft.Diagnostics.Tracing.Analysis.GC
     /// PinnedAllocated
     /// PinnedAllocatedAdvance
     /// RunningFreeListEfficiency
-    public class GCPerHeapHistory
+    internal class GCPerHeapHistory
     {
         public int MemoryPressure;
         public bool HasMemoryPressure;
@@ -3632,7 +3634,7 @@ namespace Microsoft.Diagnostics.Tracing.Analysis.GC
     /// <summary>
     /// Process heap statistics
     /// </summary>
-    public class GCGlobalHeapHistory
+    internal class GCGlobalHeapHistory
     {
         public long FinalYoungestDesired;
         public int NumHeaps;
@@ -3652,7 +3654,7 @@ namespace Microsoft.Diagnostics.Tracing.Analysis.GC
     /// <summary>
     /// Per heap stastics
     /// </summary>
-    public class GCHeapStats
+    internal class GCHeapStats
     {
         public long TotalHeapSize;
         public long TotalPromoted;
@@ -3687,14 +3689,14 @@ namespace Microsoft.Diagnostics.Tracing.Analysis.GC
     ///
     ///
     /// </summary>
-    public class FreeListEfficiency
+    internal class FreeListEfficiency
     {
         public bool Valid = false;
         public double Allocated;
         public double FreeListConsumed;
     }
 
-    public class GcJoin
+    internal class GcJoin
     {
         public int Heap;
         public double RelativeTimestampMsc;
@@ -3711,7 +3713,7 @@ namespace Microsoft.Diagnostics.Tracing.Analysis.GC
     // 3) restarts
     // 4) goes back to 1).
     // We call 1 through 3 an activity. There are as many activities as there are joins.
-    public class ServerGcHistory
+    internal class ServerGcHistory
     {
         public int HeapId;
         public int ProcessId;
@@ -3819,7 +3821,7 @@ namespace Microsoft.Diagnostics.Tracing.Analysis.GC
         #endregion
     }
 
-    public enum WorkSpanType
+    internal enum WorkSpanType
     {
         GcThread,
         RivalThread,
@@ -3827,7 +3829,7 @@ namespace Microsoft.Diagnostics.Tracing.Analysis.GC
         Idle
     }
 
-    public class GcWorkSpan : ThreadWorkSpan
+    internal class GcWorkSpan : ThreadWorkSpan
     {
         public WorkSpanType Type;
         public double RelativeTimestampMsc;
@@ -3847,7 +3849,7 @@ namespace Microsoft.Diagnostics.Tracing.Analysis.JIT
     /// <summary>
     /// Process statistics about JIT'd code
     /// </summary>
-    public class JITStats
+    internal class JITStats
     {
         /// <summary>
         /// Number of JITT'd methods
@@ -4233,7 +4235,7 @@ namespace Microsoft.Diagnostics.Tracing.Analysis.JIT
     /// <summary>
     /// JIT inlining successes
     /// </summary>
-    public struct InliningSuccessResult
+    internal struct InliningSuccessResult
     {
         public string MethodBeingCompiled;
         public string Inliner;
@@ -4243,7 +4245,7 @@ namespace Microsoft.Diagnostics.Tracing.Analysis.JIT
     /// <summary>
     /// JIT inlining failures
     /// </summary>
-    public struct InliningFailureResult
+    internal struct InliningFailureResult
     {
         public string MethodBeingCompiled;
         public string Inliner;
@@ -4251,7 +4253,7 @@ namespace Microsoft.Diagnostics.Tracing.Analysis.JIT
         public string Reason;
     }
 
-    public enum CompilationThreadKind
+    internal enum CompilationThreadKind
     {
         Foreground,
         MulticoreJitBackground,
@@ -4261,7 +4263,7 @@ namespace Microsoft.Diagnostics.Tracing.Analysis.JIT
     /// <summary>
     /// Per method information
     /// </summary>
-    public class TraceJittedMethod
+    internal class TraceJittedMethod
     {
         /// <summary>
         /// Time taken to compile the method
@@ -4409,7 +4411,7 @@ namespace Microsoft.Diagnostics.Tracing.Analysis.GC
     /// <summary>
     /// Statistical garbage collector (GC) information about a managed process
     /// </summary>
-    public class GCStats
+    internal class GCStats
     {
         /// <summary>
         /// Number of GC's for this process

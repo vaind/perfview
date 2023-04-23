@@ -1,4 +1,6 @@
-﻿using System;
+#nullable disable
+
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -8,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Microsoft.Diagnostics.Tracing.EventPipe
 {
-    class StackCache
+    internal class StackCache
     {
         public bool TryGetStack(int stackId, out int stackBytesSize, out IntPtr stackBytes)
         {
@@ -67,7 +69,7 @@ namespace Microsoft.Diagnostics.Tracing.EventPipe
             _stacks.Clear();
         }
 
-        struct StackMarker
+        internal struct StackMarker
         {
             public int StackBytesSize;
             public IntPtr StackBytes;

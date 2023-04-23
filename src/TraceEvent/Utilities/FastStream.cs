@@ -1,4 +1,6 @@
-﻿using System;
+#nullable disable
+
+using System;
 using System.Diagnostics;
 using System.IO;
 using System.Text;
@@ -24,7 +26,7 @@ namespace Microsoft.Diagnostics.Tracing.Utilities
     /// Another really useful feature of this stream is that you can peek ahead efficiently a large number
     /// of bytes (since you read ahead into a buffer anyway).
     /// </summary>
-    public sealed class FastStream : IDisposable
+    internal sealed class FastStream : IDisposable
     {
         // construction 
         public FastStream(string filePath)
@@ -492,7 +494,7 @@ namespace Microsoft.Diagnostics.Tracing.Utilities
 
         // Mark and restore 
         public const uint MaxRestoreLength = 256;
-        public struct MarkedPosition
+        internal struct MarkedPosition
         {
             internal long streamPos;
 

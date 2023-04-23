@@ -1,11 +1,13 @@
-﻿using System;
+#nullable disable
+
+using System;
 using System.IO;
 using Microsoft.Diagnostics.Tracing;
 using Xunit;
 
 namespace TraceEventTests
 {
-    public class Issue1618
+    internal class Issue1618
     {
         [Fact]
         public void DynamicParserStructSerialization()

@@ -1,3 +1,5 @@
+#nullable disable
+
 // This file is best viewed using outline mode (Ctrl-M Ctrl-O)
 //
 //	Copyright (C) 2007 Microsoft Corporation.  All Rights Reserved.
@@ -44,7 +46,7 @@ namespace Utilities
     /// 
     /// This layout allows the reader to efficiently present an uncompressed view of the stream. 
     /// 
-    class CompressedWriteStream : Stream, IDisposable
+    internal class CompressedWriteStream : Stream, IDisposable
     {
 #if false
         public static void CompressFile(string inputFilePath, string compressedFilePath)
@@ -243,7 +245,7 @@ namespace Utilities
 #endregion
     }
 
-    class CompressedReadStream : Stream, IDisposable
+    internal class CompressedReadStream : Stream, IDisposable
     {
         public CompressedReadStream(string filePath) : this(File.OpenRead(filePath), false) { }
         /// <summary>
@@ -506,7 +508,7 @@ namespace Utilities
         bool lastBlock;                     // True if this is the last block in the compressed stream.  
 
 
-        class StreamCacheBuffer : StreamCache
+        internal class StreamCacheBuffer : StreamCache
         {
             public StreamCacheBuffer(Stream baseStream)
                 : base(1024 * 16)
@@ -531,7 +533,7 @@ namespace Utilities
 #endregion
         }
 
-        class StreamCacheDecompressor : StreamCache
+        internal class StreamCacheDecompressor : StreamCache
         {
             public StreamCacheDecompressor(StreamCache input, int blockSize)
                 : base(blockSize)
@@ -724,7 +726,7 @@ namespace Utilities
                 }
             }
 
-            public class DataBlock : IDisposable
+            internal class DataBlock : IDisposable
             {
                 internal DataBlock(int blockSize, StreamCache cache, DataBlock next)
                 {
@@ -768,7 +770,7 @@ namespace Utilities
             protected int m_maxWorkers;
         }
 
-        class StreamCacheStream : Stream
+        internal class StreamCacheStream : Stream
         {
             public StreamCacheStream(StreamCache cache, long start, long length)
             {
@@ -887,7 +889,7 @@ namespace Utilities
     }
 
 #if UNIT_TESTS
-    public static class CompressedStreamTests
+    internal static class CompressedStreamTests
     {
         public static void SizeTest(string inputFilePath)
         {

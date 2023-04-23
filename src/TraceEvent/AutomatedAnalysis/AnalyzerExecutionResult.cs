@@ -1,9 +1,11 @@
-﻿namespace Microsoft.Diagnostics.Tracing.AutomatedAnalysis
+#nullable disable
+
+namespace Microsoft.Diagnostics.Tracing.AutomatedAnalysis
 {
     /// <summary>
     /// A result returned after execution of an Analyzer.
     /// </summary>
-    public enum AnalyzerExecutionResult
+    internal enum AnalyzerExecutionResult
     {
         Success,
         Fail,

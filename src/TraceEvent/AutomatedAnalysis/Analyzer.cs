@@ -1,9 +1,11 @@
+#nullable disable
+
 namespace Microsoft.Diagnostics.Tracing.AutomatedAnalysis
 {
     /// <summary>
     /// The base class for all analyzers.
     /// </summary>
-    public abstract class Analyzer
+    internal abstract class Analyzer
     {
         /// <summary>
         /// Called by the platform to execute the Analyzer.

@@ -1,3 +1,5 @@
+#nullable disable
+
 //     Copyright (c) Microsoft Corporation.  All rights reserved.
 // This file is best viewed using outline mode (Ctrl-M Ctrl-O)
 //
@@ -43,7 +45,7 @@ namespace Microsoft.Diagnostics.Tracing.Session
     /// restrictions were dropped in windows 8. 
     /// </para>
     /// </summary>
-    public sealed unsafe class TraceEventSession : IDisposable
+    internal sealed unsafe class TraceEventSession : IDisposable
     {
         /// <summary>
         /// Create a new logging session sending the output to a given file.  
@@ -2538,7 +2540,7 @@ namespace Microsoft.Diagnostics.Tracing.Session
     /// <summary>
     /// Used in the TraceEventSession.Merge method 
     /// </summary>
-    public enum TraceEventMergeOptions
+    internal enum TraceEventMergeOptions
     {
         /// <summary>
         /// No special options 
@@ -2557,7 +2559,7 @@ namespace Microsoft.Diagnostics.Tracing.Session
     /// <summary>
     /// TraceEventProviderOptions represents all the optional arguments that can be passed to EnableProvider command.   
     /// </summary>
-    public class TraceEventProviderOptions
+    internal class TraceEventProviderOptions
     {
         /// <summary>
         /// Create new options object with no options set
@@ -2771,7 +2773,7 @@ namespace Microsoft.Diagnostics.Tracing.Session
     /// TraceEventSessionOptions indicates special handling when creating a TraceEventSession.
     /// </summary>
     [Flags]
-    public enum TraceEventSessionOptions
+    internal enum TraceEventSessionOptions
     {
         /// <summary>
         /// Create a new session, stop and recreated it if it already exists.  This is the default.  
@@ -2798,7 +2800,7 @@ namespace Microsoft.Diagnostics.Tracing.Session
     /// <summary>
     /// TraceEventProviders returns information about providers on the system.  
     /// </summary>
-    public static class TraceEventProviders
+    internal static class TraceEventProviders
     {
         /// <summary>
         /// Given the friendly name of a provider (e.g. Microsoft-Windows-DotNETRuntimeStress) return the
@@ -3088,7 +3090,7 @@ namespace Microsoft.Diagnostics.Tracing.Session
     /// <summary>
     /// A list of these is returned by GetProviderKeywords
     /// </summary>
-    public struct ProviderDataItem
+    internal struct ProviderDataItem
     {
         /// <summary>
         /// The name of the provider keyword. 
@@ -3121,7 +3123,7 @@ namespace Microsoft.Diagnostics.Tracing.Session
     /// PMCCounterProf events for each ProfileSouce that is enabled.  
     /// </para>
     /// </summary>
-    public static class TraceEventProfileSources
+    internal static class TraceEventProfileSources
     {
         /// <summary>
         /// Returns a dictionary of keyed by name of ProfileSourceInfo structures for all the CPU counters available on the machine. 
@@ -3258,7 +3260,7 @@ namespace Microsoft.Diagnostics.Tracing.Session
     /// <summary>
     /// Returned by GetProfileSourceInfo, describing the CPU counter (ProfileSource) available on the machine. 
     /// </summary>
-    public class ProfileSourceInfo
+    internal class ProfileSourceInfo
     {
         /// <summary>
         /// Human readable name of the CPU performance counter (eg BranchInstructions, TotalIssues ...)
@@ -3286,7 +3288,7 @@ namespace Microsoft.Diagnostics.Tracing.Session
     /// These are options to EnableProvider
     /// </summary>
     [Flags, Obsolete("Use TraceEventArguments.Stacks instead")]
-    public enum TraceEventOptions
+    internal enum TraceEventOptions
     {
         /// <summary>
         /// No options
@@ -3301,7 +3303,7 @@ namespace Microsoft.Diagnostics.Tracing.Session
     /// <summary>
     /// Incomplete list of sources that can specify LBR recording (same sources as for stack walking).
     /// </summary>
-    public enum LbrSource
+    internal enum LbrSource
     {
         PmcInterrupt = 0x0F00 | 0x2F, // EVENT_TRACE_GROUP_PERFINFO | 0x2f
     }
@@ -3310,7 +3312,7 @@ namespace Microsoft.Diagnostics.Tracing.Session
     /// Filters what branches are recorded with LBR.
     /// </summary>
     [Flags]
-    public enum LbrFilterFlags
+    internal enum LbrFilterFlags
     {
         None = 0,
         FilterKernel = 1 << 0,

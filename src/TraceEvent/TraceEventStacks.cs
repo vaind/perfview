@@ -1,3 +1,5 @@
+#nullable disable
+
 // Copyright (c) Microsoft Corporation.  All rights reserved
 // This file is best viewed using outline mode (Ctrl-M Ctrl-O)
 //
@@ -41,7 +43,7 @@ namespace Microsoft.Diagnostics.Tracing.Stacks
     ///     * ThreadIndex         - ETW stacks don't have a thread or process node, so we add them.
     ///     * ProcessIndex
     /// </summary>
-    public class TraceEventStackSource : StackSource
+    internal class TraceEventStackSource : StackSource
     {
         /// <summary>
         /// Creates a new TraceEventStackSource given a list of events 'events' from a TraceLog
@@ -694,7 +696,7 @@ namespace Microsoft.Diagnostics.Tracing.Stacks
     /// you to map from the StackSourceFrameIndex back its TraceLog code address (that lets you get at the source code and
     /// line number for that frame).  
     /// </summary>
-    public class MutableTraceEventStackSource : TraceEventStackSource
+    internal class MutableTraceEventStackSource : TraceEventStackSource
     {
         /// <summary>
         /// Create a new MutableTraceEventStackSource that can represent stacks coming from any events in the given TraceLog with a stack.  
@@ -823,7 +825,7 @@ namespace Microsoft.Diagnostics.Tracing.Stacks
         /// <summary>
         /// A very simple IDictionary-like interface for remembering values in GetCallStack()
         /// </summary>
-        public interface CallStackMap
+        internal interface CallStackMap
         {
             /// <summary>
             /// Fetches an value given a key

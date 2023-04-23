@@ -1,4 +1,6 @@
-﻿using Microsoft.Diagnostics.Tracing;
+#nullable disable
+
+using Microsoft.Diagnostics.Tracing;
 using Microsoft.Diagnostics.Tracing.Parsers;
 using Microsoft.Diagnostics.Tracing.Parsers.Clr;
 using Microsoft.Diagnostics.Tracing.Parsers.Kernel;

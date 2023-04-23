@@ -1,4 +1,6 @@
-﻿//     Copyright (c) Microsoft Corporation.  All rights reserved.
+#nullable disable
+
+//     Copyright (c) Microsoft Corporation.  All rights reserved.
 using FastSerialization;
 using Microsoft.Diagnostics.Tracing.Compatibility;
 using Microsoft.Diagnostics.Tracing.Session;
@@ -16,7 +18,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers
     /// RegisteredTraceEventParser uses the standard windows provider database (TDH, what gets registered with wevtutil)
     /// to find the names of events and fields of the events).   
     /// </summary>
-    public sealed unsafe class RegisteredTraceEventParser : ExternalTraceEventParser
+    internal sealed unsafe class RegisteredTraceEventParser : ExternalTraceEventParser
     {
         /// <summary>
         /// Create a new RegisteredTraceEventParser and attach it to the given TraceEventSource
@@ -1063,7 +1065,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers
             public EVENT_PROPERTY_INFO EventPropertyInfoArray;  // Actually an array, this is the first element.  
         }
 
-        public struct EVENT_DESCRIPTOR
+        internal struct EVENT_DESCRIPTOR
         {
             public ushort Id;
             public byte Version;
@@ -1168,7 +1170,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers
     /// ExternalTraceEventParser is an abstract class that acts as a parser for any 'External' resolution
     /// This include the TDH (RegisteredTraceEventParser) as well as the WPPTraceEventParser.   
     /// </summary>
-    public abstract unsafe class ExternalTraceEventParser : TraceEventParser
+    internal abstract unsafe class ExternalTraceEventParser : TraceEventParser
     {
         /// <summary>
         /// Create a new ExternalTraceEventParser and attach it to the given TraceEventSource

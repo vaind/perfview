@@ -1,4 +1,6 @@
-﻿using Microsoft.Diagnostics.Tracing.Stacks;
+#nullable disable
+
+using Microsoft.Diagnostics.Tracing.Stacks;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -15,7 +17,7 @@ namespace Diagnostics.Tracing.StackSources
     /// Each StackSource has a name associated with it. The stacks for each StackSource will be grouped under
     /// a pseudo-frame named the same as the source name. Source names are specified on initialization.
     /// </remarks>
-    public class AggregateStackSource : StackSource
+    internal class AggregateStackSource : StackSource
     {
         /// <summary>
         /// Initialize a new AggregateStackSource.

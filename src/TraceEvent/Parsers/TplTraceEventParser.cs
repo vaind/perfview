@@ -1,3 +1,5 @@
+#nullable disable
+
 using System;
 using System.Diagnostics;
 using System.Text;
@@ -9,11 +11,11 @@ namespace Microsoft.Diagnostics.Tracing.Parsers
     using Microsoft.Diagnostics.Tracing.Parsers.Tpl;
 
     [System.CodeDom.Compiler.GeneratedCode("traceparsergen", "2.0")]
-    public sealed class TplEtwProviderTraceEventParser : TraceEventParser
+    internal sealed class TplEtwProviderTraceEventParser : TraceEventParser
     {
         public static readonly string ProviderName = "System.Threading.Tasks.TplEventSource";
         public static readonly Guid ProviderGuid = new Guid(unchecked((int)0x2e5dba47), unchecked((short)0xa3d2), unchecked((short)0x4d16), 0x8e, 0xe0, 0x66, 0x71, 0xff, 0xdc, 0xd7, 0xb5);
-        public enum Keywords : long
+        internal enum Keywords : long
         {
             None = 0,
             Tasktransfer = 0x1,
@@ -359,7 +361,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers
 
 namespace Microsoft.Diagnostics.Tracing.Parsers.Tpl
 {
-    public sealed class AwaitTaskContinuationScheduledArgs : TraceEvent
+    internal sealed class AwaitTaskContinuationScheduledArgs : TraceEvent
     {
         public int OriginatingTaskSchedulerID { get { return GetInt32At(0); } }
         public int OriginatingTaskID { get { return GetInt32At(4); } }
@@ -427,7 +429,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Tpl
         private event Action<AwaitTaskContinuationScheduledArgs> m_target;
         #endregion
     }
-    public sealed class ParallelForkArgs : TraceEvent
+    internal sealed class ParallelForkArgs : TraceEvent
     {
         public int OriginatingTaskSchedulerID { get { return GetInt32At(0); } }
         public int OriginatingTaskID { get { return GetInt32At(4); } }
@@ -495,7 +497,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Tpl
         private event Action<ParallelForkArgs> m_target;
         #endregion
     }
-    public sealed class ParallelJoinArgs : TraceEvent
+    internal sealed class ParallelJoinArgs : TraceEvent
     {
         public int OriginatingTaskSchedulerID { get { return GetInt32At(0); } }
         public int OriginatingTaskID { get { return GetInt32At(4); } }
@@ -563,7 +565,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Tpl
         private event Action<ParallelJoinArgs> m_target;
         #endregion
     }
-    public sealed class ParallelInvokeBeginArgs : TraceEvent
+    internal sealed class ParallelInvokeBeginArgs : TraceEvent
     {
         public int OriginatingTaskSchedulerID { get { return GetInt32At(0); } }
         public int OriginatingTaskID { get { return GetInt32At(4); } }
@@ -639,7 +641,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Tpl
         private event Action<ParallelInvokeBeginArgs> m_target;
         #endregion
     }
-    public sealed class ParallelInvokeEndArgs : TraceEvent
+    internal sealed class ParallelInvokeEndArgs : TraceEvent
     {
         public int OriginatingTaskSchedulerID { get { return GetInt32At(0); } }
         public int OriginatingTaskID { get { return GetInt32At(4); } }
@@ -707,7 +709,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Tpl
         private event Action<ParallelInvokeEndArgs> m_target;
         #endregion
     }
-    public sealed class ParallelLoopBeginArgs : TraceEvent
+    internal sealed class ParallelLoopBeginArgs : TraceEvent
     {
         public int OriginatingTaskSchedulerID { get { return GetInt32At(0); } }
         public int OriginatingTaskID { get { return GetInt32At(4); } }
@@ -787,7 +789,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Tpl
         private event Action<ParallelLoopBeginArgs> m_target;
         #endregion
     }
-    public sealed class ParallelLoopEndArgs : TraceEvent
+    internal sealed class ParallelLoopEndArgs : TraceEvent
     {
         public int OriginatingTaskSchedulerID { get { return GetInt32At(0); } }
         public int OriginatingTaskID { get { return GetInt32At(4); } }
@@ -859,7 +861,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Tpl
         private event Action<ParallelLoopEndArgs> m_target;
         #endregion
     }
-    public sealed class TaskStartedArgs : TraceEvent
+    internal sealed class TaskStartedArgs : TraceEvent
     {
         public int OriginatingTaskSchedulerID { get { return GetInt32At(0); } }
         public int OriginatingTaskID { get { return GetInt32At(4); } }
@@ -927,7 +929,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Tpl
         private event Action<TaskStartedArgs> m_target;
         #endregion
     }
-    public sealed class TaskCompletedArgs : TraceEvent
+    internal sealed class TaskCompletedArgs : TraceEvent
     {
         public int OriginatingTaskSchedulerID { get { return GetInt32At(0); } }
         public int OriginatingTaskID { get { return GetInt32At(4); } }
@@ -999,7 +1001,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Tpl
         private event Action<TaskCompletedArgs> m_target;
         #endregion
     }
-    public sealed class TaskScheduledArgs : TraceEvent
+    internal sealed class TaskScheduledArgs : TraceEvent
     {
         public int OriginatingTaskSchedulerID { get { return GetInt32At(0); } }
         public int OriginatingTaskID { get { return GetInt32At(4); } }
@@ -1075,7 +1077,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Tpl
         private event Action<TaskScheduledArgs> m_target;
         #endregion
     }
-    public sealed class TaskWaitContinuationCompleteArgs : TraceEvent
+    internal sealed class TaskWaitContinuationCompleteArgs : TraceEvent
     {
         public int TaskID { get { return GetInt32At(0); } }
 
@@ -1135,7 +1137,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Tpl
         private event Action<TaskWaitContinuationCompleteArgs> m_target;
         #endregion
     }
-    public sealed class TaskWaitSendArgs : TraceEvent
+    internal sealed class TaskWaitSendArgs : TraceEvent
     {
         public int OriginatingTaskSchedulerID { get { return GetInt32At(0); } }
         public int OriginatingTaskID { get { return GetInt32At(4); } }
@@ -1211,7 +1213,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Tpl
         private event Action<TaskWaitSendArgs> m_target;
         #endregion
     }
-    public sealed class TaskWaitStopArgs : TraceEvent
+    internal sealed class TaskWaitStopArgs : TraceEvent
     {
         public int OriginatingTaskSchedulerID { get { return GetInt32At(0); } }
         public int OriginatingTaskID { get { return GetInt32At(4); } }
@@ -1279,7 +1281,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Tpl
         private event Action<TaskWaitStopArgs> m_target;
         #endregion
     }
-    public sealed class TraceOperationRelationArgs : TraceEvent
+    internal sealed class TraceOperationRelationArgs : TraceEvent
     {
         public int TaskID { get { return GetInt32At(0); } }
         public CausalityRelation Relation { get { return (CausalityRelation)GetInt32At(4); } }
@@ -1343,7 +1345,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Tpl
         private event Action<TraceOperationRelationArgs> m_target;
         #endregion
     }
-    public sealed class TraceOperationStartArgs : TraceEvent
+    internal sealed class TraceOperationStartArgs : TraceEvent
     {
         public int TaskID { get { return GetInt32At(0); } }
         public string OperationName { get { return GetUnicodeStringAt(4); } }
@@ -1411,7 +1413,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Tpl
         private event Action<TraceOperationStartArgs> m_target;
         #endregion
     }
-    public sealed class TraceOperationStopArgs : TraceEvent
+    internal sealed class TraceOperationStopArgs : TraceEvent
     {
         public int TaskID { get { return GetInt32At(0); } }
         public AsyncCausalityStatus Status { get { return (AsyncCausalityStatus)GetInt32At(4); } }
@@ -1475,7 +1477,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Tpl
         private event Action<TraceOperationStopArgs> m_target;
         #endregion
     }
-    public sealed class TraceSynchronousWorkStartArgs : TraceEvent
+    internal sealed class TraceSynchronousWorkStartArgs : TraceEvent
     {
         public int TaskID { get { return GetInt32At(0); } }
         public CausalitySynchronousWork Work { get { return (CausalitySynchronousWork)GetInt32At(4); } }
@@ -1539,7 +1541,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Tpl
         private event Action<TraceSynchronousWorkStartArgs> m_target;
         #endregion
     }
-    public sealed class TraceSynchronousWorkStopArgs : TraceEvent
+    internal sealed class TraceSynchronousWorkStopArgs : TraceEvent
     {
         public CausalitySynchronousWork Work { get { return (CausalitySynchronousWork)GetInt32At(0); } }
 
@@ -1599,7 +1601,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Tpl
         private event Action<TraceSynchronousWorkStopArgs> m_target;
         #endregion
     }
-    public sealed class IncompleteAsyncMethodArgs : TraceEvent
+    internal sealed class IncompleteAsyncMethodArgs : TraceEvent
     {
         public string stateMachineDescription { get { return GetUnicodeStringAt(0); } }
 
@@ -1660,14 +1662,14 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Tpl
         #endregion
     }
 
-    public enum AsyncCausalityStatus
+    internal enum AsyncCausalityStatus
     {
         Started = 0x0,
         Completed = 0x1,
         Canceled = 0x2,
         Error = 0x3,
     }
-    public enum CausalityRelation
+    internal enum CausalityRelation
     {
         AssignDelegate = 0x0,
         Join = 0x1,
@@ -1675,19 +1677,19 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Tpl
         Cancel = 0x3,
         Error = 0x4,
     }
-    public enum CausalitySynchronousWork
+    internal enum CausalitySynchronousWork
     {
         CompletionNotification = 0x0,
         ProgressNotification = 0x1,
         Execution = 0x2,
     }
-    public enum ForkJoinOperationType
+    internal enum ForkJoinOperationType
     {
         ParallelInvoke = 0x1,
         ParallelFor = 0x2,
         ParallelForEach = 0x3,
     }
-    public enum TaskWaitBehavior
+    internal enum TaskWaitBehavior
     {
         Synchronous = 0x1,
         Asynchronous = 0x2,

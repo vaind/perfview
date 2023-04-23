@@ -1,4 +1,6 @@
-﻿using Microsoft.Diagnostics.Tracing.Stacks;
+#nullable disable
+
+using Microsoft.Diagnostics.Tracing.Stacks;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -12,7 +14,7 @@ using OptimizationTier = Microsoft.Diagnostics.Tracing.Parsers.Clr.OptimizationT
 
 namespace Microsoft.Diagnostics.Tracing.StackSources
 {
-    public class XmlStackSourceWriter
+    internal class XmlStackSourceWriter
     {
         public static void WriteStackViewAsZippedXml(StackSource source, string fileName, Action<XmlWriter> additionalData = null)
         {
@@ -145,7 +147,7 @@ namespace Microsoft.Diagnostics.Tracing.StackSources
     /// Reads a very reasonable XML encoding of a stack source. 
     /// 
     /// </summary>
-    public class XmlStackSource : StackSource
+    internal class XmlStackSource : StackSource
     {
         /// <summary>
         /// Generates a Stack Source from an XML file created with XmlStackSourceWriter.

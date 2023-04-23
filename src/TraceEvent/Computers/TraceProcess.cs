@@ -1,4 +1,6 @@
-﻿// Copyright (c) Microsoft Corporation.  All rights reserved
+#nullable disable
+
+// Copyright (c) Microsoft Corporation.  All rights reserved
 // This file is best viewed using outline mode (Ctrl-M Ctrl-O)
 //
 // This program uses code hyperlinks available as part of the HyperAddin Visual Studio plug-in.
@@ -16,7 +18,7 @@ namespace Microsoft.Diagnostics.Tracing.Analysis
     /// <summary>
     /// TraceProcess Extension methods
     /// </summary>
-    public static class TraceProcessesExtensions
+    internal static class TraceProcessesExtensions
     {
         public static void NeedProcesses(this TraceEventDispatcher source)
         {
@@ -183,7 +185,7 @@ namespace Microsoft.Diagnostics.Tracing.Analysis
     /// additional data associated with a process in the trace.  
     /// </para>
     /// </summary>
-    public enum ProcessIndex
+    internal enum ProcessIndex
     {
         /// <summary>
         /// Returned when no appropriate Process exists.  
@@ -199,7 +201,7 @@ namespace Microsoft.Diagnostics.Tracing.Analysis
     /// This is a copy of the reduced code from TraceLog!TraceProcesses (removal of elements that
     /// depend on TraceLog - there is a lot of them)
     /// </summary>
-    public sealed class TraceProcesses : IEnumerable<TraceProcess>
+    internal sealed class TraceProcesses : IEnumerable<TraceProcess>
     {
         /// <summary>
         /// The log associated with this collection of processes. 
@@ -528,7 +530,7 @@ namespace Microsoft.Diagnostics.Tracing.Analysis
     /// 
     /// This is a slightly modified copy of the code from TraceLog!TraceProcess
     /// </summary>
-    public class TraceProcess
+    internal class TraceProcess
     {
         /// <summary>
         /// The OS process ID associated with the process. It is NOT unique across the whole log.  Use
@@ -794,8 +796,8 @@ namespace Microsoft.Diagnostics.Tracing.Analysis
     /// <summary>
     /// Dummy stubs so Microsoft.Diagnostics.Tracing.Etlx namespace is not necessary
     /// </summary>
-    public class TraceLog { }
-    public class TraceThread { }
-    public class TraceLoadedModules { }
-    public class TraceEvents { }
+    internal class TraceLog { }
+    internal class TraceThread { }
+    internal class TraceLoadedModules { }
+    internal class TraceEvents { }
 }

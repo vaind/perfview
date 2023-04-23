@@ -1,3 +1,5 @@
+#nullable disable
+
 using System;
 using System.Collections.Generic;
 
@@ -6,7 +8,7 @@ namespace Microsoft.Diagnostics.Tracing.AutomatedAnalysis
     /// <summary>
     /// Processes traces by running a set of Analyzers against the trace data.
     /// </summary>
-    public sealed class TraceProcessor
+    internal sealed class TraceProcessor
     {
         private IEnumerable<Analyzer> _analyzers;
         private Configuration _configuration;

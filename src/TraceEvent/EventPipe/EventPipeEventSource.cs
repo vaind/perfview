@@ -1,3 +1,5 @@
+#nullable disable
+
 using FastSerialization;
 using Microsoft.Diagnostics.Tracing.EventPipe;
 using Microsoft.Diagnostics.Tracing.Parsers;
@@ -26,7 +28,7 @@ namespace Microsoft.Diagnostics.Tracing
     /// events have a name some basic information (process, thread, timestamp, activity
     /// ID) and user defined field names and values of various types.
     /// </summary>
-    public unsafe class EventPipeEventSource : TraceEventDispatcher, IFastSerializable, IFastSerializableVersion
+    internal unsafe class EventPipeEventSource : TraceEventDispatcher, IFastSerializable, IFastSerializableVersion
     {
         public EventPipeEventSource(string fileName) : this(new PinnedStreamReader(fileName, 0x20000, new SerializationConfiguration() { StreamLabelWidth = StreamLabelWidth.FourBytes }), fileName, false)
         {
@@ -1356,7 +1358,7 @@ namespace Microsoft.Diagnostics.Tracing
     internal unsafe struct EventPipeEventHeader
     {
         [StructLayout(LayoutKind.Sequential, Pack = 1)]
-        struct LayoutV3
+        internal struct LayoutV3
         {
             public int EventSize;          // Size bytes of this header and the payload and stacks if any.  does NOT encode the size of the EventSize field itself.
             public int MetaDataId;          // a number identifying the description of this event.
@@ -1389,7 +1391,7 @@ namespace Microsoft.Diagnostics.Tracing
         }
 
         [StructLayout(LayoutKind.Sequential, Pack = 1)]
-        struct LayoutV4
+        internal struct LayoutV4
         {
             public int EventSize;          // Size bytes of this header and the payload and stacks if any.  does NOT encode the size of the EventSize field itself.
             public int MetaDataId;          // a number identifying the description of this event.
@@ -1405,7 +1407,7 @@ namespace Microsoft.Diagnostics.Tracing
             public fixed byte Payload[4];   // Actually of variable size.  4 is used to avoid potential alignment issues.   This 4 also appears in HeaderSize below.
         }
 
-        enum CompressedHeaderFlags
+        internal enum CompressedHeaderFlags
         {
             MetadataId = 1 << 0,
             CaptureThreadAndSequence = 1 << 1,

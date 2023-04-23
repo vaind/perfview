@@ -1,3 +1,5 @@
+#nullable disable
+
 using System;
 using System.Diagnostics;
 using System.Text;
@@ -10,11 +12,11 @@ namespace Microsoft.Diagnostics.Tracing.Parsers
     using Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP;
 
     [System.CodeDom.Compiler.GeneratedCode("traceparsergen", "2.0")]
-    public sealed class MicrosoftWindowsTCPIPTraceEventParser : TraceEventParser
+    internal sealed class MicrosoftWindowsTCPIPTraceEventParser : TraceEventParser
     {
         public static readonly string ProviderName = "Microsoft-Windows-TCPIP";
         public static readonly Guid ProviderGuid = new Guid(unchecked((int)0x2f07e2ee), unchecked((short)0x15db), unchecked((short)0x40f1), 0x90, 0xef, 0x9d, 0x7b, 0xa2, 0x82, 0x18, 0x8a);
-        public enum Keywords : long
+        internal enum Keywords : long
         {
             Uttcpipendpoint = 0x1,
             Uttcpiplistener = 0x2,
@@ -5557,9 +5559,9 @@ namespace Microsoft.Diagnostics.Tracing.Parsers
 
 namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
 {
-    public sealed class FramingIfOperStatusArgs : TraceEvent
+    internal sealed class FramingIfOperStatusArgs : TraceEvent
     {
-        public int Interface { get { return GetInt32At(0); } }
+        internal int Interface { get { return GetInt32At(0); } }
         public int OperationalStatus { get { return GetInt32At(4); } }
         public long Status { get { return GetInt64At(8); } }
 
@@ -5625,7 +5627,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<FramingIfOperStatusArgs> m_target;
         #endregion
     }
-    public sealed class TcpMediaDisconnectArgs : TraceEvent
+    internal sealed class TcpMediaDisconnectArgs : TraceEvent
     {
         public int InterfaceIndex { get { return GetInt32At(0); } }
         public string TraceString { get { return GetUTF8StringAt(4); } }
@@ -5689,9 +5691,9 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<TcpMediaDisconnectArgs> m_target;
         #endregion
     }
-    public sealed class IpDadFailedArgs : TraceEvent
+    internal sealed class IpDadFailedArgs : TraceEvent
     {
-        public int Interface { get { return GetInt32At(0); } }
+        internal int Interface { get { return GetInt32At(0); } }
         public string Protocol { get { return GetUTF8StringAt(4); } }
         public int DadState { get { return GetInt32At(SkipUTF8String(4)); } }
         public int DlAddrLength { get { return GetInt32At(SkipUTF8String(4) + 4); } }
@@ -5775,9 +5777,9 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<IpDadFailedArgs> m_target;
         #endregion
     }
-    public sealed class IpDadSuccessfulArgs : TraceEvent
+    internal sealed class IpDadSuccessfulArgs : TraceEvent
     {
-        public int Interface { get { return GetInt32At(0); } }
+        internal int Interface { get { return GetInt32At(0); } }
         public string Protocol { get { return GetUTF8StringAt(4); } }
         public TCPIP_IP_DAD_STATE DadState { get { return (TCPIP_IP_DAD_STATE)GetInt32At(SkipUTF8String(4)); } }
         public int DlAddrLength { get { return GetInt32At(SkipUTF8String(4) + 4); } }
@@ -5861,9 +5863,9 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<IpDadSuccessfulArgs> m_target;
         #endregion
     }
-    public sealed class IpInterfacePropertyChangeArgs : TraceEvent
+    internal sealed class IpInterfacePropertyChangeArgs : TraceEvent
     {
-        public int Interface { get { return GetInt32At(0); } }
+        internal int Interface { get { return GetInt32At(0); } }
         public int Advertise { get { return GetInt32At(4); } }
         public int AdvertiseDefaultRoute { get { return GetInt32At(8); } }
         public int Forward { get { return GetInt32At(12); } }
@@ -5945,7 +5947,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<IpInterfacePropertyChangeArgs> m_target;
         #endregion
     }
-    public sealed class IpInterfaceRundownArgs : TraceEvent
+    internal sealed class IpInterfaceRundownArgs : TraceEvent
     {
         public int IfIndex { get { return GetInt32At(0); } }
         public long LinkSpeed { get { return GetInt64At(4); } }
@@ -6026,7 +6028,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<IpInterfaceRundownArgs> m_target;
         #endregion
     }
-    public sealed class IpInterfaceSpeedChangeArgs : TraceEvent
+    internal sealed class IpInterfaceSpeedChangeArgs : TraceEvent
     {
         public int IfIndex { get { return GetInt32At(0); } }
         public long LinkSpeed { get { return GetInt64At(4); } }
@@ -6107,9 +6109,9 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<IpInterfaceSpeedChangeArgs> m_target;
         #endregion
     }
-    public sealed class IpNeighborDiscoveryArgs : TraceEvent
+    internal sealed class IpNeighborDiscoveryArgs : TraceEvent
     {
-        public int Interface { get { return GetInt32At(0); } }
+        internal int Interface { get { return GetInt32At(0); } }
         public int IpAddrLength { get { return GetInt32At(4); } }
         public byte[] SourceIPAddress { get { return GetByteArrayAt(8, IpAddrLength); } }
         public byte[] TargetIPAddress { get { return GetByteArrayAt(0 + (IpAddrLength * 1) + 8, IpAddrLength); } }
@@ -6177,9 +6179,9 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<IpNeighborDiscoveryArgs> m_target;
         #endregion
     }
-    public sealed class IpNeighborUnreachableArgs : TraceEvent
+    internal sealed class IpNeighborUnreachableArgs : TraceEvent
     {
-        public int Interface { get { return GetInt32At(0); } }
+        internal int Interface { get { return GetInt32At(0); } }
         public int DlAddrLength { get { return GetInt32At(4); } }
         public byte[] DlAddress { get { return GetByteArrayAt(8, DlAddrLength); } }
         public int IpAddrLength { get { return GetInt32At(0 + (DlAddrLength * 1) + 8); } }
@@ -6255,9 +6257,9 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<IpNeighborUnreachableArgs> m_target;
         #endregion
     }
-    public sealed class IpNeighborStateArgs : TraceEvent
+    internal sealed class IpNeighborStateArgs : TraceEvent
     {
-        public int Interface { get { return GetInt32At(0); } }
+        internal int Interface { get { return GetInt32At(0); } }
         public int IpAddrLength { get { return GetInt32At(4); } }
         public byte[] IPAddress { get { return GetByteArrayAt(8, IpAddrLength); } }
         public int DlAddrLength { get { return GetInt32At(0 + (IpAddrLength * 1) + 8); } }
@@ -6337,10 +6339,10 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<IpNeighborStateArgs> m_target;
         #endregion
     }
-    public sealed class IpRouteCreatedArgs : TraceEvent
+    internal sealed class IpRouteCreatedArgs : TraceEvent
     {
         public Address Route { get { return GetAddressAt(0); } }
-        public int Interface { get { return GetInt32At(HostOffset(4, 1)); } }
+        internal int Interface { get { return GetInt32At(HostOffset(4, 1)); } }
         public int DestinationPrefixAddressLength { get { return GetInt32At(HostOffset(8, 1)); } }
         public int NextHopAddressLength { get { return GetInt32At(HostOffset(12, 1)); } }
         public string Protocol { get { return GetUTF8StringAt(HostOffset(16, 1)); } }
@@ -6459,7 +6461,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<IpRouteCreatedArgs> m_target;
         #endregion
     }
-    public sealed class IpSortedAddressPairsArgs : TraceEvent
+    internal sealed class IpSortedAddressPairsArgs : TraceEvent
     {
         public int IpAddrLength { get { return GetInt32At(0); } }
         public byte[] PreferredSourceIPAddress { get { return GetByteArrayAt(4, IpAddrLength); } }
@@ -6539,7 +6541,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<IpSortedAddressPairsArgs> m_target;
         #endregion
     }
-    public sealed class IpSourceAddressSelectionArgs : TraceEvent
+    internal sealed class IpSourceAddressSelectionArgs : TraceEvent
     {
         public int IpAddrLength { get { return GetInt32At(0); } }
         public byte[] PreferredSourceIPAddress { get { return GetByteArrayAt(4, IpAddrLength); } }
@@ -6610,7 +6612,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<IpSourceAddressSelectionArgs> m_target;
         #endregion
     }
-    public sealed class Ndkpi_AcceptArgs : TraceEvent
+    internal sealed class Ndkpi_AcceptArgs : TraceEvent
     {
         public Address NdkConnector { get { return GetAddressAt(0); } }
         public Address NdkQp { get { return GetAddressAt(HostOffset(4, 1)); } }
@@ -6694,7 +6696,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<Ndkpi_AcceptArgs> m_target;
         #endregion
     }
-    public sealed class Ndkpi_Arm_CqArgs : TraceEvent
+    internal sealed class Ndkpi_Arm_CqArgs : TraceEvent
     {
         public Address NdkCq { get { return GetAddressAt(0); } }
         public TCPIP_NDKPI_CQ_ARM_TYPE ArmType { get { return (TCPIP_NDKPI_CQ_ARM_TYPE)GetInt32At(HostOffset(4, 1)); } }
@@ -6758,7 +6760,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<Ndkpi_Arm_CqArgs> m_target;
         #endregion
     }
-    public sealed class Ndkpi_BindArgs : TraceEvent
+    internal sealed class Ndkpi_BindArgs : TraceEvent
     {
         public Address NdkQp { get { return GetAddressAt(0); } }
         public Address RequestContext { get { return GetAddressAt(HostOffset(4, 1)); } }
@@ -6842,7 +6844,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<Ndkpi_BindArgs> m_target;
         #endregion
     }
-    public sealed class Ndkpi_Build_LamArgs : TraceEvent
+    internal sealed class Ndkpi_Build_LamArgs : TraceEvent
     {
         public Address NdkAdapter { get { return GetAddressAt(0); } }
         public Address Mdl { get { return GetAddressAt(HostOffset(4, 1)); } }
@@ -6922,7 +6924,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<Ndkpi_Build_LamArgs> m_target;
         #endregion
     }
-    public sealed class Ndkpi_Close_Adapter_EnterArgs : TraceEvent
+    internal sealed class Ndkpi_Close_Adapter_EnterArgs : TraceEvent
     {
         public Address NdkAdapter { get { return GetAddressAt(0); } }
 
@@ -6982,7 +6984,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<Ndkpi_Close_Adapter_EnterArgs> m_target;
         #endregion
     }
-    public sealed class Ndkpi_Close_CompletionArgs : TraceEvent
+    internal sealed class Ndkpi_Close_CompletionArgs : TraceEvent
     {
         public Address RequestContext { get { return GetAddressAt(0); } }
         public int CompletionType { get { return GetInt32At(HostOffset(4, 1)); } }
@@ -7046,7 +7048,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<Ndkpi_Close_CompletionArgs> m_target;
         #endregion
     }
-    public sealed class Ndkpi_Close_ObjArgs : TraceEvent
+    internal sealed class Ndkpi_Close_ObjArgs : TraceEvent
     {
         public Address NdkObject { get { return GetAddressAt(0); } }
         public TCPIP_NDKPI_OBJECT_TYPE NdkObjectType { get { return (TCPIP_NDKPI_OBJECT_TYPE)GetInt32At(HostOffset(4, 1)); } }
@@ -7114,7 +7116,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<Ndkpi_Close_ObjArgs> m_target;
         #endregion
     }
-    public sealed class Ndkpi_Complete_ConnectArgs : TraceEvent
+    internal sealed class Ndkpi_Complete_ConnectArgs : TraceEvent
     {
         public Address NdkConnector { get { return GetAddressAt(0); } }
         public Address DisconnectEventContext { get { return GetAddressAt(HostOffset(4, 1)); } }
@@ -7182,7 +7184,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<Ndkpi_Complete_ConnectArgs> m_target;
         #endregion
     }
-    public sealed class Ndkpi_ConnectArgs : TraceEvent
+    internal sealed class Ndkpi_ConnectArgs : TraceEvent
     {
         public Address NdkConnector { get { return GetAddressAt(0); } }
         public Address NdkQp { get { return GetAddressAt(HostOffset(4, 1)); } }
@@ -7276,7 +7278,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<Ndkpi_ConnectArgs> m_target;
         #endregion
     }
-    public sealed class Ndkpi_Connect_Event_CallbackArgs : TraceEvent
+    internal sealed class Ndkpi_Connect_Event_CallbackArgs : TraceEvent
     {
         public Address ConnectEventContext { get { return GetAddressAt(0); } }
         public Address NdkConnector { get { return GetAddressAt(HostOffset(4, 1)); } }
@@ -7340,7 +7342,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<Ndkpi_Connect_Event_CallbackArgs> m_target;
         #endregion
     }
-    public sealed class Ndkpi_Control_Cq_ImArgs : TraceEvent
+    internal sealed class Ndkpi_Control_Cq_ImArgs : TraceEvent
     {
         public Address NdkCq { get { return GetAddressAt(0); } }
         public int ModerationInterval { get { return GetInt32At(HostOffset(4, 1)); } }
@@ -7412,7 +7414,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<Ndkpi_Control_Cq_ImArgs> m_target;
         #endregion
     }
-    public sealed class Ndkpi_Cq_Notification_CallbackArgs : TraceEvent
+    internal sealed class Ndkpi_Cq_Notification_CallbackArgs : TraceEvent
     {
         public Address CqNotificationContext { get { return GetAddressAt(0); } }
         public int CqStatus { get { return GetInt32At(HostOffset(4, 1)); } }
@@ -7476,7 +7478,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<Ndkpi_Cq_Notification_CallbackArgs> m_target;
         #endregion
     }
-    public sealed class Ndkpi_Cq_ResultArgs : TraceEvent
+    internal sealed class Ndkpi_Cq_ResultArgs : TraceEvent
     {
         public Address NdkCq { get { return GetAddressAt(0); } }
         public int Status { get { return GetInt32At(HostOffset(4, 1)); } }
@@ -7560,7 +7562,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<Ndkpi_Cq_ResultArgs> m_target;
         #endregion
     }
-    public sealed class Ndkpi_Cq_Result_ExArgs : TraceEvent
+    internal sealed class Ndkpi_Cq_Result_ExArgs : TraceEvent
     {
         public Address NdkCq { get { return GetAddressAt(0); } }
         public int Status { get { return GetInt32At(HostOffset(4, 1)); } }
@@ -7652,7 +7654,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<Ndkpi_Cq_Result_ExArgs> m_target;
         #endregion
     }
-    public sealed class Ndkpi_Create_CompletionArgs : TraceEvent
+    internal sealed class Ndkpi_Create_CompletionArgs : TraceEvent
     {
         public Address RequestContext { get { return GetAddressAt(0); } }
         public int Status { get { return GetInt32At(HostOffset(4, 1)); } }
@@ -7728,7 +7730,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<Ndkpi_Create_CompletionArgs> m_target;
         #endregion
     }
-    public sealed class Ndkpi_Deregister_MrArgs : TraceEvent
+    internal sealed class Ndkpi_Deregister_MrArgs : TraceEvent
     {
         public Address NdkObject { get { return GetAddressAt(0); } }
         public Address RequestContext { get { return GetAddressAt(HostOffset(4, 1)); } }
@@ -7792,7 +7794,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<Ndkpi_Deregister_MrArgs> m_target;
         #endregion
     }
-    public sealed class Ndkpi_Create_CqArgs : TraceEvent
+    internal sealed class Ndkpi_Create_CqArgs : TraceEvent
     {
         public Address NdkAdapter { get { return GetAddressAt(0); } }
         public int CqDepth { get { return GetInt32At(HostOffset(4, 1)); } }
@@ -7872,7 +7874,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<Ndkpi_Create_CqArgs> m_target;
         #endregion
     }
-    public sealed class Ndkpi_Create_ListenerArgs : TraceEvent
+    internal sealed class Ndkpi_Create_ListenerArgs : TraceEvent
     {
         public Address NdkAdapter { get { return GetAddressAt(0); } }
         public Address ConnectEventContext { get { return GetAddressAt(HostOffset(4, 1)); } }
@@ -7940,7 +7942,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<Ndkpi_Create_ListenerArgs> m_target;
         #endregion
     }
-    public sealed class Ndkpi_Create_MrArgs : TraceEvent
+    internal sealed class Ndkpi_Create_MrArgs : TraceEvent
     {
         public Address NdkPd { get { return GetAddressAt(0); } }
         public int FastRegister { get { return GetInt32At(HostOffset(4, 1)); } }
@@ -8008,7 +8010,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<Ndkpi_Create_MrArgs> m_target;
         #endregion
     }
-    public sealed class Ndkpi_Create_QpArgs : TraceEvent
+    internal sealed class Ndkpi_Create_QpArgs : TraceEvent
     {
         public Address NdkPd { get { return GetAddressAt(0); } }
         public Address ReceiveCq { get { return GetAddressAt(HostOffset(4, 1)); } }
@@ -8104,7 +8106,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<Ndkpi_Create_QpArgs> m_target;
         #endregion
     }
-    public sealed class Ndkpi_ListenArgs : TraceEvent
+    internal sealed class Ndkpi_ListenArgs : TraceEvent
     {
         public Address NdkListener { get { return GetAddressAt(0); } }
         public int SockAddrLength { get { return GetInt32At(HostOffset(4, 1)); } }
@@ -8173,7 +8175,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<Ndkpi_ListenArgs> m_target;
         #endregion
     }
-    public sealed class Ndkpi_Create_SrqArgs : TraceEvent
+    internal sealed class Ndkpi_Create_SrqArgs : TraceEvent
     {
         public Address NdkPd { get { return GetAddressAt(0); } }
         public int SrqDepth { get { return GetInt32At(HostOffset(4, 1)); } }
@@ -8261,7 +8263,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<Ndkpi_Create_SrqArgs> m_target;
         #endregion
     }
-    public sealed class Ndkpi_Disconnect_Event_CallbackArgs : TraceEvent
+    internal sealed class Ndkpi_Disconnect_Event_CallbackArgs : TraceEvent
     {
         public Address DisconnectEventContext { get { return GetAddressAt(0); } }
 
@@ -8321,7 +8323,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<Ndkpi_Disconnect_Event_CallbackArgs> m_target;
         #endregion
     }
-    public sealed class Ndkpi_Fast_RegisterArgs : TraceEvent
+    internal sealed class Ndkpi_Fast_RegisterArgs : TraceEvent
     {
         public Address NdkQp { get { return GetAddressAt(0); } }
         public Address RequestContext { get { return GetAddressAt(HostOffset(4, 1)); } }
@@ -8413,7 +8415,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<Ndkpi_Fast_RegisterArgs> m_target;
         #endregion
     }
-    public sealed class Ndkpi_FlushArgs : TraceEvent
+    internal sealed class Ndkpi_FlushArgs : TraceEvent
     {
         public Address NdkQp { get { return GetAddressAt(0); } }
 
@@ -8473,7 +8475,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<Ndkpi_FlushArgs> m_target;
         #endregion
     }
-    public sealed class Ndkpi_Get_Connect_DataArgs : TraceEvent
+    internal sealed class Ndkpi_Get_Connect_DataArgs : TraceEvent
     {
         public Address NdkConnector { get { return GetAddressAt(0); } }
         public int IRD { get { return GetInt32At(HostOffset(4, 1)); } }
@@ -8549,7 +8551,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<Ndkpi_Get_Connect_DataArgs> m_target;
         #endregion
     }
-    public sealed class Ndkpi_Get_SockaddrArgs : TraceEvent
+    internal sealed class Ndkpi_Get_SockaddrArgs : TraceEvent
     {
         public Address NdkObject { get { return GetAddressAt(0); } }
         public int NdkObjectType { get { return GetInt32At(HostOffset(4, 1)); } }
@@ -8622,7 +8624,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<Ndkpi_Get_SockaddrArgs> m_target;
         #endregion
     }
-    public sealed class Ndkpi_Get_Sockaddr_FailureArgs : TraceEvent
+    internal sealed class Ndkpi_Get_Sockaddr_FailureArgs : TraceEvent
     {
         public Address NdkObject { get { return GetAddressAt(0); } }
         public int NdkObjectType { get { return GetInt32At(HostOffset(4, 1)); } }
@@ -8694,7 +8696,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<Ndkpi_Get_Sockaddr_FailureArgs> m_target;
         #endregion
     }
-    public sealed class Ndkpi_Get_TokenArgs : TraceEvent
+    internal sealed class Ndkpi_Get_TokenArgs : TraceEvent
     {
         public Address NdkObject { get { return GetAddressAt(0); } }
         public int NdkObjectType { get { return GetInt32At(HostOffset(4, 1)); } }
@@ -8766,7 +8768,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<Ndkpi_Get_TokenArgs> m_target;
         #endregion
     }
-    public sealed class Ndkpi_Initialize_Fast_Register_MrArgs : TraceEvent
+    internal sealed class Ndkpi_Initialize_Fast_Register_MrArgs : TraceEvent
     {
         public Address NdkMr { get { return GetAddressAt(0); } }
         public int AdapterPageCount { get { return GetInt32At(HostOffset(4, 1)); } }
@@ -8838,7 +8840,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<Ndkpi_Initialize_Fast_Register_MrArgs> m_target;
         #endregion
     }
-    public sealed class Ndkpi_Interface_EventArgs : TraceEvent
+    internal sealed class Ndkpi_Interface_EventArgs : TraceEvent
     {
         public int InterfaceIndex { get { return GetInt32At(0); } }
         public int EventDescription { get { return GetInt32At(4); } }
@@ -8910,7 +8912,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<Ndkpi_Interface_EventArgs> m_target;
         #endregion
     }
-    public sealed class Ndkpi_InvalidateArgs : TraceEvent
+    internal sealed class Ndkpi_InvalidateArgs : TraceEvent
     {
         public Address NdkQp { get { return GetAddressAt(0); } }
         public Address RequestContext { get { return GetAddressAt(HostOffset(4, 1)); } }
@@ -8986,7 +8988,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<Ndkpi_InvalidateArgs> m_target;
         #endregion
     }
-    public sealed class Ndkpi_Modify_SrqArgs : TraceEvent
+    internal sealed class Ndkpi_Modify_SrqArgs : TraceEvent
     {
         public Address NdkSrq { get { return GetAddressAt(0); } }
         public int SrqDepth { get { return GetInt32At(HostOffset(4, 1)); } }
@@ -9058,7 +9060,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<Ndkpi_Modify_SrqArgs> m_target;
         #endregion
     }
-    public sealed class Ndkpi_Open_AdapterArgs : TraceEvent
+    internal sealed class Ndkpi_Open_AdapterArgs : TraceEvent
     {
         public int InterfaceIndex { get { return GetInt32At(0); } }
         public Address NdkAdapter { get { return GetAddressAt(4); } }
@@ -9126,7 +9128,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<Ndkpi_Open_AdapterArgs> m_target;
         #endregion
     }
-    public sealed class Ndkpi_ReadArgs : TraceEvent
+    internal sealed class Ndkpi_ReadArgs : TraceEvent
     {
         public Address NdkQp { get { return GetAddressAt(0); } }
         public Address RequestContext { get { return GetAddressAt(HostOffset(4, 1)); } }
@@ -9222,7 +9224,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<Ndkpi_ReadArgs> m_target;
         #endregion
     }
-    public sealed class Ndkpi_SendArgs : TraceEvent
+    internal sealed class Ndkpi_SendArgs : TraceEvent
     {
         public Address NdkQp { get { return GetAddressAt(0); } }
         public Address RequestContext { get { return GetAddressAt(HostOffset(4, 1)); } }
@@ -9310,7 +9312,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<Ndkpi_SendArgs> m_target;
         #endregion
     }
-    public sealed class Ndkpi_Register_MrArgs : TraceEvent
+    internal sealed class Ndkpi_Register_MrArgs : TraceEvent
     {
         public Address NdkMr { get { return GetAddressAt(0); } }
         public Address Mdl { get { return GetAddressAt(HostOffset(4, 1)); } }
@@ -9386,7 +9388,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<Ndkpi_Register_MrArgs> m_target;
         #endregion
     }
-    public sealed class Ndkpi_RejectArgs : TraceEvent
+    internal sealed class Ndkpi_RejectArgs : TraceEvent
     {
         public Address NdkConnector { get { return GetAddressAt(0); } }
         public int PrivateDataLength { get { return GetInt32At(HostOffset(4, 1)); } }
@@ -9454,7 +9456,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<Ndkpi_RejectArgs> m_target;
         #endregion
     }
-    public sealed class Ndkpi_Release_LamArgs : TraceEvent
+    internal sealed class Ndkpi_Release_LamArgs : TraceEvent
     {
         public Address NdkAdapter { get { return GetAddressAt(0); } }
         public Address LAMBuffer { get { return GetAddressAt(HostOffset(4, 1)); } }
@@ -9518,7 +9520,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<Ndkpi_Release_LamArgs> m_target;
         #endregion
     }
-    public sealed class Ndkpi_Request_CompletionArgs : TraceEvent
+    internal sealed class Ndkpi_Request_CompletionArgs : TraceEvent
     {
         public Address RequestContext { get { return GetAddressAt(0); } }
         public int Status { get { return GetInt32At(HostOffset(4, 1)); } }
@@ -9586,7 +9588,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<Ndkpi_Request_CompletionArgs> m_target;
         #endregion
     }
-    public sealed class Ndkpi_Resize_CqArgs : TraceEvent
+    internal sealed class Ndkpi_Resize_CqArgs : TraceEvent
     {
         public Address NdkCq { get { return GetAddressAt(0); } }
         public int CqDepth { get { return GetInt32At(HostOffset(4, 1)); } }
@@ -9654,7 +9656,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<Ndkpi_Resize_CqArgs> m_target;
         #endregion
     }
-    public sealed class Ndkpi_Send_InvalidateArgs : TraceEvent
+    internal sealed class Ndkpi_Send_InvalidateArgs : TraceEvent
     {
         public Address NdkQp { get { return GetAddressAt(0); } }
         public Address RequestContext { get { return GetAddressAt(HostOffset(4, 1)); } }
@@ -9746,7 +9748,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<Ndkpi_Send_InvalidateArgs> m_target;
         #endregion
     }
-    public sealed class Ndkpi_Srq_Notification_CallbackArgs : TraceEvent
+    internal sealed class Ndkpi_Srq_Notification_CallbackArgs : TraceEvent
     {
         public Address SrqNotificationContext { get { return GetAddressAt(0); } }
         public int SrqStatus { get { return GetInt32At(HostOffset(4, 1)); } }
@@ -9810,7 +9812,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<Ndkpi_Srq_Notification_CallbackArgs> m_target;
         #endregion
     }
-    public sealed class Ndkpi_Srq_Work_Request_Inline_FailureArgs : TraceEvent
+    internal sealed class Ndkpi_Srq_Work_Request_Inline_FailureArgs : TraceEvent
     {
         public Address NdkSrq { get { return GetAddressAt(0); } }
         public Address RequestContext { get { return GetAddressAt(HostOffset(4, 1)); } }
@@ -9878,7 +9880,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<Ndkpi_Srq_Work_Request_Inline_FailureArgs> m_target;
         #endregion
     }
-    public sealed class Ndkpi_SrqReceiveArgs : TraceEvent
+    internal sealed class Ndkpi_SrqReceiveArgs : TraceEvent
     {
         public Address NdkSrq { get { return GetAddressAt(0); } }
         public Address RequestContext { get { return GetAddressAt(HostOffset(4, 1)); } }
@@ -9966,7 +9968,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<Ndkpi_SrqReceiveArgs> m_target;
         #endregion
     }
-    public sealed class Ndkpi_Work_Request_Inline_FailureArgs : TraceEvent
+    internal sealed class Ndkpi_Work_Request_Inline_FailureArgs : TraceEvent
     {
         public Address NdkQp { get { return GetAddressAt(0); } }
         public Address RequestContext { get { return GetAddressAt(HostOffset(4, 1)); } }
@@ -10034,7 +10036,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<Ndkpi_Work_Request_Inline_FailureArgs> m_target;
         #endregion
     }
-    public sealed class RssBindingBindCompleteArgs : TraceEvent
+    internal sealed class RssBindingBindCompleteArgs : TraceEvent
     {
         public int InterfaceIndex { get { return GetInt32At(0); } }
         public int AddressFamily { get { return GetInt16At(4); } }
@@ -10098,7 +10100,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<RssBindingBindCompleteArgs> m_target;
         #endregion
     }
-    public sealed class RssBindingCapabilityArgs : TraceEvent
+    internal sealed class RssBindingCapabilityArgs : TraceEvent
     {
         public int InterfaceIndex { get { return GetInt32At(0); } }
         public TCPIP_RSS_BINDING_CAPABILITY Capability { get { return (TCPIP_RSS_BINDING_CAPABILITY)GetInt32At(4); } }
@@ -10162,7 +10164,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<RssBindingCapabilityArgs> m_target;
         #endregion
     }
-    public sealed class RssBindingChangeArgs : TraceEvent
+    internal sealed class RssBindingChangeArgs : TraceEvent
     {
         public int InterfaceIndex { get { return GetInt32At(0); } }
         public TCPIP_AF AddressFamily { get { return (TCPIP_AF)GetInt16At(4); } }
@@ -10230,7 +10232,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<RssBindingChangeArgs> m_target;
         #endregion
     }
-    public sealed class RssBindingRundownArgs : TraceEvent
+    internal sealed class RssBindingRundownArgs : TraceEvent
     {
         public int InterfaceIndex { get { return GetInt32At(0); } }
         public int AdapterIndex { get { return GetInt32At(4); } }
@@ -10298,7 +10300,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<RssBindingRundownArgs> m_target;
         #endregion
     }
-    public sealed class RssConfigurationChangeArgs : TraceEvent
+    internal sealed class RssConfigurationChangeArgs : TraceEvent
     {
         public int AdapterIndex { get { return GetInt32At(0); } }
         public int Setting { get { return GetInt32At(4); } }
@@ -10366,7 +10368,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<RssConfigurationChangeArgs> m_target;
         #endregion
     }
-    public sealed class RssFailureArgs : TraceEvent
+    internal sealed class RssFailureArgs : TraceEvent
     {
         public int InterfaceIndex { get { return GetInt32At(0); } }
         public int FailureDescription { get { return GetInt32At(4); } }
@@ -10434,7 +10436,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<RssFailureArgs> m_target;
         #endregion
     }
-    public sealed class RssIndirectionChangeArgs : TraceEvent
+    internal sealed class RssIndirectionChangeArgs : TraceEvent
     {
         public int AdapterIndex { get { return GetInt32At(0); } }
         public int IndirectionIndex { get { return GetInt16At(4); } }
@@ -10506,7 +10508,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<RssIndirectionChangeArgs> m_target;
         #endregion
     }
-    public sealed class RssInitializeIndirectionTableArgs : TraceEvent
+    internal sealed class RssInitializeIndirectionTableArgs : TraceEvent
     {
         public int AdapterIndex { get { return GetInt32At(0); } }
         public int IndirectionTableSize { get { return GetInt32At(4); } }
@@ -10579,7 +10581,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<RssInitializeIndirectionTableArgs> m_target;
         #endregion
     }
-    public sealed class RssPortBindCompleteArgs : TraceEvent
+    internal sealed class RssPortBindCompleteArgs : TraceEvent
     {
         public int AdapterIndex { get { return GetInt32At(0); } }
 
@@ -10639,7 +10641,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<RssPortBindCompleteArgs> m_target;
         #endregion
     }
-    public sealed class RssPortCapabilitiesArgs : TraceEvent
+    internal sealed class RssPortCapabilitiesArgs : TraceEvent
     {
         public int AdapterIndex { get { return GetInt32At(0); } }
         public int CapabilitiesFlags { get { return GetInt32At(4); } }
@@ -10711,7 +10713,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<RssPortCapabilitiesArgs> m_target;
         #endregion
     }
-    public sealed class RssPortChangeArgs : TraceEvent
+    internal sealed class RssPortChangeArgs : TraceEvent
     {
         public int AdapterIndex { get { return GetInt32At(0); } }
         public int InterfaceIndex { get { return GetInt32At(4); } }
@@ -10783,7 +10785,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<RssPortChangeArgs> m_target;
         #endregion
     }
-    public sealed class RssPortProcessorsArgs : TraceEvent
+    internal sealed class RssPortProcessorsArgs : TraceEvent
     {
         public int AdapterIndex { get { return GetInt32At(0); } }
         public int GroupNumber { get { return GetInt16At(4); } }
@@ -10855,7 +10857,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<RssPortProcessorsArgs> m_target;
         #endregion
     }
-    public sealed class RssPortReferenceArgs : TraceEvent
+    internal sealed class RssPortReferenceArgs : TraceEvent
     {
         public int AdapterIndex { get { return GetInt32At(0); } }
         public int ExistingInterfaceIndex { get { return GetInt32At(4); } }
@@ -10927,7 +10929,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<RssPortReferenceArgs> m_target;
         #endregion
     }
-    public sealed class RssPortRundownArgs : TraceEvent
+    internal sealed class RssPortRundownArgs : TraceEvent
     {
         public int AdapterIndex { get { return GetInt32At(0); } }
         public int HashInfo { get { return GetInt32At(4); } }
@@ -11016,7 +11018,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<RssPortRundownArgs> m_target;
         #endregion
     }
-    public sealed class RssProcessorAssignmentArgs : TraceEvent
+    internal sealed class RssProcessorAssignmentArgs : TraceEvent
     {
         public int NewAdapterIndex { get { return GetInt32At(0); } }
         public int ProcessorIndex { get { return GetInt32At(4); } }
@@ -11088,7 +11090,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<RssProcessorAssignmentArgs> m_target;
         #endregion
     }
-    public sealed class RssProcessorConsolidationArgs : TraceEvent
+    internal sealed class RssProcessorConsolidationArgs : TraceEvent
     {
         public int AdapterIndex { get { return GetInt32At(0); } }
         public int ProcessorIndex { get { return GetByteAt(4); } }
@@ -11152,7 +11154,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<RssProcessorConsolidationArgs> m_target;
         #endregion
     }
-    public sealed class RssProcessorUnassignmentArgs : TraceEvent
+    internal sealed class RssProcessorUnassignmentArgs : TraceEvent
     {
         public int PreviousAdapterIndex { get { return GetInt32At(0); } }
         public int ProcessorIndex { get { return GetInt32At(4); } }
@@ -11216,9 +11218,9 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<RssProcessorUnassignmentArgs> m_target;
         #endregion
     }
-    public sealed class task_0Args : TraceEvent
+    internal sealed class task_0Args : TraceEvent
     {
-        public int Interface { get { return GetInt32At(0); } }
+        internal int Interface { get { return GetInt32At(0); } }
         public string Protocol { get { return GetUTF8StringAt(4); } }
         public int IpAddrLength { get { return GetInt32At(SkipUTF8String(4)); } }
         public int IPv4Address { get { return GetInt32At(SkipUTF8String(4) + 4); } }
@@ -11321,7 +11323,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<task_0Args> m_target;
         #endregion
     }
-    public sealed class task_01317Args : TraceEvent
+    internal sealed class task_01317Args : TraceEvent
     {
         public Address Event { get { return GetAddressAt(0); } }
         public TCP_REPARTITION_EVENT_TYPE Type { get { return (TCP_REPARTITION_EVENT_TYPE)GetInt32At(HostOffset(4, 1)); } }
@@ -11405,7 +11407,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<task_01317Args> m_target;
         #endregion
     }
-    public sealed class task_01318Args : TraceEvent
+    internal sealed class task_01318Args : TraceEvent
     {
         public TCPIP_COMPONENT Component { get { return (TCPIP_COMPONENT)GetInt32At(0); } }
         public int PowerStateTransition { get { return GetInt32At(4); } }
@@ -11481,7 +11483,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<task_01318Args> m_target;
         #endregion
     }
-    public sealed class task_01319Args : TraceEvent
+    internal sealed class task_01319Args : TraceEvent
     {
         public int Component { get { return GetInt32At(0); } }
         public int IndicatingProcessor { get { return GetInt32At(4); } }
@@ -11573,7 +11575,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<task_01319Args> m_target;
         #endregion
     }
-    public sealed class task_01320Args : TraceEvent
+    internal sealed class task_01320Args : TraceEvent
     {
         public int Component { get { return GetInt32At(0); } }
         public int TargetProcessor { get { return GetInt32At(4); } }
@@ -11657,7 +11659,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<task_01320Args> m_target;
         #endregion
     }
-    public sealed class TcpAccpetListenerRouteLookupFailureArgs : TraceEvent
+    internal sealed class TcpAccpetListenerRouteLookupFailureArgs : TraceEvent
     {
         public int LocalAddressLength { get { return GetInt32At(0); } }
         public byte[] LocalAddress { get { return GetByteArrayAt(4, LocalAddressLength); } }
@@ -11739,7 +11741,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<TcpAccpetListenerRouteLookupFailureArgs> m_target;
         #endregion
     }
-    public sealed class TcpAcceptListenerInsertionFailureArgs : TraceEvent
+    internal sealed class TcpAcceptListenerInsertionFailureArgs : TraceEvent
     {
         public Address Tcb { get { return GetAddressAt(0); } }
         public int LocalAddressLength { get { return GetInt32At(HostOffset(4, 1)); } }
@@ -11817,7 +11819,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<TcpAcceptListenerInsertionFailureArgs> m_target;
         #endregion
     }
-    public sealed class TcpAcquirePortArgs : TraceEvent
+    internal sealed class TcpAcquirePortArgs : TraceEvent
     {
         public Address PortAcquirer { get { return GetAddressAt(0); } }
         public int PortNumber { get { return GetInt16At(HostOffset(4, 1)); } }
@@ -11889,7 +11891,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<TcpAcquirePortArgs> m_target;
         #endregion
     }
-    public sealed class TcpDataTransferTimeoutArgs : TraceEvent
+    internal sealed class TcpDataTransferTimeoutArgs : TraceEvent
     {
         public Address Tcb { get { return GetAddressAt(0); } }
         public int Cwnd { get { return GetInt32At(HostOffset(4, 1)); } }
@@ -11997,7 +11999,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<TcpDataTransferTimeoutArgs> m_target;
         #endregion
     }
-    public sealed class TcpAutoTuningBeginArgs : TraceEvent
+    internal sealed class TcpAutoTuningBeginArgs : TraceEvent
     {
         public int LocalAddressLength { get { return GetInt32At(0); } }
         public byte[] LocalAddress { get { return GetByteArrayAt(4, LocalAddressLength); } }
@@ -12067,7 +12069,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<TcpAutoTuningBeginArgs> m_target;
         #endregion
     }
-    public sealed class TcpLossRecoverySackExitArgs : TraceEvent
+    internal sealed class TcpLossRecoverySackExitArgs : TraceEvent
     {
         public Address Tcb { get { return GetAddressAt(0); } }
         public int SndUna { get { return GetInt32At(HostOffset(4, 1)); } }
@@ -12143,7 +12145,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<TcpLossRecoverySackExitArgs> m_target;
         #endregion
     }
-    public sealed class TcpBindEndpointResolutionFailureArgs : TraceEvent
+    internal sealed class TcpBindEndpointResolutionFailureArgs : TraceEvent
     {
         public int LocalAddressLength { get { return GetInt32At(0); } }
         public byte[] LocalAddress { get { return GetByteArrayAt(4, LocalAddressLength); } }
@@ -12208,7 +12210,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<TcpBindEndpointResolutionFailureArgs> m_target;
         #endregion
     }
-    public sealed class TcpBlackHoleDetectionEntryArgs : TraceEvent
+    internal sealed class TcpBlackHoleDetectionEntryArgs : TraceEvent
     {
         public Address Tcb { get { return GetAddressAt(0); } }
         public int BHMSS { get { return GetInt32At(HostOffset(4, 1)); } }
@@ -12280,7 +12282,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<TcpBlackHoleDetectionEntryArgs> m_target;
         #endregion
     }
-    public sealed class TcpLossRecoveryEntryArgs : TraceEvent
+    internal sealed class TcpLossRecoveryEntryArgs : TraceEvent
     {
         public Address Tcb { get { return GetAddressAt(0); } }
         public int SndUna { get { return GetInt32At(HostOffset(4, 1)); } }
@@ -12348,11 +12350,11 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<TcpLossRecoveryEntryArgs> m_target;
         #endregion
     }
-    public sealed class TcpConnectionOffloadStatusArgs : TraceEvent
+    internal sealed class TcpConnectionOffloadStatusArgs : TraceEvent
     {
         public Address Tcb { get { return GetAddressAt(0); } }
         public int Status { get { return GetInt32At(HostOffset(4, 1)); } }
-        public int Interface { get { return GetInt32At(HostOffset(8, 1)); } }
+        internal int Interface { get { return GetInt32At(HostOffset(8, 1)); } }
         public int PMax { get { return GetInt32At(HostOffset(12, 1)); } }
 
         #region Private
@@ -12420,7 +12422,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<TcpConnectionOffloadStatusArgs> m_target;
         #endregion
     }
-    public sealed class TcpConnectionOffloadStateChangeArgs : TraceEvent
+    internal sealed class TcpConnectionOffloadStateChangeArgs : TraceEvent
     {
         public int TcbState { get { return GetInt32At(0); } }
         public int OcbState { get { return GetInt32At(4); } }
@@ -12500,7 +12502,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<TcpConnectionOffloadStateChangeArgs> m_target;
         #endregion
     }
-    public sealed class TcpConnectionRundownArgs : TraceEvent
+    internal sealed class TcpConnectionRundownArgs : TraceEvent
     {
         public Address Tcb { get { return GetAddressAt(0); } }
         public int LocalAddressLength { get { return GetInt32At(HostOffset(4, 1)); } }
@@ -12578,7 +12580,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<TcpConnectionRundownArgs> m_target;
         #endregion
     }
-    public sealed class TcpConnectionSummaryArgs : TraceEvent
+    internal sealed class TcpConnectionSummaryArgs : TraceEvent
     {
         public Address Tcb { get { return GetAddressAt(0); } }
         public long DataBytesOut { get { return GetInt64At(HostOffset(4, 1)); } }
@@ -12738,7 +12740,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<TcpConnectionSummaryArgs> m_target;
         #endregion
     }
-    public sealed class TcpRequestConnectArgs : TraceEvent
+    internal sealed class TcpRequestConnectArgs : TraceEvent
     {
         public Address Tcb { get { return GetAddressAt(0); } }
         public int LocalAddressLength { get { return GetInt32At(HostOffset(4, 1)); } }
@@ -12816,7 +12818,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<TcpRequestConnectArgs> m_target;
         #endregion
     }
-    public sealed class TcpInspectConnectCompleteArgs : TraceEvent
+    internal sealed class TcpInspectConnectCompleteArgs : TraceEvent
     {
         public Address Tcb { get { return GetAddressAt(0); } }
         public int Status { get { return GetInt32At(HostOffset(4, 1)); } }
@@ -12884,7 +12886,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<TcpInspectConnectCompleteArgs> m_target;
         #endregion
     }
-    public sealed class TcpConnectTcbSkipRateLimitArgs : TraceEvent
+    internal sealed class TcpConnectTcbSkipRateLimitArgs : TraceEvent
     {
         public int LocalAddressLength { get { return GetInt32At(0); } }
         public byte[] LocalAddress { get { return GetByteArrayAt(4, LocalAddressLength); } }
@@ -12954,7 +12956,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<TcpConnectTcbSkipRateLimitArgs> m_target;
         #endregion
     }
-    public sealed class TcpCreateEndpointAfFailureArgs : TraceEvent
+    internal sealed class TcpCreateEndpointAfFailureArgs : TraceEvent
     {
         public int LocalAddressLength { get { return GetInt32At(0); } }
         public byte[] LocalAddress { get { return GetByteArrayAt(4, LocalAddressLength); } }
@@ -13031,7 +13033,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<TcpCreateEndpointAfFailureArgs> m_target;
         #endregion
     }
-    public sealed class TcpCreateNotificationChannelRequestArgs : TraceEvent
+    internal sealed class TcpCreateNotificationChannelRequestArgs : TraceEvent
     {
         public Address Tcb { get { return GetAddressAt(0); } }
         public Address NcmContext { get { return GetAddressAt(HostOffset(4, 1)); } }
@@ -13115,7 +13117,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<TcpCreateNotificationChannelRequestArgs> m_target;
         #endregion
     }
-    public sealed class TcpCreateNotificationChannelRequestProcessedArgs : TraceEvent
+    internal sealed class TcpCreateNotificationChannelRequestProcessedArgs : TraceEvent
     {
         public Address Tcb { get { return GetAddressAt(0); } }
         public Address NcmContext { get { return GetAddressAt(HostOffset(4, 1)); } }
@@ -13191,7 +13193,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<TcpCreateNotificationChannelRequestProcessedArgs> m_target;
         #endregion
     }
-    public sealed class TcpCreateNotificationChannelRequestProcessingArgs : TraceEvent
+    internal sealed class TcpCreateNotificationChannelRequestProcessingArgs : TraceEvent
     {
         public Address Tcb { get { return GetAddressAt(0); } }
         public int IsRedirected { get { return GetInt32At(HostOffset(4, 1)); } }
@@ -13293,7 +13295,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<TcpCreateNotificationChannelRequestProcessingArgs> m_target;
         #endregion
     }
-    public sealed class TcpCTcpAssignedBlocksArgs : TraceEvent
+    internal sealed class TcpCTcpAssignedBlocksArgs : TraceEvent
     {
         public int AssignedBlocks { get { return GetInt32At(0); } }
         public int AllocatedBlocks { get { return GetInt32At(4); } }
@@ -13357,7 +13359,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<TcpCTcpAssignedBlocksArgs> m_target;
         #endregion
     }
-    public sealed class TcpCTcpCongestionWndwArgs : TraceEvent
+    internal sealed class TcpCTcpCongestionWndwArgs : TraceEvent
     {
         public Address Tcb { get { return GetAddressAt(0); } }
         public int DWnd { get { return GetInt32At(HostOffset(4, 1)); } }
@@ -13445,7 +13447,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<TcpCTcpCongestionWndwArgs> m_target;
         #endregion
     }
-    public sealed class TcpDataTransferCumAck1330Args : TraceEvent
+    internal sealed class TcpDataTransferCumAck1330Args : TraceEvent
     {
         public Address Tcb { get { return GetAddressAt(0); } }
         public int Cwnd { get { return GetInt32At(HostOffset(4, 1)); } }
@@ -13521,7 +13523,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<TcpDataTransferCumAck1330Args> m_target;
         #endregion
     }
-    public sealed class TcpDataTransferDupAck1343Args : TraceEvent
+    internal sealed class TcpDataTransferDupAck1343Args : TraceEvent
     {
         public Address Tcb { get { return GetAddressAt(0); } }
         public int Cwnd { get { return GetInt32At(HostOffset(4, 1)); } }
@@ -13597,7 +13599,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<TcpDataTransferDupAck1343Args> m_target;
         #endregion
     }
-    public sealed class TcpDataTransferEcnArgs : TraceEvent
+    internal sealed class TcpDataTransferEcnArgs : TraceEvent
     {
         public Address Tcb { get { return GetAddressAt(0); } }
         public int Cwnd { get { return GetInt32At(HostOffset(4, 1)); } }
@@ -13685,7 +13687,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<TcpDataTransferEcnArgs> m_target;
         #endregion
     }
-    public sealed class TcpDataTransferSend1332Args : TraceEvent
+    internal sealed class TcpDataTransferSend1332Args : TraceEvent
     {
         public Address Tcb { get { return GetAddressAt(0); } }
         public int Cwnd { get { return GetInt32At(HostOffset(4, 1)); } }
@@ -13773,7 +13775,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<TcpDataTransferSend1332Args> m_target;
         #endregion
     }
-    public sealed class TcpCtcpDataTransferTimeout1348Args : TraceEvent
+    internal sealed class TcpCtcpDataTransferTimeout1348Args : TraceEvent
     {
         public Address Tcb { get { return GetAddressAt(0); } }
         public int Cwnd { get { return GetInt32At(HostOffset(4, 1)); } }
@@ -13841,7 +13843,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<TcpCtcpDataTransferTimeout1348Args> m_target;
         #endregion
     }
-    public sealed class TcpCTcpGammaArgs : TraceEvent
+    internal sealed class TcpCTcpGammaArgs : TraceEvent
     {
         public Address Tcb { get { return GetAddressAt(0); } }
         public int Gamma { get { return GetInt32At(HostOffset(4, 1)); } }
@@ -13913,7 +13915,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<TcpCTcpGammaArgs> m_target;
         #endregion
     }
-    public sealed class TcpCwndRestartArgs : TraceEvent
+    internal sealed class TcpCwndRestartArgs : TraceEvent
     {
         public Address Tcb { get { return GetAddressAt(0); } }
         public int OldCwnd { get { return GetInt32At(HostOffset(4, 1)); } }
@@ -13997,7 +13999,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<TcpCwndRestartArgs> m_target;
         #endregion
     }
-    public sealed class TcpDataTransferEcnAlphaArgs : TraceEvent
+    internal sealed class TcpDataTransferEcnAlphaArgs : TraceEvent
     {
         public Address Tcb { get { return GetAddressAt(0); } }
         public int SndRound { get { return GetInt32At(HostOffset(4, 1)); } }
@@ -14077,7 +14079,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<TcpDataTransferEcnAlphaArgs> m_target;
         #endregion
     }
-    public sealed class TcpDataTransferReceiveArgs : TraceEvent
+    internal sealed class TcpDataTransferReceiveArgs : TraceEvent
     {
         public Address Tcb { get { return GetAddressAt(0); } }
         public int NumBytes { get { return GetInt32At(HostOffset(4, 1)); } }
@@ -14145,7 +14147,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<TcpDataTransferReceiveArgs> m_target;
         #endregion
     }
-    public sealed class TcpDataTransferRetransmitRound1351Args : TraceEvent
+    internal sealed class TcpDataTransferRetransmitRound1351Args : TraceEvent
     {
         public Address Tcb { get { return GetAddressAt(0); } }
         public int SndUna { get { return GetInt32At(HostOffset(4, 1)); } }
@@ -14221,7 +14223,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<TcpDataTransferRetransmitRound1351Args> m_target;
         #endregion
     }
-    public sealed class TcpDataTransferRttSample1341Args : TraceEvent
+    internal sealed class TcpDataTransferRttSample1341Args : TraceEvent
     {
         public Address Tcb { get { return GetAddressAt(0); } }
         public int RttSample { get { return GetInt32At(HostOffset(4, 1)); } }
@@ -14293,7 +14295,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<TcpDataTransferRttSample1341Args> m_target;
         #endregion
     }
-    public sealed class TcpDataTransferSpuriousTimeout1345Args : TraceEvent
+    internal sealed class TcpDataTransferSpuriousTimeout1345Args : TraceEvent
     {
         public Address Tcb { get { return GetAddressAt(0); } }
         public int SeqNo { get { return GetInt32At(HostOffset(4, 1)); } }
@@ -14357,7 +14359,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<TcpDataTransferSpuriousTimeout1345Args> m_target;
         #endregion
     }
-    public sealed class TcpDisconnectTcbInjectFailedArgs : TraceEvent
+    internal sealed class TcpDisconnectTcbInjectFailedArgs : TraceEvent
     {
         public Address Tcb { get { return GetAddressAt(0); } }
         public Address Delivery { get { return GetAddressAt(HostOffset(4, 1)); } }
@@ -14453,7 +14455,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<TcpDisconnectTcbInjectFailedArgs> m_target;
         #endregion
     }
-    public sealed class TcpDeliveryStateChangeArgs : TraceEvent
+    internal sealed class TcpDeliveryStateChangeArgs : TraceEvent
     {
         public Address Tcb { get { return GetAddressAt(0); } }
         public Address Delivery { get { return GetAddressAt(HostOffset(4, 1)); } }
@@ -14525,7 +14527,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<TcpDeliveryStateChangeArgs> m_target;
         #endregion
     }
-    public sealed class TcpPlumbWakePatternArgs : TraceEvent
+    internal sealed class TcpPlumbWakePatternArgs : TraceEvent
     {
         public Address Tcb { get { return GetAddressAt(0); } }
         public int SystemReserved { get { return GetInt32At(HostOffset(4, 1)); } }
@@ -14597,7 +14599,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<TcpPlumbWakePatternArgs> m_target;
         #endregion
     }
-    public sealed class TcpDisconnectTcbRequestArgs : TraceEvent
+    internal sealed class TcpDisconnectTcbRequestArgs : TraceEvent
     {
         public Address Length { get { return GetAddressAt(0); } }
         public long Timeout { get { return GetInt64At(HostOffset(4, 1)); } }
@@ -14665,7 +14667,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<TcpDisconnectTcbRequestArgs> m_target;
         #endregion
     }
-    public sealed class TcpEndpointAcquirePortReservationArgs : TraceEvent
+    internal sealed class TcpEndpointAcquirePortReservationArgs : TraceEvent
     {
         public int ProcessId { get { return GetInt32At(0); } }
         public int Status { get { return GetInt32At(4); } }
@@ -14737,7 +14739,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<TcpEndpointAcquirePortReservationArgs> m_target;
         #endregion
     }
-    public sealed class TcpEndpointCreationArgs : TraceEvent
+    internal sealed class TcpEndpointCreationArgs : TraceEvent
     {
         public int Status { get { return GetInt32At(0); } }
         public Address Endpoint { get { return GetAddressAt(4); } }
@@ -14809,7 +14811,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<TcpEndpointCreationArgs> m_target;
         #endregion
     }
-    public sealed class TcpGlobalAddInterfaceArgs : TraceEvent
+    internal sealed class TcpGlobalAddInterfaceArgs : TraceEvent
     {
         public int InterfaceIndex { get { return GetInt32At(0); } }
         public int AddressFamily { get { return GetInt32At(4); } }
@@ -14873,7 +14875,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<TcpGlobalAddInterfaceArgs> m_target;
         #endregion
     }
-    public sealed class TcpSecurityRateLimitArgs : TraceEvent
+    internal sealed class TcpSecurityRateLimitArgs : TraceEvent
     {
         public int SynAttacksDetected { get { return GetInt32At(0); } }
         public int ReassemblyLimitViolations { get { return GetInt32At(4); } }
@@ -14953,7 +14955,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<TcpSecurityRateLimitArgs> m_target;
         #endregion
     }
-    public sealed class TcpGlobalIsbBeginThrottleArgs : TraceEvent
+    internal sealed class TcpGlobalIsbBeginThrottleArgs : TraceEvent
     {
         public int HighMemoryEvent { get { return GetInt32At(0); } }
         public int HighPagedPoolEvent { get { return GetInt32At(4); } }
@@ -15025,7 +15027,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<TcpGlobalIsbBeginThrottleArgs> m_target;
         #endregion
     }
-    public sealed class TcpGlobalParametersArgs : TraceEvent
+    internal sealed class TcpGlobalParametersArgs : TraceEvent
     {
         public int AddressFamily { get { return GetInt32At(0); } }
         public int EnablePMTUDiscovery { get { return GetByteAt(4); } }
@@ -15153,7 +15155,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<TcpGlobalParametersArgs> m_target;
         #endregion
     }
-    public sealed class TcpInterfaceRscStateChangeArgs : TraceEvent
+    internal sealed class TcpInterfaceRscStateChangeArgs : TraceEvent
     {
         public int IfIndex { get { return GetInt32At(0); } }
         public TCPIP_PROPERTY StateV4 { get { return (TCPIP_PROPERTY)GetInt32At(4); } }
@@ -15229,7 +15231,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<TcpInterfaceRscStateChangeArgs> m_target;
         #endregion
     }
-    public sealed class TcpipAoacFailFastArgs : TraceEvent
+    internal sealed class TcpipAoacFailFastArgs : TraceEvent
     {
         public int RequestType { get { return GetInt32At(0); } }
         public Address TcbOrEndpoint { get { return GetAddressAt(4); } }
@@ -15315,7 +15317,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<TcpipAoacFailFastArgs> m_target;
         #endregion
     }
-    public sealed class TcpipGenericArgs : TraceEvent
+    internal sealed class TcpipGenericArgs : TraceEvent
     {
         public string AllocationObjectString { get { return GetUnicodeStringAt(0); } }
         public Address Param1 { get { return GetAddressAt(SkipUnicodeString(0)); } }
@@ -15391,7 +15393,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<TcpipGenericArgs> m_target;
         #endregion
     }
-    public sealed class TcpipNetworkPacketDropsArgs : TraceEvent
+    internal sealed class TcpipNetworkPacketDropsArgs : TraceEvent
     {
         public int IPTransportProtocol { get { return GetInt32At(0); } }
         public int AddressFamily { get { return GetInt32At(4); } }
@@ -15485,7 +15487,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<TcpipNetworkPacketDropsArgs> m_target;
         #endregion
     }
-    public sealed class TcpipPlumbWakePatternOnInterfaceArgs : TraceEvent
+    internal sealed class TcpipPlumbWakePatternOnInterfaceArgs : TraceEvent
     {
         public int InterfaceIndex { get { return GetInt32At(0); } }
         public int AoAcCapable { get { return GetInt32At(4); } }
@@ -15586,7 +15588,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<TcpipPlumbWakePatternOnInterfaceArgs> m_target;
         #endregion
     }
-    public sealed class TcpipReceiveSlowPathArgs : TraceEvent
+    internal sealed class TcpipReceiveSlowPathArgs : TraceEvent
     {
         public Address Nbl { get { return GetAddressAt(0); } }
         public TCPIP_Transport_Protocol IPTransportProtocol { get { return (TCPIP_Transport_Protocol)GetInt32At(HostOffset(4, 1)); } }
@@ -15684,7 +15686,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<TcpipReceiveSlowPathArgs> m_target;
         #endregion
     }
-    public sealed class TcpipSendSlowPathArgs : TraceEvent
+    internal sealed class TcpipSendSlowPathArgs : TraceEvent
     {
         public Address Nbl { get { return GetAddressAt(0); } }
         public int IPTransportProtocol { get { return GetInt32At(HostOffset(4, 1)); } }
@@ -15782,7 +15784,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<TcpipSendSlowPathArgs> m_target;
         #endregion
     }
-    public sealed class TcpipSilentModeArgs : TraceEvent
+    internal sealed class TcpipSilentModeArgs : TraceEvent
     {
         public Address Tcb { get { return GetAddressAt(0); } }
         public TCPIP_SILENT_MODE_EVENT SilentModeEvent { get { return (TCPIP_SILENT_MODE_EVENT)GetInt32At(HostOffset(4, 1)); } }
@@ -15850,7 +15852,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<TcpipSilentModeArgs> m_target;
         #endregion
     }
-    public sealed class TcpipTransportPacketDropsArgs : TraceEvent
+    internal sealed class TcpipTransportPacketDropsArgs : TraceEvent
     {
         public int IPTransportProtocol { get { return GetInt32At(0); } }
         public int AddressFamily { get { return GetInt32At(4); } }
@@ -15932,7 +15934,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<TcpipTransportPacketDropsArgs> m_target;
         #endregion
     }
-    public sealed class TcpipUpdateInterfaceConfigFlagsArgs : TraceEvent
+    internal sealed class TcpipUpdateInterfaceConfigFlagsArgs : TraceEvent
     {
         public int InterfaceIndex { get { return GetInt32At(0); } }
         public string Property { get { return GetUTF8StringAt(4); } }
@@ -16004,7 +16006,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<TcpipUpdateInterfaceConfigFlagsArgs> m_target;
         #endregion
     }
-    public sealed class TcpipWakePacketIndicatedArgs : TraceEvent
+    internal sealed class TcpipWakePacketIndicatedArgs : TraceEvent
     {
         public long AdapterLuid { get { return GetInt64At(0); } }
         public string PatternFriendlyName { get { return GetUnicodeStringAt(8); } }
@@ -16094,7 +16096,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<TcpipWakePacketIndicatedArgs> m_target;
         #endregion
     }
-    public sealed class TcpipWakePacketIndicated1303Args : TraceEvent
+    internal sealed class TcpipWakePacketIndicated1303Args : TraceEvent
     {
         public long AdapterLuid { get { return GetInt64At(0); } }
         public string PatternFriendlyName { get { return GetUnicodeStringAt(8); } }
@@ -16182,7 +16184,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<TcpipWakePacketIndicated1303Args> m_target;
         #endregion
     }
-    public sealed class TcpIsPatternCoalescingRequiredArgs : TraceEvent
+    internal sealed class TcpIsPatternCoalescingRequiredArgs : TraceEvent
     {
         public Address Tcb { get { return GetAddressAt(0); } }
         public int RequireAddressCoalescing { get { return GetInt32At(HostOffset(4, 1)); } }
@@ -16262,7 +16264,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<TcpIsPatternCoalescingRequiredArgs> m_target;
         #endregion
     }
-    public sealed class TcpListenerActivationFailedAfArgs : TraceEvent
+    internal sealed class TcpListenerActivationFailedAfArgs : TraceEvent
     {
         public Address Listener { get { return GetAddressAt(0); } }
         public int AddressLength { get { return GetInt32At(HostOffset(4, 1)); } }
@@ -16343,7 +16345,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<TcpListenerActivationFailedAfArgs> m_target;
         #endregion
     }
-    public sealed class TcpLoopbackFastPathFailReasonArgs : TraceEvent
+    internal sealed class TcpLoopbackFastPathFailReasonArgs : TraceEvent
     {
         public Address Tcb { get { return GetAddressAt(0); } }
         public TCPIP_LOOPBACK_FASTPATH_FAIL_REASON Cause { get { return (TCPIP_LOOPBACK_FASTPATH_FAIL_REASON)GetInt32At(HostOffset(4, 1)); } }
@@ -16407,7 +16409,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<TcpLoopbackFastPathFailReasonArgs> m_target;
         #endregion
     }
-    public sealed class TcpLossRecoverySackEntryArgs : TraceEvent
+    internal sealed class TcpLossRecoverySackEntryArgs : TraceEvent
     {
         public Address Tcb { get { return GetAddressAt(0); } }
         public int SndUna { get { return GetInt32At(HostOffset(4, 1)); } }
@@ -16483,7 +16485,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<TcpLossRecoverySackEntryArgs> m_target;
         #endregion
     }
-    public sealed class TcpLsoArgs : TraceEvent
+    internal sealed class TcpLsoArgs : TraceEvent
     {
         public Address Tcb { get { return GetAddressAt(0); } }
         public int BytesInSegment { get { return GetInt32At(HostOffset(4, 1)); } }
@@ -16551,7 +16553,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<TcpLsoArgs> m_target;
         #endregion
     }
-    public sealed class TcpMemoryFailuresArgs : TraceEvent
+    internal sealed class TcpMemoryFailuresArgs : TraceEvent
     {
         public string AllocationObjectString { get { return GetUnicodeStringAt(0); } }
 
@@ -16611,7 +16613,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<TcpMemoryFailuresArgs> m_target;
         #endregion
     }
-    public sealed class TcpModuleStartedArgs : TraceEvent
+    internal sealed class TcpModuleStartedArgs : TraceEvent
     {
         public string ModuleNameString { get { return GetUnicodeStringAt(0); } }
 
@@ -16671,7 +16673,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<TcpModuleStartedArgs> m_target;
         #endregion
     }
-    public sealed class TcpMppNppEvaluationArgs : TraceEvent
+    internal sealed class TcpMppNppEvaluationArgs : TraceEvent
     {
         public int PhysicalPages { get { return GetInt32At(0); } }
         public int NonPagedPoolPages { get { return GetInt32At(4); } }
@@ -16751,7 +16753,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<TcpMppNppEvaluationArgs> m_target;
         #endregion
     }
-    public sealed class TcpMppStartEpisodeArgs : TraceEvent
+    internal sealed class TcpMppStartEpisodeArgs : TraceEvent
     {
         public int LowNppEventState { get { return GetInt32At(0); } }
         public int HighNppEventState { get { return GetInt32At(4); } }
@@ -16835,7 +16837,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<TcpMppStartEpisodeArgs> m_target;
         #endregion
     }
-    public sealed class TcpMppStartEpochArgs : TraceEvent
+    internal sealed class TcpMppStartEpochArgs : TraceEvent
     {
         public int Epoch { get { return GetInt32At(0); } }
         public int LowNppEventState { get { return GetInt32At(4); } }
@@ -16931,7 +16933,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<TcpMppStartEpochArgs> m_target;
         #endregion
     }
-    public sealed class TcpMppStopEpisodeArgs : TraceEvent
+    internal sealed class TcpMppStopEpisodeArgs : TraceEvent
     {
         public int LowNppEventState { get { return GetInt32At(0); } }
         public int HighNppEventState { get { return GetInt32At(4); } }
@@ -17007,7 +17009,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<TcpMppStopEpisodeArgs> m_target;
         #endregion
     }
-    public sealed class TcpMppStopEpochArgs : TraceEvent
+    internal sealed class TcpMppStopEpochArgs : TraceEvent
     {
         public int Epoch { get { return GetInt32At(0); } }
         public int LowNppEventState { get { return GetInt32At(4); } }
@@ -17095,7 +17097,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<TcpMppStopEpochArgs> m_target;
         #endregion
     }
-    public sealed class TcpQueryNotificationChannelStatusRequestArgs : TraceEvent
+    internal sealed class TcpQueryNotificationChannelStatusRequestArgs : TraceEvent
     {
         public Address Tcb { get { return GetAddressAt(0); } }
         public Address NcmContext { get { return GetAddressAt(HostOffset(4, 1)); } }
@@ -17179,7 +17181,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<TcpQueryNotificationChannelStatusRequestArgs> m_target;
         #endregion
     }
-    public sealed class TcpReleaseIndicationArgs : TraceEvent
+    internal sealed class TcpReleaseIndicationArgs : TraceEvent
     {
         public Address NBL { get { return GetAddressAt(0); } }
 
@@ -17239,7 +17241,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<TcpReleaseIndicationArgs> m_target;
         #endregion
     }
-    public sealed class TcpRscNblOobInfoArgs : TraceEvent
+    internal sealed class TcpRscNblOobInfoArgs : TraceEvent
     {
         public Address Tcb { get { return GetAddressAt(0); } }
         public int CoalescedSegCount { get { return GetInt16At(HostOffset(4, 1)); } }
@@ -17319,7 +17321,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<TcpRscNblOobInfoArgs> m_target;
         #endregion
     }
-    public sealed class TcpRssTableChangeArgs : TraceEvent
+    internal sealed class TcpRssTableChangeArgs : TraceEvent
     {
         public int SourceProcessor { get { return GetInt32At(0); } }
         public int SourceActivity { get { return GetInt32At(4); } }
@@ -17399,7 +17401,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<TcpRssTableChangeArgs> m_target;
         #endregion
     }
-    public sealed class TcpRtcPortRangeAssignmentArgs : TraceEvent
+    internal sealed class TcpRtcPortRangeAssignmentArgs : TraceEvent
     {
         public int AssignedFromRtcRange { get { return GetInt32At(0); } }
         public int Port { get { return GetInt16At(4); } }
@@ -17463,7 +17465,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<TcpRtcPortRangeAssignmentArgs> m_target;
         #endregion
     }
-    public sealed class TcpSackUpdateArgs : TraceEvent
+    internal sealed class TcpSackUpdateArgs : TraceEvent
     {
         public Address Tcb { get { return GetAddressAt(0); } }
         public int SndUna { get { return GetInt32At(HostOffset(4, 1)); } }
@@ -17547,7 +17549,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<TcpSackUpdateArgs> m_target;
         #endregion
     }
-    public sealed class TcpSendPostedArgs : TraceEvent
+    internal sealed class TcpSendPostedArgs : TraceEvent
     {
         public Address Tcb { get { return GetAddressAt(0); } }
         public string Injected { get { return GetUnicodeStringAt(HostOffset(4, 1)); } }
@@ -17619,7 +17621,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<TcpSendPostedArgs> m_target;
         #endregion
     }
-    public sealed class TcpSetTcpOptionArgs : TraceEvent
+    internal sealed class TcpSetTcpOptionArgs : TraceEvent
     {
         public Address Tcb { get { return GetAddressAt(0); } }
         public int OptionType { get { return GetInt32At(HostOffset(4, 1)); } }
@@ -17687,7 +17689,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<TcpSetTcpOptionArgs> m_target;
         #endregion
     }
-    public sealed class TcpSetTcpSoOptionArgs : TraceEvent
+    internal sealed class TcpSetTcpSoOptionArgs : TraceEvent
     {
         public Address Tcb { get { return GetAddressAt(0); } }
         public TCP_OPTION_TYPE OptionType { get { return (TCP_OPTION_TYPE)GetInt32At(HostOffset(4, 1)); } }
@@ -17755,7 +17757,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<TcpSetTcpSoOptionArgs> m_target;
         #endregion
     }
-    public sealed class TcpSignalNotificationChannelEventArgs : TraceEvent
+    internal sealed class TcpSignalNotificationChannelEventArgs : TraceEvent
     {
         public Address Tcb { get { return GetAddressAt(0); } }
         public Address NcmContext { get { return GetAddressAt(HostOffset(4, 1)); } }
@@ -17839,7 +17841,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<TcpSignalNotificationChannelEventArgs> m_target;
         #endregion
     }
-    public sealed class TcpSrttMeasurementStartedArgs : TraceEvent
+    internal sealed class TcpSrttMeasurementStartedArgs : TraceEvent
     {
         public Address Tcb { get { return GetAddressAt(0); } }
         public int SeqNum { get { return GetInt32At(HostOffset(4, 1)); } }
@@ -17915,7 +17917,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<TcpSrttMeasurementStartedArgs> m_target;
         #endregion
     }
-    public sealed class TcpSwsAvoidanceBeginArgs : TraceEvent
+    internal sealed class TcpSwsAvoidanceBeginArgs : TraceEvent
     {
         public Address Tcb { get { return GetAddressAt(0); } }
         public int TimerValue { get { return GetInt32At(HostOffset(4, 1)); } }
@@ -17995,7 +17997,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<TcpSwsAvoidanceBeginArgs> m_target;
         #endregion
     }
-    public sealed class TcpTcbChangeIsbArgs : TraceEvent
+    internal sealed class TcpTcbChangeIsbArgs : TraceEvent
     {
         public int IsbSize { get { return GetInt32At(0); } }
         public int Cwnd { get { return GetInt32At(4); } }
@@ -18071,7 +18073,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<TcpTcbChangeIsbArgs> m_target;
         #endregion
     }
-    public sealed class TcpTcbStopTimerArgs : TraceEvent
+    internal sealed class TcpTcbStopTimerArgs : TraceEvent
     {
         public Address Tcb { get { return GetAddressAt(0); } }
         public int TimerType { get { return GetInt32At(HostOffset(4, 1)); } }
@@ -18139,7 +18141,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<TcpTcbStopTimerArgs> m_target;
         #endregion
     }
-    public sealed class TcpTcbStartTimerArgs : TraceEvent
+    internal sealed class TcpTcbStartTimerArgs : TraceEvent
     {
         public Address Tcb { get { return GetAddressAt(0); } }
         public TCP_TIMER_TYPE TimerType { get { if (Version >= 1) { return (TCP_TIMER_TYPE)GetInt32At(HostOffset(4, 1)); } return (TCP_TIMER_TYPE)GetInt32At(HostOffset(4, 1)); } }
@@ -18228,7 +18230,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<TcpTcbStartTimerArgs> m_target;
         #endregion
     }
-    public sealed class TcpTcbStateChangeArgs : TraceEvent
+    internal sealed class TcpTcbStateChangeArgs : TraceEvent
     {
         public int OldState { get { return GetInt32At(0); } }
         public int NewState { get { return GetInt32At(4); } }
@@ -18300,7 +18302,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<TcpTcbStateChangeArgs> m_target;
         #endregion
     }
-    public sealed class TcpTcbSynSendArgs : TraceEvent
+    internal sealed class TcpTcbSynSendArgs : TraceEvent
     {
         public Address Tcb { get { return GetAddressAt(0); } }
         public int ISN { get { return GetInt32At(HostOffset(4, 1)); } }
@@ -18372,7 +18374,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<TcpTcbSynSendArgs> m_target;
         #endregion
     }
-    public sealed class TcpTemplateChangedArgs : TraceEvent
+    internal sealed class TcpTemplateChangedArgs : TraceEvent
     {
         public Address Tcb { get { return GetAddressAt(0); } }
         public int TemplateType { get { return GetInt32At(HostOffset(4, 1)); } }
@@ -18440,7 +18442,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<TcpTemplateChangedArgs> m_target;
         #endregion
     }
-    public sealed class TcpTemplateParametersArgs : TraceEvent
+    internal sealed class TcpTemplateParametersArgs : TraceEvent
     {
         public Address Tcb { get { return GetAddressAt(0); } }
         public TCPIP_TEMPLATE_TYPE TemplateType { get { return (TCPIP_TEMPLATE_TYPE)GetInt32At(HostOffset(4, 1)); } }
@@ -18532,7 +18534,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<TcpTemplateParametersArgs> m_target;
         #endregion
     }
-    public sealed class TcpWsdCacheEntryStateChangeArgs : TraceEvent
+    internal sealed class TcpWsdCacheEntryStateChangeArgs : TraceEvent
     {
         public int TcpWsdEtwPoint { get { return GetInt32At(0); } }
         public int Processor { get { return GetInt32At(4); } }
@@ -18616,7 +18618,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<TcpWsdCacheEntryStateChangeArgs> m_target;
         #endregion
     }
-    public sealed class TcpWsdInitializationErrorsArgs : TraceEvent
+    internal sealed class TcpWsdInitializationErrorsArgs : TraceEvent
     {
         public TCP_WSD TcpWsdEtwPoint { get { return (TCP_WSD)GetInt32At(0); } }
         public int Status { get { return GetInt32At(4); } }
@@ -18680,7 +18682,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<TcpWsdInitializationErrorsArgs> m_target;
         #endregion
     }
-    public sealed class TcpWsdInitializationInformationArgs : TraceEvent
+    internal sealed class TcpWsdInitializationInformationArgs : TraceEvent
     {
         public int TcpWsdEtwPoint { get { return GetInt32At(0); } }
         public int Status { get { return GetInt32At(4); } }
@@ -18744,7 +18746,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<TcpWsdInitializationInformationArgs> m_target;
         #endregion
     }
-    public sealed class TcpWsdProfileStateChangeArgs : TraceEvent
+    internal sealed class TcpWsdProfileStateChangeArgs : TraceEvent
     {
         public int Profile { get { return GetInt32At(0); } }
         public int State { get { return GetInt32At(4); } }
@@ -18816,7 +18818,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<TcpWsdProfileStateChangeArgs> m_target;
         #endregion
     }
-    public sealed class TcpWsdStateChangeArgs : TraceEvent
+    internal sealed class TcpWsdStateChangeArgs : TraceEvent
     {
         public int OldEnabledState { get { return GetInt32At(0); } }
         public int NewEnabledState { get { return GetInt32At(4); } }
@@ -18888,7 +18890,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<TcpWsdStateChangeArgs> m_target;
         #endregion
     }
-    public sealed class TcpWsdWsRestrictedProfileArgs : TraceEvent
+    internal sealed class TcpWsdWsRestrictedProfileArgs : TraceEvent
     {
         public int TcpWsdEtwPoint { get { return GetInt32At(0); } }
         public Address Tcb { get { return GetAddressAt(4); } }
@@ -18952,7 +18954,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<TcpWsdWsRestrictedProfileArgs> m_target;
         #endregion
     }
-    public sealed class UdpCreateNotificationChannelRequestArgs : TraceEvent
+    internal sealed class UdpCreateNotificationChannelRequestArgs : TraceEvent
     {
         public Address UdpEndpoint { get { return GetAddressAt(0); } }
         public Address NcmContext { get { return GetAddressAt(HostOffset(4, 1)); } }
@@ -19036,7 +19038,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<UdpCreateNotificationChannelRequestArgs> m_target;
         #endregion
     }
-    public sealed class UdpCreateNotificationChannelRequestProcessedArgs : TraceEvent
+    internal sealed class UdpCreateNotificationChannelRequestProcessedArgs : TraceEvent
     {
         public Address UdpEndpoint { get { return GetAddressAt(0); } }
         public Address NcmContext { get { return GetAddressAt(HostOffset(4, 1)); } }
@@ -19112,7 +19114,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<UdpCreateNotificationChannelRequestProcessedArgs> m_target;
         #endregion
     }
-    public sealed class UdpCreateNotificationChannelRequestProcessingArgs : TraceEvent
+    internal sealed class UdpCreateNotificationChannelRequestProcessingArgs : TraceEvent
     {
         public Address UdpEndpoint { get { return GetAddressAt(0); } }
         public int IpAddrLength { get { return GetInt32At(HostOffset(4, 1)); } }
@@ -19189,7 +19191,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<UdpCreateNotificationChannelRequestProcessingArgs> m_target;
         #endregion
     }
-    public sealed class UdpQueryNotificationChannelStatusRequestArgs : TraceEvent
+    internal sealed class UdpQueryNotificationChannelStatusRequestArgs : TraceEvent
     {
         public Address UdpEndpoint { get { return GetAddressAt(0); } }
         public Address NcmContext { get { return GetAddressAt(HostOffset(4, 1)); } }
@@ -19273,7 +19275,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<UdpQueryNotificationChannelStatusRequestArgs> m_target;
         #endregion
     }
-    public sealed class UdpEndpointSendMessagesArgs : TraceEvent
+    internal sealed class UdpEndpointSendMessagesArgs : TraceEvent
     {
         public Address Endpoint { get { return GetAddressAt(0); } }
         public int NumMessages { get { return GetInt32At(HostOffset(4, 1)); } }
@@ -19355,7 +19357,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<UdpEndpointSendMessagesArgs> m_target;
         #endregion
     }
-    public sealed class UdpSignalNotificationChannelEventArgs : TraceEvent
+    internal sealed class UdpSignalNotificationChannelEventArgs : TraceEvent
     {
         public Address UdpEndpoint { get { return GetAddressAt(0); } }
         public Address NcmContext { get { return GetAddressAt(HostOffset(4, 1)); } }
@@ -19431,14 +19433,14 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         private event Action<UdpSignalNotificationChannelEventArgs> m_target;
         #endregion
     }
-    public enum TCP_CONGESTION_ALGORITHM
+    internal enum TCP_CONGESTION_ALGORITHM
     {
         Default = 0x0,
         NewReno = 0x1,
         CcmCtcp = 0x2,
         CcmDctcp = 0x6,
     }
-    public enum TCP_CONNECTION_STATE
+    internal enum TCP_CONNECTION_STATE
     {
         ClosedState = 0x0,
         ListenState = 0x1,
@@ -19452,7 +19454,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         LastAckState = 0x9,
         TimeWaitState = 0xa,
     }
-    public enum TCP_NOTIFICATION_CHANNEL_STATUS
+    internal enum TCP_NOTIFICATION_CHANNEL_STATUS
     {
         Invalid = 0x0,
         SoftwareSlotAllocated = 0x1,
@@ -19460,7 +19462,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         PolicyError = 0x3,
         systemError = 0x4,
     }
-    public enum TCP_OPTION_TYPE
+    internal enum TCP_OPTION_TYPE
     {
         TCP_OFFLOAD_NO_PREFERENCE = 0x0,
         TCP_OFFLOAD_NOT_PREFERRED = 0x1,
@@ -19477,12 +19479,12 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         TCP_CONGESTION_ALGORITHM = 0xc,
         TCP_DELAY_FIN_ACK = 0xd,
     }
-    public enum TCP_REPARTITION_EVENT_TYPE
+    internal enum TCP_REPARTITION_EVENT_TYPE
     {
         ProcessorAdd = 0x0,
         PowerSourceChange = 0x1,
     }
-    public enum TCP_TIMER_TYPE
+    internal enum TCP_TIMER_TYPE
     {
         RetransmitTimer = 0x0,
         ConnectTimer = 0x1,
@@ -19494,7 +19496,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         ReassemblyRateTimer = 0x7,
         SynOrRstValidationTimer = 0x8,
     }
-    public enum TCP_WSD_CACHE_ENTRY_STATE
+    internal enum TCP_WSD_CACHE_ENTRY_STATE
     {
         Idle = 0x0,
         ProbingWs = 0x1,
@@ -19504,7 +19506,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         EreQualified = 0x5,
         Qualified = 0x6,
     }
-    public enum TCP_WSD
+    internal enum TCP_WSD
     {
         FailedToAllocateTheWSDCache = 0x0,
         FailureInitializingPnPWorkQueue = 0x1,
@@ -19518,34 +19520,34 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         newSampleRequest = 0x9,
         configurationChange = 0xa,
     }
-    public enum TCPIP_ADDRESS_FAMILY_TYPE
+    internal enum TCPIP_ADDRESS_FAMILY_TYPE
     {
         IPV4 = 0x2,
         IPV6 = 0x17,
     }
-    public enum TCPIP_AF
+    internal enum TCPIP_AF
     {
         IPv4 = 0x2,
         IPv6 = 0x17,
     }
-    public enum TCPIP_BOOLEAN
+    internal enum TCPIP_BOOLEAN
     {
         FALSE = 0x0,
         TRUE = 0x1,
     }
-    public enum TCPIP_COMPONENT
+    internal enum TCPIP_COMPONENT
     {
         IP = 0x0,
         TCP = 0x1,
     }
-    public enum TCPIP_IP_DAD_STATE
+    internal enum TCPIP_IP_DAD_STATE
     {
         NldsInvalid = 0x0,
         NldsTentative = 0x1,
         NldsDuplicate = 0x2,
         NldsDeprecated = 0x3,
     }
-    public enum TCPIP_IP_PHYSICALMEDIUM_TYPE
+    internal enum TCPIP_IP_PHYSICALMEDIUM_TYPE
     {
         NdisPhysicalMediumUnspecified = 0x0,
         NdisPhysicalMediumWirelessLan = 0x1,
@@ -19563,23 +19565,23 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         NdisPhysicalMediumIrda = 0x10,
         NdisPhysicalMediumWiredWAN = 0x11,
     }
-    public enum TCPIP_LOOPBACK_FASTPATH_FAIL_REASON
+    internal enum TCPIP_LOOPBACK_FASTPATH_FAIL_REASON
     {
         LoopbackFastPathSocketOptionNotSetOnBothEnds = 0x0,
         FilterPolicyExistedForTheLoopbackConnection = 0x1,
     }
-    public enum TCPIP_NDKPI_COMPLETION_TYPE
+    internal enum TCPIP_NDKPI_COMPLETION_TYPE
     {
         Async = 0x0,
         Inline = 0x1,
     }
-    public enum TCPIP_NDKPI_CQ_ARM_TYPE
+    internal enum TCPIP_NDKPI_CQ_ARM_TYPE
     {
         NotifyErrors = 0x0,
         NotifyAny = 0x1,
         NotifySolicited = 0x2,
     }
-    public enum TCPIP_NDKPI_OBJECT_TYPE
+    internal enum TCPIP_NDKPI_OBJECT_TYPE
     {
         Undefined = 0x0,
         Adapter = 0x1,
@@ -19594,7 +19596,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         SRQ = 0xa,
         Max = 0xb,
     }
-    public enum TCPIP_NDKPI_OPERATION_TYPE
+    internal enum TCPIP_NDKPI_OPERATION_TYPE
     {
         Receive = 0x1,
         Send = 0x2,
@@ -19605,18 +19607,18 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         Write = 0x40,
         ReceiveAndInvalidate = 0x8001,
     }
-    public enum TCPIP_NDKPI_SOCKADDR_TYPE
+    internal enum TCPIP_NDKPI_SOCKADDR_TYPE
     {
         Local = 0x0,
         Remote = 0x1,
     }
-    public enum TCPIP_NDKPI_TOKEN_TYPE
+    internal enum TCPIP_NDKPI_TOKEN_TYPE
     {
         Local = 0x0,
         Remote = 0x1,
         Privileged = 0x2,
     }
-    public enum TCPIP_NEIGHBOR_EVENT
+    internal enum TCPIP_NEIGHBOR_EVENT
     {
         Map = 0x0,
         Configure = 0x1,
@@ -19638,7 +19640,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         SendingRouterAdvertisement = 0x11,
         ReceivedRouterAdvertisement = 0x12,
     }
-    public enum TCPIP_NEIGHBOR_STATE
+    internal enum TCPIP_NEIGHBOR_STATE
     {
         Unreachable = 0x0,
         Incomplete = 0x1,
@@ -19649,7 +19651,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         Permanent = 0x6,
         Maximum = 0x7,
     }
-    public enum TCPIP_OFFLOAD_FAILURE_REASON
+    internal enum TCPIP_OFFLOAD_FAILURE_REASON
     {
         NoFailure = 0x0,
         Unknown = 0x1,
@@ -19662,34 +19664,34 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         HardwareCapability = 0x8,
         NDISFilterNICProperty = 0x9,
     }
-    public enum TCPIP_PROPERTY
+    internal enum TCPIP_PROPERTY
     {
         Disabled = 0x0,
         Enabled = 0x1,
     }
-    public enum TCPIP_Protocol
+    internal enum TCPIP_Protocol
     {
         IPv4 = 0x4,
         IPv6 = 0x6,
     }
-    public enum TCPIP_RSS_ADDING
+    internal enum TCPIP_RSS_ADDING
     {
         removing = 0x0,
         adding = 0x1,
     }
-    public enum TCPIP_RSS_BINDING_CAPABILITY
+    internal enum TCPIP_RSS_BINDING_CAPABILITY
     {
         notAvailable = 0x0,
         available = 0x1,
         availableOnPorts = 0x2,
     }
-    public enum TCPIP_RSS_BINDING_NOTIFICATION
+    internal enum TCPIP_RSS_BINDING_NOTIFICATION
     {
         unbind = 0x0,
         bind = 0x1,
         portChange = 0x2,
     }
-    public enum TCPIP_RSS_SETTING_VALUE
+    internal enum TCPIP_RSS_SETTING_VALUE
     {
         none = 0x3e8,
         receiveHash = 0x3e9,
@@ -19697,7 +19699,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         enabled = 0x3eb,
         disabled = 0x3ec,
     }
-    public enum TCPIP_SILENT_MODE_EVENT
+    internal enum TCPIP_SILENT_MODE_EVENT
     {
         Enabled = 0x0,
         SendRequestDropped = 0x1,
@@ -19705,7 +19707,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         DisconnectRequestDropped = 0x3,
         ResetDropped = 0x4,
     }
-    public enum TCPIP_SLOW_PATH_REASON
+    internal enum TCPIP_SLOW_PATH_REASON
     {
         IPChecksumOffloadNotComputed = 0x0,
         TCPChecksumOffloadNotComputed = 0x1,
@@ -19728,13 +19730,13 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         UDPIPv6ChecksumAbsentInPacket = 0x12,
         PacketIsForALoopbackInterface = 0x13,
     }
-    public enum TCPIP_TCP_DELIVERY_STATE
+    internal enum TCPIP_TCP_DELIVERY_STATE
     {
         Indicate = 0x0,
         Pend = 0x1,
         Satisfy = 0x2,
     }
-    public enum TCPIP_TEMPLATE_TYPE
+    internal enum TCPIP_TEMPLATE_TYPE
     {
         TcpTemplateTypeInternet = 0x0,
         TcpTemplateTypeDatacenter = 0x1,
@@ -19744,7 +19746,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         TcpTemplateTypeDefault = 0x6,
         TcpTemplateTypeAutomatic = 0x7,
     }
-    public enum TCPIP_Transport_Protocol
+    internal enum TCPIP_Transport_Protocol
     {
         UnknownHeaderCorruptNotParsed = 0x0,
         ICMP = 0x1,
@@ -19759,7 +19761,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP
         ICMPV6 = 0x3a,
         Unknown = 0x100,
     }
-    public enum UDP_ENDPOINT_STATE
+    internal enum UDP_ENDPOINT_STATE
     {
         NotActivated = 0x0,
         Activated = 0x1,

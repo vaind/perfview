@@ -1,4 +1,6 @@
-﻿using Microsoft.Diagnostics.Tracing.Parsers;
+#nullable disable
+
+using Microsoft.Diagnostics.Tracing.Parsers;
 // Copyright (c) Microsoft Corporation.  All rights reserved
 // This file is best viewed using outline mode (Ctrl-M Ctrl-O)
 //
@@ -16,7 +18,7 @@ namespace Microsoft.Diagnostics.Tracing
     /// writes with the connection info (like the IP address of each end), as well as data packets being
     /// sent (if you have packet capture turned on).  
     /// </summary>
-    public class TcpIpComputer
+    internal class TcpIpComputer
     {
         /// <summary>
         /// Create a new GCRefernece computer from the stream of events 'source'.   When 'source' is processed

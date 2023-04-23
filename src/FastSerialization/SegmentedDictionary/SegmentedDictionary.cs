@@ -1,4 +1,6 @@
-﻿using System.Diagnostics;
+#nullable disable
+
+using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using Microsoft.Diagnostics.FastSerialization;
 
@@ -18,7 +20,7 @@ namespace System.Collections.Generic
     /// </remarks>
     /// <typeparam name="TKey">The type of the keys in the dictionary.</typeparam>
     /// <typeparam name="TValue">The type of the values in the dictionary.</typeparam>
-    public sealed class SegmentedDictionary<TKey, TValue> : IDictionary<TKey, TValue>, IDictionary
+    internal sealed class SegmentedDictionary<TKey, TValue> : IDictionary<TKey, TValue>, IDictionary
     {
         #region Private Fields
         private static Entry EntryPlaceholder = new Entry();
@@ -833,7 +835,7 @@ namespace System.Collections.Generic
 
         #endregion
 
-        public struct Enumerator : IEnumerator<KeyValuePair<TKey, TValue>>, IDictionaryEnumerator
+        internal struct Enumerator : IEnumerator<KeyValuePair<TKey, TValue>>, IDictionaryEnumerator
         {
             private readonly SegmentedDictionary<TKey, TValue> _dictionary;
             private readonly int _version;
@@ -953,7 +955,7 @@ namespace System.Collections.Generic
             }
         }
 
-        public sealed class KeyCollection : ICollection<TKey>, ICollection, IReadOnlyCollection<TKey>
+        internal sealed class KeyCollection : ICollection<TKey>, ICollection, IReadOnlyCollection<TKey>
         {
             private readonly SegmentedDictionary<TKey, TValue> _dictionary;
 
@@ -1080,7 +1082,7 @@ namespace System.Collections.Generic
 
             object ICollection.SyncRoot => ((ICollection)_dictionary).SyncRoot;
 
-            public struct Enumerator : IEnumerator<TKey>, IEnumerator
+            internal struct Enumerator : IEnumerator<TKey>, IEnumerator
             {
                 private readonly SegmentedDictionary<TKey, TValue> _dictionary;
                 private int _index;
@@ -1150,7 +1152,7 @@ namespace System.Collections.Generic
             }
         }
 
-        public sealed class ValueCollection : ICollection<TValue>, ICollection, IReadOnlyCollection<TValue>
+        internal sealed class ValueCollection : ICollection<TValue>, ICollection, IReadOnlyCollection<TValue>
         {
             private readonly SegmentedDictionary<TKey, TValue> _dictionary;
 
@@ -1275,7 +1277,7 @@ namespace System.Collections.Generic
 
             object ICollection.SyncRoot => ((ICollection)_dictionary).SyncRoot;
 
-            public struct Enumerator : IEnumerator<TValue>, IEnumerator
+            internal struct Enumerator : IEnumerator<TValue>, IEnumerator
             {
                 private readonly SegmentedDictionary<TKey, TValue> _dictionary;
                 private int _index;

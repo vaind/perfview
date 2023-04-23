@@ -1,4 +1,6 @@
-﻿using System;
+#nullable disable
+
+using System;
 using System.Collections.Generic;
 
 namespace Microsoft.Diagnostics.Tracing.AutomatedAnalysis
@@ -7,7 +9,7 @@ namespace Microsoft.Diagnostics.Tracing.AutomatedAnalysis
     /// The assembly-level attribute used by Analyzer developers to identify the class that implements IAnalyzerProvider for the assembly.
     /// </summary>
     [AttributeUsage(AttributeTargets.Assembly, AllowMultiple = false)]
-    public sealed class AnalyzerProviderAttribute : Attribute
+    internal sealed class AnalyzerProviderAttribute : Attribute
     {
         /// <summary>
         /// Create an new instance of AnalyzerProviderAttribute which stores the Type of the IAnalyzerProvider for the assembly.
@@ -27,7 +29,7 @@ namespace Microsoft.Diagnostics.Tracing.AutomatedAnalysis
     /// <summary>
     /// The interface used within Analyzer assemblies to publish the set of Analyzers that are consumable from the assembly.
     /// </summary>
-    public interface IAnalyzerProvider
+    internal interface IAnalyzerProvider
     {
         /// <summary>
         /// Called to provide the list of Analyzers published by the assembly.

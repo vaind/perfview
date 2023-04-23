@@ -1,10 +1,12 @@
-﻿using System;
+#nullable disable
+
+using System;
 using System.IO;
 using Xunit.Abstractions;
 
 namespace TraceEventTests
 {
-    public abstract class TestBase
+    internal abstract class TestBase
     {
         // All of these are normalized to full paths. in PrepareTestData.
         // It also cleans out the output directory and unzips the input data

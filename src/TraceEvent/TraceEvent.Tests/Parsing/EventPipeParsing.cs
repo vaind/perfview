@@ -1,4 +1,6 @@
-﻿using FastSerialization;
+#nullable disable
+
+using FastSerialization;
 using Microsoft.Diagnostics.Tracing;
 using Microsoft.Diagnostics.Tracing.Etlx;
 using Microsoft.Diagnostics.Tracing.EventPipe;
@@ -15,7 +17,7 @@ using Xunit.Abstractions;
 
 namespace TraceEventTests
 {
-    public class EventPipeParsing : EventPipeTestBase
+    internal class EventPipeParsing : EventPipeTestBase
     {
         private class EventRecord
         {
@@ -596,7 +598,7 @@ namespace TraceEventTests
     }
 
 
-    class MockStreamingOnlyStream : Stream
+    internal class MockStreamingOnlyStream : Stream
     {
         Stream _innerStream;
         public MockStreamingOnlyStream(Stream innerStream)
@@ -633,7 +635,7 @@ namespace TraceEventTests
     }
 
 
-    class EventMetadata
+    internal class EventMetadata
     {
         public EventMetadata(int metadataId, string providerName, string eventName, int eventId)
         {
@@ -649,7 +651,7 @@ namespace TraceEventTests
         public int EventId { get; set; }
     }
 
-    class EventPayloadWriter
+    internal class EventPayloadWriter
     {
         BinaryWriter _writer = new BinaryWriter(new MemoryStream());
 
@@ -679,7 +681,7 @@ namespace TraceEventTests
         }
     }
 
-    class EventPipeWriter
+    internal class EventPipeWriter
     {
         BinaryWriter _writer;
 
@@ -907,7 +909,7 @@ namespace TraceEventTests
         }
     }
 
-    class MockHugeStream : Stream
+    internal class MockHugeStream : Stream
     {
         // the events are big to make the stream grow fast
         const int payloadSize = 60000;

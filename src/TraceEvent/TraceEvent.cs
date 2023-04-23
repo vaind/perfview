@@ -1,3 +1,5 @@
+#nullable disable
+
 //     Copyright (c) Microsoft Corporation.  All rights reserved.
 // This file is best viewed using outline mode (Ctrl-M Ctrl-O)
 //
@@ -153,7 +155,7 @@ namespace Microsoft.Diagnostics.Tracing
     /// <para>The normal user pattern is to create a TraceEventSource, create TraceEventParsers attached to the TraceEventSource, and then subscribe
     /// event callbacks using the TraceEventParsers</para>
     /// </summary>
-    public abstract unsafe class TraceEventSource : ITraceParserServices, IDisposable
+    internal abstract unsafe class TraceEventSource : ITraceParserServices, IDisposable
     {
         // Properties to subscribe to find important parsers (these are convenience routines). 
 
@@ -591,7 +593,7 @@ namespace Microsoft.Diagnostics.Tracing
     /// do not have to call Clone() when processing with IObservables (but these are slower).  
     /// </para>
     /// </summary>
-    public abstract unsafe class TraceEvent
+    internal abstract unsafe class TraceEvent
         // To support DLR access of dynamic payload data ("((dynamic) myEvent).MyPayloadName"),
         // we derive from DynamicObject and override a couple of methods. If for some reason in
         // the future we wanted to derive from a different base class, we could also accomplish
@@ -2277,7 +2279,7 @@ namespace Microsoft.Diagnostics.Tracing
     /// Individual event providers can supply many different types of events.  These are distinguished from each
     /// other by a TraceEventID, which is just a 16 bit number.  Its meaning is provider-specific.  
     /// </summary>
-    public enum TraceEventID : ushort
+    internal enum TraceEventID : ushort
     {
         /// <summary>
         /// Illegal is a EventID that is not used by a normal event.   
@@ -2289,7 +2291,7 @@ namespace Microsoft.Diagnostics.Tracing
     /// Providers can define different audiences or Channels for an event (eg Admin, Developer ...).
     /// It is only used for Windows Event log support.  
     /// </summary>
-    public enum TraceEventChannel : byte
+    internal enum TraceEventChannel : byte
     {
         /// <summary>
         /// The default channel.
@@ -2303,7 +2305,7 @@ namespace Microsoft.Diagnostics.Tracing
     /// between a start and stop event).  To facilitate this, event can have opcode which defines these
     /// common operations.  Below are the standard ones but providers can define additional ones.
     /// </summary>
-    public enum TraceEventOpcode : byte
+    internal enum TraceEventOpcode : byte
     {
         /// <summary>
         /// Generic opcode that does not have specific semantics associated with it. 
@@ -2356,7 +2358,7 @@ namespace Microsoft.Diagnostics.Tracing
     /// <summary>
     /// Indicates to a provider whether verbose events should be logged.  
     /// </summary>
-    public enum TraceEventLevel
+    internal enum TraceEventLevel
     {
         /// <summary>
         /// Always log the event (It also can mean that the provider decides the verbosity)  You probably should not use it....
@@ -2391,7 +2393,7 @@ namespace Microsoft.Diagnostics.Tracing
     /// standard keywords, but most are provider specific. 
     /// </summary>
     [Flags]
-    public enum TraceEventKeyword : long
+    internal enum TraceEventKeyword : long
     {
         /// <summary>
         /// No event groups (keywords) selected
@@ -2410,7 +2412,7 @@ namespace Microsoft.Diagnostics.Tracing
     /// Tasks are groups of related events for a given provider (for example Process, or Thread, Kernel Provider).  
     /// They are defined by the provider.  
     /// </summary>
-    public enum TraceEventTask : ushort
+    internal enum TraceEventTask : ushort
     {
         /// <summary>
         /// If you don't explicitly choose a task you get the default 
@@ -2430,7 +2432,7 @@ namespace Microsoft.Diagnostics.Tracing
     /// EventIndex is a 32 bit number limits it to 4Gig events in an ETLX file.  
     /// </para>
     /// </summary>
-    public enum EventIndex : uint
+    internal enum EventIndex : uint
     {
         /// <summary>
         /// Invalid is an EventIndex that will not be used by a normal event. 
@@ -2445,7 +2447,7 @@ namespace Microsoft.Diagnostics.Tracing
     /// second role.  It provides the methods that parsers register templates for subclasses of 
     /// the TraceEvent class that know how to parse particular events.   
     /// </summary>
-    public interface ITraceParserServices
+    internal interface ITraceParserServices
     {
         /// <summary>
         /// RegisterEventTemplate is the mechanism a particular event payload description 'template' 
@@ -2518,7 +2520,7 @@ namespace Microsoft.Diagnostics.Tracing
     /// provide callbacks using the IObservable style.  
     /// </para>
     /// </summary>
-    public abstract class TraceEventParser
+    internal abstract class TraceEventParser
     {
         /// <summary>
         /// Get the source this TraceEventParser is attached to. 
@@ -3137,7 +3139,7 @@ namespace Microsoft.Diagnostics.Tracing
     /// <summary>
     /// EventFilterResponse is the set of responses  a user-defined filtering routine, might return.  This is used in the TraceEventParser.AddCallbackForProviderEvents method.  
     /// </summary>
-    public enum EventFilterResponse
+    internal enum EventFilterResponse
     {
         /// <summary>
         /// Not an interesting event, but other events in the same provider may be
@@ -3156,7 +3158,7 @@ namespace Microsoft.Diagnostics.Tracing
     /// <summary>
     /// An options class for the TraceEventDispatcher
     /// </summary>
-    public sealed class TraceEventDispatcherOptions
+    internal sealed class TraceEventDispatcherOptions
     {
         /// <summary>
         /// StartTime from which you want to start analyzing the events for file formats that support this.
@@ -3172,7 +3174,7 @@ namespace Microsoft.Diagnostics.Tracing
     /// <summary>
     /// A TraceEventDispatcher is a TraceEventSource that supports a callback model for dispatching events.  
     /// </summary>
-    public abstract unsafe class TraceEventDispatcher : TraceEventSource
+    internal abstract unsafe class TraceEventDispatcher : TraceEventSource
     {
         /// <summary>
         /// Obtains the correct TraceEventDispatcher for the given trace file name.
@@ -4105,7 +4107,7 @@ namespace Microsoft.Diagnostics.Tracing
     /// TraceEventParsers can use this template to define the event for the trivial case where the event has no user-defined payload  
     /// <para>This is only useful to TraceEventParsers.</para>
     /// </summary>
-    public sealed class EmptyTraceData : TraceEvent
+    internal sealed class EmptyTraceData : TraceEvent
     {
         /// <summary>
         /// Construct a TraceEvent template which has no payload fields with the given metadata and action
@@ -4171,7 +4173,7 @@ namespace Microsoft.Diagnostics.Tracing
     /// When the event has just a single string value associated with it, you can use this shared event
     /// template rather than making an event-specific class.
     /// </summary>
-    public sealed class StringTraceData : TraceEvent
+    internal sealed class StringTraceData : TraceEvent
     {
         /// <summary>
         /// The value of the one string payload property.  
@@ -4264,7 +4266,7 @@ namespace Microsoft.Diagnostics.Tracing
     /// <summary>
     /// UnhandledTraceEvent is a TraceEvent when is used when no manifest information is available for the event. 
     /// </summary>
-    public unsafe class UnhandledTraceEvent : TraceEvent
+    internal unsafe class UnhandledTraceEvent : TraceEvent
     {
         #region private
         /// <summary>
@@ -4522,7 +4524,7 @@ namespace Microsoft.Diagnostics.Tracing
     /// <summary>
     /// ObservableExtensions defines methods on TraceEventParser that implement the IObservable protocol for implementing callbacks.
     /// </summary>
-    public static class ObservableExtensions
+    internal static class ObservableExtensions
     {
         /// <summary>
         /// Returns an IObservable that observes all events that 'parser' knows about that  return a T.  If eventName is

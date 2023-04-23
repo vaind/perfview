@@ -1,4 +1,6 @@
-﻿// Copyright (c) Microsoft Corporation.  All rights reserved
+#nullable disable
+
+// Copyright (c) Microsoft Corporation.  All rights reserved
 // This file is best viewed using outline mode (Ctrl-M Ctrl-O)
 // 
 using Microsoft.Diagnostics.Utilities;
@@ -16,7 +18,7 @@ namespace Microsoft.Diagnostics.Tracing.Stacks
     /// SampleInfos of a set of stackSource by eventToStack.  This represents the entire call tree.   You create an empty one in using
     /// the default constructor and use 'AddSample' to add stackSource to it.   You traverse it by 
     /// </summary>
-    public class CallTree
+    internal class CallTree
     {
         /// <summary>
         /// Creates an empty call tree, indicating the scaling policy of the metric.   You populate it by assigning a StackSource to the tree.  
@@ -498,7 +500,7 @@ namespace Microsoft.Diagnostics.Tracing.Stacks
     /// <summary>
     /// ScalingPolicyKind represents the desired way to scale the metric in the samples.  
     /// </summary>
-    public enum ScalingPolicyKind
+    internal enum ScalingPolicyKind
     {
         /// <summary>
         /// This is the default.  In this policy, 100% is chosen so that the histogram is scaled as best it can.   
@@ -514,7 +516,7 @@ namespace Microsoft.Diagnostics.Tracing.Stacks
     /// Represents a unique ID for a node in a call tree.  Can be used to look up a call tree node easily.  
     /// It is a dense value (from 0 up to a maximum).  
     /// </summary>
-    public enum CallTreeNodeIndex
+    internal enum CallTreeNodeIndex
     {
         /// <summary>
         /// An Invalid Node Index.
@@ -527,7 +529,7 @@ namespace Microsoft.Diagnostics.Tracing.Stacks
     /// ByName nodes and Caller-Callee nodes need this because they either don't have or need different 
     /// parent-child relationships. 
     /// </summary>
-    public class CallTreeNodeBase
+    internal class CallTreeNodeBase
     {
         /// <summary>
         /// Returns a unique small, dense number (suitable for looking up in an array) that represents 
@@ -1010,7 +1012,7 @@ namespace Microsoft.Diagnostics.Tracing.Stacks
     /// is lost, just sorted by stack).   You get at this through the
     /// CallTreeNodeBase.GetSamples method.  
     /// </summary>
-    public class CallTreeNode : CallTreeNodeBase
+    internal class CallTreeNode : CallTreeNodeBase
     {
         /// <summary>
         /// The caller (parent) of this node
@@ -1606,7 +1608,7 @@ namespace Microsoft.Diagnostics.Tracing.Stacks
     /// It takes all stackSource that have callStacks that include that treeNode and compute the metrics for
     /// all the callers and all the callees for that treeNode.  
     /// </summary>
-    public class CallerCalleeNode : CallTreeNodeBase
+    internal class CallerCalleeNode : CallTreeNodeBase
     {
         /// <summary>
         /// Given a complete call tree, and a Name within that call tree to focus on, create a
@@ -1927,7 +1929,7 @@ namespace Microsoft.Diagnostics.Tracing.Stacks
     /// form the part of the tree you actually explore.     A classic 'caller-callee' 
     /// view is simply the caller and callee trees only explored to depth 1.
     /// </summary>
-    public sealed class AggregateCallTreeNode : CallTreeNode
+    internal sealed class AggregateCallTreeNode : CallTreeNode
     {
         /// <summary>
         /// Given any node (typically a ByName node, but it works on any node), Create a 

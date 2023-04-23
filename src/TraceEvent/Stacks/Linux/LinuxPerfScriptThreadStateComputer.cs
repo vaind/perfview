@@ -1,4 +1,6 @@
-﻿using Microsoft.Diagnostics.Tracing.StackSources;
+#nullable disable
+
+using Microsoft.Diagnostics.Tracing.StackSources;
 using System;
 using System.Collections.Generic;
 using System.Text;

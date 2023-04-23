@@ -1,4 +1,6 @@
-﻿using PerfView.TestUtilities;
+#nullable disable
+
+using PerfView.TestUtilities;
 using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
@@ -10,7 +12,7 @@ using Xunit.Abstractions;
 namespace TraceEventTests
 {
     [UseCulture("en-US")]
-    public abstract class EventPipeTestBase : TestBase
+    internal abstract class EventPipeTestBase : TestBase
     {
         protected EventPipeTestBase(ITestOutputHelper output)
             : base(output)

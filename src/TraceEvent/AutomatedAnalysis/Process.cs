@@ -1,9 +1,11 @@
-﻿namespace Microsoft.Diagnostics.Tracing.AutomatedAnalysis
+#nullable disable
+
+namespace Microsoft.Diagnostics.Tracing.AutomatedAnalysis
 {
     /// <summary>
     /// A process contained in a trace.
     /// </summary>
-    public class Process
+    internal class Process
     {
         /// <summary>
         /// Create an instance with default values.

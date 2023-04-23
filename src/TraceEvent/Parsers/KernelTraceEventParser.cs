@@ -1,3 +1,5 @@
+#nullable disable
+
 //     Copyright (c) Microsoft Corporation.  All rights reserved.
 //
 using FastSerialization;
@@ -20,9 +22,9 @@ using Address = System.UInt64;
 /* And then modified by hand to add functionality (handle to name lookup, fixup of events ...) */
 // The version before any hand modifications is kept as KernelTraceEventParser.base.cs, and a 3
 // way diff is done when traceParserGen is rerun.  This allows the 'by-hand' modifications to be
-// applied again if the mof or the traceParserGen transformation changes. 
-// 
-// See traceParserGen /usersGuide for more on the /merge option 
+// applied again if the mof or the traceParserGen transformation changes.
+//
+// See traceParserGen /usersGuide for more on the /merge option
 
 // TODO I have low confidence in the TCP headers, especially for Versions < 2 (how much do we care?)
 namespace Microsoft.Diagnostics.Tracing.Parsers
@@ -30,12 +32,12 @@ namespace Microsoft.Diagnostics.Tracing.Parsers
     /// <summary>
     /// The KernelTraceEventParser is a class that knows how to decode the 'standard' kernel events.
     /// It exposes an event for each event of interest that users can subscribe to.
-    /// 
-    /// see TraceEventParser for more 
+    ///
+    /// see TraceEventParser for more
     /// </summary>
     // [SecuritySafeCritical]
     [System.CodeDom.Compiler.GeneratedCode("traceparsergen", "1.0")]
-    public sealed class KernelTraceEventParser : TraceEventParser
+    internal sealed class KernelTraceEventParser : TraceEventParser
     {
         /// <summary>
         /// The special name for the Kernel session
@@ -46,22 +48,22 @@ namespace Microsoft.Diagnostics.Tracing.Parsers
         public static readonly Guid ProviderGuid = new Guid(unchecked((int)0x9e814aad), unchecked((short)0x3204), unchecked((short)0x11d2), 0x9a, 0x82, 0x00, 0x60, 0x08, 0xa8, 0x69, 0x39);
         /// <summary>
         /// This is passed to TraceEventSession.EnableKernelProvider to enable particular sets of
-        /// events.  See http://msdn.microsoft.com/en-us/library/aa363784(VS.85).aspx for more information on them 
+        /// events.  See http://msdn.microsoft.com/en-us/library/aa363784(VS.85).aspx for more information on them
         /// </summary>
         [Flags]
-        public enum Keywords
+        internal enum Keywords
         {
             /// <summary>
             /// Logs nothing
             /// </summary>
             None = 0x00000000, // no tracing
-            // Part of the 'default set of keywords' (good value in most scenarios).  
+            // Part of the 'default set of keywords' (good value in most scenarios).
             /// <summary>
-            /// Logs the mapping of file IDs to actual (kernel) file names. 
+            /// Logs the mapping of file IDs to actual (kernel) file names.
             /// </summary>
             DiskFileIO = 0x00000200,
             /// <summary>
-            /// Loads the completion of Physical disk activity. 
+            /// Loads the completion of Physical disk activity.
             /// </summary>
             DiskIO = 0x00000100, // physical disk IO
             /// <summary>
@@ -73,7 +75,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers
             /// </summary>
             MemoryHardFaults = 0x00002000,
             /// <summary>
-            /// Logs TCP/IP network send and receive events. 
+            /// Logs TCP/IP network send and receive events.
             /// </summary>
             NetworkTCPIP = 0x00010000,
             /// <summary>
@@ -94,7 +96,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers
             /// </summary>
             Thread = 0x00000002,
 
-            // These are useful in some situations, however are more volumous so are not part of the default set. 
+            // These are useful in some situations, however are more volumous so are not part of the default set.
             /// <summary>
             /// log thread context switches (Vista only) (can be > 10K events per second)
             /// </summary>
@@ -125,7 +127,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers
             /// </summary>
             Memory = 0x00001000,
             /// <summary>
-            /// Logs activity to the windows registry. 
+            /// Logs activity to the windows registry.
             /// Can be pretty volumous (> 1K per second)
             /// </summary>
             Registry = 0x00020000, // registry calls
@@ -137,22 +139,22 @@ namespace Microsoft.Diagnostics.Tracing.Parsers
             /// <summary>
             /// Log Virtual Alloc calls and VirtualFree.   (Vista+ Only)
             /// Generally not TOO volumous (typically less than 1K per second)
-            /// </summary> 
+            /// </summary>
             VirtualAlloc = 0x004000,
             /// <summary>
             /// Log mapping of files into memory (Win8 and above Only)
-            /// Generally low volume.  
+            /// Generally low volume.
             /// </summary>
             VAMap = 0x8000,
 
             // advanced logging (when you care about the internals of the OS)
             /// <summary>
-            /// Logs Advanced Local Procedure call events. 
+            /// Logs Advanced Local Procedure call events.
             /// </summary>
             AdvancedLocalProcedureCalls = 0x00100000,
             /// <summary>
             /// log defered procedure calls (an Kernel mechanism for having work done asynchronously) (Vista+ only)
-            /// </summary> 
+            /// </summary>
             DeferedProcedureCalls = 0x00000020,
             /// <summary>
             /// Device Driver logging (Vista+ only)
@@ -164,11 +166,11 @@ namespace Microsoft.Diagnostics.Tracing.Parsers
             Interrupt = 0x00000040,
             /// <summary>
             /// Disk I/O that was split (eg because of mirroring requirements) (Vista+ only)
-            /// </summary> 
+            /// </summary>
             SplitIO = 0x00200000,
             /// <summary>
             /// Good default kernel flags.  (TODO more detail)
-            /// </summary>  
+            /// </summary>
             Default = DiskIO | DiskFileIO | DiskIOInit | ImageLoad | MemoryHardFaults | NetworkTCPIP | Process | ProcessCounters | Profile | Thread,
             /// <summary>
             /// These events are too verbose for normal use, but this give you a quick way of turing on 'interesting' events
@@ -176,45 +178,45 @@ namespace Microsoft.Diagnostics.Tracing.Parsers
             /// </summary>
             Verbose = Default | ContextSwitch | Dispatcher | FileIO | FileIOInit | Memory | Registry | VirtualAlloc | VAMap,  // use as needed
             /// <summary>
-            /// Use this if you care about blocked time.  
+            /// Use this if you care about blocked time.
             /// </summary>
             ThreadTime = Default | ContextSwitch | Dispatcher,
             /// <summary>
-            /// You mostly don't care about these unless you are dealing with OS internals.  
+            /// You mostly don't care about these unless you are dealing with OS internals.
             /// </summary>
             OS = AdvancedLocalProcedureCalls | DeferedProcedureCalls | Driver | Interrupt | SplitIO,
             /// <summary>
             /// All legal kernel events
             /// </summary>
             All = Verbose | ContextSwitch | Dispatcher | FileIO | FileIOInit | Memory | Registry | VirtualAlloc | VAMap  // use as needed
-                | SystemCall        // Interesting but very expensive. 
+                | SystemCall        // Interesting but very expensive.
                 | OS,
 
             /// <summary>
-            /// These are the kernel events that are not allowed in containers.  Can be subtracted out.  
+            /// These are the kernel events that are not allowed in containers.  Can be subtracted out.
             /// </summary>
             NonContainer = ~(Process | Thread | ImageLoad | Profile | ContextSwitch | ProcessCounters),
 
-            // These are ones that I have made up  
-            // All = 0x07B3FFFF, so 4'0000, 8'0000, 40'0000, and F000'00000 are free.  
+            // These are ones that I have made up
+            // All = 0x07B3FFFF, so 4'0000, 8'0000, 40'0000, and F000'00000 are free.
             /// <summary>
             /// Turn on PMC (Precise Machine Counter) events.   Only Win 8
             /// </summary>
             PMCProfile = unchecked((int)0x80000000),
             /// <summary>
-            /// Kernel reference set events (like XPERF ReferenceSet).   Fully works only on Win 8.  
+            /// Kernel reference set events (like XPERF ReferenceSet).   Fully works only on Win 8.
             /// </summary>
             ReferenceSet = 0x40000000,
             /// <summary>
-            /// Events when thread priorities change.  
+            /// Events when thread priorities change.
             /// </summary>
             ThreadPriority = 0x20000000,
             /// <summary>
-            /// Events when queuing and dequeuing from the I/O completion ports.    
+            /// Events when queuing and dequeuing from the I/O completion ports.
             /// </summary>
             IOQueue = 0x10000000,
             /// <summary>
-            /// Handle creation and closing (for handle leaks) 
+            /// Handle creation and closing (for handle leaks)
             /// </summary>
             Handle = 0x400000,
         };
@@ -226,7 +228,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers
         {
             get
             {
-                var ret = (Keywords)unchecked((int)0xf84c8000); // PMCProfile ReferenceSet ThreadPriority IOQueue Handle VAMap 
+                var ret = (Keywords)unchecked((int)0xf84c8000); // PMCProfile ReferenceSet ThreadPriority IOQueue Handle VAMap
                 if (OperatingSystemVersion.AtLeast(OperatingSystemVersion.Win8))
                     ret &= ~Keywords.VAMap;
                 return ret;
@@ -234,15 +236,15 @@ namespace Microsoft.Diagnostics.Tracing.Parsers
         }
 
         /// <summary>
-        /// What his parser should track by default.  
+        /// What his parser should track by default.
         /// </summary>
         [Flags]
-        public enum ParserTrackingOptions
+        internal enum ParserTrackingOptions
         {
             None = 0,
             ThreadToProcess = 1,
             FileNameToObject = 2,
-            RegistryNameToObject = 4,   // Not on by default for real time sessions 
+            RegistryNameToObject = 4,   // Not on by default for real time sessions
             DiskIOServiceTime = 8,      // Not on by default for real time sessions
             VolumeMapping = 16,
             ObjectNameToObject = 32,
@@ -254,9 +256,9 @@ namespace Microsoft.Diagnostics.Tracing.Parsers
         public KernelTraceEventParser(TraceEventSource source, ParserTrackingOptions tracking)
             : base(source)
         {
-            // TODO FIX NOW, need to make it so that this is bounded.  
+            // TODO FIX NOW, need to make it so that this is bounded.
 
-            // Note that all kernel parsers share the same state.   
+            // Note that all kernel parsers share the same state.
             KernelTraceEventParserState state = State;
             if ((tracking & ParserTrackingOptions.RegistryNameToObject) != 0 && (state.callBacksSet & ParserTrackingOptions.RegistryNameToObject) == 0)
             {
@@ -275,15 +277,15 @@ namespace Microsoft.Diagnostics.Tracing.Parsers
 
                 AddCallbackForEvents<FileIONameTraceData>(delegate (FileIONameTraceData data)
                 {
-                    // TODO this does now work for DCStarts.  Do DCStarts event exist?  
+                    // TODO this does now work for DCStarts.  Do DCStarts event exist?
                     var isRundown = (data.Opcode == (TraceEventOpcode)36) || (data.Opcode == (TraceEventOpcode)35);        // 36=FileIOFileRundown 35=FileIODelete
                     Debug.Assert(data.FileName.Length != 0);
                     state.fileIDToName.Add(data.FileKey, data.TimeStampQPC, data.FileName, isRundown);
                 });
 
 #if !DOTNET_V35
-                // Because we may not have proper startup rundown, we also remember not only the FileKey but 
-                // also the fileObject (which is per-open file not per fileName).   
+                // Because we may not have proper startup rundown, we also remember not only the FileKey but
+                // also the fileObject (which is per-open file not per fileName).
                 FileIOCreate += delegate (FileIOCreateTraceData data)
                 {
                     state.fileIDToName.Add(data.FileObject, data.TimeStampQPC, data.FileName);
@@ -301,7 +303,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers
 
                     FileIOCleanup += delegate (FileIOSimpleOpTraceData data)
                     {
-                        // Keep the table under control remove unneeded entries.  
+                        // Keep the table under control remove unneeded entries.
                         state.fileIDToName.Remove(data.FileObject);
                     };
                 }
@@ -344,11 +346,11 @@ namespace Microsoft.Diagnostics.Tracing.Parsers
                         // Do we have thread start information for this thread?
                         if (!state.threadIDtoProcessID.TryGetValue(data.ThreadID, data.TimeStampQPC, out processID))
                         {
-                            // No, this is likely a circular buffer, remember the thread end information 
+                            // No, this is likely a circular buffer, remember the thread end information
                             if (state.threadIDtoProcessIDRundown == null)
                                 state.threadIDtoProcessIDRundown = new HistoryDictionary<int, int>(100);
 
-                            // Notice I NEGATE the timestamp, this way HistoryDictionary does the comparison the way I want it.  
+                            // Notice I NEGATE the timestamp, this way HistoryDictionary does the comparison the way I want it.
                             state.threadIDtoProcessIDRundown.Add(data.ThreadID, -data.TimeStampQPC, data.ProcessID);
                         }
                     }
@@ -713,7 +715,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers
                 source.UnregisterEventTemplate(value, 63, ThreadTaskGuid);
             }
         }
-#if false 
+#if false
         public event Action<WorkerThreadTraceData> ThreadWorkerThread
         {
             add
@@ -1997,7 +1999,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers
             }
         }
 
-        // TODO FIX NOW, this easily may not be correct. 
+        // TODO FIX NOW, this easily may not be correct.
         public event Action<MemoryPageAccessTraceData> MemoryInMemory
         {
             add
@@ -2023,7 +2025,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers
                 source.UnregisterEventTemplate(value, 112, MemoryTaskGuid);
             }
         }
-        // TODO FIX NOW, this easily may not be correct. 
+        // TODO FIX NOW, this easily may not be correct.
         public event Action<MemoryPageAccessTraceData> MemoryInMemoryActive
         {
             add
@@ -2044,7 +2046,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers
                 // action, eventid, taskid, taskName, taskGuid, opcode, opcodeName, providerGuid, providerName
                 source.RegisterEventTemplate(new MemoryPageAccessTraceData(value, 0xFFFF, 10, "Memory", MemoryTaskGuid, 118, "PageAccess", ProviderGuid, ProviderName, State));
 
-                // This is the EX version of the event.  
+                // This is the EX version of the event.
                 // action, eventid, taskid, taskName, taskGuid, opcode, opcodeName, providerGuid, providerName
                 source.RegisterEventTemplate(new MemoryPageAccessTraceData(value, 0xFFFF, 10, "Memory", MemoryTaskGuid, 130, "PageAccess", ProviderGuid, ProviderName, State));
             }
@@ -2086,7 +2088,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers
             }
         }
 
-        // TODO Added by hand without proper body decode.  
+        // TODO Added by hand without proper body decode.
         public event Action<EmptyTraceData> MemoryPFMappedSectionCreate
         {
             add
@@ -2330,7 +2332,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers
             }
         }
 
-#if false       // TODO FIX NOW remove (it is not used and is not following conventions on array fields.   
+#if false       // TODO FIX NOW remove (it is not used and is not following conventions on array fields.
         public event Action<BatchedSampledProfileTraceData> PerfInfoBatchedSample
         {
             add
@@ -2732,7 +2734,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers
                 source.UnregisterEventTemplate(value, 23, SystemConfigTaskGuid);
             }
         }
-        // Added by hand. 
+        // Added by hand.
         public event Action<VirtualAllocTraceData> VirtualMemAlloc
         {
             add
@@ -2849,8 +2851,8 @@ namespace Microsoft.Diagnostics.Tracing.Parsers
         }
 
         /// <summary>
-        /// File names in ETW are the Kernel names, which need to be mapped to the drive specification users see. 
-        /// This event indicates this mapping. 
+        /// File names in ETW are the Kernel names, which need to be mapped to the drive specification users see.
+        /// This event indicates this mapping.
         /// </summary>
         public event Action<VolumeMappingTraceData> SysConfigVolumeMapping
         {
@@ -2916,7 +2918,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers
                 templates[16] = new EmptyTraceData(null, 0xFFFF, 2, "Thread", ThreadTaskGuid, 37, "CompCS", ProviderGuid, ProviderName);
                 templates[17] = new EnqueueTraceData(null, 0xFFFF, 2, "Thread", ThreadTaskGuid, 62, "Enqueue", ProviderGuid, ProviderName, null);
                 templates[18] = new DequeueTraceData(null, 0xFFFF, 2, "Thread", ThreadTaskGuid, 63, "Dequeue", ProviderGuid, ProviderName, null);
-#if false 
+#if false
                 templates[17] = new WorkerThreadTraceData(null, 0xFFFF, 2, "Thread", ThreadTaskGuid, 57, "WorkerThread", ProviderGuid, ProviderName, null);
                 templates[18] = new ReserveCreateTraceData(null, 0xFFFF, 2, "Thread", ThreadTaskGuid, 48, "ReserveCreate", ProviderGuid, ProviderName, null);
                 templates[19] = new ReserveDeleteTraceData(null, 0xFFFF, 2, "Thread", ThreadTaskGuid, 49, "ReserveDelete", ProviderGuid, ProviderName, null);
@@ -3112,7 +3114,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers
         private static ParserTrackingOptions DefaultOptionsForSource(TraceEventSource source)
         {
             var ret = ParserTrackingOptions.Default;
-            // Currently DiskIO and Registry too expensive (unbounded) for real time).  
+            // Currently DiskIO and Registry too expensive (unbounded) for real time).
             if (source.IsRealTime)
                 ret &= ~(ParserTrackingOptions.DiskIOServiceTime | ParserTrackingOptions.RegistryNameToObject);
             return ret;
@@ -3145,7 +3147,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers
         internal static readonly Guid MemoryProviderGuid = new Guid(unchecked((int)0x3d1d93ef7), unchecked((short)0xe1f2), unchecked((short)0x4f45), 0x99, 0x43, 0x03, 0xd2, 0x45, 0xfe, 0x6c, 0x00);
         internal static readonly Guid PerfInfoTaskGuid = new Guid(unchecked((int)0xce1dbfb4), unchecked((short)0x137e), unchecked((short)0x4da6), 0x87, 0xb0, 0x3f, 0x59, 0xaa, 0x10, 0x2c, 0xbc);
         internal static readonly Guid StackWalkTaskGuid = new Guid(unchecked((int)0xdef2fe46), unchecked((short)0x7bd6), unchecked((short)0x4b80), 0xbd, 0x94, 0xf5, 0x7f, 0xe2, 0x0d, 0x0c, 0xe3);
-        // Used for new style user mode stacks.  
+        // Used for new style user mode stacks.
         internal static readonly Guid EventTracingProviderGuid = new Guid(unchecked((int)0xb675ec37), unchecked((short)0xbdb6), unchecked((short)0x4648), 0xbc, 0x92, 0xf3, 0xfd, 0xc7, 0x4d, 0x3c, 0xa2);
         internal static readonly Guid ALPCTaskGuid = new Guid(unchecked((int)0x45d8cccd), unchecked((short)0x539f), unchecked((short)0x4b72), 0xa8, 0xb7, 0x5c, 0x68, 0x31, 0x42, 0x60, 0x9a);
         internal static readonly Guid LostEventTaskGuid = new Guid(unchecked((int)0x6a399ae0), unchecked((short)0x4bc6), unchecked((short)0x4de9), 0x87, 0x0b, 0x36, 0x57, 0xf8, 0x94, 0x7e, 0x7e);
@@ -3162,10 +3164,10 @@ namespace Microsoft.Diagnostics.Tracing.Parsers
     /// KernelTraceEventParserState holds all information that is shared among all events that is
     /// needed to decode kernel events.   This class is registered with the source so that it will be
     /// persisted.  Things in here include
-    /// 
-    ///     * FileID to FileName mapping, 
+    ///
+    ///     * FileID to FileName mapping,
     ///     * ThreadID to ProcessID mapping
-    ///     * Kernel file name to user file name mapping 
+    ///     * Kernel file name to user file name mapping
     /// </summary>
     // [SecuritySafeCritical]
     internal class KernelTraceEventParserState : IFastSerializable
@@ -3187,8 +3189,8 @@ namespace Microsoft.Diagnostics.Tracing.Parsers
             return ret;
         }
         /// <summary>
-        /// If you have a file object (per-open-file) in addition to a fileKey, try using both 
-        /// to look up the file name.  
+        /// If you have a file object (per-open-file) in addition to a fileKey, try using both
+        /// to look up the file name.
         /// </summary>
         internal string FileIDToName(Address fileKey, Address fileObject, long timeQPC)
         {
@@ -3230,7 +3232,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers
             int ret;
             if (!threadIDtoProcessID.TryGetValue(threadID, timeQPC, out ret))
             {
-                // See if we have end-Thread information, and use that if it is there.  
+                // See if we have end-Thread information, and use that if it is there.
                 if (threadIDtoProcessIDRundown != null && threadIDtoProcessIDRundown.TryGetValue(threadID, -timeQPC, out ret))
                 {
                     return ret;
@@ -3433,7 +3435,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers
             public double TimeStampRelativeMSec;
         };
 
-        // Fields 
+        // Fields
         internal KernelToUserDriveMapping driveMapping;
         private HistoryDictionary<Address, string> _fileIDToName;
         private HistoryDictionary<int, int> _threadIDtoProcessID;
@@ -3445,9 +3447,9 @@ namespace Microsoft.Diagnostics.Tracing.Parsers
         /// This is for the circular buffer case.  In that case we may not have thread starts (and thus we don't
         /// have entries in threadIDtoProcessID).   Because HistoryTable finds the FIRST entry GREATER than the
         /// given threadID we NEGATE all times before we place it in this table.
-        /// 
+        ///
         /// Also, because circular buffering is not the common case, we only add entries to this table if needed
-        /// (if we could not find the thread ID using threadIDtoProcessID).  
+        /// (if we could not find the thread ID using threadIDtoProcessID).
         /// </summary>
         internal HistoryDictionary<int, int> threadIDtoProcessIDRundown;
         internal KernelTraceEventParser.ParserTrackingOptions callBacksSet;
@@ -3456,12 +3458,12 @@ namespace Microsoft.Diagnostics.Tracing.Parsers
     }
 
     /// <summary>
-    /// Keeps track of the mapping from kernel names to file system names (drives)  
+    /// Keeps track of the mapping from kernel names to file system names (drives)
     /// </summary>
-    public sealed class KernelToUserDriveMapping : IFastSerializable
+    internal sealed class KernelToUserDriveMapping : IFastSerializable
     {
         /// <summary>
-        /// Create a new KernelToUserDriveMapping that can look up kernel names for drives and map them to windows drive letters. 
+        /// Create a new KernelToUserDriveMapping that can look up kernel names for drives and map them to windows drive letters.
         /// </summary>
         public KernelToUserDriveMapping()
         {
@@ -3482,18 +3484,18 @@ namespace Microsoft.Diagnostics.Tracing.Parsers
         #region private
         internal string MapKernelToUserDefault(string kernelName)
         {
-            // TODO confirm that you are on the local machine before initializing in this way.  
+            // TODO confirm that you are on the local machine before initializing in this way.
             if (kernelToDriveMap.Count == 0)
             {
                 PopulateFromLocalMachine();
             }
 
 #if !CONTAINER_WORKAROUND_NOT_NEEDED
-            // Currently ETW shows paths from the HOST not the CLIENT for some files.   We recognize them 
+            // Currently ETW shows paths from the HOST not the CLIENT for some files.   We recognize them
             // because they have the form of a GUID path \OS or \File and then the client path.   It is enough
-            // to fix this for files in the \windows directory so we use \OS\Windows\ or \Files\Windows as the key 
+            // to fix this for files in the \windows directory so we use \OS\Windows\ or \Files\Windows as the key
             // to tell if we have a HOST file path and we morph the name to fix it.
-            // We can pull this out when the OS fixes ETW to show client names.  
+            // We can pull this out when the OS fixes ETW to show client names.
             var filesIdx = kernelName.IndexOf(@"\OS\Windows\", StringComparison.OrdinalIgnoreCase);
             if (0 <= filesIdx && filesIdx + 3 < kernelName.Length)
             {
@@ -3512,7 +3514,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers
                 Debug.Assert(kernelToDriveMap[i].Value.Length == 0 || kernelToDriveMap[i].Value.EndsWith(@"\"));
 
                 // For every string in the map, does the kernel name match a prefix in the table?
-                // If so we have found a match. 
+                // If so we have found a match.
                 string kernelPrefix = kernelToDriveMap[i].Key;
                 if (string.Compare(kernelName, 0, kernelPrefix, 0, kernelPrefix.Length, StringComparison.OrdinalIgnoreCase) == 0)
                 {
@@ -3562,7 +3564,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers
         internal void AddSystemDrive(string windows)
         {
             AddMapping(@"\Windows\", windows);
-            systemDrive = windows.Substring(0, 2);        // grab just the drive letter.  
+            systemDrive = windows.Substring(0, 2);        // grab just the drive letter.
         }
 
         [DllImport("kernel32.dll", CharSet = CharSet.Unicode, SetLastError = true)]
@@ -3608,7 +3610,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers
 namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
 {
     // [SecuritySafeCritical]
-    public sealed class EventTraceHeaderTraceData : TraceEvent
+    internal sealed class EventTraceHeaderTraceData : TraceEvent
     {
         public int BufferSize { get { return GetInt32At(0); } }
         public new int Version { get { return GetInt32At(4); } }
@@ -3625,12 +3627,12 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
         public int EventsLost { get { return GetInt32At(48); } }
         public int CPUSpeed { get { return GetInt32At(52); } }
         // Skipping LoggerName (pointer size)
-        // Skipping LogFileName (pointer size) 
+        // Skipping LogFileName (pointer size)
         // TimeZoneInformation HostOffset(60, 2), size 176?  see https://msdn.microsoft.com/en-us/library/windows/desktop/ms725481(v=vs.85).aspx
         /// <summary>
-        /// This is the number of minutes between the local time where the data was collected and UTC time. 
-        /// It does NOT take Daylight savings time into account.   
-        /// It is positive if your time zone is WEST of Greenwich.  
+        /// This is the number of minutes between the local time where the data was collected and UTC time.
+        /// It does NOT take Daylight savings time into account.
+        /// It is positive if your time zone is WEST of Greenwich.
         /// </summary>
         public int UTCOffsetMinutes { get { return GetInt32At(HostOffset(64, 2)); } }
 #if false
@@ -3768,7 +3770,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
         private KernelTraceEventParserState state;
         #endregion
     }
-    public sealed class HeaderExtensionTraceData : TraceEvent
+    internal sealed class HeaderExtensionTraceData : TraceEvent
     {
         public int GroupMask1 { get { return GetInt32At(0); } }
         public int GroupMask2 { get { return GetInt32At(4); } }
@@ -3865,7 +3867,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
     }
 
     [Flags]
-    public enum ProcessFlags
+    internal enum ProcessFlags
     {
         None = 0,
         PackageFullName = 1,
@@ -3873,7 +3875,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
         Protected = 4,
     }
 
-    public sealed class ProcessTraceData : TraceEvent
+    internal sealed class ProcessTraceData : TraceEvent
     {
         // public int ProcessID { get { if (Version >= 1) return GetInt32At(HostOffset(4, 1)); return (int) GetHostPointer(0); } }
         public int ParentID { get { if (Version >= 1) { return GetInt32At(HostOffset(8, 1)); } return (int)GetAddressAt(HostOffset(4, 1)); } }
@@ -3962,7 +3964,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
             Debug.Assert(!(Version == 3 && EventDataLength != SkipUnicodeString(SkipUTF8String(GetKernelImageNameOffset()))));
             Debug.Assert(!(Version == 4 && EventDataLength !=
                 SkipUnicodeString(SkipUnicodeString(SkipUnicodeString(SkipUTF8String(GetKernelImageNameOffset()))))));
-            // TODO version 5 seesm to have put 8 bytes after it (on 32 bit, maybe more on 64 bit. 
+            // TODO version 5 seesm to have put 8 bytes after it (on 32 bit, maybe more on 64 bit.
             Debug.Assert(!(Version == 5 && EventDataLength <
                 SkipUnicodeString(SkipUnicodeString(SkipUnicodeString(SkipUTF8String(GetKernelImageNameOffset())))) + 8));
 
@@ -4049,14 +4051,14 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
 
         internal override unsafe void FixupData()
         {
-            // We wish to create the illusion that the events are reported by the process being started.   
+            // We wish to create the illusion that the events are reported by the process being started.
             eventRecord->EventHeader.ProcessId = GetInt32At(HostOffset(4, 1));
             ParentThread = eventRecord->EventHeader.ThreadId;
             eventRecord->EventHeader.ThreadId = -1;
         }
         #endregion
     }
-    public sealed class ProcessCtrTraceData : TraceEvent
+    internal sealed class ProcessCtrTraceData : TraceEvent
     {
         // public int ProcessID { get { return GetInt32At(0); } }
         public int MemoryCount { get { return GetInt32At(4); } }
@@ -4177,7 +4179,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
 
         #endregion
     }
-    public sealed class ThreadTraceData : TraceEvent
+    internal sealed class ThreadTraceData : TraceEvent
     {
         // public int ThreadID { get { if (Version >= 1) return GetInt32At(4); return GetInt32At(0); } }
         // public int ProcessID { get { if (Version >= 1) return GetInt32At(0); return GetInt32At(4); } }
@@ -4196,7 +4198,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
         public int ThreadFlags { get { if (Version >= 3 && EventDataLength >= HostOffset(44, 7)) { return GetByteAt(HostOffset(43, 7)); } return 0; } }
         public string ThreadName { get { if (Version >= 3 && EventDataLength >= HostOffset(46, 7)) { return GetUnicodeStringAt(HostOffset(44, 7)); } return ""; } }
 
-        // The thread that started this thread (only in start events 
+        // The thread that started this thread (only in start events
         public int ParentThreadID
         {
             get
@@ -4206,7 +4208,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
                     return -1;
                 }
 
-                return GetInt32At(4);   // This is not the standard location see FixupData, we swap the ThreadIDs   See FixupData 
+                return GetInt32At(4);   // This is not the standard location see FixupData, we swap the ThreadIDs   See FixupData
                 ;
             }
         }
@@ -4219,7 +4221,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
                     return -1;
                 }
 
-                return GetInt32At(0);   // This is not the standard location see FixupData, we swap the Process ID   See FixupData 
+                return GetInt32At(0);   // This is not the standard location see FixupData, we swap the Process ID   See FixupData
                 ;
             }
         }
@@ -4329,7 +4331,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
                 return;
             }
 
-            // We wish to create the illusion that the events are reported by the thread being started.   
+            // We wish to create the illusion that the events are reported by the thread being started.
             var parentProcess = -1;
             ParentThread = -1;
             if (Opcode != TraceEventOpcode.Stop)                            // Stop events do have the correct ThreadID, so keep it
@@ -4339,7 +4341,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
                     parentProcess = eventRecord->EventHeader.ProcessId;
                     ParentThread = eventRecord->EventHeader.ThreadId;      // This field is transient (does not survive ETLX conversion) (we may be able to remove)
                 }
-                eventRecord->EventHeader.ThreadId = GetInt32At(4);          // Thread being started.  
+                eventRecord->EventHeader.ThreadId = GetInt32At(4);          // Thread being started.
                 eventRecord->EventHeader.ProcessId = GetInt32At(0);
             }
 
@@ -4347,11 +4349,11 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
             // to be new things (the ParentProcessID and ParentThreadId.   This works fine except for the case of
             // the relogger, because in that case we don't want to change the fields (since they will be written via
             // the relogger).   Thus we give up providing the ParentProcessID and ParentThreadID fields in the
-            // case of ETWReloggerTraceEventSource (they always return -1). 
+            // case of ETWReloggerTraceEventSource (they always return -1).
             if (!(Source is ETWReloggerTraceEventSource))
             {
-                ((int*)DataStart)[0] = parentProcess;                           // Use offset 0 to now hold the ParentProcessID.  
-                ((int*)DataStart)[1] = ParentThread;                            // Use offset 4 to now hold the ParentThreadID.  
+                ((int*)DataStart)[0] = parentProcess;                           // Use offset 0 to now hold the ParentProcessID.
+                ((int*)DataStart)[1] = ParentThread;                            // Use offset 4 to now hold the ParentThreadID.
             }
         }
 
@@ -4367,7 +4369,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
         #endregion
     }
 
-    public sealed class ThreadSetNameTraceData : TraceEvent
+    internal sealed class ThreadSetNameTraceData : TraceEvent
     {
         // public int ProcessID { get { return GetInt32At(0); } }
         // public int ThreadID { get { return GetInt32At(4); } }
@@ -4435,16 +4437,16 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
 
         #endregion
     }
-    public sealed class CSwitchTraceData : TraceEvent
+    internal sealed class CSwitchTraceData : TraceEvent
     {
-        public enum ThreadWaitMode
+        internal enum ThreadWaitMode
         {
             NonSwap = 0,
             Swappable = 1,
         };
 
         /// <summary>
-        /// We report a context switch from from the new thread.  Thus NewThreadID == ThreadID.  
+        /// We report a context switch from from the new thread.  Thus NewThreadID == ThreadID.
         /// </summary>
         public int NewThreadID { get { return ThreadID; } }
         public int NewProcessID { get { return ProcessID; } }
@@ -4588,7 +4590,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
             {
                 // We try to fix up the process ID 'on the fly' however in the case of a circular buffer,
                 // We simply don't know the process ID until the end of the trace.  Thus you to check and
-                // possibly try again.  
+                // possibly try again.
                 var ret = eventRecord->EventHeader.ProcessId;
                 if (ret == -1)
                 {
@@ -4647,7 +4649,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
         #endregion
     }
 
-    public sealed class EnqueueTraceData : TraceEvent
+    internal sealed class EnqueueTraceData : TraceEvent
     {
         public Address Entry { get { return (Address)GetInt64At(0); } }
         #region Private
@@ -4678,7 +4680,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
             {
                 // We try to fix up the process ID 'on the fly' however in the case of a circular buffer,
                 // We simply don't know the process ID until the end of the trace.  Thus you to check and
-                // possibly try again.  
+                // possibly try again.
                 var ret = eventRecord->EventHeader.ProcessId;
                 if (ret == -1)
                 {
@@ -4736,7 +4738,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
         #endregion
     }
 
-    public sealed class DequeueTraceData : TraceEvent
+    internal sealed class DequeueTraceData : TraceEvent
     {
         public int Count { get { return GetInt32At(4); } }
         public Address Entry(int idx) { return (Address)GetInt64At(8 + 8 * idx); }
@@ -4768,7 +4770,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
             {
                 // We try to fix up the process ID 'on the fly' however in the case of a circular buffer,
                 // We simply don't know the process ID until the end of the trace.  Thus you to check and
-                // possibly try again.  
+                // possibly try again.
                 var ret = eventRecord->EventHeader.ProcessId;
                 if (ret == -1)
                 {
@@ -4829,7 +4831,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
     }
 
 #if false
-    public sealed class WorkerThreadTraceData : TraceEvent
+    internal sealed class WorkerThreadTraceData : TraceEvent
     {
         public int TThreadID { get { return GetInt32At(0); } }
         public DateTime StartTime { get { return DateTime.FromFileTime(GetInt64At(4)); } }
@@ -4894,7 +4896,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
         private KernelTraceEventParserState state;
     #endregion
     }
-    public sealed class ReserveCreateTraceData : TraceEvent
+    internal sealed class ReserveCreateTraceData : TraceEvent
     {
         public Address Reserve { get { return GetAddressAt(0); } }
         public int Period { get { return GetInt32At(HostOffset(4, 1)); } }
@@ -4967,7 +4969,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
         private KernelTraceEventParserState state;
     #endregion
     }
-    public sealed class ReserveDeleteTraceData : TraceEvent
+    internal sealed class ReserveDeleteTraceData : TraceEvent
     {
         public Address Reserve { get { return GetAddressAt(0); } }
 
@@ -5024,10 +5026,10 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
         private KernelTraceEventParserState state;
     #endregion
     }
-    public sealed class ReserveJoinThreadTraceData : TraceEvent
+    internal sealed class ReserveJoinThreadTraceData : TraceEvent
     {
         public Address Reserve { get { return GetAddressAt(0); } }
-        // public int TThreadID { get { return GetInt32At(HostOffset(4, 1)); } }   // This does not exist on Version 3 and above.  
+        // public int TThreadID { get { return GetInt32At(HostOffset(4, 1)); } }   // This does not exist on Version 3 and above.
 
     #region Private
         internal ReserveJoinThreadTraceData(Action<ReserveJoinThreadTraceData> action, int eventID, int task, string taskName, Guid taskGuid, int opcode, string opcodeName, Guid providerGuid, string providerName, KernelTraceEventParserState state)
@@ -5083,7 +5085,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
         private KernelTraceEventParserState state;
     #endregion
     }
-    public sealed class ReserveDisjoinThreadTraceData : TraceEvent
+    internal sealed class ReserveDisjoinThreadTraceData : TraceEvent
     {
         public Address Reserve { get { return GetAddressAt(0); } }
         public int TThreadID { get { return GetInt32At(HostOffset(4, 1)); } }
@@ -5144,7 +5146,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
         private KernelTraceEventParserState state;
     #endregion
     }
-    public sealed class ReserveStateTraceData : TraceEvent
+    internal sealed class ReserveStateTraceData : TraceEvent
     {
         public Address Reserve { get { return GetAddressAt(0); } }
         public int DispatchState { get { return GetByteAt(HostOffset(4, 1)); } }
@@ -5209,7 +5211,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
         private KernelTraceEventParserState state;
     #endregion
     }
-    public sealed class ReserveBandwidthTraceData : TraceEvent
+    internal sealed class ReserveBandwidthTraceData : TraceEvent
     {
         public Address Reserve { get { return GetAddressAt(0); } }
         public int Period { get { return GetInt32At(HostOffset(4, 1)); } }
@@ -5274,7 +5276,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
         private KernelTraceEventParserState state;
     #endregion
     }
-    public sealed class ReserveLateCountTraceData : TraceEvent
+    internal sealed class ReserveLateCountTraceData : TraceEvent
     {
         public Address Reserve { get { return GetAddressAt(0); } }
         public int LateCountIncrement { get { return GetInt32At(HostOffset(4, 1)); } }
@@ -5336,7 +5338,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
     #endregion
     }
 #endif
-    public sealed class DiskIOTraceData : TraceEvent
+    internal sealed class DiskIOTraceData : TraceEvent
     {
         public int DiskNumber { get { return GetInt32At(0); } }
         public IrpFlags IrpFlags { get { return ((IrpFlags)GetInt32At(4)) & ~IrpFlags.PriorityMask; } }
@@ -5352,11 +5354,11 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
         /// </summary>
         public Address Irp { get { return GetAddressAt(HostOffset(28, 1)); } }
         /// <summary>
-        /// This is the time since the I/O was initiated, in source.PerfFreq (QPC) ticks.  
+        /// This is the time since the I/O was initiated, in source.PerfFreq (QPC) ticks.
         /// </summary>
         private long HighResResponseTime { get { return GetInt64At(HostOffset(32, 2)); } }
         /// <summary>
-        /// This is the actual time the disk spent servicing this IO.   Same as elapsed time for real time providers.  
+        /// This is the actual time the disk spent servicing this IO.   Same as elapsed time for real time providers.
         /// </summary>
         public double DiskServiceTimeMSec
         {
@@ -5372,7 +5374,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
                 var diskEvents = state.diskEventTimeStamp;
                 if (diskEvents.Count > 0)
                 {
-                    // See if we can start were we last left off.  
+                    // See if we can start were we last left off.
                     var idx = state.lastDiskEventIdx;
                     if (timeStampRelativeMSec <= diskEvents[idx].TimeStampRelativeMSec)
                     {
@@ -5409,8 +5411,8 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
                 return HighResResponseTime * 1000.0 / traceEventSource.QPCFreq;
             }
         }
-        // TODO you can get service time (what XPERF gives) by taking the minimum of 
-        // the Elapsed time and the time of the completion of the last Disk event.  
+        // TODO you can get service time (what XPERF gives) by taking the minimum of
+        // the Elapsed time and the time of the completion of the last Disk event.
         #region Private
         internal DiskIOTraceData(Action<DiskIOTraceData> action, int eventID, int task, string taskName, Guid taskGuid, int opcode, string opcodeName, Guid providerGuid, string providerName, KernelTraceEventParserState state)
             : base(eventID, task, taskName, taskGuid, opcode, opcodeName, providerGuid, providerName)
@@ -5507,7 +5509,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
         private KernelTraceEventParserState state;
         #endregion
     }
-    public sealed class DiskIOInitTraceData : TraceEvent
+    internal sealed class DiskIOInitTraceData : TraceEvent
     {
         public Address Irp { get { return GetAddressAt(0); } }
 
@@ -5581,17 +5583,17 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
         private KernelTraceEventParserState state;
         #endregion
     }
-    public sealed class DiskIOFlushBuffersTraceData : TraceEvent
+    internal sealed class DiskIOFlushBuffersTraceData : TraceEvent
     {
         public int DiskNumber { get { return GetInt32At(0); } }
         public IrpFlags IrpFlags { get { return ((IrpFlags)GetInt32At(4)) & ~IrpFlags.PriorityMask; } }
 
         /// <summary>
-        /// This is the time since the I/O was initiated, in source.PerfFreq (QPC) ticks.  
+        /// This is the time since the I/O was initiated, in source.PerfFreq (QPC) ticks.
         /// </summary>
         private long HighResResponseTime { get { return GetInt64At(8); } }
         /// <summary>
-        /// The time since the I/O was initiated.  
+        /// The time since the I/O was initiated.
         /// </summary>
         public double ElapsedTimeMSec
         {
@@ -5682,7 +5684,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
         #endregion
     }
 
-    public enum IOPriority
+    internal enum IOPriority
     {
         Notset = 0,
         Verylow = 1,
@@ -5696,7 +5698,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
     }
 
     [Flags]
-    public enum IrpFlags
+    internal enum IrpFlags
     {
         None = 0x0,
         Nocache = 0x00000001,
@@ -5716,10 +5718,10 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
         ObQueryName = 0x00001000,
         HoldDeviceQueue = 0x00002000,
 
-        PriorityMask = 0xe0000,        // 3 bits represent I/O priority 
+        PriorityMask = 0xe0000,        // 3 bits represent I/O priority
     };
 
-    public sealed class DriverMajorFunctionCallTraceData : TraceEvent
+    internal sealed class DriverMajorFunctionCallTraceData : TraceEvent
     {
         public int MajorFunction { get { return GetInt32At(0); } }
         public int MinorFunction { get { return GetInt32At(4); } }
@@ -5800,7 +5802,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
         private KernelTraceEventParserState state;
         #endregion
     }
-    public sealed class DriverMajorFunctionReturnTraceData : TraceEvent
+    internal sealed class DriverMajorFunctionReturnTraceData : TraceEvent
     {
         public Address Irp { get { return GetAddressAt(0); } }
         public int UniqMatchID { get { return GetInt32At(HostOffset(4, 1)); } }
@@ -5864,7 +5866,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
         private KernelTraceEventParserState state;
         #endregion
     }
-    public sealed class DriverCompletionRoutineTraceData : TraceEvent
+    internal sealed class DriverCompletionRoutineTraceData : TraceEvent
     {
         public Address Routine { get { return GetAddressAt(0); } }
         public Address IrpPtr { get { return GetAddressAt(HostOffset(4, 1)); } }
@@ -5932,7 +5934,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
         private KernelTraceEventParserState state;
         #endregion
     }
-    public sealed class DriverCompleteRequestTraceData : TraceEvent
+    internal sealed class DriverCompleteRequestTraceData : TraceEvent
     {
         public Address RoutineAddr { get { return GetAddressAt(0); } }
         public Address Irp { get { return GetAddressAt(HostOffset(4, 1)); } }
@@ -6000,7 +6002,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
         private KernelTraceEventParserState state;
         #endregion
     }
-    public sealed class DriverCompleteRequestReturnTraceData : TraceEvent
+    internal sealed class DriverCompleteRequestReturnTraceData : TraceEvent
     {
         public Address Irp { get { return GetAddressAt(0); } }
         public int UniqMatchID { get { return GetInt32At(HostOffset(4, 1)); } }
@@ -6064,7 +6066,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
         private KernelTraceEventParserState state;
         #endregion
     }
-    public sealed class RegistryTraceData : TraceEvent
+    internal sealed class RegistryTraceData : TraceEvent
     {
         private long InitialTimeQPC { get { if (Version >= 2) { return GetInt64At(0); } return 0; } }
 
@@ -6085,7 +6087,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
                     return "";
                 }
 
-                // TODO All of this logic is suspect.   it could use a careful review.  
+                // TODO All of this logic is suspect.   it could use a careful review.
                 if (NameIsKeyName(Opcode))
                 {
                     string ret = GetUnicodeStringAt(HostOffset(20, 1));
@@ -6190,7 +6192,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
             {
                 case 10: // Create
                 case 11: // Open
-                case 12: // Delete 
+                case 12: // Delete
                     return true;
                 case 13:    // Query
                 case 14:    // SetValue
@@ -6218,7 +6220,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
         }
         #endregion
     }
-    public sealed class SplitIoInfoTraceData : TraceEvent
+    internal sealed class SplitIoInfoTraceData : TraceEvent
     {
         public Address ParentIrp { get { return GetAddressAt(0); } }
         public Address ChildIrp { get { return GetAddressAt(HostOffset(4, 1)); } }
@@ -6282,13 +6284,13 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
         private KernelTraceEventParserState state;
         #endregion
     }
-    public sealed class FileIONameTraceData : TraceEvent
+    internal sealed class FileIONameTraceData : TraceEvent
     {
         /// <summary>
-        /// This is a handle that represents a file NAME (not an open file).   
+        /// This is a handle that represents a file NAME (not an open file).
         /// In the MSDN does this field is called FileObject.  However in other events FileObject is something
         /// returned from Create file and is different.  Events have have both (and some do) use FileKey.  Thus
-        /// I use FileKey uniformly to avoid confusion.   
+        /// I use FileKey uniformly to avoid confusion.
         /// </summary>
         public Address FileKey { get { return GetAddressAt(0); } }
         public string FileName { get { return state.KernelToUser(GetUnicodeStringAt(HostOffset(4, 1))); } }
@@ -6355,7 +6357,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
         #endregion
     }
 
-    public sealed class MapFileTraceData : TraceEvent
+    internal sealed class MapFileTraceData : TraceEvent
     {
         public Address ViewBase { get { return GetAddressAt(0); } }
         public Address FileKey { get { return GetAddressAt(HostOffset(4, 1)); } }
@@ -6363,7 +6365,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
         public Address ViewSize { get { return GetAddressAt(HostOffset(16, 2)); } }
         public string FileName { get { return state.FileIDToName(FileKey, TimeStampQPC); } }
 
-        // In Version 3 we have byte offset field 
+        // In Version 3 we have byte offset field
         public long ByteOffset
         {
             get
@@ -6380,7 +6382,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
         }
 
         // TODO I am not actually that certain of this parsing.   Which Version ByteOffset got put in, and what the layout is on 32 bit.
-        // but this does work on Win 10 (which uses Version 3) and for 64 bit which is the most important.    
+        // but this does work on Win 10 (which uses Version 3) and for 64 bit which is the most important.
         // Process ID = Version < 3 ? GetInt32At(HostOffset(20, 3)) : GetInt32At(HostOffset(28, 3))
 
         #region Private
@@ -6464,7 +6466,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
         #endregion
     }
 
-    public sealed class FileIOCreateTraceData : TraceEvent
+    internal sealed class FileIOCreateTraceData : TraceEvent
     {
         // Pointer to fltmgr!_FLT_CALLBACK_DATA
         public Address IrpPtr { get { return GetAddressAt(0); } }
@@ -6473,14 +6475,14 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
         // public Address TTID { get { return GetInt32At(Version <= 2 ? HostOffset(4, 1) : HostOffset(8, 2)); } }
 
         /// <summary>
-        /// See the Windows CreateFile API CreateOptions for this 
+        /// See the Windows CreateFile API CreateOptions for this
         /// </summary>
         // _FLT_IO_PARAMETER_BLOCK.Create.Options
         // 24 lower bits are the Create Options
         public CreateOptions CreateOptions { get { return (CreateOptions)((GetInt32At(LayoutVersion <= 2 ? HostOffset(12, 3) : HostOffset(12, 2))) & 0xFFFFFF); } }
 
         /// <summary>
-        /// See Windows CreateFile API CreateDisposition for this.  
+        /// See Windows CreateFile API CreateDisposition for this.
         /// </summary>
         // _FLT_IO_PARAMETER_BLOCK.Create.Options
         // 8 higher bits are the Disposition as passed to IoCreateFileSpecifyDeviceObjectHint
@@ -6503,7 +6505,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
             {
                 // We try to fix up the process ID 'on the fly' however in the case of a circular buffer,
                 // We simply don't know the process ID until the end of the trace.  Thus you to check and
-                // possibly try again.  
+                // possibly try again.
                 var ret = eventRecord->EventHeader.ProcessId;
                 if (ret == -1)
                 {
@@ -6520,7 +6522,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
         {
             get
             {
-                // If it is classic, it is the kernel provider, otherwise it is the Microsoft-Windows-Kernel-File provider.  
+                // If it is classic, it is the kernel provider, otherwise it is the Microsoft-Windows-Kernel-File provider.
                 int ret = Version;
                 if (!IsClassicProvider)
                 {
@@ -6623,7 +6625,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
     /// See Windows CreateFile function CreateDispostion parameter.
     /// The enum written to the ETW trace is the Disposition parameter passed to IoCreateFileSpecifyDeviceObjectHint.
     /// </summary>
-    public enum CreateDisposition
+    internal enum CreateDisposition
     {
         SUPERSEDE = 0,          // FILE_SUPERSEDE - if the file exists, replace a file with another file.
         CREATE_NEW = 2,         // FILE_OPEN - Must NOT exist previously, otherwise fails
@@ -6634,11 +6636,11 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
     }
 
     /// <summary>
-    /// See Windows CreateFile function FlagsAndAttributes parameter. 
-    /// TODO FIX NOW: these have not been validated yet.  
+    /// See Windows CreateFile function FlagsAndAttributes parameter.
+    /// TODO FIX NOW: these have not been validated yet.
     /// </summary>
     [Flags]
-    public enum CreateOptions
+    internal enum CreateOptions
     {
         NONE = 0,
         FILE_ATTRIBUTE_ARCHIVE = (0x20),
@@ -6660,7 +6662,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
         FILE_ATTRIBUTE_VIRTUAL = (0x10000),
     };
 
-    public sealed class FileIOSimpleOpTraceData : TraceEvent
+    internal sealed class FileIOSimpleOpTraceData : TraceEvent
     {
         public Address IrpPtr { get { return GetAddressAt(0); } }
         public Address FileObject { get { return GetAddressAt(Version <= 2 ? HostOffset(8, 2) : HostOffset(4, 1)); } }
@@ -6673,7 +6675,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
             {
                 // We try to fix up the process ID 'on the fly' however in the case of a circular buffer,
                 // We simply don't know the process ID until the end of the trace.  Thus you to check and
-                // possibly try again.  
+                // possibly try again.
                 var ret = eventRecord->EventHeader.ProcessId;
                 if (ret == -1)
                 {
@@ -6763,7 +6765,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
         private KernelTraceEventParserState state;
         #endregion
     }
-    public sealed class FileIOReadWriteTraceData : TraceEvent
+    internal sealed class FileIOReadWriteTraceData : TraceEvent
     {
         public long Offset { get { return GetInt64At(0); } }
         public Address IrpPtr { get { return GetAddressAt(8); } }
@@ -6776,7 +6778,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
             {
                 // We try to fix up the process ID 'on the fly' however in the case of a circular buffer,
                 // We simply don't know the process ID until the end of the trace.  Thus you to check and
-                // possibly try again.  
+                // possibly try again.
                 var ret = eventRecord->EventHeader.ProcessId;
                 if (ret == -1)
                 {
@@ -6807,7 +6809,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
         protected internal override void Dispatch()
         {
             Debug.Assert(!(Version == 2 && EventDataLength != HostOffset(32, 4)));
-            Debug.Assert(!(Version == 3 && EventDataLength < HostOffset(32, 3)));       // TODO changed to <.  observed 48 byte length on 64 bit (1 dword more) 
+            Debug.Assert(!(Version == 3 && EventDataLength < HostOffset(32, 3)));       // TODO changed to <.  observed 48 byte length on 64 bit (1 dword more)
             Debug.Assert(!(Version > 3 && EventDataLength < HostOffset(32, 3)));
             Action(this);
         }
@@ -6879,7 +6881,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
         private KernelTraceEventParserState state;
         #endregion
     }
-    public sealed class FileIOInfoTraceData : TraceEvent
+    internal sealed class FileIOInfoTraceData : TraceEvent
     {
         public Address IrpPtr { get { return GetAddressAt(0); } }
         public Address FileObject { get { return GetAddressAt(Version <= 2 ? HostOffset(8, 2) : HostOffset(4, 1)); } }
@@ -6887,14 +6889,14 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
         public Address FileKey { get { return GetAddressAt(Version <= 2 ? HostOffset(12, 3) : HostOffset(8, 2)); } }
         public Address ExtraInfo { get { return GetAddressAt(Version <= 2 ? HostOffset(16, 4) : HostOffset(12, 3)); } }
         // public Address TTID { get { return GetInt32At(Version <= 2 ? HostOffset(4, 1) : HostOffset(16, 4)); } }
-        public int InfoClass { get { return GetInt32At(Version <= 2 ? HostOffset(20, 5) : HostOffset(20, 4)); } }
+        internal int InfoClass { get { return GetInt32At(Version <= 2 ? HostOffset(20, 5) : HostOffset(20, 4)); } }
         public override unsafe int ProcessID
         {
             get
             {
                 // We try to fix up the process ID 'on the fly' however in the case of a circular buffer,
                 // We simply don't know the process ID until the end of the trace.  Thus you to check and
-                // possibly try again.  
+                // possibly try again.
                 var ret = eventRecord->EventHeader.ProcessId;
                 if (ret == -1)
                 {
@@ -6988,7 +6990,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
         private KernelTraceEventParserState state;
         #endregion
     }
-    public sealed class FileIODirEnumTraceData : TraceEvent
+    internal sealed class FileIODirEnumTraceData : TraceEvent
     {
         public Address IrpPtr { get { return GetAddressAt(0); } }
         /// <summary>
@@ -6996,13 +6998,13 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
         /// </summary>
         public Address FileObject { get { return GetAddressAt(Version <= 2 ? HostOffset(8, 2) : HostOffset(4, 1)); } }
         /// <summary>
-        /// The FileKey is the object that represents the name of the directory.  
+        /// The FileKey is the object that represents the name of the directory.
         /// </summary>
         public Address FileKey { get { return GetAddressAt(Version <= 2 ? HostOffset(12, 3) : HostOffset(8, 2)); } }
         public string DirectoryName { get { return state.FileIDToName(FileKey, FileObject, TimeStampQPC); } }
         // public Address TTID { get { return GetInt32At(Version <= 2 ? HostOffset(4, 1) : HostOffset(12, 3)); } }
         public int Length { get { return GetInt32At(Version <= 2 ? HostOffset(16, 4) : HostOffset(16, 3)); } }
-        public int InfoClass { get { return GetInt32At(Version <= 2 ? HostOffset(20, 4) : HostOffset(20, 3)); } }
+        internal int InfoClass { get { return GetInt32At(Version <= 2 ? HostOffset(20, 4) : HostOffset(20, 3)); } }
         public int FileIndex { get { return GetInt32At(Version <= 2 ? HostOffset(24, 4) : HostOffset(24, 3)); } }
         public string FileName { get { return state.KernelToUser(GetUnicodeStringAt(Version <= 2 ? HostOffset(28, 4) : HostOffset(28, 3))); } }
         public override unsafe int ProcessID
@@ -7011,7 +7013,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
             {
                 // We try to fix up the process ID 'on the fly' however in the case of a circular buffer,
                 // We simply don't know the process ID until the end of the trace.  Thus you to check and
-                // possibly try again.  
+                // possibly try again.
                 var ret = eventRecord->EventHeader.ProcessId;
                 if (ret == -1)
                 {
@@ -7113,7 +7115,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
         private KernelTraceEventParserState state;
         #endregion
     }
-    public sealed class FileIOOpEndTraceData : TraceEvent
+    internal sealed class FileIOOpEndTraceData : TraceEvent
     {
         public Address IrpPtr { get { return GetAddressAt(0); } }
         public Address ExtraInfo { get { return GetAddressAt(HostOffset(4, 1)); } }
@@ -7181,7 +7183,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
         private KernelTraceEventParserState state;
         #endregion
     }
-    public sealed class TcpIpTraceData : TraceEvent
+    internal sealed class TcpIpTraceData : TraceEvent
     {
 
         // PID
@@ -7297,7 +7299,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
         }
         #endregion
     }
-    public sealed class TcpIpFailTraceData : TraceEvent
+    internal sealed class TcpIpFailTraceData : TraceEvent
     {
         public int Proto { get { if (Version >= 2) { return GetInt16At(0); } return GetInt32At(0); } }
         public int FailureCode { get { if (Version >= 2) { return GetInt16At(2); } return 0; } }
@@ -7363,7 +7365,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
         #endregion
     }
 
-    public sealed class TcpIpSendTraceData : TraceEvent
+    internal sealed class TcpIpSendTraceData : TraceEvent
     {
         // TODO not quite right for V0 TcpIP (does anyone care?)
 
@@ -7467,7 +7469,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
         }
         #endregion
     }
-    public sealed class TcpIpConnectTraceData : TraceEvent
+    internal sealed class TcpIpConnectTraceData : TraceEvent
     {
         // TODO not quite right for V0 TcpIP (does anyone care?)
 
@@ -7589,7 +7591,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
         }
         #endregion
     }
-    public sealed class TcpIpV6TraceData : TraceEvent
+    internal sealed class TcpIpV6TraceData : TraceEvent
     {
         // PID
         public int size { get { return GetInt32At(4); } }
@@ -7677,7 +7679,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
         }
         #endregion
     }
-    public sealed class TcpIpV6SendTraceData : TraceEvent
+    internal sealed class TcpIpV6SendTraceData : TraceEvent
     {
         // PID
         public int size { get { return GetInt32At(4); } }
@@ -7774,7 +7776,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
         }
         #endregion
     }
-    public sealed class TcpIpV6ConnectTraceData : TraceEvent
+    internal sealed class TcpIpV6ConnectTraceData : TraceEvent
     {
         // PID
         public int size { get { return GetInt32At(4); } }
@@ -7887,7 +7889,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
         }
         #endregion
     }
-    public sealed class UdpIpTraceData : TraceEvent
+    internal sealed class UdpIpTraceData : TraceEvent
     {
         public Address context { get { return GetAddressAt(0); } }
         public System.Net.IPAddress saddr
@@ -7910,7 +7912,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
         }
         public int dport { get { if (Version >= 1) { return TcpIpTraceData.ByteSwap16(GetInt16At(16)); } return TcpIpTraceData.ByteSwap16(GetInt16At(HostOffset(16, 1))); } }
         public int dsize { get { return GetInt16At(HostOffset(18, 1)); } }
-        // PID  
+        // PID
         #region Private
         internal UdpIpTraceData(Action<UdpIpTraceData> action, int eventID, int task, string taskName, Guid taskGuid, int opcode, string opcodeName, Guid providerGuid, string providerName, KernelTraceEventParserState state)
             : base(eventID, task, taskName, taskGuid, opcode, opcodeName, providerGuid, providerName)
@@ -7995,7 +7997,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
         }
         #endregion
     }
-    public sealed class UdpIpFailTraceData : TraceEvent
+    internal sealed class UdpIpFailTraceData : TraceEvent
     {
         public int Proto { get { return GetInt16At(0); } }
         public int FailureCode { get { return GetInt16At(2); } }
@@ -8059,7 +8061,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
         private KernelTraceEventParserState state;
         #endregion
     }
-    public sealed class UpdIpV6TraceData : TraceEvent
+    internal sealed class UpdIpV6TraceData : TraceEvent
     {
         // PID
         public int size { get { return GetInt32At(4); } }
@@ -8144,7 +8146,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
         }
         #endregion
     }
-    public sealed class ImageLoadTraceData : TraceEvent
+    internal sealed class ImageLoadTraceData : TraceEvent
     {
         public Address ImageBase { get { return GetAddressAt(0); } }
         public int ImageSize { get { return (int)GetAddressAt(HostOffset(4, 1)); } }
@@ -8153,7 +8155,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
         public int TimeDateStamp { get { if (Version >= 2) { return GetInt32At(HostOffset(16, 2)); } return 0; } }
         /// <summary>
         /// This is the TimeDateStamp converted to a DateTime
-        /// TODO: daylight savings time seems to mess this up.  
+        /// TODO: daylight savings time seems to mess this up.
         /// </summary>
         public DateTime BuildTime
         {
@@ -8249,8 +8251,8 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
 
         internal override unsafe void FixupData()
         {
-            // We wish to create the illusion that the events are reported by the process where it is loaded. 
-            // This it not actually true for DCStart and DCStop, and Stop events, so we fix it up.  
+            // We wish to create the illusion that the events are reported by the process where it is loaded.
+            // This it not actually true for DCStart and DCStop, and Stop events, so we fix it up.
             if (Opcode == TraceEventOpcode.DataCollectionStart ||
                 Opcode == TraceEventOpcode.DataCollectionStop || Opcode == TraceEventOpcode.Stop)
             {
@@ -8264,7 +8266,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
         }
         #endregion
     }
-    public sealed class MemoryPageFaultTraceData : TraceEvent
+    internal sealed class MemoryPageFaultTraceData : TraceEvent
     {
         public Address VirtualAddress { get { return GetAddressAt(0); } }
         public Address ProgramCounter { get { return GetAddressAt(HostOffset(4, 1)); } }
@@ -8336,12 +8338,12 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
         }
         #endregion
     }
-    public sealed class MemoryHardFaultTraceData : TraceEvent
+    internal sealed class MemoryHardFaultTraceData : TraceEvent
     {
         // This seems to be in PerfFreq units, but that does not help us that  much because
-        // we need to know the absolute time.   
+        // we need to know the absolute time.
         /// <summary>
-        /// The time spent during the page fault.  
+        /// The time spent during the page fault.
         /// </summary>
         public double ElapsedTimeMSec
         {
@@ -8450,7 +8452,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
             {
                 // We try to fix up the process ID 'on the fly' however in the case of a circular buffer,
                 // We simply don't know the process ID until the end of the trace.  Thus you to check and
-                // possibly try again.  
+                // possibly try again.
                 var ret = eventRecord->EventHeader.ProcessId;
                 if (ret == -1)
                 {
@@ -8464,7 +8466,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
         #endregion
     }
 
-    public enum PageKind
+    internal enum PageKind
     {
         ProcessPrivate,
         File,
@@ -8482,7 +8484,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
         LargePage
     };
 
-    public enum PageList
+    internal enum PageList
     {
         Zero,
         Free,
@@ -8494,7 +8496,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
         Transition
     };
 
-    public sealed class MemoryPageAccessTraceData : TraceEvent
+    internal sealed class MemoryPageAccessTraceData : TraceEvent
     {
         public PageKind PageKind { get { return (PageKind)(GetByteAt(0) & 0xF); } }
         public PageList PageList { get { return (PageList)((GetByteAt(0) >> 4) & 7); } }
@@ -8542,7 +8544,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
         }
         protected internal override void Dispatch()
         {
-            // We use this for the PageAccess and PageAccessEx.  
+            // We use this for the PageAccess and PageAccessEx.
             // TODO FIX NOW.   reenable this assert (we get 24 on a 32 bit process)
             // Debug.Assert(!(Version == 2 && EventDataLength != HostOffset(16, 2)) || EventDataLength == HostOffset(20, 3));
             Debug.Assert(!(Version > 2 && EventDataLength < HostOffset(16, 2)));
@@ -8610,13 +8612,13 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
     /// <summary>
     /// This event is emitted by the Microsoft-Windows-Kernel-Memory with Keyword 0x40  KERNEL_MEM_KEYWORD_MEMINFO_EX every .5 seconds
     /// </summary>
-    public sealed class MemoryProcessMemInfoTraceData : TraceEvent
+    internal sealed class MemoryProcessMemInfoTraceData : TraceEvent
     {
         public int Count { get { return GetInt32At(0); } }
 
         /// <summary>
-        /// Returns the edge at the given zero-based index (index less than Count).   The returned MemoryProcessMemInfoValues 
-        /// points the the data in MemoryProcessMemInfoTraceData so it cannot live beyond that lifetime.  
+        /// Returns the edge at the given zero-based index (index less than Count).   The returned MemoryProcessMemInfoValues
+        /// points the the data in MemoryProcessMemInfoTraceData so it cannot live beyond that lifetime.
         /// </summary>
         public MemoryProcessMemInfoValues Values(int index) { return new MemoryProcessMemInfoValues(this, 4 + index * ElementSize); }
 
@@ -8708,7 +8710,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
             }
         }
         /// <summary>
-        /// The fields after 'Count' are the first value in the array of working sets.   
+        /// The fields after 'Count' are the first value in the array of working sets.
         /// </summary>
         public override object PayloadValue(int index)
         {
@@ -8745,9 +8747,9 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
 
     /// <summary>
     /// This structure just POINTS at the data in the MemoryProcessMemInfoTraceData.  It can only be used as long as
-    /// the MemoryProcessMemInfoTraceData is alive which (unless you cloned it) is only for the lifetime of the callback.  
+    /// the MemoryProcessMemInfoTraceData is alive which (unless you cloned it) is only for the lifetime of the callback.
     /// </summary>
-    public unsafe struct MemoryProcessMemInfoValues
+    internal unsafe struct MemoryProcessMemInfoValues
     {
         public int ProcessID { get { return m_data.GetInt32At(m_baseOffset); } }
         public long WorkingSetPageCount { get { return (long)m_data.GetAddressAt(m_baseOffset + 4); } }
@@ -8769,11 +8771,11 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
         #endregion
     }
 
-    public sealed class MemoryHeapRangeRundownTraceData : TraceEvent
+    internal sealed class MemoryHeapRangeRundownTraceData : TraceEvent
     {
         public Address HeapHandle { get { return GetAddressAt(0); } }
         public int HeapRangeFlags { get { return GetInt32At(HostOffset(4, 1)); } }
-        // HRPid 
+        // HRPid
         public int HRRangeCount { get { return GetInt32At(HostOffset(12, 1)); } }
 
         #region Private
@@ -8841,13 +8843,13 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
         internal override unsafe void FixupData()
         {
             // We always make the process id the one where the fault occured
-            // TODO is this a good idea?  
+            // TODO is this a good idea?
             // Debug.Assert(eventRecord->EventHeader.ProcessId == -1);
             eventRecord->EventHeader.ProcessId = GetInt32At(HostOffset(8, 1));
         }
         #endregion
     }
-    public sealed class MemoryHeapRangeCreateTraceData : TraceEvent
+    internal sealed class MemoryHeapRangeCreateTraceData : TraceEvent
     {
         public Address HeapHandle { get { return GetAddressAt(0); } }
         public Address FirstRangeSize { get { return GetAddressAt(HostOffset(4, 1)); } }
@@ -8915,7 +8917,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
         private KernelTraceEventParserState state;
         #endregion
     }
-    public sealed class MemoryHeapRangeTraceData : TraceEvent
+    internal sealed class MemoryHeapRangeTraceData : TraceEvent
     {
         public Address HeapHandle { get { return GetAddressAt(0); } }
         public Address HeapRangeAddress { get { return GetAddressAt(HostOffset(4, 1)); } }
@@ -8983,7 +8985,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
         private KernelTraceEventParserState state;
         #endregion
     }
-    public sealed class MemoryHeapRangeDestroyTraceData : TraceEvent
+    internal sealed class MemoryHeapRangeDestroyTraceData : TraceEvent
     {
         public Address HeapHandle { get { return GetAddressAt(0); } }
 
@@ -9043,7 +9045,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
         private KernelTraceEventParserState state;
         #endregion
     }
-    public sealed class MemoryImageLoadBackedTraceData : TraceEvent
+    internal sealed class MemoryImageLoadBackedTraceData : TraceEvent
     {
         public Address FileKey { get { return GetAddressAt(0); } }
         public string FileName { get { return state.FileIDToName(FileKey, TimeStampQPC); } }
@@ -9119,7 +9121,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
         #endregion
     }
 
-    public sealed class MemorySystemMemInfoTraceData : TraceEvent
+    internal sealed class MemorySystemMemInfoTraceData : TraceEvent
     {
         // TODO complete: MemInfo,   TimeDateStamp, FreePages, Standby7, Standby6, Standby5, Standby4, Standby3, Standby2, Standby1, Standby0, TotalStandby, ModifiedPages, InUsePages, RepurposedPages
         public long FreePages { get { return (long)GetAddressAt(0); } }
@@ -9180,7 +9182,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
         #endregion
     }
 
-    public sealed class MemInfoTraceData : TraceEvent
+    internal sealed class MemInfoTraceData : TraceEvent
     {
         public byte PriorityLevels { get { return (byte)GetByteAt(0); } }
         public long ZeroPageCount { get { return (long)GetAddressAt(1); } }
@@ -9234,7 +9236,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
             }
         }
         /// <summary>
-        /// The fields after 'Count' are the first value in the array of working sets.   
+        /// The fields after 'Count' are the first value in the array of working sets.
         /// </summary>
         public override object PayloadValue(int index)
         {
@@ -9261,22 +9263,22 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
         #endregion
     }
 
-    public sealed class SampledProfileTraceData : TraceEvent
+    internal sealed class SampledProfileTraceData : TraceEvent
     {
         public Address InstructionPointer { get { return GetAddressAt(0); } }
         // public int ThreadID { get { return GetInt32At(HostOffset(4, 1)); } }
         public int Count { get { return GetInt16At(HostOffset(8, 1)); } }
 
-        // ExecutingDPC, ExecutingISR and Priority only have non-zero values on Win8 and above. 
+        // ExecutingDPC, ExecutingISR and Priority only have non-zero values on Win8 and above.
         /// <summary>
         /// Are we currently executing a Deferred Procedure Call (a mechanism the kernel uses to
-        /// 'steal' a thread to run its own work).  If this is true, the CPU time is really 
-        /// not logically related to the process (it is kernel time).  
+        /// 'steal' a thread to run its own work).  If this is true, the CPU time is really
+        /// not logically related to the process (it is kernel time).
         /// </summary>
         public bool ExecutingDPC { get { return (GetByteAt(HostOffset(10, 1)) & 1) != 0; } }
         /// <summary>
         /// Are we currently executing a Interrupt Service Routine?   Like ExecutingDPC if this
-        /// is true the thread is really doing Kernel work, not work for the process.  
+        /// is true the thread is really doing Kernel work, not work for the process.
         /// </summary>
         public bool ExecutingISR { get { return (GetByteAt(HostOffset(10, 1)) & 2) != 0; } }
         /// <summary>
@@ -9285,13 +9287,13 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
         public bool NonProcess { get { return (GetByteAt(HostOffset(10, 1)) & 3) != 0; } }
         // next bit is reserved
         /// <summary>
-        /// The thread's current priority (higher is more likely to run).   A normal thread with a normal base 
-        /// priority is 8.   
+        /// The thread's current priority (higher is more likely to run).   A normal thread with a normal base
+        /// priority is 8.
         /// see http://msdn.microsoft.com/en-us/library/windows/desktop/ms685100(v=vs.85).aspx for more
         /// </summary>
         public int Priority { get { return (GetByteAt(HostOffset(10, 1)) >> 3) & 0x1F; } }
         /// <summary>
-        /// Your scheduling If the thread is not part of a scheduling group, this is 0 (see callout.c) 
+        /// Your scheduling If the thread is not part of a scheduling group, this is 0 (see callout.c)
         /// </summary>
         public int Rank { get { return GetByteAt(HostOffset(11, 1)); } }
         // 16 bits of reserved space, seems to be a flags field
@@ -9392,7 +9394,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
             {
                 // We try to fix up the process ID 'on the fly' however in the case of a circular buffer,
                 // We simply don't know the process ID until the end of the trace.  Thus you to check and
-                // possibly try again.  
+                // possibly try again.
                 var ret = eventRecord->EventHeader.ProcessId;
                 if (ret == -1)
                 {
@@ -9408,9 +9410,9 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
     /// <summary>
     /// PMC (Precise Machine Counter) events are fired when a CPU counter trips.  The the ProfileSource identifies
     /// which counter it is.   The PerfInfoCollectionStart events will tell you the count that was configured to trip
-    /// the event.  
+    /// the event.
     /// </summary>
-    public sealed class PMCCounterProfTraceData : TraceEvent
+    internal sealed class PMCCounterProfTraceData : TraceEvent
     {
         public Address InstructionPointer { get { return GetAddressAt(0); } }
         // public int ThreadID { get { return GetInt32At(HostOffset(4, 1)); } }
@@ -9507,7 +9509,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
             {
                 // We try to fix up the process ID 'on the fly' however in the case of a circular buffer,
                 // We simply don't know the process ID until the end of the trace.  Thus you to check and
-                // possibly try again.  
+                // possibly try again.
                 var ret = eventRecord->EventHeader.ProcessId;
                 if (ret == -1)
                 {
@@ -9520,8 +9522,8 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
         #endregion
     }
 
-#if false   // Removed because I don't think it is used and it needs to conform to array convention.  
-    public sealed class BatchedSampledProfileTraceData : TraceEvent
+#if false   // Removed because I don't think it is used and it needs to conform to array convention.
+    internal sealed class BatchedSampledProfileTraceData : TraceEvent
     {
         /// <summary>
         /// A BatchedSampleProfile contains many samples in a single payload.  The batchCount
@@ -9530,7 +9532,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
         /// </summary>
         public int BatchCount { get { return GetInt32At(0); } }
         /// <summary>
-        /// The instruction pointer associated with this sample 
+        /// The instruction pointer associated with this sample
         /// </summary>
         public Address InstructionPointer(int index)
         {
@@ -9539,7 +9541,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
             return GetAddressAt(4 + index * (ptrSize + 8));
         }
         /// <summary>
-        /// The thread ID associated with the sample 
+        /// The thread ID associated with the sample
         /// </summary>
         public int InstanceThreadID(int index)
         {
@@ -9550,7 +9552,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
 
         /// <summary>
         /// Each sample may represent multiple instances of samples with the same Instruction
-        /// Pointer and ThreadID.  
+        /// Pointer and ThreadID.
         /// </summary>
         /// <returns></returns>
         public int InstanceCount(int index)
@@ -9627,9 +9629,9 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
     }
 #endif
 
-    public sealed class SampledProfileIntervalTraceData : TraceEvent
+    internal sealed class SampledProfileIntervalTraceData : TraceEvent
     {
-        // This is 0 for the timeer, but is non-zero for CPU counter, and this number identifies the CPU counter. 
+        // This is 0 for the timeer, but is non-zero for CPU counter, and this number identifies the CPU counter.
         public int SampleSource { get { return GetInt32At(0); } }
         public int NewInterval { get { return GetInt32At(4); } }
         public int OldInterval { get { return GetInt32At(8); } }
@@ -9696,7 +9698,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
         private KernelTraceEventParserState state;
         #endregion
     }
-    public sealed class SysCallEnterTraceData : TraceEvent
+    internal sealed class SysCallEnterTraceData : TraceEvent
     {
         public Address SysCallAddress { get { return GetAddressAt(0); } }
 
@@ -9765,7 +9767,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
         }
         #endregion
     }
-    public sealed class SysCallExitTraceData : TraceEvent
+    internal sealed class SysCallExitTraceData : TraceEvent
     {
         public int SysCallNtStatus { get { return GetInt32At(0); } }
 
@@ -9825,7 +9827,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
         private KernelTraceEventParserState state;
         #endregion
     }
-    public sealed class ISRTraceData : TraceEvent
+    internal sealed class ISRTraceData : TraceEvent
     {
         private long InitialTimeQPC { get { return GetInt64At(0); } }
 
@@ -9919,7 +9921,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
         private KernelTraceEventParserState state;
         #endregion
     }
-    public sealed class DPCTraceData : TraceEvent
+    internal sealed class DPCTraceData : TraceEvent
     {
         private long InitialTimeQPC { get { return GetInt64At(0); } }
 
@@ -9991,10 +9993,10 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
 
     /// <summary>
     /// Collects the call callStacks for some other event.
-    /// 
-    /// (TODO: always for the event that preceded it on the same thread)?  
+    ///
+    /// (TODO: always for the event that preceded it on the same thread)?
     /// </summary>
-    public sealed class StackWalkStackTraceData : TraceEvent
+    internal sealed class StackWalkStackTraceData : TraceEvent
     {
         /// <summary>
         /// The timestamp of the event which caused this stack walk using QueryPerformaceCounter
@@ -10002,16 +10004,16 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
         /// </summary>
         public long EventTimeStampQPC { get { return GetInt64At(0); } }
         /// <summary>
-        /// Converts this to a time relative to the start of the trace in msec. 
+        /// Converts this to a time relative to the start of the trace in msec.
         /// </summary>
         public double EventTimeStampRelativeMSec { get { return traceEventSource.QPCTimeToRelMSec(EventTimeStampQPC); } }
         /// <summary>
-        /// The total number of eventToStack frames collected.  The Windows OS currently has a maximum of 96 frames. 
+        /// The total number of eventToStack frames collected.  The Windows OS currently has a maximum of 96 frames.
         /// </summary>
         public int FrameCount { get { return (EventDataLength - 0x10) / PointerSize; } }
         /// <summary>
         /// Fetches the instruction pointer of a eventToStack frame 0 is the deepest frame, and the maximum should
-        /// be a thread offset routine (if you get a complete stack).  
+        /// be a thread offset routine (if you get a complete stack).
         /// </summary>
         /// <param name="index">The index of the frame to fetch.  0 is the CPU EIP, 1 is the Caller of that
         /// routine ...</param>
@@ -10045,7 +10047,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
         }
 
         /// <summary>
-        /// StackWalkTraceData does not set Thread and process ID fields properly.  if that.  
+        /// StackWalkTraceData does not set Thread and process ID fields properly.  if that.
         /// </summary>
         internal override unsafe void FixupData()
         {
@@ -10119,10 +10121,10 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
     }
 
     /// <summary>
-    /// To save space, stack walks in Win8 can be complressed.  The stack walk event only has a 
-    /// reference to a stack Key which is then looked up by StackWalkDefTraceData. 
+    /// To save space, stack walks in Win8 can be complressed.  The stack walk event only has a
+    /// reference to a stack Key which is then looked up by StackWalkDefTraceData.
     /// </summary>
-    public sealed class StackWalkRefTraceData : TraceEvent
+    internal sealed class StackWalkRefTraceData : TraceEvent
     {
         /// <summary>
         /// The timestamp of the event which caused this stack walk using QueryPerformaceCounter
@@ -10130,11 +10132,11 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
         /// </summary>
         public long EventTimeStampQPC { get { return GetInt64At(0); } }
         /// <summary>
-        /// Converts this to a time relative to the start of the trace in msec. 
+        /// Converts this to a time relative to the start of the trace in msec.
         /// </summary>
         public double EventTimeStampRelativeMSec { get { return traceEventSource.QPCTimeToRelMSec(EventTimeStampQPC); } }
         /// <summary>
-        /// Returns a key that can be used to look up the stack in KeyDelete or KeyRundown events 
+        /// Returns a key that can be used to look up the stack in KeyDelete or KeyRundown events
         /// </summary>
         public Address StackKey { get { return (Address)GetIntPtrAt(16); } }
         #region Private
@@ -10156,7 +10158,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
         }
 
         /// <summary>
-        /// StackWalkTraceData does not set Thread and process ID fields properly.  if that.  
+        /// StackWalkTraceData does not set Thread and process ID fields properly.  if that.
         /// </summary>
         internal override unsafe void FixupData()
         {
@@ -10212,22 +10214,22 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
     }
 
     /// <summary>
-    /// This event defines a stack and gives it a unique id (the StackKey), which StackWalkRefTraceData can point at.  
+    /// This event defines a stack and gives it a unique id (the StackKey), which StackWalkRefTraceData can point at.
     /// </summary>
-    public sealed class StackWalkDefTraceData : TraceEvent
+    internal sealed class StackWalkDefTraceData : TraceEvent
     {
         /// <summary>
-        /// Returns a key that can be used to look up the stack in KeyDelete or KeyRundown events 
+        /// Returns a key that can be used to look up the stack in KeyDelete or KeyRundown events
         /// </summary>
         public Address StackKey { get { return (Address)GetIntPtrAt(0); } }
         /// <summary>
-        /// The total number of eventToStack frames collected.  The Windows OS currently has a maximum of 96 frames. 
+        /// The total number of eventToStack frames collected.  The Windows OS currently has a maximum of 96 frames.
         /// </summary>
         public int FrameCount { get { return (EventDataLength / PointerSize) - 1; } }
 
         /// <summary>
         /// Fetches the instruction pointer of a eventToStack frame 0 is the deepest frame, and the maximum should
-        /// be a thread offset routine (if you get a complete complete).  
+        /// be a thread offset routine (if you get a complete complete).
         /// </summary>
         /// <param name="index">The index of the frame to fetch.  0 is the CPU EIP, 1 is the Caller of that
         /// routine ...</param>
@@ -10318,7 +10320,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
         #endregion
     }
 
-    public sealed class ALPCSendMessageTraceData : TraceEvent
+    internal sealed class ALPCSendMessageTraceData : TraceEvent
     {
         public int MessageID { get { return GetInt32At(0); } }
 
@@ -10378,7 +10380,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
         private KernelTraceEventParserState state;
         #endregion
     }
-    public sealed class ALPCReceiveMessageTraceData : TraceEvent
+    internal sealed class ALPCReceiveMessageTraceData : TraceEvent
     {
         public int MessageID { get { return GetInt32At(0); } }
 
@@ -10438,7 +10440,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
         private KernelTraceEventParserState state;
         #endregion
     }
-    public sealed class ALPCWaitForReplyTraceData : TraceEvent
+    internal sealed class ALPCWaitForReplyTraceData : TraceEvent
     {
         public int MessageID { get { return GetInt32At(0); } }
 
@@ -10498,7 +10500,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
         private KernelTraceEventParserState state;
         #endregion
     }
-    public sealed class ALPCWaitForNewMessageTraceData : TraceEvent
+    internal sealed class ALPCWaitForNewMessageTraceData : TraceEvent
     {
         public int IsServerPort { get { return GetInt32At(0); } }
         public string PortName { get { return GetUTF8StringAt(4); } }
@@ -10562,7 +10564,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
         private KernelTraceEventParserState state;
         #endregion
     }
-    public sealed class ALPCUnwaitTraceData : TraceEvent
+    internal sealed class ALPCUnwaitTraceData : TraceEvent
     {
         public int Status { get { return GetInt32At(0); } }
 
@@ -10622,7 +10624,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
         private KernelTraceEventParserState state;
         #endregion
     }
-    public sealed class SystemConfigCPUTraceData : TraceEvent
+    internal sealed class SystemConfigCPUTraceData : TraceEvent
     {
         public int MHz { get { return GetInt32At(0); } }
         public int NumberOfProcessors { get { return GetInt32At(4); } }
@@ -10712,7 +10714,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
         private KernelTraceEventParserState state;
         #endregion
     }
-    public sealed class SystemConfigPhyDiskTraceData : TraceEvent
+    internal sealed class SystemConfigPhyDiskTraceData : TraceEvent
     {
         public int DiskNumber { get { return GetInt32At(0); } }
         public int BytesPerSector { get { return GetInt32At(4); } }
@@ -10827,7 +10829,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
         private KernelTraceEventParserState state;
         #endregion
     }
-    public sealed class SystemConfigLogDiskTraceData : TraceEvent
+    internal sealed class SystemConfigLogDiskTraceData : TraceEvent
     {
         public long StartOffset { get { return GetInt64At(0); } }
         public long PartitionSize { get { return GetInt64At(8); } }
@@ -10940,7 +10942,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
         private KernelTraceEventParserState state;
         #endregion
     }
-    public sealed class SystemConfigNICTraceData : TraceEvent
+    internal sealed class SystemConfigNICTraceData : TraceEvent
     {
         public int PhysicalAddrLen { get { if (Version >= 2) { return GetInt32At(8); } return GetInt32At(516); } }
         public long PhysicalAddr { get { if (Version >= 2) { return GetInt64At(0); } return 0; } }
@@ -11026,7 +11028,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
         private KernelTraceEventParserState state;
         #endregion
     }
-    public sealed class SystemConfigVideoTraceData : TraceEvent
+    internal sealed class SystemConfigVideoTraceData : TraceEvent
     {
         public int MemorySize { get { return GetInt32At(0); } }
         public int XResolution { get { return GetInt32At(4); } }
@@ -11128,7 +11130,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
         private KernelTraceEventParserState state;
         #endregion
     }
-    public sealed class SystemConfigServicesTraceData : TraceEvent
+    internal sealed class SystemConfigServicesTraceData : TraceEvent
     {
         public string ServiceName { get { if (Version >= 2) { return GetUnicodeStringAt(12); } return GetFixedUnicodeStringAt(34, (0)); } }
         public string DisplayName { get { if (Version >= 2) { return GetUnicodeStringAt(SkipUnicodeString(12)); } return GetFixedUnicodeStringAt(256, (68)); } }
@@ -11225,7 +11227,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
 
         #endregion
     }
-    public sealed class SystemConfigPowerTraceData : TraceEvent
+    internal sealed class SystemConfigPowerTraceData : TraceEvent
     {
         public int S1 { get { return GetByteAt(0); } }
         public int S2 { get { return GetByteAt(1); } }
@@ -11306,11 +11308,11 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
         private KernelTraceEventParserState state;
         #endregion
     }
-    public sealed class SystemConfigIRQTraceData : TraceEvent
+    internal sealed class SystemConfigIRQTraceData : TraceEvent
     {
         public long IRQAffinity { get { return GetInt64At(0); } }
         public int IRQNum { get { return GetInt32At(8); } }
-        // TODO hand modified.   Fix for real 
+        // TODO hand modified.   Fix for real
         public int DeviceDescriptionLen
         {
             get
@@ -11407,7 +11409,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
         private KernelTraceEventParserState state;
         #endregion
     }
-    public sealed class SystemConfigPnPTraceData : TraceEvent
+    internal sealed class SystemConfigPnPTraceData : TraceEvent
     {
         // see  WMI_PNP_RECORD_V3  WMI_PNP_RECORD_V4  WMI_PNP_RECORD_V5 in ntwmi.h
         // DevStatus
@@ -11456,7 +11458,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
                 {
                     return 24;  // ClassGuid, upperFilterCount lowerFilterCount
                 }
-                // Version 5 or more 
+                // Version 5 or more
                 return 32;  // ClassGuid, upperFilterCount lowerFilterCount DevStatus DevProblem
             }
         }
@@ -11527,7 +11529,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
         private KernelTraceEventParserState state;
         #endregion
     }
-    public sealed class SystemConfigNetworkTraceData : TraceEvent
+    internal sealed class SystemConfigNetworkTraceData : TraceEvent
     {
         public int TcbTablePartitions { get { return GetInt32At(0); } }
         public int MaxHashTableSize { get { return GetInt32At(4); } }
@@ -11599,7 +11601,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
         private KernelTraceEventParserState state;
         #endregion
     }
-    public sealed class SystemConfigIDEChannelTraceData : TraceEvent
+    internal sealed class SystemConfigIDEChannelTraceData : TraceEvent
     {
         public int TargetID { get { return GetInt32At(0); } }
         public int DeviceType { get { return GetInt32At(4); } }
@@ -11676,10 +11678,10 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
         #endregion
     }
 
-    public sealed class VirtualAllocTraceData : TraceEvent
+    internal sealed class VirtualAllocTraceData : TraceEvent
     {
         [Flags]
-        public enum VirtualAllocFlags
+        internal enum VirtualAllocFlags
         {
             MEM_COMMIT = 0x1000,
             MEM_RESERVE = 0x2000,
@@ -11696,7 +11698,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
 
         public Address BaseAddr { get { return GetAddressAt(0); } }
         public long Length { get { return (long)GetAddressAt(HostOffset(4, 1)); } }
-        // Process ID is next (we fix it up). 
+        // Process ID is next (we fix it up).
         public VirtualAllocFlags Flags { get { return (VirtualAllocFlags)GetInt32At(HostOffset(0xC, 2)); } }
 
         #region Private
@@ -11763,7 +11765,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
         #endregion
     }
 
-    public sealed class ObjectHandleTraceData : TraceEvent
+    internal sealed class ObjectHandleTraceData : TraceEvent
     {
         public Address Object { get { return GetAddressAt(0); } }
         public int Handle { get { return GetInt32At(HostOffset(4, 1)); } }
@@ -11838,7 +11840,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
         #endregion
     }
 
-    public sealed class ObjectDuplicateHandleTraceData : TraceEvent
+    internal sealed class ObjectDuplicateHandleTraceData : TraceEvent
     {
         public Address Object { get { return GetAddressAt(0); } }
         public int SourceHandle { get { return GetInt32At(HostOffset(4, 1)); } }
@@ -11925,7 +11927,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
         #endregion
     }
 
-    public sealed class ObjectNameTraceData : TraceEvent
+    internal sealed class ObjectNameTraceData : TraceEvent
     {
         public Address Object { get { return GetAddressAt(0); } }
         // Process ID (we fix it up)
@@ -11954,8 +11956,8 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
 
         internal override unsafe void FixupData()
         {
-            // We always choose the process ID to be the process where for the allocation happens 
-            // TODO Is this really a good idea?  
+            // We always choose the process ID to be the process where for the allocation happens
+            // TODO Is this really a good idea?
             // Debug.Assert(eventRecord->EventHeader.ProcessId == -1 || eventRecord->EventHeader.ProcessId == GetInt32At(HostOffset(8, 2)));
             eventRecord->EventHeader.ProcessId = GetInt32At(HostOffset(8, 2));
         }
@@ -12004,7 +12006,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
         #endregion
     }
 
-    public sealed class ObjectTypeNameTraceData : TraceEvent
+    internal sealed class ObjectTypeNameTraceData : TraceEvent
     {
         public int ObjectType { get { return GetInt16At(0); } }
         // Reserved 2 bytes
@@ -12067,9 +12069,9 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
         #endregion
     }
 
-    public sealed class DispatcherReadyThreadTraceData : TraceEvent
+    internal sealed class DispatcherReadyThreadTraceData : TraceEvent
     {
-        public enum AdjustReasonEnum
+        internal enum AdjustReasonEnum
         {
             None = 0,
             Unwait = 1,
@@ -12077,7 +12079,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
         };
 
         [Flags]
-        public enum ReadyThreadFlags : byte
+        internal enum ReadyThreadFlags : byte
         {
             ReadiedFromDPC = 1,     // The thread has been readied from DPC (deferred procedure call).
             KernelSwappedOut = 2,   // The kernel stack is currently swapped out.
@@ -12086,7 +12088,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
 
         public int AwakenedThreadID { get { return GetInt32At(0); } }
         public int AwakenedProcessID { get { return state.ThreadIDToProcessID(AwakenedThreadID, TimeStampQPC); } }
-        public AdjustReasonEnum AdjustReason { get { return (AdjustReasonEnum)GetByteAt(4); } }
+        internal AdjustReasonEnum AdjustReason { get { return (AdjustReasonEnum)GetByteAt(4); } }
         public int AdjustIncrement { get { return GetByteAt(5); } }
         public ReadyThreadFlags Flags { get { return (ReadyThreadFlags)GetByteAt(6); } }
         // There is a reserved byte after Flags
@@ -12096,7 +12098,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
             {
                 // We try to fix up the process ID 'on the fly' however in the case of a circular buffer,
                 // We simply don't know the process ID until the end of the trace.  Thus you to check and
-                // possibly try again.  
+                // possibly try again.
                 var ret = eventRecord->EventHeader.ProcessId;
                 if (ret == -1)
                 {
@@ -12127,7 +12129,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
 
         internal override unsafe void FixupData()
         {
-            /* TODO FIX NOW: How do we get the thread ID of who did the awakening? 
+            /* TODO FIX NOW: How do we get the thread ID of who did the awakening?
             eventRecord->EventHeader.ThreadId = GetInt32At(0);
             eventRecord->EventHeader.ProcessId = state.ThreadIDToProcessID(ThreadID, TimeStampQPC);
              */
@@ -12182,7 +12184,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
 
     // [SecuritySafeCritical]
     [System.CodeDom.Compiler.GeneratedCode("traceparsergen", "1.0")]
-    public sealed class ThreadPoolTraceEventParser : TraceEventParser
+    internal sealed class ThreadPoolTraceEventParser : TraceEventParser
     {
         public static readonly string ProviderName = "ThreadPool";
         public static readonly Guid ProviderGuid = new Guid(unchecked((int)0xc861d0e2), unchecked((short)0xa2c1), unchecked((short)0x4d36), 0x9f, 0x9c, 0x97, 0x0b, 0xab, 0x94, 0x3a, 0x12);
@@ -12350,7 +12352,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
     }
     #endregion
 
-    public sealed class TPCBEnqueueTraceData : TraceEvent
+    internal sealed class TPCBEnqueueTraceData : TraceEvent
     {
         public Address PoolID { get { return GetAddressAt(0); } }
         public Address TaskID { get { return GetAddressAt(HostOffset(4, 1)); } }
@@ -12425,7 +12427,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
         private ThreadPoolTraceEventParserState state;
         #endregion
     }
-    public sealed class TPCBDequeueTraceData : TraceEvent
+    internal sealed class TPCBDequeueTraceData : TraceEvent
     {
         public Address TaskID { get { return GetAddressAt(0); } }
 
@@ -12484,7 +12486,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
         private ThreadPoolTraceEventParserState state;
         #endregion
     }
-    public sealed class TPCBCancelTraceData : TraceEvent
+    internal sealed class TPCBCancelTraceData : TraceEvent
     {
         public Address TaskID { get { return GetAddressAt(0); } }
         public int CancelCount { get { return GetInt32At(HostOffset(4, 1)); } }
@@ -12547,7 +12549,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
         private ThreadPoolTraceEventParserState state;
         #endregion
     }
-    public sealed class TPPoolCreateCloseTraceData : TraceEvent
+    internal sealed class TPPoolCreateCloseTraceData : TraceEvent
     {
         public Address PoolID { get { return GetAddressAt(0); } }
 
@@ -12606,7 +12608,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
         private ThreadPoolTraceEventParserState state;
         #endregion
     }
-    public sealed class TPThreadSetTraceData : TraceEvent
+    internal sealed class TPThreadSetTraceData : TraceEvent
     {
         public Address PoolID { get { return GetAddressAt(0); } }
         public int ThreadNum { get { return GetInt32At(HostOffset(4, 1)); } }
@@ -12672,7 +12674,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
 
     // [SecuritySafeCritical]
     [System.CodeDom.Compiler.GeneratedCode("traceparsergen", "1.0")]
-    public sealed class HeapTraceProviderTraceEventParser : TraceEventParser
+    internal sealed class HeapTraceProviderTraceEventParser : TraceEventParser
     {
         public static readonly string ProviderName = "HeapTraceProvider";
         public static readonly Guid ProviderGuid = new Guid(unchecked((int)0x222962ab), unchecked((short)0x6180), unchecked((short)0x4b88), 0xa8, 0x25, 0x34, 0x6b, 0x75, 0xf2, 0xa2, 0x4a);
@@ -12883,7 +12885,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
     }
     #endregion
 
-    public sealed class HeapCreateTraceData : TraceEvent
+    internal sealed class HeapCreateTraceData : TraceEvent
     {
         public Address HeapHandle { get { return GetAddressAt(0); } }
         public int HeapFlags { get { return GetInt32At(HostOffset(4, 1)); } }
@@ -12947,14 +12949,14 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
         #endregion
     }
 
-    // TODO make an enum for SourceID these are the values. 
-    // #define MEMORY_FROM_LOOKASIDE                   1       //Activity from LookAside  
-    // #define MEMORY_FROM_LOWFRAG                     2       //Activity from Low Frag Heap  
-    // #define MEMORY_FROM_MAINPATH                    3       //Activity from Main Code Path  
-    // #define MEMORY_FROM_SLOWPATH                    4       //Activity from Slow C  
-    // #define MEMORY_FROM_INVALID                     5  
+    // TODO make an enum for SourceID these are the values.
+    // #define MEMORY_FROM_LOOKASIDE                   1       //Activity from LookAside
+    // #define MEMORY_FROM_LOWFRAG                     2       //Activity from Low Frag Heap
+    // #define MEMORY_FROM_MAINPATH                    3       //Activity from Main Code Path
+    // #define MEMORY_FROM_SLOWPATH                    4       //Activity from Slow C
+    // #define MEMORY_FROM_INVALID                     5
 
-    public sealed class HeapAllocTraceData : TraceEvent
+    internal sealed class HeapAllocTraceData : TraceEvent
     {
         public Address HeapHandle { get { return GetAddressAt(0); } }
         public long AllocSize { get { return (long)GetAddressAt(HostOffset(4, 1)); } }
@@ -13025,7 +13027,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
         private HeapTraceProviderState state;
         #endregion
     }
-    public sealed class HeapReallocTraceData : TraceEvent
+    internal sealed class HeapReallocTraceData : TraceEvent
     {
         public Address HeapHandle { get { return GetAddressAt(0); } }
         public Address NewAllocAddress { get { return GetAddressAt(HostOffset(4, 1)); } }
@@ -13104,7 +13106,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
         private HeapTraceProviderState state;
         #endregion
     }
-    public sealed class HeapFreeTraceData : TraceEvent
+    internal sealed class HeapFreeTraceData : TraceEvent
     {
         public Address HeapHandle { get { return GetAddressAt(0); } }
         public Address FreeAddress { get { return GetAddressAt(HostOffset(4, 1)); } }
@@ -13171,7 +13173,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
         private HeapTraceProviderState state;
         #endregion
     }
-    public sealed class HeapExpandTraceData : TraceEvent
+    internal sealed class HeapExpandTraceData : TraceEvent
     {
         public Address HeapHandle { get { return GetAddressAt(0); } }
         public Address CommittedSize { get { return GetAddressAt(HostOffset(4, 1)); } }
@@ -13254,7 +13256,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
         private HeapTraceProviderState state;
         #endregion
     }
-    public sealed class HeapSnapShotTraceData : TraceEvent
+    internal sealed class HeapSnapShotTraceData : TraceEvent
     {
         public Address HeapHandle { get { return GetAddressAt(0); } }
         public Address FreeSpace { get { return GetAddressAt(HostOffset(4, 1)); } }
@@ -13329,7 +13331,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
         private HeapTraceProviderState state;
         #endregion
     }
-    public sealed class HeapContractTraceData : TraceEvent
+    internal sealed class HeapContractTraceData : TraceEvent
     {
         public Address HeapHandle { get { return GetAddressAt(0); } }
         public Address DeCommittedSize { get { return GetAddressAt(HostOffset(4, 1)); } }
@@ -13412,7 +13414,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
         private HeapTraceProviderState state;
         #endregion
     }
-    public sealed class HeapTraceData : TraceEvent
+    internal sealed class HeapTraceData : TraceEvent
     {
         public Address HeapHandle { get { return GetAddressAt(0); } }
 
@@ -13474,7 +13476,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
 
     // [SecuritySafeCritical]
     [System.CodeDom.Compiler.GeneratedCode("traceparsergen", "1.0")]
-    public sealed class CritSecTraceProviderTraceEventParser : TraceEventParser
+    internal sealed class CritSecTraceProviderTraceEventParser : TraceEventParser
     {
         public static readonly string ProviderName = "CritSecTraceProvider";
         public static readonly Guid ProviderGuid = new Guid(unchecked((int)0x3ac66736), unchecked((short)0xcc59), unchecked((short)0x4cff), 0x81, 0x15, 0x8d, 0xf5, 0x0e, 0x39, 0x81, 0x6b);
@@ -13551,7 +13553,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
     }
     #endregion
 
-    public sealed class CritSecCollisionTraceData : TraceEvent
+    internal sealed class CritSecCollisionTraceData : TraceEvent
     {
         public int LockCount { get { return GetInt32At(0); } }
         public int SpinCount { get { return GetInt32At(4); } }
@@ -13622,7 +13624,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
         private CritSecTraceProviderState state;
         #endregion
     }
-    public sealed class CritSecInitTraceData : TraceEvent
+    internal sealed class CritSecInitTraceData : TraceEvent
     {
         public Address SpinCount { get { return GetAddressAt(0); } }
         public Address CritSecAddr { get { return GetAddressAt(HostOffset(4, 1)); } }
@@ -13686,7 +13688,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
         #endregion
     }
 
-    public sealed class BuildInfoTraceData : TraceEvent
+    internal sealed class BuildInfoTraceData : TraceEvent
     {
         public DateTime InstallDate { get { return DateTime.FromFileTime(GetInt64At(0)); } }
         public string BuildLab { get { return GetUnicodeStringAt(8); } }
@@ -13753,7 +13755,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
         #endregion
     }
 
-    public sealed class SystemPathsTraceData : TraceEvent
+    internal sealed class SystemPathsTraceData : TraceEvent
     {
         /// <summary>
         /// e.g. c:\windows\system32
@@ -13822,7 +13824,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
         #endregion
     }
 
-    public sealed class VolumeMappingTraceData : TraceEvent
+    internal sealed class VolumeMappingTraceData : TraceEvent
     {
         public string NtPath { get { return GetUnicodeStringAt(0); } }
         public string DosPath { get { return GetUnicodeStringAt(SkipUnicodeString(0)); } }
@@ -13885,7 +13887,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
         #endregion
     }
 
-    public sealed class LastBranchRecordTraceData : TraceEvent
+    internal sealed class LastBranchRecordTraceData : TraceEvent
     {
         // Event is:
         //
@@ -14096,7 +14098,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
         #endregion
     }
 
-    public struct Branch
+    internal struct Branch
     {
         public Address Source { get; }
         public Address Target { get; }

@@ -1,4 +1,6 @@
-﻿//     Copyright (c) Microsoft Corporation.  All rights reserved.
+#nullable disable
+
+//     Copyright (c) Microsoft Corporation.  All rights reserved.
 // This file is best viewed using outline mode (Ctrl-M Ctrl-O)
 //
 // This program uses code hyperlinks available as part of the HyperAddin Visual Studio plug-in.
@@ -19,7 +21,7 @@ using System.Runtime.CompilerServices;
 
 namespace FastSerialization
 {
-    public class MemoryMappedFileStreamWriter : IStreamWriter
+    internal class MemoryMappedFileStreamWriter : IStreamWriter
     {
         private const int ERROR_NOT_ENOUGH_MEMORY = unchecked((int)0x80070008);
 

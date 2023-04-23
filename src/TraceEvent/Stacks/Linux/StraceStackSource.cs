@@ -1,4 +1,6 @@
-﻿using System;
+#nullable disable
+
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -15,7 +17,7 @@ namespace Microsoft.Diagnostics.Tracing.StackSources
     /// -r: Print's the relative time stamp for each entry (relative to the previous entry).
     /// -T: Shows the time spent in syscalls.
     /// </summary>
-    public class StraceStackSource : InternStackSource
+    internal class StraceStackSource : InternStackSource
     {
         private const char LatencyStartChar = '<';
         private const char LatencyEndChar = '>';

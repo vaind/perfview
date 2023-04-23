@@ -1,11 +1,13 @@
-﻿using Microsoft.Diagnostics.Tracing;
+#nullable disable
+
+using Microsoft.Diagnostics.Tracing;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace TraceEventTests.FilterQueryExpressions
 {
-    public sealed class FilterQueryExpressionTestTraceEvent : TraceEvent
+    internal sealed class FilterQueryExpressionTestTraceEvent : TraceEvent
     {
         private readonly List<Tuple<string, string>> _propertyNamesToValues;
 

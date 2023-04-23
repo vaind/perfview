@@ -1,4 +1,6 @@
-﻿// Tests copied from dotnet/runtime repo. Original source code can be found here:
+#nullable disable
+
+// Tests copied from dotnet/runtime repo. Original source code can be found here:
 // https://github.com/dotnet/runtime/blob/main/src/libraries/Common/tests/System/Collections/IDictionary.Generic.Tests.cs
 
 using System;
@@ -12,9 +14,9 @@ namespace PerfView.Collections.Tests
     /// Contains tests that ensure the correctness of any class that implements the generic
     /// IDictionary interface
     /// </summary>
-    public abstract partial class IDictionary_Generic_Tests<TKey, TValue> : ICollection_Generic_Tests<KeyValuePair<TKey, TValue>>
+    internal abstract partial class IDictionary_Generic_Tests<TKey, TValue> : ICollection_Generic_Tests<KeyValuePair<TKey, TValue>>
     {
-        public sealed class EqualityComparerConstantHashCode<T> : IEqualityComparer<T>
+        internal sealed class EqualityComparerConstantHashCode<T> : IEqualityComparer<T>
         {
             private readonly IEqualityComparer<T> _comparer;
 
@@ -100,7 +102,7 @@ namespace PerfView.Collections.Tests
         /// Class to provide an indirection around a Key comparer. Allows us to use a key comparer as a KeyValuePair comparer
         /// by only looking at the key of a KeyValuePair.
         /// </summary>
-        public class KVPComparer : IEqualityComparer<KeyValuePair<TKey, TValue>>, IComparer<KeyValuePair<TKey, TValue>>
+        internal class KVPComparer : IEqualityComparer<KeyValuePair<TKey, TValue>>, IComparer<KeyValuePair<TKey, TValue>>
         {
             private IComparer<TKey> _comparer;
             private IEqualityComparer<TKey> _equalityComparer;

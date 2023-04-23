@@ -1,4 +1,6 @@
-﻿using System.Diagnostics;
+#nullable disable
+
+using System.Diagnostics;
 
 // ---------------------------------------------------------------------------
 // <copyright file="SegmentedList.cs" company="Microsoft">
@@ -21,7 +23,7 @@ namespace System.Collections.Generic
     /// <remarks>
     /// This class implement a list which is allocated in segments, to avoid large lists to go into LOH.
     /// </remarks>
-    public class SegmentedList<T> : ICollection<T>, IReadOnlyList<T>
+    internal class SegmentedList<T> : ICollection<T>, IReadOnlyList<T>
     {
         private readonly int segmentSize;
         private readonly int segmentShift;
@@ -815,7 +817,7 @@ namespace System.Collections.Generic
         /// <summary>
         /// Enumerator over the segmented list.
         /// </summary>
-        public struct Enumerator : IEnumerator<T>, IEnumerator
+        internal struct Enumerator : IEnumerator<T>, IEnumerator
         {
             private readonly SegmentedList<T> list;
             private long index;

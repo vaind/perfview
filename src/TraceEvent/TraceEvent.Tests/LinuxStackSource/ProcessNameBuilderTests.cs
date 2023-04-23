@@ -1,10 +1,12 @@
-﻿using Microsoft.Diagnostics.Tracing.Stacks;
+#nullable disable
+
+using Microsoft.Diagnostics.Tracing.Stacks;
 using Microsoft.Diagnostics.Tracing.StackSources;
 using Xunit;
 
 namespace TraceEventTests
 {
-    public class ProcessNameBuilderTests
+    internal class ProcessNameBuilderTests
     {
         [Fact]
         public void SingleProcessName()

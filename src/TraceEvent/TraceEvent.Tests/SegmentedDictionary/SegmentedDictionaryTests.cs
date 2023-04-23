@@ -1,4 +1,6 @@
-﻿// Tests copied from dotnet/runtime repo. Original source code can be found here:
+#nullable disable
+
+// Tests copied from dotnet/runtime repo. Original source code can be found here:
 // https://github.com/dotnet/runtime/blob/main/src/libraries/System.Collections/tests/Generic/Dictionary/Dictionary.Tests.cs
 
 using System;
@@ -7,7 +9,7 @@ using System.Collections.Generic;
 
 namespace PerfView.Collections.Tests
 {
-    public partial class SegmentedDictionary_Generic_Tests_string_string : SegmentedDictionary_Generic_Tests<string, string>
+    internal partial class SegmentedDictionary_Generic_Tests_string_string : SegmentedDictionary_Generic_Tests<string, string>
     {
         protected override KeyValuePair<string, string> CreateT(int seed)
         {
@@ -27,7 +29,7 @@ namespace PerfView.Collections.Tests
     }
 
     [Serializable]
-    public struct SimpleInt : IStructuralComparable, IStructuralEquatable, IComparable, IComparable<SimpleInt>
+    internal struct SimpleInt : IStructuralComparable, IStructuralEquatable, IComparable, IComparable<SimpleInt>
     {
         private int _val;
         public SimpleInt(int t)
@@ -75,7 +77,7 @@ namespace PerfView.Collections.Tests
     }
 
     [Serializable]
-    public class WrapStructural_SimpleInt : IEqualityComparer<SimpleInt>, IComparer<SimpleInt>
+    internal class WrapStructural_SimpleInt : IEqualityComparer<SimpleInt>, IComparer<SimpleInt>
     {
         public int Compare(SimpleInt x, SimpleInt y)
         {
@@ -93,7 +95,7 @@ namespace PerfView.Collections.Tests
         }
     }
 
-    public class SegmentedDictionary_Generic_Tests_int_int : SegmentedDictionary_Generic_Tests<int, int>
+    internal class SegmentedDictionary_Generic_Tests_int_int : SegmentedDictionary_Generic_Tests<int, int>
     {
         protected override bool DefaultValueAllowed => true;
 
@@ -112,7 +114,7 @@ namespace PerfView.Collections.Tests
         protected override int CreateTValue(int seed) => CreateTKey(seed);
     }
 
-    public class SegmentedDictionary_Generic_Tests_SimpleInt_int_With_Comparer_WrapStructural_SimpleInt : SegmentedDictionary_Generic_Tests<SimpleInt, int>
+    internal class SegmentedDictionary_Generic_Tests_SimpleInt_int_With_Comparer_WrapStructural_SimpleInt : SegmentedDictionary_Generic_Tests<SimpleInt, int>
     {
         protected override bool DefaultValueAllowed { get { return true; } }
 

@@ -1,4 +1,6 @@
-﻿using Microsoft.Diagnostics.Tracing.AutomatedAnalysis;
+#nullable disable
+
+using Microsoft.Diagnostics.Tracing.AutomatedAnalysis;
 using TraceEventTests;
 using System;
 using System.Collections.Generic;
@@ -11,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace TestEventTests.Analyzers
 {
-    public sealed class TestAnalyzerProvider : IAnalyzerProvider
+    internal sealed class TestAnalyzerProvider : IAnalyzerProvider
     {
         // Execution tests.
         public static readonly SingleIssueAnalyzer ExecutionTests_SingleIssueAnalyzer = new SingleIssueAnalyzer();
@@ -36,7 +38,7 @@ namespace TestEventTests.Analyzers
         }
     }
 
-    public sealed class ResolverTests_AnalyzerOne : Analyzer
+    internal sealed class ResolverTests_AnalyzerOne : Analyzer
     {
         protected override AnalyzerExecutionResult Execute(AnalyzerExecutionContext executionContext)
         {
@@ -44,7 +46,7 @@ namespace TestEventTests.Analyzers
         }
     }
 
-    public sealed class ResolverTests_AnalyzerTwo : Analyzer
+    internal sealed class ResolverTests_AnalyzerTwo : Analyzer
     {
         protected override AnalyzerExecutionResult Execute(AnalyzerExecutionContext executionContext)
         {

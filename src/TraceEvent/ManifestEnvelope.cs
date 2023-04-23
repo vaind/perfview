@@ -1,3 +1,5 @@
+#nullable disable
+
 //     Copyright (c) Microsoft Corporation.  All rights reserved.
 
 namespace System.Diagnostics.Tracing
@@ -9,7 +11,7 @@ namespace System.Diagnostics.Tracing
     internal struct ManifestEnvelope
     {
         public const int MaxChunkSize = 0xFF00;
-        public enum ManifestFormats : byte
+        internal enum ManifestFormats : byte
         {
             SimpleXmlFormat = 1,          // Simply dump the XML manifest
         }

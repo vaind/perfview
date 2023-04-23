@@ -1,4 +1,6 @@
-﻿internal class Program
+#nullable disable
+
+internal class Program
 {
     private static void Main(string[] args)
     {

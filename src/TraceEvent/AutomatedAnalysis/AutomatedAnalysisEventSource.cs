@@ -1,4 +1,6 @@
-﻿using System;
+#nullable disable
+
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.Tracing;
 using System.IO;
@@ -27,7 +29,7 @@ namespace Microsoft.Diagnostics.Tracing.AutomatedAnalysis
     /// <summary>
     /// TextWriter implementation that allows TraceEvent constructions to log to EventSource along with other AutomatedAnalysis logging.
     /// </summary>
-    public sealed class AutomatedAnalysisTextWriter : TextWriter
+    internal sealed class AutomatedAnalysisTextWriter : TextWriter
     {
         [ThreadStatic]
         private static StringBuilder _builder;
