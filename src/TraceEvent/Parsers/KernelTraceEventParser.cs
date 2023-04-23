@@ -4465,7 +4465,7 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
 
         public ThreadWaitReason OldThreadWaitReason { get { return (ThreadWaitReason)GetByteAt(0xc); } }
         public ThreadWaitMode OldThreadWaitMode { get { return (ThreadWaitMode)GetByteAt(0xd); } }
-        public ThreadState OldThreadState { get { return (ThreadState)GetByteAt(0xe); } }
+        public System.Diagnostics.ThreadState OldThreadState { get { return (System.Diagnostics.ThreadState)GetByteAt(0xe); } }
         public int OldThreadWaitIdealProcessor { get { return GetByteAt(15); } }
         public int NewThreadWaitTime { get { return GetInt32At(16); } }
         // Skipping Reserved
@@ -4601,18 +4601,18 @@ namespace Microsoft.Diagnostics.Tracing.Parsers.Kernel
             }
         }
 
-        private string ToString(ThreadState state)
+        private string ToString(System.Diagnostics.ThreadState state)
         {
             switch (state)
             {
-                case ThreadState.Initialized: return "Initialized";
-                case ThreadState.Ready: return "Ready";
-                case ThreadState.Running: return "Running";
-                case ThreadState.Standby: return "Standby";
-                case ThreadState.Terminated: return "Terminated";
-                case ThreadState.Wait: return "Wait";
-                case ThreadState.Transition: return "Transition";
-                case ThreadState.Unknown: return "Unknown";
+                case System.Diagnostics.ThreadState.Initialized: return "Initialized";
+                case System.Diagnostics.ThreadState.Ready: return "Ready";
+                case System.Diagnostics.ThreadState.Running: return "Running";
+                case System.Diagnostics.ThreadState.Standby: return "Standby";
+                case System.Diagnostics.ThreadState.Terminated: return "Terminated";
+                case System.Diagnostics.ThreadState.Wait: return "Wait";
+                case System.Diagnostics.ThreadState.Transition: return "Transition";
+                case System.Diagnostics.ThreadState.Unknown: return "Unknown";
                 default: return ((int)state).ToString();
             }
         }

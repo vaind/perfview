@@ -411,14 +411,14 @@ namespace Microsoft.Diagnostics.Symbols
             return ret;
         }
 
-        /// <summary>
-        /// Like OpenSymbolFile, which opens a PDB, but this version will fail (return null)
-        /// if it is not WindowsSymbolModule.  It is a shortcut for OpenSymbolFile as NativeSymbolModule
-        /// </summary>
-        public NativeSymbolModule OpenNativeSymbolFile(string pdbFileName)
-        {
-            return OpenSymbolFile(pdbFileName) as NativeSymbolModule;
-        }
+        // /// <summary>
+        // /// Like OpenSymbolFile, which opens a PDB, but this version will fail (return null)
+        // /// if it is not WindowsSymbolModule.  It is a shortcut for OpenSymbolFile as NativeSymbolModule
+        // /// </summary>
+        // public NativeSymbolModule OpenNativeSymbolFile(string pdbFileName)
+        // {
+        //     return OpenSymbolFile(pdbFileName) as NativeSymbolModule;
+        // }
 
         // Various state that controls symbol and source file lookup.
         /// <summary>
