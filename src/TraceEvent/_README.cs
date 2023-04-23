@@ -1,6 +1,5 @@
 #nullable disable
 
-
 // Welcome to the TraceEvent code base. This _README.cs file is your table of contents.
 // 
 // -------------------------------------------------------------------------------------

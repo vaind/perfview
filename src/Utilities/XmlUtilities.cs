@@ -1,4 +1,6 @@
-﻿//     Copyright (c) Microsoft Corporation.  All rights reserved.
+#nullable disable
+
+//     Copyright (c) Microsoft Corporation.  All rights reserved.
 // This file is best viewed using outline mode (Ctrl-M Ctrl-O)
 //
 // This program uses code hyperlinks available as part of the HyperAddin Visual Studio plug-in.
@@ -17,7 +19,7 @@ namespace Microsoft.Diagnostics.Utilities
 #if UTILITIES_PUBLIC
     public 
 #endif
-    class XmlUtilities
+    internal class XmlUtilities
     {
         /// <summary>
         /// Given an XML element, remove the closing operator for it, so you can add new child elements to it by concatination. 

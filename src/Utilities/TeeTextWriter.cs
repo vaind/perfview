@@ -1,11 +1,13 @@
-﻿using System.IO;
+#nullable disable
+
+using System.IO;
 
 namespace Microsoft.Diagnostics.Utilities
 {
     /// <summary>
     /// This class returns a stream, which when written to, will write to two other streams.  
     /// </summary>
-    public sealed class TeeTextWriter : TextWriter
+    internal sealed class TeeTextWriter : TextWriter
     {
         public TeeTextWriter(TextWriter stream1, TextWriter stream2)
         {

@@ -1,3 +1,5 @@
+#nullable disable
+
 using System.Runtime.InteropServices;
 
 namespace Microsoft.Diagnostics.Utilities
