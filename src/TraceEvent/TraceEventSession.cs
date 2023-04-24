@@ -502,7 +502,7 @@ namespace Microsoft.Diagnostics.Tracing.Session
         /// If the special key-value pair 'Command'='SendManifest' is provided, then the 'SendManifest'
         /// command will be sent (which causes EventSources to re-dump their manifest to the ETW log.  </param>
         /// <returns>true if the session already existed and needed to be restarted.</returns>
-        [Obsolete("Use EnableProvider(string, TraceEventLevel, ulong, TraceEventProviderOptions) overload instead")]
+        // [Obsolete("Use EnableProvider(string, TraceEventLevel, ulong, TraceEventProviderOptions) overload instead")]
         public bool EnableProvider(string providerName, TraceEventLevel providerLevel, ulong matchAnyKeywords, TraceEventOptions options, IEnumerable<KeyValuePair<string, string>> values = null)
         {
             var providerGuid = TraceEventProviders.GetProviderGuidByName(providerName);
@@ -528,7 +528,7 @@ namespace Microsoft.Diagnostics.Tracing.Session
         /// If the special key-value pair 'Command'='SendManifest' is provided, then the 'SendManifest'
         /// command will be sent (which causes EventSources to re-dump their manifest to the ETW log.  </param>
         /// <returns>true if the session already existed and needed to be restarted.</returns>
-        [Obsolete("Use EnableProvider(Guid, TraceEventLevel, ulong, TraceEventProviderOptions) overload instead")]
+        // [Obsolete("Use EnableProvider(Guid, TraceEventLevel, ulong, TraceEventProviderOptions) overload instead")]
         public bool EnableProvider(Guid providerGuid, TraceEventLevel providerLevel, ulong matchAnyKeywords, TraceEventOptions options, IEnumerable<KeyValuePair<string, string>> values = null)
         {
             var args = new TraceEventProviderOptions() { Arguments = values };
@@ -546,7 +546,7 @@ namespace Microsoft.Diagnostics.Tracing.Session
         /// but did not conform to the key-value string conventions.   This allows this extra information to be passed to these old
         /// providers.   Ideally new providers follow the key-value convention and EnableProvider can be used.  
         /// </summary>
-        [Obsolete("Use TraceEventProviderOptions.RawArguments overload instead")]
+        // [Obsolete("Use TraceEventProviderOptions.RawArguments overload instead")]
         public void EnableProviderWithRawProviderData(Guid providerGuid, TraceEventLevel providerLevel, ulong matchAnyKeywords, TraceEventOptions options, byte[] providerData, int providerDataSize)
         {
             var exactArray = providerData;
@@ -567,7 +567,7 @@ namespace Microsoft.Diagnostics.Tracing.Session
         /// Helper function that is useful when using EnableProvider with key value pairs. 
         /// Given a list of key-value pairs, create a dictionary of the keys mapping to the values.   
         /// </summary>
-        [Obsolete("Use TraceEventProviderOptions.AddArgument instead")]
+        // [Obsolete("Use TraceEventProviderOptions.AddArgument instead")]
         public static Dictionary<string, string> MakeDictionary(params string[] keyValuePairs)
         {
             var ret = new Dictionary<string, string>();
@@ -3287,7 +3287,7 @@ namespace Microsoft.Diagnostics.Tracing.Session
     /// <summary>
     /// These are options to EnableProvider
     /// </summary>
-    [Flags, Obsolete("Use TraceEventArguments.Stacks instead")]
+    [Flags/* , Obsolete("Use TraceEventArguments.Stacks instead") */]
     internal enum TraceEventOptions
     {
         /// <summary>

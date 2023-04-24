@@ -3919,22 +3919,22 @@ namespace Microsoft.Diagnostics.Tracing.Analysis.JIT
         /// <summary>
         /// Background JIT: Time Jit was aborted (ms)
         /// </summary>
-        [Obsolete("This is experimental, you should not use it yet for non-experimental purposes.")]
+        // [Obsolete("This is experimental, you should not use it yet for non-experimental purposes.")]
         public double BackgroundJitAbortedAtMSec;
         /// <summary>
         /// Background JIT: Assembly name of last assembly loaded before JIT aborted
         /// </summary>
-        [Obsolete("This is experimental, you should not use it yet for non-experimental purposes.")]
+        // [Obsolete("This is experimental, you should not use it yet for non-experimental purposes.")]
         public string LastAssemblyLoadNameBeforeAbort;
         /// <summary>
         /// Background JIT: Relative start time of last assembly loaded before JIT aborted
         /// </summary>
-        [Obsolete("This is experimental, you should not use it yet for non-experimental purposes.")]
+        // [Obsolete("This is experimental, you should not use it yet for non-experimental purposes.")]
         public double LastAssemblyLoadBeforeAbortMSec;
         /// <summary>
         /// Background JIT: Indication if the last assembly load was successful before JIT aborted
         /// </summary>
-        [Obsolete("This is experimental, you should not use it yet for non-experimental purposes.")]
+        // [Obsolete("This is experimental, you should not use it yet for non-experimental purposes.")]
         public bool LastAssemblyLoadBeforeAbortSuccessful;
         /// <summary>
         /// Background JIT: Thread id of the background JIT
@@ -4312,7 +4312,7 @@ namespace Microsoft.Diagnostics.Tracing.Analysis.JIT
         /// <summary>
         /// Indication of if it was JIT'd in the background
         /// </summary>
-        [Obsolete("Use CompilationThreadKind")]
+        // [Obsolete("Use CompilationThreadKind")]
         public bool IsBackground
         {
             get
@@ -4327,7 +4327,7 @@ namespace Microsoft.Diagnostics.Tracing.Analysis.JIT
         /// <summary>
         /// Amount of time the method was forcasted to JIT
         /// </summary>
-        [Obsolete("This is experimental, you should not use it yet for non-experimental purposes.")]
+        // [Obsolete("This is experimental, you should not use it yet for non-experimental purposes.")]
         public double DistanceAhead
         {
             get
@@ -4344,7 +4344,7 @@ namespace Microsoft.Diagnostics.Tracing.Analysis.JIT
         /// <summary>
         /// Indication of if the background JIT request was blocked and why
         /// </summary>
-        [Obsolete("This is experimental, you should not use it yet for non-experimental purposes.")]
+        // [Obsolete("This is experimental, you should not use it yet for non-experimental purposes.")]
         public string BlockedReason
         {
             get

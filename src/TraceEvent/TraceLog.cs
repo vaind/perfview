@@ -6377,7 +6377,7 @@ namespace Microsoft.Diagnostics.Tracing.Etlx
         /// <summary>
         /// REturns the activity this thread was working on at the time instant 'relativeMsec'
         /// </summary>
-        [Obsolete("Likely to be removed Replaced by ActivityMap.GetActivity(TraceThread, double)")]
+        // [Obsolete("Likely to be removed Replaced by ActivityMap.GetActivity(TraceThread, double)")]
         public ActivityIndex GetActivityIndex(double relativeMSec)
         {
 
@@ -6386,7 +6386,7 @@ namespace Microsoft.Diagnostics.Tracing.Etlx
         /// <summary>
         /// Represents the "default" activity for the thread, the activity that no one has set
         /// </summary>
-        [Obsolete("Likely to be removed Replaced by ActivityComputer.GetDefaultActivity(TraceThread)")]
+        // [Obsolete("Likely to be removed Replaced by ActivityComputer.GetDefaultActivity(TraceThread)")]
         public ActivityIndex DefaultActivityIndex
         {
             get
@@ -10718,7 +10718,7 @@ namespace Microsoft.Diagnostics.Tracing.Etlx
         /// <summary>
         /// Finds the Activity associated with a TraceEvent
         /// </summary>
-        [Obsolete("Likely to be removed Replaced by ActivityMap.GetActivityC(TraceEvent)")]
+        // [Obsolete("Likely to be removed Replaced by ActivityMap.GetActivityC(TraceEvent)")]
         public static TraceActivity Activity(this TraceEvent anEvent)
         {
             throw new InvalidOperationException("Don't use activities right now");

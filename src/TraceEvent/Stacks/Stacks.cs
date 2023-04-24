@@ -25,7 +25,7 @@ namespace Microsoft.Diagnostics.Tracing.Stacks
         /// Call 'callback' on every sample in the StackSource.   Will be done linearly and only
         /// one callback will be active simultaneously.  
         /// </summary>
-        [Obsolete("Use ForEach")]
+        // [Obsolete("Use ForEach")]
         public void ProduceSamples(Action<StackSourceSample> callback) { ForEach(callback); }
         /// <summary>
         /// Call 'callback' on every sample in the StackSource.   Will be done linearly and only

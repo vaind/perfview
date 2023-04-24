@@ -148,7 +148,7 @@ namespace Microsoft.Diagnostics.Tracing
         /// or certain internal data may no longer be available and you may receive memory access violations.
         /// </summary>
         /// <param name="ev">Event to re-process.</param>
-        [Obsolete("Not obsolete but experimental.   We may change this in the future.")]
+        // [Obsolete("Not obsolete but experimental.   We may change this in the future.")]
         public void ReprocessEvent(TraceEvent ev)
         {
             RawDispatch(ev.eventRecord);

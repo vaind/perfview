@@ -222,7 +222,7 @@ namespace Microsoft.Diagnostics.Tracing
         /// Because the DynamicTraceEventParser has will parse all providers that that RegisteredTraceEventParser
         /// will parse, this function is obsolete, you should use Dynamic instead.  
         /// </summary>
-        [Obsolete("Use Dynamic instead.   DynamicTraceEventParser decodes everything that RegisteredTraceEventParser can.")]
+        // [Obsolete("Use Dynamic instead.   DynamicTraceEventParser decodes everything that RegisteredTraceEventParser can.")]
         public RegisteredTraceEventParser Registered
         {
             get
@@ -1976,7 +1976,7 @@ namespace Microsoft.Diagnostics.Tracing
         /// Returns the Timestamp for the event using Query Performance Counter (QPC) ticks.   
         /// The start time for the QPC tick counter is arbitrary and the units  also vary.  
         /// </summary>
-        [Obsolete("Not Obsolete but Discouraged.  Please use TimeStampRelativeMSec.")]
+        // [Obsolete("Not Obsolete but Discouraged.  Please use TimeStampRelativeMSec.")]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public long TimeStampQPC { get { return eventRecord->EventHeader.TimeStamp; } }
 
@@ -3249,7 +3249,7 @@ namespace Microsoft.Diagnostics.Tracing
         /// Subscribers to UnhandledEvent are called if no other hander has processed the event.   It is
         /// generally used in DEBUG builds to validate that events are getting to the source at all.  
         /// </summary>
-        [Obsolete("Use UnhandledEvents")]
+        // [Obsolete("Use UnhandledEvents")]
         public event Action<TraceEvent> UnhandledEvent
         {
             add
@@ -3269,7 +3269,7 @@ namespace Microsoft.Diagnostics.Tracing
         /// This is called AFTER any event-specific handlers.
         /// </para>
         /// </summary>
-        [Obsolete("Use AllEvents")]
+        // [Obsolete("Use AllEvents")]
         public event Action<TraceEvent> EveryEvent
         {
             add

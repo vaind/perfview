@@ -650,7 +650,7 @@ namespace Microsoft.Diagnostics.Tracing.Stacks
         /// <summary>
         /// The time of the first sample for this node or any of its children (recursively)
         /// </summary>
-        [Obsolete("Use FirstTimeRelativeMSec")]
+        // [Obsolete("Use FirstTimeRelativeMSec")]
         public double FirstTimeRelMSec { get { return m_firstTimeRelativeMSec; } }
 
         /// <summary>
@@ -660,7 +660,7 @@ namespace Microsoft.Diagnostics.Tracing.Stacks
         /// <summary>
         /// The time of the last sample for this node or any of its children (recursively)
         /// </summary>
-        [Obsolete("Use LastTimeRelativeMSec")]
+        // [Obsolete("Use LastTimeRelativeMSec")]
         public double LastTimeRelMSec { get { return m_lastTimeRelativeMSec; } }
 
         /// <summary>
