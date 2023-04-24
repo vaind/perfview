@@ -16,6 +16,10 @@ function UpdateSourceFiles([string]$Path)
         # Allow nullable types.
         $text = "#nullable disable`n`n" + ($text -replace "#nullable disable[`n`r]+", '')
 
+        # Don't error out on obsolete code usage.
+        $text = $text -replace '(?<!// )\[Obsolete\(.+\)\]', '// $0'
+        $text = $text -replace '(?<!/* ), (Obsolete\(.+\))', '/* $0 */'
+
         # Only write in case we see a change to avoid unnecessary git changes due to Encoding differences.
         if ($oldText -ne $text)
         {
